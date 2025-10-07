@@ -210,8 +210,7 @@ const Profile = () => {
 
   if (!profile && !isProfileLoading && session) {
     return (
-      <React.Fragment>
-        <div className="min-h-screen flex items-center justify-center py-12 px-4">
+      <div className="min-h-screen flex items-center justify-center py-12 px-4">
           <Card className="w-full max-w-md">
             <CardHeader className="text-center">
               <CardTitle className="font-heading text-2xl font-bold">
@@ -269,7 +268,7 @@ const Profile = () => {
             </CardContent>
           </Card>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 

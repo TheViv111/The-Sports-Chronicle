@@ -140,7 +140,6 @@ const Header = () => {
                 <Button 
                   variant="ghost" 
                   className="relative h-8 w-8 rounded-full"
-                  key={session.user?.id || "default-avatar-button"}
                 >
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={session.user?.user_metadata?.avatar_url || undefined} alt="User Avatar" />

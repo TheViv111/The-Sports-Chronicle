@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tables } from "@/integrations/supabase/types";
 
 // Use the Supabase generated type for blog posts
@@ -49,11 +48,11 @@ const BlogCard = ({ post, className = "" }: BlogCardProps) => {
             </p>
           </div>
           
-          {/* The button is now just for visual consistency, the whole card is clickable */}
-          <Button variant="ghost" className="group p-0 h-auto btn-hover-lift self-start">
-            <span className="text-sm font-medium">Read article</span>
+          {/* Replaced the Button with a styled span and icon for visual consistency, as the whole card is now clickable */}
+          <span className="group flex items-center text-sm font-medium text-primary hover:text-primary/90 transition-colors self-start">
+            Read article
             <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
-          </Button>
+          </span>
         </CardContent>
       </Card>
     </Link>
