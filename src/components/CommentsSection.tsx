@@ -31,7 +31,7 @@ interface CommentsSectionProps {
 const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const [user, setUser] = React.useState<Tables<'profiles'> | null>(null);
+  const [user, setUser] = React.useState<Pick<Tables<'profiles'>, 'display_name' | 'avatar_url'> | null>(null);
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
   React.useEffect(() => {
@@ -75,7 +75,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
     });
 
     return () => {
-      authListener.unsubscribe();
+      authListener.subscription.unsubscribe();
     };
   }, []);
 
