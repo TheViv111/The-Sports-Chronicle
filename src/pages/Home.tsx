@@ -1,13 +1,14 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/BlogCard";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Tables } from "@/integrations/supabase/types";
-import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
+import LoadingScreen from "@/components/LoadingScreen";
 import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay'; // Import Autoplay plugin
 
 type BlogPostType = Tables<'blog_posts'>;
 
@@ -16,15 +17,11 @@ const Home = () => {
   const [loadingPosts, setLoadingPosts] = useState(true);
   const { t } = useTranslation();
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
-
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+  // Initialize Embla Carousel with Autoplay plugin
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true, align: 'start' },
+    [Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true, stopOnLastSnap: false })]
+  );
 
   useEffect(() => {
     loadPosts();
@@ -126,22 +123,7 @@ const Home = () => {
                   ))}
                 </div>
               </div>
-              <Button
-                className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 z-10 rounded-full p-2"
-                variant="outline"
-                size="icon"
-                onClick={scrollPrev}
-              >
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-              <Button
-                className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 z-10 rounded-full p-2"
-                variant="outline"
-                size="icon"
-                onClick={scrollNext}
-              >
-                <ArrowRight className="h-4 w-4" />
-              </Button>
+              {/* Removed manual navigation buttons as autoplay is enabled */}
             </div>
           ) : (
             <p className="text-muted-foreground text-center py-8">

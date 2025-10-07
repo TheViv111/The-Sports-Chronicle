@@ -176,24 +176,6 @@
   .scroll-reveal:nth-child(4) { animation-delay: 0.4s; }
   .scroll-reveal:nth-child(5) { animation-delay: 0.5s; }
   .scroll-reveal:nth-child(6) { animation-delay: 0.6s; }
-
-  /* Blog Carousel Animation */
-  .carousel-track {
-    animation: scroll-left 30s linear infinite;
-  }
-  
-  .carousel-track:hover {
-    animation-play-state: paused;
-  }
-  
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
   
   /* Category Pills */
   .category-pill {
