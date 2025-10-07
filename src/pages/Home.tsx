@@ -103,7 +103,7 @@ const Home = () => {
           {loadingPosts ? (
             <LoadingScreen message={t("latestPosts.loading")} />
           ) : posts.length > 0 ? (
-            <ContinuousCarousel posts={posts} /> {/* Using the new continuous carousel */}
+            <ContinuousCarousel posts={posts} />
           ) : (
             <p className="text-muted-foreground text-center py-8">
               {t("latestPosts.noPosts")}
