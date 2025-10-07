@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { toast } from "sonner"; // Using sonner for toasts
-import { Trash2, Edit, Plus, Loader2, ArrowLeft, Home } from "lucide-react";
+import { toast } from "sonner";
+import { Trash2, Edit, Loader2, ArrowLeft, Home } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Tables } from "@/integrations/supabase/types"; // Import Supabase types
-import { useTranslation } from "@/contexts/TranslationContext"; // Import useTranslation
+import { Tables } from "@/integrations/supabase/types";
+import { useTranslation } from "@/contexts/TranslationContext";
+import BlogPostForm from "@/components/BlogPostForm"; // Import the new BlogPostForm
+import { formatBlogPostDate } from "@/lib/blog-utils"; // Import the utility function
 
-type BlogPost = Tables<'blog_posts'>; // Use Supabase type for blog posts
+type BlogPost = Tables<'blog_posts'>;
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,9 +25,8 @@ const Admin = () => {
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [loadingPosts, setLoadingPosts] = useState(false);
   const [activeTab, setActiveTab] = useState("posts");
-  const { t } = useTranslation(); // Use useTranslation hook
+  const { t } = useTranslation();
 
-  // Check if already authenticated on component mount
   useEffect(() => {
     const auth = localStorage.getItem("admin_authenticated");
     if (auth === "true") {
@@ -59,7 +59,6 @@ const Admin = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate authentication delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     if (username === "admin" && password === "admin123") {
@@ -89,89 +88,77 @@ const Admin = () => {
     });
   };
 
-  const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    
-    const title = formData.get("title") as string;
-    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-    
+  const handleCreateOrUpdatePost = async (values: { title: string; category: string; excerpt: string; content: string }) => {
+    setIsLoading(true);
+    const slug = values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
     try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .insert({
-          title,
-          excerpt: formData.get("excerpt") as string,
-          content: formData.get("content") as string,
-          category: formData.get("category") as string,
-          slug,
-          read_time: "5 min read",
-          author: "Sports Chronicle Team",
-          language: "en"
-        })
-        .select()
-        .single();
+      if (editingPost) {
+        // Update existing post
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .update({
+            title: values.title,
+            excerpt: values.excerpt,
+            content: values.content,
+            category: values.category,
+            slug,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', editingPost.id)
+          .select()
+          .single();
 
-      if (error) throw error;
+        if (error) throw error;
 
-      setPosts([data, ...posts]);
-      (e.target as HTMLFormElement).reset();
-      setActiveTab("posts"); // Switch back to posts list
-      
-      toast.success(t("admin.postCreated"), {
-        description: t("admin.postCreatedSuccess"),
-      });
+        setPosts(posts.map(post => post.id === editingPost.id ? data : post));
+        setEditingPost(null);
+        toast.success(t("admin.postUpdated"), {
+          description: t("admin.postUpdatedSuccess"),
+        });
+      } else {
+        // Create new post
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .insert({
+            title: values.title,
+            excerpt: values.excerpt,
+            content: values.content,
+            category: values.category,
+            slug,
+            read_time: "5 min read",
+            author: "Sports Chronicle Team",
+            language: "en"
+          })
+          .select()
+          .single();
+
+        if (error) throw error;
+
+        setPosts([data, ...posts]);
+        toast.success(t("admin.postCreated"), {
+          description: t("admin.postCreatedSuccess"),
+        });
+      }
+      setActiveTab("posts");
     } catch (error) {
-      console.error('Error creating post:', error);
-      toast.error(t("admin.errorCreatingPost"), {
-        description: t("admin.failedToCreatePost"),
+      console.error(`Error ${editingPost ? 'updating' : 'creating'} post:`, error);
+      toast.error(editingPost ? t("admin.errorUpdatingPost") : t("admin.errorCreatingPost"), {
+        description: editingPost ? t("admin.failedToUpdatePost") : t("admin.failedToCreatePost"),
       });
-    }
-  };
-
-  const handleUpdatePost = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!editingPost) return;
-
-    const formData = new FormData(e.currentTarget);
-    const title = formData.get("title") as string;
-    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-    
-    try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .update({
-          title,
-          excerpt: formData.get("excerpt") as string,
-          content: formData.get("content") as string,
-          category: formData.get("category") as string,
-          slug,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', editingPost.id)
-        .select()
-        .single();
-
-      if (error) throw error;
-
-      setPosts(posts.map(post => post.id === editingPost.id ? data : post));
-      setEditingPost(null);
-      setActiveTab("posts"); // Switch back to posts list
-      
-      toast.success(t("admin.postUpdated"), {
-        description: t("admin.postUpdatedSuccess"),
-      });
-    } catch (error) {
-      console.error('Error updating post:', error);
-      toast.error(t("admin.errorUpdatingPost"), {
-        description: t("admin.failedToUpdatePost"),
-      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const startEditingPost = (post: BlogPost) => {
     setEditingPost(post);
-    setActiveTab("create"); // Switch to the create/edit tab
+    setActiveTab("create");
+  };
+
+  const handleCancelEdit = () => {
+    setEditingPost(null);
+    setActiveTab("posts");
   };
 
   const handleDeletePost = async (postId: string) => {
@@ -262,7 +249,6 @@ const Admin = () => {
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="font-heading text-3xl font-bold">{t("admin.dashboardTitle")}</h1>
@@ -316,11 +302,7 @@ const Admin = () => {
                           <div className="flex items-center gap-2">
                             <Badge variant="outline">{post.category}</Badge>
                             <span className="text-xs text-muted-foreground">
-                              {new Date(post.created_at).toLocaleDateString("en-US", { 
-                                year: "numeric", 
-                                month: "short", 
-                                day: "numeric" 
-                              })} • {post.read_time || "5 min read"}
+                              {formatBlogPostDate(post.created_at)} • {post.read_time || "5 min read"}
                             </span>
                           </div>
                         </div>
@@ -356,84 +338,19 @@ const Admin = () => {
                   {editingPost ? t("admin.editPost") : t("admin.createPost")}
                 </CardTitle>
                 <CardDescription>
-                  {editingPost 
+                  {editingPost
                     ? t("admin.updatePostDetails")
                     : t("admin.addNewPost")
                   }
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form 
-                  onSubmit={editingPost ? handleUpdatePost : handleCreatePost}
-                  className="space-y-4"
-                >
-                  <div>
-                    <Label htmlFor="title">{t("admin.postTitle")}</Label>
-                    <Input
-                      id="title"
-                      name="title"
-                      defaultValue={editingPost?.title || ""}
-                      placeholder={t("admin.enterPostTitle")}
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="category">{t("admin.postCategory")}</Label>
-                    <Input
-                      id="category"
-                      name="category"
-                      defaultValue={editingPost?.category || ""}
-                      placeholder={t("admin.enterCategory")}
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="excerpt">{t("admin.postExcerpt")}</Label>
-                    <Textarea
-                      id="excerpt"
-                      name="excerpt"
-                      defaultValue={editingPost?.excerpt || ""}
-                      placeholder={t("admin.briefDescription")}
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="content">{t("admin.postContent")}</Label>
-                    <Textarea
-                      id="content"
-                      name="content"
-                      defaultValue={editingPost?.content || ""}
-                      placeholder={t("admin.writeContent")}
-                      required
-                      className="mt-1 min-h-[300px]"
-                    />
-                  </div>
-
-                  <div className="flex gap-2">
-                    <Button type="submit">
-                      <Plus className="h-4 w-4 mr-2" />
-                      {editingPost ? t("admin.updatePost") : t("admin.createPost")}
-                    </Button>
-                    {editingPost && (
-                      <Button 
-                        type="button" 
-                        variant="outline"
-                        onClick={() => {
-                          setEditingPost(null);
-                          setActiveTab("posts");
-                        }}
-                      >
-                        {t("common.cancel")}
-                      </Button>
-                    )}
-                  </div>
-                </form>
+                <BlogPostForm
+                  initialData={editingPost}
+                  onSubmit={handleCreateOrUpdatePost}
+                  onCancel={editingPost ? handleCancelEdit : undefined}
+                  isSubmitting={isLoading}
+                />
               </CardContent>
             </Card>
           </TabsContent>

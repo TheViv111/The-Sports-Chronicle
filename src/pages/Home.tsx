@@ -2,16 +2,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import BlogCarousel from "@/components/BlogCarousel"; // Import the new BlogCarousel
+import BlogCarousel from "@/components/BlogCarousel";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Tables } from "@/integrations/supabase/types";
+import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-utils"; // Import utility
 import LoadingScreen from "@/components/LoadingScreen";
 
-type BlogPostType = Tables<'blog_posts'>;
-
 const Home = () => {
-  const [latestPosts, setLatestPosts] = useState<BlogPostType[]>([]);
+  const [latestPosts, setLatestPosts] = useState<BlogPostWithDisplay[]>([]);
   const [loadingLatestPosts, setLoadingLatestPosts] = useState(true);
   const { t } = useTranslation();
 
@@ -26,10 +24,10 @@ const Home = () => {
         .from('blog_posts')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(6); // Fetch a limited number of posts for display
+        .limit(6);
 
       if (error) throw error;
-      setLatestPosts(data || []);
+      setLatestPosts(data ? data.map(transformBlogPostForDisplay) : []);
     } catch (error) {
       console.error('Error loading latest posts:', error);
     } finally {
@@ -55,21 +53,8 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Prepare posts for display, adding derived fields
-  const postsForDisplay = latestPosts.map(post => ({
-    ...post,
-    date: new Date(post.created_at).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric"
-    }),
-    readTime: post.read_time || "5 min read",
-    image: post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"
-  }));
-
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="py-20 text-center">
         <div className="container mx-auto px-4">
           <p className="text-muted-foreground uppercase text-sm tracking-wide mb-4 reveal-on-scroll">
@@ -92,7 +77,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Latest Posts Section */}
       <section className="py-16 bg-secondary/20">
         <div className="container mx-auto px-4">
           <h2 className="font-heading text-3xl font-bold mb-8 text-center reveal-on-scroll">
@@ -105,7 +89,7 @@ const Home = () => {
           {loadingLatestPosts ? (
             <LoadingScreen message={t("latestPosts.loading")} />
           ) : (
-            <BlogCarousel posts={postsForDisplay} />
+            <BlogCarousel posts={latestPosts} />
           )}
 
           {latestPosts.length > 0 && (

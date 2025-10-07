@@ -6,16 +6,14 @@ import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/BlogCard";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Tables } from "@/integrations/supabase/types";
-import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
-
-type BlogPostType = Tables<'blog_posts'>;
+import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-utils"; // Import utility
+import LoadingScreen from "@/components/LoadingScreen";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  const [posts, setPosts] = useState<BlogPostType[]>([]);
+  const [posts, setPosts] = useState<BlogPostWithDisplay[]>([]);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
@@ -32,7 +30,7 @@ const Blog = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setPosts(data || []);
+      setPosts(data ? data.map(transformBlogPostForDisplay) : []);
     } catch (error) {
       console.error('Error loading posts:', error);
     } finally {
@@ -64,7 +62,6 @@ const Blog = () => {
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
             {t("blog.title")}
@@ -73,7 +70,6 @@ const Blog = () => {
             {t("blog.subtitle")}
           </p>
 
-          {/* Search */}
           <div className="relative max-w-md mx-auto mb-8">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
@@ -84,7 +80,6 @@ const Blog = () => {
             />
           </div>
 
-          {/* Category Filter */}
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <Button
@@ -100,32 +95,18 @@ const Blog = () => {
           </div>
         </div>
 
-        {/* Articles Count */}
         <div className="mb-8">
           <p className="text-muted-foreground">
             {filteredPosts.length} {filteredPosts.length === 1 ? t("blog.articleFound") : t("blog.articlesFound")}
           </p>
         </div>
 
-        {/* Blog Posts Grid */}
         {loading ? (
           <LoadingScreen message={t("latestPosts.loading")} />
         ) : filteredPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
-              <BlogCard 
-                key={post.id} 
-                post={{
-                  ...post,
-                  date: new Date(post.created_at).toLocaleDateString("en-US", { 
-                    year: "numeric", 
-                    month: "short", 
-                    day: "numeric" 
-                  }),
-                  readTime: post.read_time || "5 min read",
-                  image: post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"
-                }} 
-              />
+              <BlogCard key={post.id} post={post} />
             ))}
           </div>
         ) : (

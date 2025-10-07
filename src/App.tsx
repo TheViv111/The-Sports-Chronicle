@@ -16,8 +16,6 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-// Removed import "./App.css";
-// Removed import { Toaster } from "@/components/ui/toaster";
 
 const queryClient = new QueryClient();
 
@@ -26,7 +24,6 @@ const App = () => (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <TooltipProvider>
         <TranslationProvider>
-          {/* Replaced shadcn/ui Toaster with Sonner */}
           <Sonner />
           <BrowserRouter>
             <SessionContextProvider>
@@ -42,7 +39,6 @@ const App = () => (
                   <Route path="signup" element={<SignUp />} />
                   <Route path="profile" element={<Profile />} />
                 </Route>
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </SessionContextProvider>
