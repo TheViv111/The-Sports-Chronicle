@@ -169,78 +169,79 @@ const Profile = () => {
   // If no profile exists for the user, show a message and allow creation
   if (!profile && !isProfileLoading && session) {
     return (
-      <div className="min-h-screen flex items-center justify-center py-12 px-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <CardTitle className="font-heading text-2xl font-bold">
-              {t("profile.noProfileTitle")}
-            </CardTitle>
-            <CardDescription className="text-muted-foreground">
-              {t("profile.noProfileDescription")}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="display_name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("profile.displayName")}</FormLabel>
-                      <FormControl>
-                        <Input placeholder={t("profile.yourDisplayName")} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="bio"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("profile.bio")}</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder={t("profile.yourBio")} {...field} className="min-h-[100px]" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="avatar_url"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("profile.avatarUrl")}</FormLabel>
-                      <FormControl>
-                        <Input placeholder={t("profile.yourAvatarUrl")} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" className="w-full" disabled={createProfileMutation.isPending}>
-                  {createProfileMutation.isPending ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  ) : (
-                    <Plus className="mr-2 h-4 w-4" />
-                  )}
-                  {t("profile.createProfile")}
+      <React.Fragment>
+        <div className="min-h-screen flex items-center justify-center py-12 px-4">
+          <Card className="w-full max-w-md">
+            <CardHeader className="text-center">
+              <CardTitle className="font-heading text-2xl font-bold">
+                {t("profile.noProfileTitle")}
+              </CardTitle>
+              <CardDescription className="text-muted-foreground">
+                {t("profile.noProfileDescription")}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="display_name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t("profile.displayName")}</FormLabel>
+                        <FormControl>
+                          <Input placeholder={t("profile.yourDisplayName")} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="bio"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t("profile.bio")}</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder={t("profile.yourBio")} {...field} className="min-h-[100px]" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="avatar_url"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t("profile.avatarUrl")}</FormLabel>
+                        <FormControl>
+                          <Input placeholder={t("profile.yourAvatarUrl")} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit" className="w-full" disabled={createProfileMutation.isPending}>
+                    {createProfileMutation.isPending ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <Plus className="mr-2 h-4 w-4" />
+                    )}
+                    {t("profile.createProfile")}
+                  </Button>
+                </form>
+              </Form>
+              <div className="mt-8 pt-6 border-t flex justify-end">
+                <Button variant="destructive" onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  {t("nav.signOut")}
                 </Button>
-              </form>
-            </Form>
-            <div className="mt-8 pt-6 border-t flex justify-end">
-              <Button variant="destructive" onClick={handleSignOut}>
-                <LogOut className="mr-2 h-4 w-4" />
-                {t("nav.signOut")}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </React.Fragment>
     );
   }
 
