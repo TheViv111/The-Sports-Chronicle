@@ -37,19 +37,24 @@ const Contact = () => {
         body: JSON.stringify(contactData),
       });
 
+      // Read the response body once as text
+      const responseText = await response.text();
+
       if (!response.ok) {
         let errorMessage = t("common.error");
         try {
-          const errorJson = await response.json();
+          // Try to parse the text as JSON
+          const errorJson = JSON.parse(responseText);
           errorMessage = errorJson.error || errorMessage;
         } catch {
-          errorMessage = await response.text();
+          // If JSON parsing fails, use the raw text
+          errorMessage = responseText || errorMessage;
         }
         console.error('Edge Function error response:', response.status, errorMessage);
         throw new Error(errorMessage);
       }
 
-      const result = await response.json();
+      const result = JSON.parse(responseText); // Parse the already read text as JSON for success
       console.log('Contact form result:', result);
 
       toast.success(t("contact.messageSentSuccess"), {
