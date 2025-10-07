@@ -24,7 +24,9 @@
     "common.authenticationRequired": "Authentication required.",
     "common.tryAgain": "Please try again.",
     "common.backToSite": "Back to Site",
-    "common.loadingMessage": "Loading..."
+    "common.loadingMessage": "Loading...",
+    "notFound.pageTitle": "Oops! Page not found",
+    "notFound.returnHome": "Return to Home"
   },
   "es": {
     "common.search": "Buscar...",
@@ -51,7 +53,9 @@
     "common.authenticationRequired": "Autenticación requerida.",
     "common.tryAgain": "Por favor, inténtalo de nuevo.",
     "common.backToSite": "Volver al Sitio",
-    "common.loadingMessage": "Cargando..."
+    "common.loadingMessage": "Cargando...",
+    "notFound.pageTitle": "¡Ups! Página no encontrada",
+    "notFound.returnHome": "Volver al Inicio"
   },
   "fr": {
     "common.search": "Rechercher...",
@@ -78,7 +82,9 @@
     "common.authenticationRequired": "Authentification requise.",
     "common.tryAgain": "Veuillez réessayer.",
     "common.backToSite": "Retour au Site",
-    "common.loadingMessage": "Chargement..."
+    "common.loadingMessage": "Chargement...",
+    "notFound.pageTitle": "Oups ! Page non trouvée",
+    "notFound.returnHome": "Retour à l'accueil"
   },
   "de": {
     "common.search": "Suchen...",
@@ -105,7 +111,9 @@
     "common.authenticationRequired": "Authentifizierung erforderlich.",
     "common.tryAgain": "Bitte versuchen Sie es erneut.",
     "common.backToSite": "Zurück zur Seite",
-    "common.loadingMessage": "Laden..."
+    "common.loadingMessage": "Laden...",
+    "notFound.pageTitle": "Hoppla! Seite nicht gefunden",
+    "notFound.returnHome": "Zurück zur Startseite"
   },
   "it": {
     "common.search": "Cerca...",
@@ -132,7 +140,9 @@
     "common.authenticationRequired": "Autenticazione richiesta.",
     "common.tryAgain": "Riprova.",
     "common.backToSite": "Torna al Sito",
-    "common.loadingMessage": "Caricamento..."
+    "common.loadingMessage": "Caricamento...",
+    "notFound.pageTitle": "Ops! Pagina non trovata",
+    "notFound.returnHome": "Torna alla Home"
   },
   "pt": {
     "common.search": "Pesquisar...",
@@ -159,7 +169,9 @@
     "common.authenticationRequired": "Autenticação necessária.",
     "common.tryAgain": "Por favor, tente novamente.",
     "common.backToSite": "Voltar ao Site",
-    "common.loadingMessage": "Carregando..."
+    "common.loadingMessage": "Carregando...",
+    "notFound.pageTitle": "Ops! Página não encontrada",
+    "notFound.returnHome": "Voltar ao Início"
   },
   "ru": {
     "common.search": "Поиск...",
@@ -186,7 +198,9 @@
     "common.authenticationRequired": "Требуется аутентификация.",
     "common.tryAgain": "Пожалуйста, попробуйте снова.",
     "common.backToSite": "Вернуться на сайт",
-    "common.loadingMessage": "Загрузка..."
+    "common.loadingMessage": "Загрузка...",
+    "notFound.pageTitle": "Ой! Страница не найдена",
+    "notFound.returnHome": "Вернуться на главную"
   },
   "pl": {
     "common.search": "Szukaj...",
@@ -213,7 +227,9 @@
     "common.authenticationRequired": "Wymagana autoryzacja.",
     "common.tryAgain": "Spróbuj ponownie.",
     "common.backToSite": "Wróć do strony",
-    "common.loadingMessage": "Ładowanie..."
+    "common.loadingMessage": "Ładowanie...",
+    "notFound.pageTitle": "Ups! Strona nie znaleziona",
+    "notFound.returnHome": "Wróć do strony głównej"
   },
   "nl": {
     "common.search": "Zoeken...",
@@ -240,7 +256,9 @@
     "common.authenticationRequired": "Authenticatie vereist.",
     "common.tryAgain": "Probeer opnieuw.",
     "common.backToSite": "Terug naar Site",
-    "common.loadingMessage": "Laden..."
+    "common.loadingMessage": "Laden...",
+    "notFound.pageTitle": "Oeps! Pagina niet gevonden",
+    "notFound.returnHome": "Terug naar Home"
   },
   "sv": {
     "common.search": "Sök...",
@@ -267,7 +285,9 @@
     "common.authenticationRequired": "Autentisering krävs.",
     "common.tryAgain": "Vänligen försök igen.",
     "common.backToSite": "Tillbaka till webbplatsen",
-    "common.loadingMessage": "Laddar..."
+    "common.loadingMessage": "Laddar...",
+    "notFound.pageTitle": "Hoppsan! Sidan hittades inte",
+    "notFound.returnHome": "Återgå till startsidan"
   },
   "no": {
     "common.search": "Søk...",
@@ -294,7 +314,9 @@
     "common.authenticationRequired": "Autentisering kreves.",
     "common.tryAgain": "Vennligst prøv igjen.",
     "common.backToSite": "Tilbake til nettstedet",
-    "common.loadingMessage": "Laster..."
+    "common.loadingMessage": "Laster...",
+    "notFound.pageTitle": "Oops! Side ikke funnet",
+    "notFound.returnHome": "Gå til hjemmesiden"
   },
   "da": {
     "common.search": "Søg...",
@@ -321,7 +343,9 @@
     "common.authenticationRequired": "Godkendelse påkrævet.",
     "common.tryAgain": "Prøv venligst igen.",
     "common.backToSite": "Tilbage til side",
-    "common.loadingMessage": "Indlæser..."
+    "common.loadingMessage": "Indlæser...",
+    "notFound.pageTitle": "Ups! Side ikke fundet",
+    "notFound.returnHome": "Vend tilbage til hjem"
   },
   "fi": {
     "common.search": "Hae...",
@@ -348,7 +372,9 @@
     "common.authenticationRequired": "Todennus vaaditaan.",
     "common.tryAgain": "Yritä uudelleen.",
     "common.backToSite": "Takaisin sivustolle",
-    "common.loadingMessage": "Ladataan..."
+    "common.loadingMessage": "Ladataan...",
+    "notFound.pageTitle": "Hups! Sivua ei löytynyt",
+    "notFound.returnHome": "Palaa etusivulle"
   },
   "zh": {
     "common.search": "搜索...",
@@ -375,7 +401,9 @@
     "common.authenticationRequired": "需要身份验证。",
     "common.tryAgain": "请重试。",
     "common.backToSite": "返回网站",
-    "common.loadingMessage": "加载中..."
+    "common.loadingMessage": "加载中...",
+    "notFound.pageTitle": "哎呀！页面未找到",
+    "notFound.returnHome": "返回首页"
   },
   "ja": {
     "common.search": "検索...",
@@ -402,7 +430,9 @@
     "common.authenticationRequired": "認証が必要です。",
     "common.tryAgain": "もう一度お試しください。",
     "common.backToSite": "サイトに戻る",
-    "common.loadingMessage": "読み込み中..."
+    "common.loadingMessage": "読み込み中...",
+    "notFound.pageTitle": "おっと！ページが見つかりません",
+    "notFound.returnHome": "ホームに戻る"
   },
   "ko": {
     "common.search": "검색...",
@@ -429,7 +459,9 @@
     "common.authenticationRequired": "인증이 필요합니다.",
     "common.tryAgain": "다시 시도해 주세요.",
     "common.backToSite": "사이트로 돌아가기",
-    "common.loadingMessage": "로딩 중..."
+    "common.loadingMessage": "로딩 중...",
+    "notFound.pageTitle": "죄송합니다! 페이지를 찾을 수 없습니다",
+    "notFound.returnHome": "홈으로 돌아가기"
   },
   "hi": {
     "common.search": "खोजें...",
@@ -456,7 +488,9 @@
     "common.authenticationRequired": "प्रमाणीकरण आवश्यक है।",
     "common.tryAgain": "कृपया पुनः प्रयास करें।",
     "common.backToSite": "साइट पर वापस",
-    "common.loadingMessage": "लोड हो रहा है..."
+    "common.loadingMessage": "लोड हो रहा है...",
+    "notFound.pageTitle": "उफ़! पेज नहीं मिला",
+    "notFound.returnHome": "होम पर लौटें"
   },
   "bn": {
     "common.search": "অনুসন্ধান...",
@@ -483,7 +517,9 @@
     "common.authenticationRequired": "প্রমাণীকরণ প্রয়োজন।",
     "common.tryAgain": "অনুগ্রহ করে আবার চেষ্টা করুন।",
     "common.backToSite": "সাইটে ফিরে যান",
-    "common.loadingMessage": "লোড হচ্ছে..."
+    "common.loadingMessage": "লোড হচ্ছে...",
+    "notFound.pageTitle": "উফ! পৃষ্ঠা পাওয়া যায়নি",
+    "notFound.returnHome": "হোমপেজে ফিরে যান"
   },
   "ta": {
     "common.search": "தேடு...",
@@ -510,7 +546,9 @@
     "common.authenticationRequired": "அங்கீகாரம் தேவை.",
     "common.tryAgain": "மீண்டும் முயற்சிக்கவும்.",
     "common.backToSite": "தளத்திற்குத் திரும்பு",
-    "common.loadingMessage": "ஏற்றுகிறது..."
+    "common.loadingMessage": "ஏற்றுகிறது...",
+    "notFound.pageTitle": "ஐயோ! பக்கம் காணவில்லை",
+    "notFound.returnHome": "முகப்புக்குத் திரும்பு"
   },
   "te": {
     "common.search": "వెతకండి...",
@@ -537,7 +575,9 @@
     "common.authenticationRequired": "ప్రామాణీకరణ అవసరం.",
     "common.tryAgain": "దయచేసి మళ్లీ ప్రయత్నించండి.",
     "common.backToSite": "సైట్‌కు తిరిగి వెళ్ళు",
-    "common.loadingMessage": "లోడ్ అవుతోంది..."
+    "common.loadingMessage": "లోడ్ అవుతోంది...",
+    "notFound.pageTitle": "అయ్యో! పేజీ కనుగొనబడలేదు",
+    "notFound.returnHome": "హోమ్‌కు తిరిగి వెళ్ళు"
   },
   "mr": {
     "common.search": "शोधा...",
@@ -564,7 +604,9 @@
     "common.authenticationRequired": "प्रमाणीकरण आवश्यक आहे.",
     "common.tryAgain": "कृपया पुन्हा प्रयत्न करा.",
     "common.backToSite": "साइटवर परत",
-    "common.loadingMessage": "लोड होत आहे..."
+    "common.loadingMessage": "लोड होत आहे...",
+    "notFound.pageTitle": "अरेरे! पृष्ठ सापडले नाही",
+    "notFound.returnHome": "मुख्यपृष्ठावर परत जा"
   },
   "gu": {
     "common.search": "શોધો...",
@@ -591,7 +633,9 @@
     "common.authenticationRequired": "પ્રમાણીકરણ આવશ્યક છે.",
     "common.tryAgain": "કૃપા કરીને ફરી પ્રયાસ કરો.",
     "common.backToSite": "સાઇટ પર પાછા",
-    "common.loadingMessage": "લોડ થઈ રહ્યું છે..."
+    "common.loadingMessage": "લોડ થઈ રહ્યું છે...",
+    "notFound.pageTitle": "અરે! પાનું મળ્યું નથી",
+    "notFound.returnHome": "હોમ પર પાછા ફરો"
   },
   "ar": {
     "common.search": "بحث...",
@@ -618,7 +662,9 @@
     "common.authenticationRequired": "التحقق مطلوب.",
     "common.tryAgain": "يرجى المحاولة مرة أخرى.",
     "common.backToSite": "العودة إلى الموقع",
-    "common.loadingMessage": "جارٍ التحميل..."
+    "common.loadingMessage": "جارٍ التحميل...",
+    "notFound.pageTitle": "عذراً! الصفحة غير موجودة",
+    "notFound.returnHome": "العودة إلى الصفحة الرئيسية"
   },
   "he": {
     "common.search": "חפש...",
@@ -645,7 +691,9 @@
     "common.authenticationRequired": "נדרשת אימות.",
     "common.tryAgain": "אנא נסה שוב.",
     "common.backToSite": "חזרה לאתר",
-    "common.loadingMessage": "טוען..."
+    "common.loadingMessage": "טוען...",
+    "notFound.pageTitle": "אופס! העמוד לא נמצא",
+    "notFound.returnHome": "חזרה לדף הבית"
   },
   "fa": {
     "common.search": "جستجو...",
@@ -672,7 +720,9 @@
     "common.authenticationRequired": "احراز هویت لازم است.",
     "common.tryAgain": "لطفاً دوباره تلاش کنید.",
     "common.backToSite": "بازگشت به سایت",
-    "common.loadingMessage": "در حال بارگذاری..."
+    "common.loadingMessage": "در حال بارگذاری...",
+    "notFound.pageTitle": "اوه! صفحه پیدا نشد",
+    "notFound.returnHome": "بازگشت به صفحه اصلی"
   },
   "tr": {
     "common.search": "Ara...",
@@ -699,7 +749,9 @@
     "common.authenticationRequired": "Kimlik doğrulama gerekli.",
     "common.tryAgain": "Lütfen tekrar deneyin.",
     "common.backToSite": "Siteye Geri Dön",
-    "common.loadingMessage": "Yükleniyor..."
+    "common.loadingMessage": "Yükleniyor...",
+    "notFound.pageTitle": "Oops! Sayfa bulunamadı",
+    "notFound.returnHome": "Ana Sayfaya Dön"
   },
   "th": {
     "common.search": "ค้นหา...",
@@ -726,6 +778,8 @@
     "common.authenticationRequired": "ต้องมีการยืนยันตัวตน",
     "common.tryAgain": "กรุณาลองอีกครั้ง",
     "common.backToSite": "กลับสู่เว็บไซต์",
-    "common.loadingMessage": "กำลังโหลด..."
+    "common.loadingMessage": "กำลังโหลด...",
+    "notFound.pageTitle": "โอ๊ะโอ! ไม่พบหน้า",
+    "notFound.returnHome": "กลับสู่หน้าหลัก"
   }
 }
