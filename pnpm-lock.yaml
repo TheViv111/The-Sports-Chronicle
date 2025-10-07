@@ -95,6 +95,9 @@ importers:
       '@supabase/auth-ui-react':
         specifier: ^0.4.7
         version: 0.4.7(@supabase/supabase-js@2.74.0)
+      '@supabase/auth-ui-shared':
+        specifier: ^0.1.8
+        version: 0.1.8(@supabase/supabase-js@2.74.0)
       '@supabase/supabase-js':
         specifier: ^2.57.4
         version: 2.74.0
