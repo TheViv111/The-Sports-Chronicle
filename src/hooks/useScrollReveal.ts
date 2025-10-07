@@ -10,11 +10,9 @@ const useScrollReveal = (selector: string, options: IntersectionObserverInit = {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          // Optionally, stop observing once visible if it's a one-time animation
-          // observer.unobserve(entry.target);
         } else {
-          // Optionally, remove 'is-visible' if you want the animation to replay on scroll back
-          // entry.target.classList.remove('is-visible');
+          // Remove 'is-visible' when the element is no longer intersecting
+          entry.target.classList.remove('is-visible');
         }
       });
     }, options);
