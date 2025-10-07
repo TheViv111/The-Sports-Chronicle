@@ -243,4 +243,19 @@
     min-width: 0;
     padding-left: 1rem; /* Add padding between slides */
   }
+
+  /* Custom styling for headings within markdown content */
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    @apply font-heading mb-4 mt-8; /* Ensure all markdown headings use the heading font and consistent margins */
+  }
+
+  /* Make numbered list items that act as main subheadings more prominent */
+  .prose ol > li:has(strong:first-child) {
+    @apply text-xl font-bold mt-8 mb-4; /* Apply heading-like styles to list items containing a leading strong tag */
+  }
+
+  /* Make bolded terms at the start of a paragraph act as sub-points */
+  .prose p > strong:first-child {
+    @apply block text-lg font-semibold mt-6 mb-2; /* Make it block, larger, and add vertical spacing */
+  }
 }
