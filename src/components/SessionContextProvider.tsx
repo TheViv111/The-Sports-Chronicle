@@ -24,15 +24,12 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
 
       if (currentSession) {
         // User is authenticated
-        if (location.pathname === '/auth') {
-          navigate('/'); // Redirect to home if on auth page
+        if (location.pathname === '/signin' || location.pathname === '/signup') {
+          navigate('/'); // Redirect to home if on auth pages
         }
       } else {
         // User is not authenticated
-        if (location.pathname !== '/auth') {
-          // Optionally redirect to auth page if trying to access protected routes
-          // For now, we'll let the route handle it, but keep this logic for future protection
-        }
+        // No automatic redirect to sign-in/sign-up here, let routes handle protection
       }
     });
 
@@ -40,7 +37,7 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
     supabase.auth.getSession().then(({ data: { session: initialSession } }) => {
       setSession(initialSession);
       setIsLoading(false);
-      if (initialSession && location.pathname === '/auth') {
+      if (initialSession && (location.pathname === '/signin' || location.pathname === '/signup')) {
         navigate('/');
       }
     });
@@ -61,7 +58,7 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
     <SessionContext.Provider value={{ session, isLoading }}>
       {children}
     </SessionContext.Provider>
-  );
+  )
 };
 
 export const useSession = () => {

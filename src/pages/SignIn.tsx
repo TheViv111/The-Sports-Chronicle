@@ -3,6 +3,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Link } from "react-router-dom"; // Import Link
 
 const SignInPage = () => {
   const { t } = useTranslation();
@@ -68,8 +69,8 @@ const SignInPage = () => {
                     email_input_placeholder: t("contact.yourEmail"),
                     password_input_placeholder: t("auth.password"),
                     button_label: t("auth.signIn"),
-                    social_provider_text: t("auth.signInWithGoogle"),
-                    link_text: t("auth.noAccount"),
+                    // Remove the built-in link_text to handle navigation externally
+                    link_text: "", 
                   },
                   forgotten_password: {
                     email_label: t("auth.email"),
@@ -85,6 +86,12 @@ const SignInPage = () => {
                 },
               }}
             />
+            <div className="mt-4 text-center text-sm">
+              {t("auth.noAccount")}{" "}
+              <Link to="/signup" className="font-medium text-primary hover:underline">
+                {t("auth.signUp")}
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>
