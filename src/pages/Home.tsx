@@ -14,13 +14,10 @@ type BlogPostType = Tables<'blog_posts'>;
 const Home = () => {
   const [latestPosts, setLatestPosts] = useState<BlogPostType[]>([]);
   const [loadingLatestPosts, setLoadingLatestPosts] = useState(true);
-  const [randomPosts, setRandomPosts] = useState<BlogPostType[]>([]);
-  const [loadingRandomPosts, setLoadingRandomPosts] = useState(true);
   const { t } = useTranslation();
 
   useEffect(() => {
     loadLatestPosts();
-    loadRandomPosts();
   }, []);
 
   const loadLatestPosts = async () => {
@@ -30,7 +27,7 @@ const Home = () => {
         .from('blog_posts')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(6);
+        .limit(6); // Fetch enough posts for both carousels if needed
 
       if (error) throw error;
       setLatestPosts(data || []);
@@ -38,27 +35,6 @@ const Home = () => {
       console.error('Error loading latest posts:', error);
     } finally {
       setLoadingLatestPosts(false);
-    }
-  };
-
-  const loadRandomPosts = async () => {
-    try {
-      setLoadingRandomPosts(true);
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .order('created_at', { ascending: false }) // Fetch all or a larger set to ensure variety
-        .range(6, 11); // Get posts from index 6 to 11 (total 6 posts), assuming enough posts exist
-
-      if (error) throw error;
-
-      // Shuffle the fetched posts randomly client-side
-      const shuffledData = data ? [...data].sort(() => Math.random() - 0.5) : [];
-      setRandomPosts(shuffledData);
-    } catch (error) {
-      console.error('Error loading random posts:', error);
-    } finally {
-      setLoadingRandomPosts(false);
     }
   };
 
@@ -138,20 +114,20 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Discover More Stories Section with Carousel */}
+      {/* Second Carousel Section (using the same posts) */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="font-heading text-3xl font-bold mb-8 text-center reveal-on-scroll">
-            {t("home.randomPostsTitle")}
+            {t("latestPosts.title")} {/* Reusing title for simplicity */}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12 text-center reveal-on-scroll">
-            {t("home.randomPostsSubtitle")}
+            {t("latestPosts.subtitle")} {/* Reusing subtitle for simplicity */}
           </p>
 
-          {loadingRandomPosts ? (
+          {loadingLatestPosts ? (
             <LoadingScreen message={t("latestPosts.loading")} />
-          ) : randomPosts.length > 0 ? (
-            <ContinuousCarousel posts={randomPosts} />
+          ) : latestPosts.length > 0 ? (
+            <ContinuousCarousel posts={latestPosts} />
           ) : (
             <p className="text-muted-foreground text-center py-8">
               {t("latestPosts.noPosts")}

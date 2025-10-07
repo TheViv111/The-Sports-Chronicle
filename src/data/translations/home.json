@@ -4,215 +4,296 @@
     "hero.title": "Exploring Skills, Techniques & Tactics in Various Sports",
     "hero.subtitle": "We write about various sports and the tactics, techniques, and skills that can be implemented in these sports.",
     "hero.readLatest": "Read Latest Posts",
-    "home.randomPostsTitle": "Discover More Stories",
-    "home.randomPostsSubtitle": "Dive into a curated selection of articles you might have missed."
+    "latestPosts.title": "Latest Posts",
+    "latestPosts.subtitle": "Explore our latest thoughts and insights on sports, techniques, and tactics.",
+    "latestPosts.viewAll": "View All Posts",
+    "latestPosts.loading": "Loading posts...",
+    "latestPosts.noPosts": "No posts available"
   },
   "es": {
     "hero.welcome": "Bienvenido a nuestro Blog",
     "hero.title": "Explorando Habilidades, Técnicas y Tácticas en Varios Deportes",
     "hero.subtitle": "Escribimos sobre varios deportes y las tácticas, técnicas y habilidades que se pueden implementar en estos deportes.",
     "hero.readLatest": "Leer Últimas Publicaciones",
-    "home.randomPostsTitle": "Descubre Más Historias",
-    "home.randomPostsSubtitle": "Sumérgete en una selección curada de artículos que podrías haberte perdido."
+    "latestPosts.title": "Últimas Publicaciones",
+    "latestPosts.subtitle": "Explora nuestros últimos pensamientos e ideas sobre deportes, técnicas y tácticas.",
+    "latestPosts.viewAll": "Ver Todas las Publicaciones",
+    "latestPosts.loading": "Cargando publicaciones...",
+    "latestPosts.noPosts": "No hay publicaciones disponibles"
   },
   "fr": {
     "hero.welcome": "Bienvenue sur notre Blog",
     "hero.title": "Explorer les Compétences, Techniques et Tactiques dans Divers Sports",
     "hero.subtitle": "Nous écrivons sur divers sports et les tactiques, techniques et compétences qui peuvent être mises en œuvre dans ces sports.",
     "hero.readLatest": "Lire les Derniers Articles",
-    "home.randomPostsTitle": "Découvrez Plus d'Histoires",
-    "home.randomPostsSubtitle": "Plongez dans une sélection d'articles que vous auriez pu manquer."
+    "latestPosts.title": "Derniers Articles",
+    "latestPosts.subtitle": "Explorez nos dernières réflexions et perspectives sur le sport, les techniques et les tactiques.",
+    "latestPosts.viewAll": "Voir Tous les Articles",
+    "latestPosts.loading": "Chargement des articles...",
+    "latestPosts.noPosts": "Aucun article disponible"
   },
   "de": {
     "hero.welcome": "Willkommen in unserem Blog",
     "hero.title": "Erkundung von Fähigkeiten, Techniken und Taktiken in verschiedenen Sportarten",
     "hero.subtitle": "Wir schreiben über verschiedene Sportarten und die Taktiken, Techniken und Fähigkeiten, die in diesen Sportarten angewendet werden können.",
     "hero.readLatest": "Neueste Beiträge Lesen",
-    "home.randomPostsTitle": "Entdecken Sie weitere Geschichten",
-    "home.randomPostsSubtitle": "Tauchen Sie ein in eine kuratierte Auswahl von Artikeln, die Sie vielleicht verpasst haben."
+    "latestPosts.title": "Neueste Beiträge",
+    "latestPosts.subtitle": "Entdecken Sie unsere neuesten Gedanken und Einsichten zu Sport, Techniken und Taktiken.",
+    "latestPosts.viewAll": "Alle Beiträge Anzeigen",
+    "latestPosts.loading": "Beiträge werden geladen...",
+    "latestPosts.noPosts": "Keine Beiträge verfügbar"
   },
   "it": {
     "hero.welcome": "Benvenuti nel nostro Blog",
     "hero.title": "Esplorando Competenze, Tecniche e Tattiche in Vari Sport",
     "hero.subtitle": "Scriviamo di vari sport e delle tattiche, tecniche e competenze che possono essere implementate in questi sport.",
     "hero.readLatest": "Leggi gli Ultimi Post",
-    "home.randomPostsTitle": "Scopri Altre Storie",
-    "home.randomPostsSubtitle": "Immergiti in una selezione curata di articoli che potresti aver perso."
+    "latestPosts.title": "Ultimi Articoli",
+    "latestPosts.subtitle": "Esplora i nostri ultimi pensieri e intuizioni su sport, tecniche e tattiche.",
+    "latestPosts.viewAll": "Visualizza Tutti gli Articoli",
+    "latestPosts.loading": "Caricamento articoli...",
+    "latestPosts.noPosts": "Nessun articolo disponibile"
   },
   "pt": {
     "hero.welcome": "Bem-vindos ao nosso Blog",
     "hero.title": "Explorando Habilidades, Técnicas e Táticas em Vários Esportes",
     "hero.subtitle": "Escrevemos sobre vários esportes e as táticas, técnicas e habilidades que podem ser implementadas nesses esportes.",
     "hero.readLatest": "Ler Posts Recentes",
-    "home.randomPostsTitle": "Descubra Mais Histórias",
-    "home.randomPostsSubtitle": "Mergulhe em uma seleção curada de artigos que você pode ter perdido."
+    "latestPosts.title": "Últimos Posts",
+    "latestPosts.subtitle": "Explore nossos últimos pensamentos e insights sobre esportes, técnicas e táticas.",
+    "latestPosts.viewAll": "Ver Todos os Posts",
+    "latestPosts.loading": "Carregando posts...",
+    "latestPosts.noPosts": "Nenhum post disponível"
   },
   "ru": {
     "hero.welcome": "Добро пожаловать в наш блог",
     "hero.title": "Изучение навыков, техники и тактики в различных видах спорта",
     "hero.subtitle": "Мы пишем о различных видах спорта и тактике, технике и навыках, которые можно применить в этих видах спорта.",
     "hero.readLatest": "Читать последние посты",
-    "home.randomPostsTitle": "Откройте для себя больше историй",
-    "home.randomPostsSubtitle": "Погрузитесь в тщательно отобранную подборку статей, которые вы могли пропустить."
+    "latestPosts.title": "Последние Записи",
+    "latestPosts.subtitle": "Исследуйте наши последние мысли и взгляды на спорт, техники и тактики.",
+    "latestPosts.viewAll": "Посмотреть Все Записи",
+    "latestPosts.loading": "Загрузка записей...",
+    "latestPosts.noPosts": "Записи недоступны"
   },
   "pl": {
     "hero.welcome": "Witamy w naszym Blogu",
     "hero.title": "Odkrywanie Umiejętności, Technik i Taktyk w Różnych Sportach",
     "hero.subtitle": "Piszemy o różnych sportach oraz taktykach, technikach i umiejętnościach, które można w nich zastosować.",
     "hero.readLatest": "Czytaj Najnowsze Posty",
-    "home.randomPostsTitle": "Odkryj Więcej Historii",
-    "home.randomPostsSubtitle": "Zanurz się w wyselekcjonowanej kolekcji artykułów, które mogłeś przegapić."
+    "latestPosts.title": "Najnowsze Wpisy",
+    "latestPosts.subtitle": "Poznaj nasze najnowsze myśli i spostrzeżenia na temat sportu, technik i taktyk.",
+    "latestPosts.viewAll": "Zobacz Wszystkie Wpisy",
+    "latestPosts.loading": "Ładowanie wpisów...",
+    "latestPosts.noPosts": "Brak dostępnych wpisów"
   },
   "nl": {
     "hero.welcome": "Welkom op onze Blog",
     "hero.title": "Verkennen van Vaardigheden, Technieken en Tactieken in Verschillende Sporten",
     "hero.subtitle": "We schrijven over verschillende sporten en de tactieken, technieken en vaardigheden die in deze sporten kunnen worden toegepast.",
     "hero.readLatest": "Lees Laatste Berichten",
-    "home.randomPostsTitle": "Ontdek Meer Verhalen",
-    "home.randomPostsSubtitle": "Duik in een samengestelde selectie van artikelen die je misschien hebt gemist."
+    "latestPosts.title": "Nieuwste Berichten",
+    "latestPosts.subtitle": "Ontdek onze nieuwste gedachten en inzichten over sport, technieken en tactieken.",
+    "latestPosts.viewAll": "Bekijk Alle Berichten",
+    "latestPosts.loading": "Berichten laden...",
+    "latestPosts.noPosts": "Geen berichten beschikbaar"
   },
   "sv": {
     "hero.welcome": "Välkommen till vår Blogg",
     "hero.title": "Utforska Färdigheter, Tekniker och Taktik inom Olika Sporter",
     "hero.subtitle": "Vi skriver om olika sporter och de taktiker, tekniker och färdigheter som kan implementeras inom dessa sporter.",
     "hero.readLatest": "Läs Senaste Inlägg",
-    "home.randomPostsTitle": "Upptäck Fler Berättelser",
-    "home.randomPostsSubtitle": "Dyk ner i ett kurerat urval av artiklar du kanske har missat."
+    "latestPosts.title": "Senaste Inlägg",
+    "latestPosts.subtitle": "Utforska våra senaste tankar och insikter om sport, tekniker och taktik.",
+    "latestPosts.viewAll": "Visa Alla Inlägg",
+    "latestPosts.loading": "Laddar inlägg...",
+    "latestPosts.noPosts": "Inga inlägg tillgängliga"
   },
   "no": {
     "hero.welcome": "Velkommen til bloggen vår",
     "hero.title": "Utforske Ferdigheter, Teknikker og Taktikk i Ulike Idretter",
     "hero.subtitle": "Vi skriver om ulike idretter og taktikkene, teknikkene og ferdighetene som kan implementeres i disse idrettene.",
     "hero.readLatest": "Les Siste Innlegg",
-    "home.randomPostsTitle": "Oppdag Flere Historier",
-    "home.randomPostsSubtitle": "Dykk ned i et kuratert utvalg av artikler du kanskje har gått glipp av."
+    "latestPosts.title": "Siste Innlegg",
+    "latestPosts.subtitle": "Utforsk våre siste tanker og innsikter om sport, teknikker og taktikk.",
+    "latestPosts.viewAll": "Se Alle Innlegg",
+    "latestPosts.loading": "Laster innlegg...",
+    "latestPosts.noPosts": "Ingen innlegg tilgjengelige"
   },
   "da": {
     "hero.welcome": "Velkommen til vores Blog",
     "hero.title": "Udforskning af Færdigheder, Teknikker og Taktik i Forskellige Sportsgrene",
     "hero.subtitle": "Vi skriver om forskellige sportsgrene og de taktikker, teknikker og færdigheder, der kan implementeres i disse sportsgrene.",
     "hero.readLatest": "Læs Seneste Indlæg",
-    "home.randomPostsTitle": "Opdag Flere Historier",
-    "home.randomPostsSubtitle": "Dyk ned i et udvalgt udvalg af artikler, du måske har overset."
+    "latestPosts.title": "Seneste Indlæg",
+    "latestPosts.subtitle": "Udforsk vores seneste tanker og indsigter om sport, teknikker og taktik.",
+    "latestPosts.viewAll": "Se Alle Indlæg",
+    "latestPosts.loading": "Indlæser indlæg...",
+    "latestPosts.noPosts": "Ingen indlæg tilgængelige"
   },
   "fi": {
     "hero.welcome": "Tervetuloa blogiimme",
     "hero.title": "Tutkimme Taitoja, Tekniikoita ja Taktiikoita Eri Urheilulajeissa",
     "hero.subtitle": "Kirjoitamme eri urheilulajeista ja taktiikoista, tekniikoista ja taidoista, joita voidaan soveltaa näissä urheilulajeissa.",
     "hero.readLatest": "Lue Viimeisimmät Postaukset",
-    "home.randomPostsTitle": "Löydä Lisää Tarinoita",
-    "home.randomPostsSubtitle": "Sukella kuratoituun valikoimaan artikkeleita, jotka olet ehkä missannut."
+    "latestPosts.title": "Viimeisimmät Kirjoitukset",
+    "latestPosts.subtitle": "Tutustu viimeisimpiin ajatuksiimme ja oivalluksiimme urheilusta, tekniikoista ja taktiikasta.",
+    "latestPosts.viewAll": "Näytä Kaikki Kirjoitukset",
+    "latestPosts.loading": "Ladataan kirjoituksia...",
+    "latestPosts.noPosts": "Ei kirjoituksia saatavilla"
   },
   "zh": {
     "hero.welcome": "欢迎来到我们的博客",
     "hero.title": "探索各种运动的技能、技术和战术",
     "hero.subtitle": "我们撰写关于各种运动以及可以在这些运动中实施的战术、技术和技能的文章。",
     "hero.readLatest": "阅读最新文章",
-    "home.randomPostsTitle": "发现更多故事",
-    "home.randomPostsSubtitle": "深入了解您可能错过的精选文章。"
+    "latestPosts.title": "最新文章",
+    "latestPosts.subtitle": "探索我们关于运动、技术和战术的最新想法和见解。",
+    "latestPosts.viewAll": "查看所有文章",
+    "latestPosts.loading": "加载文章中...",
+    "latestPosts.noPosts": "暂无文章"
   },
   "ja": {
     "hero.welcome": "ブログへようこそ",
     "hero.title": "様々なスポーツのスキル、テクニック、戦術の探求",
     "hero.subtitle": "私たちは、様々なスポーツと、これらのスポーツで実装できる戦術、テクニック、スキルについて書いています。",
     "hero.readLatest": "最新の投稿を読む",
-    "home.randomPostsTitle": "その他のストーリーを発見",
-    "home.randomPostsSubtitle": "見逃したかもしれない厳選された記事に飛び込みましょう。"
+    "latestPosts.title": "最新の投稿",
+    "latestPosts.subtitle": "スポーツ、テクニック、戦術に関する私たちの最新の考えと洞察をご覧ください。",
+    "latestPosts.viewAll": "すべての投稿を表示",
+    "latestPosts.loading": "投稿を読み込み中...",
+    "latestPosts.noPosts": "投稿がありません"
   },
   "ko": {
     "hero.welcome": "블로그에 오신 것을 환영합니다",
     "hero.title": "다양한 스포츠의 기술, 테크닉, 전술 탐구",
     "hero.subtitle": "우리는 다양한 스포츠와 이러한 스포츠에서 구현될 수 있는 전술, 기법, 기술에 대해 씁니다.",
     "hero.readLatest": "최신 게시물 읽기",
-    "home.randomPostsTitle": "더 많은 이야기 발견",
-    "home.randomPostsSubtitle": "놓쳤을 수도 있는 엄선된 기사들을 살펴보세요."
+    "latestPosts.title": "최신 게시물",
+    "latestPosts.subtitle": "스포츠, 기술, 전술에 대한 우리의 최신 생각과 통찰을 탐험해보세요.",
+    "latestPosts.viewAll": "모든 게시물 보기",
+    "latestPosts.loading": "게시물 로딩 중...",
+    "latestPosts.noPosts": "게시물이 없습니다"
   },
   "hi": {
     "hero.welcome": "हमारे ब्लॉग में आपका स्वागत है",
     "hero.title": "विभिन्न खेलों में कौशल, तकनीक और रणनीति की खोज",
     "hero.subtitle": "हम विभिन्न खेलों और उन रणनीतियों, तकनीकों और कौशलों के बारे में लिखते हैं जो इन खेलों में लागू की जा सकती हैं।",
     "hero.readLatest": "नवीनतम पोस्ट पढ़ें",
-    "home.randomPostsTitle": "और कहानियाँ खोजें",
-    "home.randomPostsSubtitle": "उन लेखों के क्यूरेटेड चयन में गोता लगाएँ जिन्हें आपने शायद छोड़ दिया हो।"
+    "latestPosts.title": "नवीनतम पोस्ट्स",
+    "latestPosts.subtitle": "खेल, तकनीकों और रणनीतियों पर हमारे नवीनतम विचारों और अंतर्दृष्टि का अन्वेषण करें।",
+    "latestPosts.viewAll": "सभी पोस्ट्स देखें",
+    "latestPosts.loading": "पोस्ट्स लोड हो रही हैं...",
+    "latestPosts.noPosts": "कोई पोस्ट उपलब्ध नहीं"
   },
   "bn": {
     "hero.welcome": "আমাদের ব্লগে স্বাগতম",
     "hero.title": "বিভিন্ন খেলায় দক্ষতা, কৌশল এবং কৌশল অন্বেষণ",
     "hero.subtitle": "আমরা বিভিন্ন খেলা এবং কৌশল, কৌশল এবং দক্ষতা সম্পর্কে লিখি যা এই খেলায় প্রয়োগ করা যেতে পারে।",
     "hero.readLatest": "সর্বশেষ পোস্ট পড়ুন",
-    "home.randomPostsTitle": "আরও গল্প আবিষ্কার করুন",
-    "home.randomPostsSubtitle": "আপনি হয়তো মিস করেছেন এমন নিবন্ধগুলির একটি কিউরেটেড নির্বাচন দেখুন।"
+    "latestPosts.title": "সর্বশেষ পোস্ট",
+    "latestPosts.subtitle": "খেলাধুলা, কৌশল এবং কৌশল সম্পর্কে আমাদের সর্বশেষ চিন্তাভাবনা এবং অন্তর্দৃষ্টি অন্বেষণ করুন।",
+    "latestPosts.viewAll": "সব পোস্ট দেখুন",
+    "latestPosts.loading": "পোস্ট লোড হচ্ছে...",
+    "latestPosts.noPosts": "কোনো পোস্ট উপলব্ধ নেই"
   },
   "ta": {
     "hero.welcome": "எங்கள் வலைப்பதிவுக்கு வரவேற்கிறோம்",
     "hero.title": "பல்வேறு விளையாட்டுகளில் திறன்கள், நுட்பங்கள் மற்றும் தந்திரங்களை ஆராய்தல்",
     "hero.subtitle": "நாங்கள் பல்வேறு விளையாட்டுகள் மற்றும் இந்த விளையாட்டுகளில் செயல்படுத்தக்கூடிய தந்திரங்கள், நுட்பங்கள் மற்றும் திறன்களைப் பற்றி எழுதுகிறோம்.",
     "hero.readLatest": "சமீபத்திய இடுகைகளைப் படிக்கவும்",
-    "home.randomPostsTitle": "மேலும் கதைகளைக் கண்டறியவும்",
-    "home.randomPostsSubtitle": "நீங்கள் தவறவிட்டிருக்கக்கூடிய கட்டுரைகளின் தொகுக்கப்பட்ட தேர்வில் மூழ்கிவிடுங்கள்."
+    "latestPosts.title": "சமீபத்திய இடுகைகள்",
+    "latestPosts.subtitle": "விளையாட்டு, நுட்பங்கள் மற்றும் தந்திரங்கள் குறித்த எங்கள் சமீபத்திய எண்ணங்கள் மற்றும் நுண்ணறிவுகளை ஆராயுங்கள்।",
+    "latestPosts.viewAll": "அனைத்து இடுகைகளையும் பார்க்கவும்",
+    "latestPosts.loading": "இடுகைகள் ஏற்றப்படுகின்றன...",
+    "latestPosts.noPosts": "இடுகைகள் எதுவும் கிடைக்கவில்லை"
   },
   "te": {
     "hero.welcome": "మా బ్లాగ్‌కు స్వాగతం",
     "hero.title": "వివిధ క్రీడలలో నైపుణ్యాలు, టెక్నిక్‌లు మరియు వ్యూహాలను అన్వేషించడం",
     "hero.subtitle": "మేము వివిధ క్రీడలు మరియు ఈ క్రీడలలో అమలు చేయగల వ్యూహాలు, టెక్నిక్‌లు మరియు నైపుణ్యాల గురించి వ్రాస్తాము.",
     "hero.readLatest": "తాజా పోస్ట్‌లను చదవండి",
-    "home.randomPostsTitle": "మరిన్ని కథలను కనుగొనండి",
-    "home.randomPostsSubtitle": "మీరు మిస్ అయిన కథనాల క్యూరేటెడ్ ఎంపికలో మునిగిపోండి."
+    "latestPosts.title": "తాజా పోస్ట్‌లు",
+    "latestPosts.subtitle": "క్రీడలు, టెక్నిక్‌లు మరియు వ్యూహాలపై మా తాజా ఆలోచనలు మరియు అంతర్దృష్టులను అన్వేషించండి.",
+    "latestPosts.viewAll": "అన్ని పోస్ట్‌లను చూడండి",
+    "latestPosts.loading": "పోస్ట్‌లు లోడ్ అవుతున్నాయి...",
+    "latestPosts.noPosts": "పోస్ట్‌లు ఏవీ అందుబాటులో లేవు"
   },
   "mr": {
     "hero.welcome": "आमच्या ब्लॉगमध्ये आपले स्वागत आहे",
     "hero.title": "विविध खेळांमध्ये कौशल्ये, तंत्रे आणि रणनीती एक्सप्लोर करणे",
     "hero.subtitle": "आम्ही विविध खेळ आणि या खेळांमध्ये राबवता येणाऱ्या रणनीती, तंत्रे आणि कौशल्यांबद्दल लिहितो.",
     "hero.readLatest": "नवीनतम पोस्ट वाचा",
-    "home.randomPostsTitle": "आणखी कथा शोधा",
-    "home.randomPostsSubtitle": "तुम्ही कदाचित चुकवलेल्या लेखांच्या निवडक संग्रहात डुबकी मारा."
+    "latestPosts.title": "नवीनतम पोस्ट्स",
+    "latestPosts.subtitle": "खेळ, तंत्रे आणि रणनीतींवर आमचे नवीनतम विचार आणि अंतर्दृष्टी एक्सप्लोर करा.",
+    "latestPosts.viewAll": "सर्व पोस्ट्स पहा",
+    "latestPosts.loading": "पोस्ट्स लोड होत आहेत...",
+    "latestPosts.noPosts": "कोणत्याही पोस्ट्स उपलब्ध नाहीत"
   },
   "gu": {
     "hero.welcome": "અમારા બ્લોગમાં આપનું સ્વાગત છે",
     "hero.title": "વિવિધ રમતોમાં કુશળતા, ટેકનિક અને વ્યૂહરચનાની શોધ",
     "hero.subtitle": "અમે વિવિધ રમતો અને વ્યૂહરચના, ટેકનિક અને કુશળતા વિશે લખીએ છીએ જે આ રમતોમાં લાગુ કરી શકાય છે.",
     "hero.readLatest": "નવીનતમ પોસ્ટ વાંચો",
-    "home.randomPostsTitle": "વધુ વાર્તાઓ શોધો",
-    "home.randomPostsSubtitle": "તમે ચૂકી ગયા હોય તેવા લેખોની ક્યુરેટેડ પસંદગીમાં ડાઇવ કરો."
+    "latestPosts.title": "નવીનતમ પોસ્ટ્સ",
+    "latestPosts.subtitle": "રમતગમત, તકનીકો અને વ્યૂહરચનાઓ પર અમારા નવીનતમ વિચારો અને આંતરદૃષ્ટિનું અન્વેષણ કરો.",
+    "latestPosts.viewAll": "બધી પોસ્ટ્સ જુઓ",
+    "latestPosts.loading": "પોસ્ટ્સ લોડ થઈ રહી છે...",
+    "latestPosts.noPosts": "કોઈ પોસ્ટ્સ ઉપલબ્ધ નથી"
   },
   "ar": {
     "hero.welcome": "مرحباً بكم في مدونتنا",
     "hero.title": "استكشاف المهارات والتقنيات والتكتيكات في الرياضات المختلفة",
     "hero.subtitle": "نكتب عن الرياضات المختلفة والتكتيكات والتقنيات والمهارات التي يمكن تطبيقها في هذه الرياضات.",
     "hero.readLatest": "اقرأ أحدث المنشورات",
-    "home.randomPostsTitle": "اكتشف المزيد من القصص",
-    "home.randomPostsSubtitle": "اغوص في مجموعة مختارة من المقالات التي ربما فاتتك."
+    "latestPosts.title": "أحدث المنشورات",
+    "latestPosts.subtitle": "استكشف أحدث أفكارنا ورؤانا حول الرياضة والتقنيات والتكتيكات.",
+    "latestPosts.viewAll": "عرض جميع المنشورات",
+    "latestPosts.loading": "تحميل المنشورات...",
+    "latestPosts.noPosts": "لا توجد منشورات متاحة"
   },
   "he": {
     "hero.welcome": "ברוכים הבאים לבלוג שלנו",
     "hero.title": "חקר כישורים, טכניקות וטקטיקות בספורט שונים",
     "hero.subtitle": "אנו כותבים על ענפי ספורט שונים והטקטיקות, הטכניקות והכישורים שניתן ליישם בענפי הספורט הללו.",
     "hero.readLatest": "קרא פוסטים אחרונים",
-    "home.randomPostsTitle": "גלה סיפורים נוספים",
-    "home.randomPostsSubtitle": "צלול לתוך מבחר מאמרים שאולי פספסת."
+    "latestPosts.title": "פוסטים אחרונים",
+    "latestPosts.subtitle": "חקור את המחשבות והתובנות האחרונות שלנו על ספורט, טכניקות וטקטיקות.",
+    "latestPosts.viewAll": "צפה בכל הפוסטים",
+    "latestPosts.loading": "טוען פוסטים...",
+    "latestPosts.noPosts": "אין פוסטים זמינים"
   },
   "fa": {
     "hero.welcome": "به وبلاگ ما خوش آمدید",
     "hero.title": "کشف مهارت‌ها، تکنیک‌ها و تاکتیک‌ها در ورزش‌های مختلف",
     "hero.subtitle": "ما در مورد ورزش‌های مختلف و تاکتیک‌ها، تکنیک‌ها و مهارت‌هایی که می‌توان در این ورزش‌ها به کار برد می‌نویسیم.",
     "hero.readLatest": "آخرین مطالب را بخوانید",
-    "home.randomPostsTitle": "داستان‌های بیشتری کشف کنید",
-    "home.randomPostsSubtitle": "به مجموعه‌ای از مقالاتی که ممکن است از دست داده باشید، شیرجه بزنید."
+    "latestPosts.title": "آخرین پست‌ها",
+    "latestPosts.subtitle": "آخرین افکار و بینش‌های ما درباره ورزش، تکنیک‌ها و تاکتیک‌ها را کشف کنید.",
+    "latestPosts.viewAll": "مشاهده همه پست‌ها",
+    "latestPosts.loading": "در حال بارگذاری پست‌ها...",
+    "latestPosts.noPosts": "هیچ پستی در دسترس نیست"
   },
   "tr": {
     "hero.welcome": "Blogumuza Hoş Geldiniz",
     "hero.title": "Çeşitli Sporlarda Beceri, Teknik ve Taktikleri Keşfetmek",
     "hero.subtitle": "Çeşitli sporlar ve bu sporlarda uygulanabilecek taktikler, teknikler ve beceriler hakkında yazıyoruz.",
     "hero.readLatest": "En Son Gönderileri Okuyun",
-    "home.randomPostsTitle": "Daha Fazla Hikaye Keşfedin",
-    "home.randomPostsSubtitle": "Kaçırmış olabileceğiniz seçilmiş makalelere dalın."
+    "latestPosts.title": "Son Yazılar",
+    "latestPosts.subtitle": "Spor, teknikler ve taktikler hakkındaki en son düşüncelerimizi ve anlayışlarımızı keşfedin.",
+    "latestPosts.viewAll": "Tüm Yazıları Görüntüle",
+    "latestPosts.loading": "Yazılar yükleniyor...",
+    "latestPosts.noPosts": "Mevcut yazı yok"
   },
   "th": {
     "hero.welcome": "ยินดีต้อนรับสู่บล็อกของเรา",
     "hero.title": "สำรวจทักษะ เทคนิค และกลยุทธ์ในกีฬาต่างๆ",
     "hero.subtitle": "เราเขียนเกี่ยวกับกีฬาต่างๆ และกลยุทธ์ เทคนิค และทักษะที่สามารถนำไปใช้ในกีฬาเหล่านี้",
     "hero.readLatest": "อ่านโพสต์ล่าสุด",
-    "home.randomPostsTitle": "ค้นพบเรื่องราวเพิ่มเติม",
-    "home.randomPostsSubtitle": "ดำดิ่งสู่บทความที่คัดสรรมาซึ่งคุณอาจพลาดไป"
+    "latestPosts.title": "โพสต์ล่าสุด",
+    "latestPosts.subtitle": "สำรวจความคิดและข้อมูลเชิงลึกล่าสุดของเราเกี่ยวกับกีฬา เทคนิค และกลยุทธ์",
+    "latestPosts.viewAll": "ดูโพสต์ทั้งหมด",
+    "latestPosts.loading": "กำลังโหลดโพสต์...",
+    "latestPosts.noPosts": "ไม่มีโพสต์ที่มี"
   }
 }
