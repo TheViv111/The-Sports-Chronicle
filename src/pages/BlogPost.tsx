@@ -1,10 +1,10 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, Loader2 } from "lucide-react"; // Added Loader2
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import BlogCard from "@/components/BlogCard";
 import { supabase } from "@/integrations/supabase/client";
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query"; // Import useQuery
 import { Tables } from "@/integrations/supabase/types";
 import LoadingScreen from "@/components/LoadingScreen";
 import CommentsSection from "@/components/CommentsSection";
@@ -14,51 +14,54 @@ type BlogPostType = Tables<'blog_posts'>;
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<BlogPostType | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPostType[]>([]);
-  const [loading, setLoading] = useState(true);
   
   if (!slug) {
     return <Navigate to="/blog" replace />;
   }
 
-  useEffect(() => {
-    loadPost();
-  }, [slug]);
-
-  const loadPost = async () => {
-    try {
-      setLoading(true);
-      
-      // Load the main post
-      const { data: postData, error: postError } = await supabase
+  // Fetch main blog post
+  const { data: post, isLoading: isPostLoading, error: postError } = useQuery<BlogPostType | null, Error>({
+    queryKey: ['blogPost', slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
         .eq('slug', slug)
         .single();
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!slug, // Only run query if slug is available
+    staleTime: 1000 * 60 * 5, // Data is considered fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10, // Keep data in cache for 10 minutes
+  });
 
-      if (postError) throw postError;
-      setPost(postData);
-
-      // Load related posts (same category, excluding current post)
-      const { data: relatedData, error: relatedError } = await supabase
+  // Fetch related posts
+  const { data: relatedPosts, isLoading: isRelatedPostsLoading, error: relatedPostsError } = useQuery<BlogPostType[], Error>({
+    queryKey: ['relatedPosts', post?.category, post?.id],
+    queryFn: async () => {
+      if (!post?.category || !post?.id) return [];
+      const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
-        .eq('category', postData.category)
-        .neq('id', postData.id)
+        .eq('category', post.category)
+        .neq('id', post.id)
         .limit(3);
+      if (error) throw error;
+      return data || [];
+    },
+    enabled: !!post, // Only run this query if the main post is loaded
+    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 10,
+  });
 
-      if (relatedError) throw relatedError;
-      setRelatedPosts(relatedData || []);
-    } catch (error) {
-      console.error('Error loading post:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  
-  if (loading) {
+  if (isPostLoading) {
     return <LoadingScreen message="Loading post..." />;
+  }
+
+  if (postError) {
+    console.error('Error loading post:', postError);
+    return <Navigate to="/blog" replace />; // Or show an error message
   }
 
   if (!post) {
@@ -134,7 +137,12 @@ const BlogPost = () => {
       </article>
 
       {/* Related Posts */}
-      {relatedPosts.length > 0 && (
+      {isRelatedPostsLoading ? (
+        <div className="py-16 bg-secondary/20 text-center">
+          <Loader2 className="h-6 w-6 animate-spin text-primary mx-auto" />
+          <p className="text-muted-foreground mt-2">Loading related posts...</p>
+        </div>
+      ) : relatedPosts && relatedPosts.length > 0 && (
         <section className="py-16 bg-secondary/20">
           <div className="container mx-auto px-4">
             <h2 className="font-heading text-2xl font-bold mb-8 text-center">
