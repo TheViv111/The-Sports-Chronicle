@@ -7,7 +7,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
 import { Tables } from "@/integrations/supabase/types";
 import LoadingScreen from "@/components/LoadingScreen";
-import CommentsSection from "@/components/CommentsSection"; // Import CommentsSection
+import CommentsSection from "@/components/CommentsSection";
+import ReactMarkdown from "react-markdown"; // Import ReactMarkdown
 
 type BlogPostType = Tables<'blog_posts'>;
 
@@ -123,9 +124,7 @@ const BlogPost = () => {
 
           {/* Content */}
           <div className="prose prose-lg max-w-none">
-            <div className="whitespace-pre-line text-foreground leading-relaxed">
-              {post.content}
-            </div>
+            <ReactMarkdown>{post.content || ''}</ReactMarkdown>
           </div>
 
           {/* Comments Section */}
