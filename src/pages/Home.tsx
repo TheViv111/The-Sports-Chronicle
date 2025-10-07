@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import BlogCard from "@/components/BlogCard";
+import BlogCarousel from "@/components/BlogCarousel"; // Import the new BlogCarousel
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Tables } from "@/integrations/supabase/types";
@@ -104,16 +104,8 @@ const Home = () => {
 
           {loadingLatestPosts ? (
             <LoadingScreen message={t("latestPosts.loading")} />
-          ) : postsForDisplay.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {postsForDisplay.map((post) => (
-                <BlogCard key={post.id} post={post} />
-              ))}
-            </div>
           ) : (
-            <p className="text-muted-foreground text-center py-8">
-              {t("latestPosts.noPosts")}
-            </p>
+            <BlogCarousel posts={postsForDisplay} />
           )}
 
           {latestPosts.length > 0 && (
