@@ -20,7 +20,7 @@ const Home = () => {
   // Initialize Embla Carousel with Autoplay plugin
   const [emblaRef] = useEmblaCarousel(
     { loop: true, align: 'start' },
-    [Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true, stopOnLastSnap: false })]
+    [Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: false, stopOnLastSnap: false })] // Changed stopOnMouseEnter to false
   );
 
   useEffect(() => {
