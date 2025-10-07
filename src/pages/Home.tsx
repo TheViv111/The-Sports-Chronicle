@@ -5,23 +5,14 @@ import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/BlogCard";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2 } from "lucide-react"; // Import Loader2 for loading state
+import { Loader2 } from "lucide-react";
+import { Tables } from "@/integrations/supabase/types"; // Import Supabase types
 
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  created_at: string;
-  read_time: string;
-  cover_image: string;
-  slug: string;
-  author: string;
-}
+type BlogPostType = Tables<'blog_posts'>; // Use Supabase type for blog posts
 
 const Home = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loadingPosts, setLoadingPosts] = useState(true); // New loading state
+  const [posts, setPosts] = useState<BlogPostType[]>([]);
+  const [loadingPosts, setLoadingPosts] = useState(true);
   const { t } = useTranslation();
 
   // Load posts from Supabase
@@ -31,19 +22,19 @@ const Home = () => {
 
   const loadPosts = async () => {
     try {
-      setLoadingPosts(true); // Set loading to true
+      setLoadingPosts(true);
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(6); // Limit to 6 for the home page display
+        .limit(6);
 
       if (error) throw error;
       setPosts(data || []);
     } catch (error) {
       console.error('Error loading posts:', error);
     } finally {
-      setLoadingPosts(false); // Set loading to false
+      setLoadingPosts(false);
     }
   };
 

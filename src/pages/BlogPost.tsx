@@ -5,25 +5,15 @@ import { Badge } from "@/components/ui/badge";
 import BlogCard from "@/components/BlogCard";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
-import CommentsSection from "@/components/CommentsSection"; // Import the new component
+import CommentsSection from "@/components/CommentsSection";
+import { Tables } from "@/integrations/supabase/types"; // Import Supabase types
 
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  content?: string;
-  category: string;
-  cover_image?: string;
-  slug: string;
-  read_time?: string;
-  author: string;
-  created_at: string;
-}
+type BlogPostType = Tables<'blog_posts'>; // Use Supabase type for blog posts
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [post, setPost] = useState<BlogPostType | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPostType[]>([]);
   const [loading, setLoading] = useState(true);
   
   if (!slug) {

@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { toast } from "sonner";
+import { toast } from "sonner"; // Using sonner for toasts
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { useSession } from "@/components/SessionContextProvider";
@@ -105,7 +105,7 @@ const Profile = () => {
       toast.error("Failed to sign out. Please try again.");
     } else {
       toast.success("You have been signed out.");
-      navigate("/auth");
+      navigate("/signin");
     }
   };
 

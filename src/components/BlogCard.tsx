@@ -3,20 +3,15 @@ import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tables } from "@/integrations/supabase/types";
 
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  readTime: string;
-  image: string;
-  slug: string;
-}
-
+// Use the Supabase generated type for blog posts
 interface BlogCardProps {
-  post: BlogPost;
+  post: Tables<'blog_posts'> & {
+    date: string; // Add date for display, derived from created_at
+    readTime: string; // Add readTime for display, derived from read_time
+    image: string; // Add image for display, derived from cover_image with fallback
+  };
   className?: string;
 }
 
@@ -25,7 +20,7 @@ const BlogCard = ({ post, className = "" }: BlogCardProps) => {
     <Card className={`blog-card group overflow-hidden ${className}`}>
       <div className="aspect-[4/3] overflow-hidden">
         <img
-          src={post.image}
+          src={post.image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"} // Fallback image
           alt={post.title}
           className="w-full h-full object-cover"
         />

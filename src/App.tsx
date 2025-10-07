@@ -1,4 +1,3 @@
-import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -13,10 +12,12 @@ import BlogPost from "./pages/BlogPost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
-import SignIn from "./pages/SignIn"; // Import SignIn
-import SignUp from "./pages/SignUp"; // Import SignUp
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+// Removed import "./App.css";
+// Removed import { Toaster } from "@/components/ui/toaster";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +26,7 @@ const App = () => (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <TooltipProvider>
         <TranslationProvider>
-          <Toaster />
+          {/* Replaced shadcn/ui Toaster with Sonner */}
           <Sonner />
           <BrowserRouter>
             <SessionContextProvider>
@@ -37,8 +38,8 @@ const App = () => (
                   <Route path="about" element={<About />} />
                   <Route path="contact" element={<Contact />} />
                   <Route path="admin" element={<Admin />} />
-                  <Route path="signin" element={<SignIn />} /> {/* New SignIn route */}
-                  <Route path="signup" element={<SignUp />} /> {/* New SignUp route */}
+                  <Route path="signin" element={<SignIn />} />
+                  <Route path="signup" element={<SignUp />} />
                   <Route path="profile" element={<Profile />} />
                 </Route>
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -7,24 +7,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner"; // Using sonner for toasts
 import { Trash2, Edit, Plus, Loader2, ArrowLeft, Home } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { Tables } from "@/integrations/supabase/types"; // Import Supabase types
 
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  content?: string;
-  category: string;
-  cover_image?: string;
-  slug: string;
-  read_time?: string;
-  author: string;
-  language: string;
-  created_at: string;
-  updated_at: string;
-}
+type BlogPost = Tables<'blog_posts'>; // Use Supabase type for blog posts
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,7 +23,6 @@ const Admin = () => {
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [loadingPosts, setLoadingPosts] = useState(false);
   const [activeTab, setActiveTab] = useState("posts");
-  const { toast } = useToast();
 
   // Check if already authenticated on component mount
   useEffect(() => {
@@ -58,10 +45,8 @@ const Admin = () => {
       setPosts(data || []);
     } catch (error) {
       console.error('Error loading posts:', error);
-      toast({
-        title: "Error loading posts",
+      toast.error("Error loading posts", {
         description: "Failed to load blog posts from database.",
-        variant: "destructive",
       });
     } finally {
       setLoadingPosts(false);
@@ -79,15 +64,12 @@ const Admin = () => {
       setIsAuthenticated(true);
       localStorage.setItem("admin_authenticated", "true");
       await loadPosts();
-      toast({
-        title: "Login successful!",
+      toast.success("Login successful!", {
         description: "Welcome to the admin dashboard.",
       });
     } else {
-      toast({
-        title: "Login failed",
+      toast.error("Login failed", {
         description: "Invalid username or password.",
-        variant: "destructive",
       });
     }
 
@@ -100,8 +82,7 @@ const Admin = () => {
     setUsername("");
     setPassword("");
     setPosts([]);
-    toast({
-      title: "Logged out",
+    toast.info("Logged out", {
       description: "You have been logged out successfully.",
     });
   };
@@ -135,16 +116,13 @@ const Admin = () => {
       (e.target as HTMLFormElement).reset();
       setActiveTab("posts"); // Switch back to posts list
       
-      toast({
-        title: "Post created!",
+      toast.success("Post created!", {
         description: "Your blog post has been created successfully.",
       });
     } catch (error) {
       console.error('Error creating post:', error);
-      toast({
-        title: "Error creating post",
+      toast.error("Error creating post", {
         description: "Failed to create blog post. Please try again.",
-        variant: "destructive",
       });
     }
   };
@@ -178,16 +156,13 @@ const Admin = () => {
       setEditingPost(null);
       setActiveTab("posts"); // Switch back to posts list
       
-      toast({
-        title: "Post updated!",
+      toast.success("Post updated!", {
         description: "Your blog post has been updated successfully.",
       });
     } catch (error) {
       console.error('Error updating post:', error);
-      toast({
-        title: "Error updating post",
+      toast.error("Error updating post", {
         description: "Failed to update blog post. Please try again.",
-        variant: "destructive",
       });
     }
   };
@@ -207,16 +182,13 @@ const Admin = () => {
       if (error) throw error;
 
       setPosts(posts.filter(post => post.id !== postId));
-      toast({
-        title: "Post deleted!",
+      toast.success("Post deleted!", {
         description: "The blog post has been deleted successfully.",
       });
     } catch (error) {
       console.error('Error deleting post:', error);
-      toast({
-        title: "Error deleting post",
+      toast.error("Error deleting post", {
         description: "Failed to delete blog post. Please try again.",
-        variant: "destructive",
       });
     }
   };

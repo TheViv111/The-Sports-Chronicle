@@ -1,29 +1,20 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Search, Loader2 } from "lucide-react"; // Import Loader2 for loading state
+import { Search, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/BlogCard";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
+import { Tables } from "@/integrations/supabase/types"; // Import Supabase types
 
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  created_at: string;
-  read_time: string;
-  cover_image: string;
-  slug: string;
-  author: string;
-}
+type BlogPostType = Tables<'blog_posts'>; // Use Supabase type for blog posts
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [posts, setPosts] = useState<BlogPostType[]>([]);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
@@ -58,10 +49,10 @@ const Blog = () => {
   }, [searchParams]);
 
   const categories = [
-    { id: "all", name: t("category.all") || "All" }, // Use translation for "All"
+    { id: "all", name: t("category.all") || "All" },
     { id: "basketball", name: t("category.basketball") },
     { id: "soccer", name: t("category.soccer") },
-    { id: "swimming", name: t("category.swimming") || "Swimming" }, // Add translation for Swimming
+    { id: "swimming", name: t("category.swimming") || "Swimming" },
   ];
 
   const filteredPosts = posts

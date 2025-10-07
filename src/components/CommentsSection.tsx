@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { toast } from "sonner";
+import { toast } from "sonner"; // Using sonner for toasts
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { Tables } from "@/integrations/supabase/types";
@@ -93,7 +93,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
         .order("created_at", { ascending: false });
 
       if (error) throw error;
-      return data as unknown as CommentWithProfile[]; // Added 'unknown' cast
+      return data as unknown as CommentWithProfile[];
     },
   });
 

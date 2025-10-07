@@ -3,13 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner"; // Using sonner for toasts
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
   const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,16 +42,14 @@ const Contact = () => {
       const result = await response.json();
       console.log('Contact form result:', result);
 
-      toast({
-        title: "Message sent successfully!",
+      toast.success("Message sent successfully!", {
         description: "Thank you for your message. We'll get back to you soon.",
       });
 
       (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.error("Error sending message:", error);
-      toast({
-        title: "Message received!",
+      toast.error("Message received!", {
         description: "Your message has been logged. We'll get back to you soon!",
       });
     } finally {
