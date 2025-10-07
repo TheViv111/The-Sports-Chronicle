@@ -122,7 +122,7 @@ const Header = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsSearchOpen(true)}
-                className="h-8 w-8 p-0"
+                className="h-8 w-8 p-0 btn-hover-lift"
               >
                 <Search className="h-4 w-4" />
               </Button>
@@ -141,7 +141,7 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Button 
                   variant="ghost" 
-                  className="relative h-8 w-8 rounded-full"
+                  className="relative h-8 w-8 rounded-full btn-hover-lift"
                 >
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={session.user?.user_metadata?.avatar_url || undefined} alt="User Avatar" />
@@ -175,12 +175,12 @@ const Header = () => {
           ) : (
             <div className="hidden lg:flex items-center space-x-2">
               <Link to="/signin">
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" className="btn-hover-lift">
                   {t("nav.signIn")}
                 </Button>
               </Link>
               <Link to="/signup">
-                <Button size="sm">{t("nav.signUp")}</Button>
+                <Button size="sm" className="btn-hover-lift">{t("nav.signUp")}</Button>
               </Link>
             </div>
           )}
@@ -188,7 +188,7 @@ const Header = () => {
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="lg:hidden h-8 w-8 p-0">
+              <Button variant="ghost" size="sm" className="lg:hidden h-8 w-8 p-0 btn-hover-lift">
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
@@ -227,12 +227,12 @@ const Header = () => {
                 {session ? (
                   <div className="lg:hidden border-t pt-4 flex flex-col space-y-3">
                     <Link to="/profile">
-                      <Button variant="ghost" className="w-full justify-start">
+                      <Button variant="ghost" className="w-full justify-start btn-hover-lift">
                         <UserIcon className="mr-2 h-4 w-4" />
                         {t("nav.profile")}
                       </Button>
                     </Link>
-                    <Button onClick={handleSignOut} variant="ghost" className="w-full justify-start">
+                    <Button onClick={handleSignOut} variant="ghost" className="w-full justify-start btn-hover-lift">
                       <LogOut className="mr-2 h-4 w-4" />
                       {t("nav.signOut")}
                     </Button>
@@ -240,12 +240,12 @@ const Header = () => {
                 ) : (
                   <div className="lg:hidden border-t pt-4 flex flex-col space-y-3">
                     <Link to="/signin">
-                      <Button variant="ghost" className="w-full justify-start">
+                      <Button variant="ghost" className="w-full justify-start btn-hover-lift">
                         {t("nav.signIn")}
                       </Button>
                     </Link>
                     <Link to="/signup">
-                      <Button className="w-full">{t("nav.signUp")}</Button>
+                      <Button className="w-full btn-hover-lift">{t("nav.signUp")}</Button>
                     </Link>
                   </div>
                 )}

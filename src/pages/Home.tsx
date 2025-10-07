@@ -5,13 +5,17 @@ import { Button } from "@/components/ui/button";
 import BlogCarousel from "@/components/BlogCarousel";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
-import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-utils"; // Import utility
+import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-utils";
 import LoadingScreen from "@/components/LoadingScreen";
+import useScrollReveal from "@/hooks/useScrollReveal";
+import BlogCardSkeleton from "@/components/BlogCardSkeleton";
 
 const Home = () => {
   const [latestPosts, setLatestPosts] = useState<BlogPostWithDisplay[]>([]);
   const [loadingLatestPosts, setLoadingLatestPosts] = useState(true);
   const { t } = useTranslation();
+
+  useScrollReveal('.reveal-on-scroll');
 
   useEffect(() => {
     loadLatestPosts();
@@ -34,24 +38,6 @@ const Home = () => {
       setLoadingLatestPosts(false);
     }
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('scroll-reveal');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = document.querySelectorAll('.reveal-on-scroll');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <div className="min-h-screen">
@@ -87,7 +73,11 @@ const Home = () => {
           </p>
 
           {loadingLatestPosts ? (
-            <LoadingScreen message={t("latestPosts.loading")} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...Array(3)].map((_, index) => (
+                <BlogCardSkeleton key={index} />
+              ))}
+            </div>
           ) : (
             <BlogCarousel posts={latestPosts} />
           )}

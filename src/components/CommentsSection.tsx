@@ -8,6 +8,7 @@ import { useTranslation } from '@/contexts/TranslationContext';
 import CommentItem from './CommentItem';
 import CommentForm from './CommentForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton'; // Import Skeleton
 
 interface CommentsSectionProps {
   postId: string;
@@ -63,10 +64,32 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-8">
-        <Loader2 className="h-6 w-6 animate-spin text-primary" />
-        <span className="ml-2 text-muted-foreground">{t("comments.loadingComments")}</span>
-      </div>
+      <Card className="mt-12">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <MessageSquare className="h-5 w-5" /> {t("comments.title")}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <Skeleton className="h-24 w-full" /> {/* Comment form skeleton */}
+            <div className="flex items-center space-x-3 p-4 border-b last:border-b-0">
+              <Skeleton className="h-10 w-10 rounded-full" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-3 w-1/2" />
+              </div>
+            </div>
+            <div className="flex items-center space-x-3 p-4 border-b last:border-b-0">
+              <Skeleton className="h-10 w-10 rounded-full" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-3 w-1/2" />
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     );
   }
 
@@ -80,7 +103,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
   }
 
   return (
-    <Card className="mt-12">
+    <Card className="mt-12 reveal-on-scroll">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <MessageSquare className="h-5 w-5" /> {t("comments.title")} ({realtimeComments.length})

@@ -10,7 +10,9 @@ import LoadingScreen from "@/components/LoadingScreen";
 import CommentsSection from "@/components/CommentsSection";
 import ReactMarkdown from "react-markdown";
 import { useTranslation } from "@/contexts/TranslationContext";
-import { formatBlogPostDate, transformBlogPostForDisplay } from "@/lib/blog-utils"; // Import utility
+import { formatBlogPostDate, transformBlogPostForDisplay } from "@/lib/blog-utils";
+import useScrollReveal from "@/hooks/useScrollReveal";
+import BlogCardSkeleton from "@/components/BlogCardSkeleton";
 
 type BlogPostType = Tables<'blog_posts'>;
 
@@ -18,6 +20,9 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useTranslation();
   
+  useScrollReveal('.reveal-on-scroll');
+  useScrollReveal('.staggered-grid > .reveal-on-scroll', { threshold: 0.1 });
+
   if (!slug) {
     return <Navigate to="/blog" replace />;
   }
@@ -76,7 +81,7 @@ const BlogPost = () => {
     <div className="min-h-screen">
       <div className="container mx-auto px-4 py-6">
         <Link to="/blog">
-          <Button variant="ghost" className="group">
+          <Button variant="ghost" className="group btn-hover-lift">
             <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
             {t("blog.backToBlog")}
           </Button>
@@ -85,15 +90,15 @@ const BlogPost = () => {
 
       <article className="container mx-auto px-4 pb-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="font-heading text-3xl md:text-5xl font-bold mb-4 leading-tight">
+          <h1 className="font-heading text-3xl md:text-5xl font-bold mb-4 leading-tight reveal-on-scroll">
             {post.title}
           </h1>
 
-          <Badge variant="outline" className="uppercase text-xs mb-6">
+          <Badge variant="outline" className="uppercase text-xs mb-6 reveal-on-scroll">
             {post.category}
           </Badge>
 
-          <div className="aspect-[21/9] mb-8 overflow-hidden rounded-lg">
+          <div className="aspect-[21/9] mb-8 overflow-hidden rounded-lg reveal-on-scroll scale-in">
             <img
               src={post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"}
               alt={post.title}
@@ -101,7 +106,7 @@ const BlogPost = () => {
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 mb-8">
+          <div className="flex flex-wrap items-center gap-4 mb-8 reveal-on-scroll">
             <div className="flex items-center text-muted-foreground text-sm">
               <Calendar className="mr-2 h-4 w-4" />
               {formatBlogPostDate(post.created_at)}
@@ -116,7 +121,7 @@ const BlogPost = () => {
             </div>
           </div>
 
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg max-w-none reveal-on-scroll">
             <ReactMarkdown>{post.content || ''}</ReactMarkdown>
           </div>
 
@@ -132,12 +137,12 @@ const BlogPost = () => {
       ) : relatedPosts && relatedPosts.length > 0 && (
         <section className="py-16 bg-secondary/20">
           <div className="container mx-auto px-4">
-            <h2 className="font-heading text-2xl font-bold mb-8 text-center">
+            <h2 className="font-heading text-2xl font-bold mb-8 text-center reveal-on-scroll">
               {t("blog.relatedArticles")}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {relatedPosts.map((relatedPost: any) => ( // Cast to any because useQuery doesn't know the transformed type
-                <BlogCard key={relatedPost.id} post={relatedPost} />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto staggered-grid">
+              {relatedPosts.map((relatedPost: any, index: number) => (
+                <BlogCard key={relatedPost.id} post={relatedPost} className="reveal-on-scroll" style={{ '--stagger-delay': `${index * 100}ms` } as React.CSSProperties} />
               ))}
             </div>
           </div>

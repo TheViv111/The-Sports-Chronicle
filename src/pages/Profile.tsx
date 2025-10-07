@@ -18,15 +18,15 @@ import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { useSession } from "@/components/SessionContextProvider";
 import { Tables } from "@/integrations/supabase/types";
-import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
+import LoadingScreen from "@/components/LoadingScreen";
 import AvatarActionsDialog from "@/components/AvatarActionsDialog";
 import ChangeAvatarDialog from "@/components/ChangeAvatarDialog";
 import ViewAvatarDialog from "@/components/ViewAvatarDialog";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const profileSchema = z.object({
   display_name: z.string().min(2, { message: "Display name must be at least 2 characters." }).max(50, { message: "Display name must not be longer than 50 characters." }).optional(),
   bio: z.string().max(500, { message: "Bio must not be longer than 500 characters." }).optional(),
-  // avatar_url is now managed through dialogs, not direct form input
 });
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
@@ -43,6 +43,8 @@ const Profile = () => {
   const [isAvatarActionsOpen, setIsAvatarActionsOpen] = React.useState(false);
   const [isChangeAvatarOpen, setIsChangeAvatarOpen] = React.useState(false);
   const [isViewAvatarOpen, setIsViewAvatarOpen] = React.useState(false);
+
+  useScrollReveal('.reveal-on-scroll');
 
   // Redirect if not authenticated and session is loaded
   React.useEffect(() => {
@@ -211,7 +213,7 @@ const Profile = () => {
   if (!profile && !isProfileLoading && session) {
     return (
       <div className="min-h-screen flex items-center justify-center py-12 px-4">
-          <Card className="w-full max-w-md">
+          <Card className="w-full max-w-md reveal-on-scroll">
             <CardHeader className="text-center">
               <CardTitle className="font-heading text-2xl font-bold">
                 {t("profile.noProfileTitle")}
@@ -249,7 +251,7 @@ const Profile = () => {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full" disabled={createProfileMutation.isPending}>
+                  <Button type="submit" className="w-full btn-hover-lift" disabled={createProfileMutation.isPending}>
                     {createProfileMutation.isPending ? (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     ) : (
@@ -260,7 +262,7 @@ const Profile = () => {
                 </form>
               </Form>
               <div className="mt-8 pt-6 border-t flex justify-end">
-                <Button variant="destructive" onClick={handleSignOut}>
+                <Button variant="destructive" onClick={handleSignOut} className="btn-hover-lift">
                   <LogOut className="mr-2 h-4 w-4" />
                   {t("nav.signOut")}
                 </Button>
@@ -274,11 +276,11 @@ const Profile = () => {
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4 max-w-3xl">
-        <Card>
+        <Card className="reveal-on-scroll">
           <CardHeader className="text-center">
             <Button
               variant="ghost"
-              className="relative h-24 w-24 mx-auto mb-4 rounded-full p-0 group"
+              className="relative h-24 w-24 mx-auto mb-4 rounded-full p-0 group btn-hover-lift"
               onClick={() => setIsAvatarActionsOpen(true)}
             >
               <Avatar className="h-24 w-24">
@@ -331,10 +333,10 @@ const Profile = () => {
                 <div className="flex justify-end gap-2">
                   {isEditing ? (
                     <>
-                      <Button type="button" variant="outline" onClick={() => { setIsEditing(false); form.reset(profile); }}>
+                      <Button type="button" variant="outline" onClick={() => { setIsEditing(false); form.reset(profile); }} className="btn-hover-lift">
                         {t("common.cancel")}
                       </Button>
-                      <Button type="submit" disabled={updateProfileMutation.isPending || !form.formState.isDirty}>
+                      <Button type="submit" disabled={updateProfileMutation.isPending || !form.formState.isDirty} className="btn-hover-lift">
                         {updateProfileMutation.isPending ? (
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         ) : (
@@ -344,7 +346,7 @@ const Profile = () => {
                       </Button>
                     </>
                   ) : (
-                    <Button type="button" onClick={() => setIsEditing(true)}>
+                    <Button type="button" onClick={() => setIsEditing(true)} className="btn-hover-lift">
                       <Edit className="mr-2 h-4 w-4" />
                       {t("common.edit")}
                     </Button>
@@ -353,7 +355,7 @@ const Profile = () => {
               </form>
             </Form>
             <div className="mt-8 pt-6 border-t flex justify-end">
-              <Button variant="destructive" onClick={handleSignOut}>
+              <Button variant="destructive" onClick={handleSignOut} className="btn-hover-lift">
                 <LogOut className="mr-2 h-4 w-4" />
                 {t("nav.signOut")}
               </Button>

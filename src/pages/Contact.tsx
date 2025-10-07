@@ -6,10 +6,13 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner"; // Using sonner for toasts
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { t } = useTranslation();
+
+  useScrollReveal('.reveal-on-scroll');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,10 +65,10 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 reveal-on-scroll">
             {t("contact.pageTitle")}
           </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto reveal-on-scroll">
             {t("contact.pageSubtitle")}
           </p>
         </div>
@@ -74,7 +77,7 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div>
+            <div className="reveal-on-scroll fade-in-left">
               <h2 className="font-heading text-2xl font-semibold mb-6">
                 {t("contact.sendMessage")}
               </h2>
@@ -139,7 +142,7 @@ const Contact = () => {
 
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full btn-hover-lift"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? t("contact.sending") : t("contact.sendMessageBtn")}
@@ -148,7 +151,7 @@ const Contact = () => {
             </div>
 
             {/* Newsroom */}
-            <div>
+            <div className="reveal-on-scroll fade-in-right">
               <h2 className="font-heading text-2xl font-semibold mb-6">
                 {t("contact.newsroom")}
               </h2>

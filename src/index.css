@@ -55,10 +55,13 @@
     --shadow-hover: 0 20px 40px -15px hsl(var(--primary) / 0.4);
     
     /* Sports Category Colors */
-    --basketball: 30 100% 50%;
-    --soccer: 120 100% 35%;
-    --swimming: 200 100% 50%;
-    --athletics: 0 100% 50%;
+    --basketball: 30 100% 50%; /* Orange */
+    --soccer: 120 100% 35%;    /* Green */
+    --swimming: 200 100% 50%;  /* Blue */
+    --tennis: 60 100% 50%;     /* Yellow */
+    --baseball: 350 100% 60%;  /* Reddish */
+    --athletics: 270 100% 50%; /* Purple */
+    --football: 240 100% 30%;  /* Dark Blue */
   }
 
   .dark {
@@ -149,33 +152,42 @@
     }
   }
 
-  .scroll-reveal {
+  .reveal-on-scroll {
     opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
+    transform: translateY(30px); /* Default for fadeInUp */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
-  .scroll-reveal-left {
-    opacity: 0;
-    animation: fadeInLeft 0.8s ease-out forwards;
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .scroll-reveal-right {
-    opacity: 0;
-    animation: fadeInRight 0.8s ease-out forwards;
+  .reveal-on-scroll.fade-in-left {
+    transform: translateX(-30px);
+  }
+  .reveal-on-scroll.fade-in-left.is-visible {
+    transform: translateX(0);
   }
 
-  .scroll-reveal-scale {
-    opacity: 0;
-    animation: scaleIn 0.6s ease-out forwards;
+  .reveal-on-scroll.fade-in-right {
+    transform: translateX(30px);
+  }
+  .reveal-on-scroll.fade-in-right.is-visible {
+    transform: translateX(0);
   }
 
-  /* Staggered animations */
-  .scroll-reveal:nth-child(1) { animation-delay: 0.1s; }
-  .scroll-reveal:nth-child(2) { animation-delay: 0.2s; }
-  .scroll-reveal:nth-child(3) { animation-delay: 0.3s; }
-  .scroll-reveal:nth-child(4) { animation-delay: 0.4s; }
-  .scroll-reveal:nth-child(5) { animation-delay: 0.5s; }
-  .scroll-reveal:nth-child(6) { animation-delay: 0.6s; }
+  .reveal-on-scroll.scale-in {
+    transform: scale(0.8);
+  }
+  .reveal-on-scroll.scale-in.is-visible {
+    transform: scale(1);
+  }
+
+  /* Staggered animations for grids */
+  .staggered-grid > .reveal-on-scroll {
+    transition-delay: var(--stagger-delay, 0ms);
+  }
   
   /* Category Pills */
   .category-pill {

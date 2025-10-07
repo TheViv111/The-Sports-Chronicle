@@ -61,6 +61,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Category-specific colors
+        basketball: "hsl(var(--basketball))",
+        soccer: "hsl(var(--soccer))",
+        swimming: "hsl(var(--swimming))",
+        tennis: "hsl(var(--tennis))",
+        baseball: "hsl(var(--baseball))",
+        athletics: "hsl(var(--athletics))",
+        football: "hsl(var(--football))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -84,10 +92,40 @@ export default {
             height: "0",
           },
         },
+        // Custom keyframes for scroll reveal
+        fadeInUp: {
+          from: { opacity: "0", transform: "translateY(30px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeInLeft: {
+          from: { opacity: "0", transform: "translateX(-30px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        fadeInRight: {
+          from: { opacity: "0", transform: "translateX(30px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        scaleIn: {
+          from: { opacity: "0", transform: "scale(0.8)" },
+          to: { opacity: "1", transform: "scale(1)" },
+        },
+        // Skeleton loading animation
+        skeleton: {
+          "0%": { backgroundColor: "hsl(var(--muted))" },
+          "50%": { backgroundColor: "hsl(var(--muted-foreground) / 0.2)" },
+          "100%": { backgroundColor: "hsl(var(--muted))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        // Custom animations for scroll reveal
+        fadeInUp: "fadeInUp 0.8s ease-out forwards",
+        fadeInLeft: "fadeInLeft 0.8s ease-out forwards",
+        fadeInRight: "fadeInRight 0.8s ease-out forwards",
+        scaleIn: "scaleIn 0.6s ease-out forwards",
+        // Skeleton loading animation
+        skeleton: "skeleton 1.5s ease-in-out infinite",
       },
     },
   },

@@ -8,6 +8,7 @@ import BlogCard from '@/components/BlogCard';
 import { Button } from '@/components/ui/button';
 import { Tables } from '@/integrations/supabase/types';
 import { useTranslation } from '@/contexts/TranslationContext';
+import useScrollReveal from '@/hooks/useScrollReveal'; // Import useScrollReveal
 
 // Define the type for a blog post with display-specific fields
 type BlogPostWithDisplay = Tables<'blog_posts'> & {
@@ -23,8 +24,10 @@ interface BlogCarouselProps {
 const BlogCarousel: React.FC<BlogCarouselProps> = ({ posts }) => {
   const { t } = useTranslation();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }), // Changed delay to 2000ms (2 seconds)
+    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }),
   ]);
+
+  useScrollReveal('.carousel-item-reveal', { threshold: 0.1 }); // Apply scroll reveal to carousel items
 
   const scrollPrev = React.useCallback(() => {
     emblaApi?.scrollPrev();
@@ -46,9 +49,9 @@ const BlogCarousel: React.FC<BlogCarouselProps> = ({ posts }) => {
     <div className="relative">
       <div className="embla" ref={emblaRef}>
         <div className="embla__container flex">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <div key={post.id} className="embla__slide flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4">
-              <BlogCard post={post} />
+              <BlogCard post={post} className="carousel-item-reveal" style={{ '--stagger-delay': `${index * 100}ms` } as React.CSSProperties} />
             </div>
           ))}
         </div>
@@ -58,7 +61,7 @@ const BlogCarousel: React.FC<BlogCarouselProps> = ({ posts }) => {
         variant="outline"
         size="icon"
         onClick={scrollPrev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex"
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex btn-hover-lift"
       >
         <ArrowLeft className="h-4 w-4" />
       </Button>
@@ -66,7 +69,7 @@ const BlogCarousel: React.FC<BlogCarouselProps> = ({ posts }) => {
         variant="outline"
         size="icon"
         onClick={scrollNext}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex"
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex btn-hover-lift"
       >
         <ArrowRight className="h-4 w-4" />
       </Button>

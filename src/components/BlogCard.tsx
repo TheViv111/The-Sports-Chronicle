@@ -3,19 +3,44 @@ import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "@/contexts/TranslationContext";
-import { BlogPostWithDisplay } from "@/lib/blog-utils"; // Import BlogPostWithDisplay type
+import { BlogPostWithDisplay } from "@/lib/blog-utils";
+import { cn } from "@/lib/utils"; // Import cn utility
 
 interface BlogCardProps {
-  post: BlogPostWithDisplay; // Use the transformed type
+  post: BlogPostWithDisplay;
   className?: string;
+  style?: React.CSSProperties; // Add style prop for staggered animations
 }
 
-const BlogCard = ({ post, className = "" }: BlogCardProps) => {
+const BlogCard = ({ post, className = "", style }: BlogCardProps) => {
   const { t } = useTranslation();
+
+  // Function to get category-specific badge variant
+  const getCategoryBadgeVariant = (category: string) => {
+    const lowerCaseCategory = category.toLowerCase();
+    switch (lowerCaseCategory) {
+      case 'basketball':
+        return 'basketball'; // Custom variant for Tailwind
+      case 'soccer':
+        return 'soccer';
+      case 'swimming':
+        return 'swimming';
+      case 'tennis':
+        return 'tennis';
+      case 'baseball':
+        return 'baseball';
+      case 'athletics':
+        return 'athletics';
+      case 'football':
+        return 'football';
+      default:
+        return 'outline';
+    }
+  };
 
   return (
     <Link to={`/blog/${post.slug}`} className="block">
-      <Card className={`blog-card group overflow-hidden h-full ${className}`}>
+      <Card className={cn("blog-card group overflow-hidden h-full", className)} style={style}>
         <div className="aspect-[21/9] overflow-hidden">
           <img
             src={post.image}
@@ -33,7 +58,10 @@ const BlogCard = ({ post, className = "" }: BlogCardProps) => {
               </div>
             </div>
             
-            <Badge variant="outline" className="uppercase text-xs mb-3">
+            <Badge 
+              variant={getCategoryBadgeVariant(post.category) as "default" | "secondary" | "destructive" | "outline" | "ghost" | null | undefined} 
+              className={`uppercase text-xs mb-3 bg-${getCategoryBadgeVariant(post.category)} text-white`}
+            >
               {post.category}
             </Badge>
             
