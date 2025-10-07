@@ -9,9 +9,9 @@ import { LanguageSelector } from "@/components/LanguageSelector";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useSession } from "@/components/SessionContextProvider"; // Import useSession
-import { supabase } from "@/integrations/supabase/client"; // Import supabase client
-import { toast } from "sonner"; // Import sonner toast
+import { useSession } from "@/components/SessionContextProvider";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { session } = useSession(); // Get session from context
+  const { session } = useSession();
 
   const navItems = [
     { name: t("nav.home"), path: "/" },
@@ -52,7 +52,7 @@ const Header = () => {
       toast.error("Failed to sign out. Please try again.");
     } else {
       toast.success("You have been signed out.");
-      navigate("/auth");
+      navigate("/signin"); // Redirect to sign-in page after logout
     }
   };
 
@@ -169,12 +169,12 @@ const Header = () => {
             </DropdownMenu>
           ) : (
             <div className="hidden lg:flex items-center space-x-2">
-              <Link to="/auth">
+              <Link to="/signin">
                 <Button variant="ghost" size="sm">
                   {t("nav.signIn")}
                 </Button>
               </Link>
-              <Link to="/auth">
+              <Link to="/signup">
                 <Button size="sm">{t("nav.signUp")}</Button>
               </Link>
             </div>
@@ -239,12 +239,12 @@ const Header = () => {
                   </div>
                 ) : (
                   <div className="lg:hidden border-t pt-4 flex flex-col space-y-3">
-                    <Link to="/auth">
+                    <Link to="/signin">
                       <Button variant="ghost" className="w-full justify-start">
                         {t("nav.signIn")}
                       </Button>
                     </Link>
-                    <Link to="/auth">
+                    <Link to="/signup">
                       <Button className="w-full">{t("nav.signUp")}</Button>
                     </Link>
                   </div>

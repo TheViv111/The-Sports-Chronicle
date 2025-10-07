@@ -13,8 +13,9 @@ import BlogPost from "./pages/BlogPost";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
-import Auth from "./pages/Auth";
-import Profile from "./pages/Profile"; // Import the new Profile page
+import SignIn from "./pages/SignIn"; // Import SignIn
+import SignUp from "./pages/SignUp"; // Import SignUp
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,8 +37,9 @@ const App = () => (
                   <Route path="about" element={<About />} />
                   <Route path="contact" element={<Contact />} />
                   <Route path="admin" element={<Admin />} />
-                  <Route path="auth" element={<Auth />} />
-                  <Route path="profile" element={<Profile />} /> {/* Add the new Profile route */}
+                  <Route path="signin" element={<SignIn />} /> {/* New SignIn route */}
+                  <Route path="signup" element={<SignUp />} /> {/* New SignUp route */}
+                  <Route path="profile" element={<Profile />} />
                 </Route>
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />

@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-const AuthPage = () => {
+const SignUpPage = () => {
   const { t } = useTranslation();
 
   return (
@@ -12,24 +12,24 @@ const AuthPage = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="font-heading text-3xl font-bold mb-2">
-            {t("auth.signInTitle")}
+            {t("auth.signUpTitle")}
           </h1>
           <p className="text-muted-foreground">
-            {t("auth.signInSubtitle")}
+            {t("auth.signUpSubtitle")}
           </p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-center">{t("auth.signIn")}</CardTitle>
+            <CardTitle className="text-center">{t("auth.signUp")}</CardTitle>
             <CardDescription className="text-center">
-              {t("auth.signInSubtitle")}
+              {t("auth.signUpDescription")}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Auth
               supabaseClient={supabase}
-              providers={['google']} // Enable Google as an auth provider
+              providers={['google']}
               appearance={{
                 theme: ThemeSupa,
                 variables: {
@@ -57,19 +57,11 @@ const AuthPage = () => {
                   },
                 },
               }}
-              theme="light" // Use light theme, can be dynamic with useTheme
-              redirectTo={window.location.origin} // Redirect to home after auth
+              theme="light"
+              redirectTo={window.location.origin}
+              view="sign_up" // Force sign-up view
               localization={{
                 variables: {
-                  sign_in: {
-                    email_label: t("auth.email"),
-                    password_label: t("auth.password"),
-                    email_input_placeholder: t("contact.yourEmail"),
-                    password_input_placeholder: t("auth.password"),
-                    button_label: t("auth.signIn"),
-                    social_provider_text: t("auth.signInWithGoogle"),
-                    link_text: t("auth.noAccount"), // "Don't have an account?"
-                  },
                   sign_up: {
                     email_label: t("auth.email"),
                     password_label: t("auth.password"),
@@ -77,18 +69,7 @@ const AuthPage = () => {
                     password_input_placeholder: t("auth.password"),
                     button_label: t("auth.signUp"),
                     social_provider_text: t("auth.signUpWithGoogle"),
-                    link_text: t("auth.hasAccount"), // "Already have an account?"
-                  },
-                  forgotten_password: {
-                    email_label: t("auth.email"),
-                    email_input_placeholder: t("contact.yourEmail"),
-                    button_label: t("auth.sendResetInstructions"),
-                    link_text: t("auth.forgotPassword"), // This is the correct place for "Forgot password?"
-                  },
-                  update_password: {
-                    password_label: t("auth.password"),
-                    password_input_placeholder: t("auth.password"),
-                    button_label: t("auth.updatePassword"),
+                    link_text: t("auth.hasAccount"),
                   },
                 },
               }}
@@ -100,4 +81,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default SignUpPage;
