@@ -93,7 +93,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
         .order("created_at", { ascending: false });
 
       if (error) throw error;
-      return data as CommentWithProfile[];
+      return data as unknown as CommentWithProfile[]; // Added 'unknown' cast
     },
   });
 
