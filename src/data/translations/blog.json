@@ -13,7 +13,16 @@
     "latestPosts.subtitle": "Explore our latest thoughts and insights on sports, techniques, and tactics.",
     "latestPosts.viewAll": "View All Posts",
     "latestPosts.loading": "Loading posts...",
-    "latestPosts.noPosts": "No posts available"
+    "latestPosts.noPosts": "No posts available",
+    "comments.title": "Comments",
+    "comments.writeComment": "Write your comment...",
+    "comments.postComment": "Post Comment",
+    "comments.postSuccess": "Comment posted successfully!",
+    "comments.postError": "Failed to post comment.",
+    "comments.loadingComments": "Loading comments...",
+    "comments.noComments": "No comments yet. Be the first to comment!",
+    "comments.signInToComment": "Sign in to post a comment.",
+    "comments.anonymousUser": "Anonymous User"
   },
   "es": {
     "blog.title": "Publicaciones del Blog",
@@ -29,7 +38,16 @@
     "latestPosts.subtitle": "Explora nuestros últimos pensamientos e ideas sobre deportes, técnicas y tácticas.",
     "latestPosts.viewAll": "Ver Todas las Publicaciones",
     "latestPosts.loading": "Cargando publicaciones...",
-    "latestPosts.noPosts": "No hay publicaciones disponibles"
+    "latestPosts.noPosts": "No hay publicaciones disponibles",
+    "comments.title": "Comentarios",
+    "comments.writeComment": "Escribe tu comentario...",
+    "comments.postComment": "Publicar Comentario",
+    "comments.postSuccess": "Comentario publicado con éxito!",
+    "comments.postError": "Error al publicar comentario.",
+    "comments.loadingComments": "Cargando comentarios...",
+    "comments.noComments": "Aún no hay comentarios. ¡Sé el primero en comentar!",
+    "comments.signInToComment": "Inicia sesión para publicar un comentario.",
+    "comments.anonymousUser": "Usuario Anónimo"
   },
   "fr": {
     "blog.title": "Articles de Blog",
@@ -45,7 +63,16 @@
     "latestPosts.subtitle": "Explorez nos dernières réflexions et perspectives sur le sport, les techniques et les tactiques.",
     "latestPosts.viewAll": "Voir Tous les Articles",
     "latestPosts.loading": "Chargement des articles...",
-    "latestPosts.noPosts": "Aucun article disponible"
+    "latestPosts.noPosts": "Aucun article disponible",
+    "comments.title": "Commentaires",
+    "comments.writeComment": "Écrivez votre commentaire...",
+    "comments.postComment": "Publier le commentaire",
+    "comments.postSuccess": "Commentaire publié avec succès !",
+    "comments.postError": "Échec de la publication du commentaire.",
+    "comments.loadingComments": "Chargement des commentaires...",
+    "comments.noComments": "Aucun commentaire pour l l'instant. Soyez le premier à commenter !",
+    "comments.signInToComment": "Connectez-vous pour poster un commentaire.",
+    "comments.anonymousUser": "Utilisateur Anonyme"
   },
   "de": {
     "blog.title": "Blog-Beiträge",
@@ -61,7 +88,16 @@
     "latestPosts.subtitle": "Entdecken Sie unsere neuesten Gedanken und Einsichten zu Sport, Techniken und Taktiken.",
     "latestPosts.viewAll": "Alle Beiträge Anzeigen",
     "latestPosts.loading": "Beiträge werden geladen...",
-    "latestPosts.noPosts": "Keine Beiträge verfügbar"
+    "latestPosts.noPosts": "Keine Beiträge verfügbar",
+    "comments.title": "Kommentare",
+    "comments.writeComment": "Schreiben Sie Ihren Kommentar...",
+    "comments.postComment": "Kommentar posten",
+    "comments.postSuccess": "Kommentar erfolgreich gepostet!",
+    "comments.postError": "Fehler beim Posten des Kommentars.",
+    "comments.loadingComments": "Kommentare werden geladen...",
+    "comments.noComments": "Noch keine Kommentare. Seien Sie der Erste, der kommentiert!",
+    "comments.signInToComment": "Melden Sie sich an, um einen Kommentar zu posten.",
+    "comments.anonymousUser": "Anonymer Benutzer"
   },
   "it": {
     "blog.title": "Articoli del Blog",
@@ -77,7 +113,16 @@
     "latestPosts.subtitle": "Esplora i nostri ultimi pensieri e intuizioni su sport, tecniche e tattiche.",
     "latestPosts.viewAll": "Visualizza Tutti gli Articoli",
     "latestPosts.loading": "Caricamento articoli...",
-    "latestPosts.noPosts": "Nessun articolo disponibile"
+    "latestPosts.noPosts": "Nessun articolo disponibile",
+    "comments.title": "Commenti",
+    "comments.writeComment": "Scrivi il tuo commento...",
+    "comments.postComment": "Pubblica Commento",
+    "comments.postSuccess": "Commento pubblicato con successo!",
+    "comments.postError": "Impossibile pubblicare il commento.",
+    "comments.loadingComments": "Caricamento commenti...",
+    "comments.noComments": "Ancora nessun commento. Sii il primo a commentare!",
+    "comments.signInToComment": "Accedi per pubblicare un commento.",
+    "comments.anonymousUser": "Utente Anonimo"
   },
   "pt": {
     "blog.title": "Posts do Blog",
@@ -93,7 +138,16 @@
     "latestPosts.subtitle": "Explore nossos últimos pensamentos e insights sobre esportes, técnicas e táticas.",
     "latestPosts.viewAll": "Ver Todos os Posts",
     "latestPosts.loading": "Carregando posts...",
-    "latestPosts.noPosts": "Nenhum post disponível"
+    "latestPosts.noPosts": "Nenhum post disponível",
+    "comments.title": "Comentários",
+    "comments.writeComment": "Escreva seu comentário...",
+    "comments.postComment": "Publicar Comentário",
+    "comments.postSuccess": "Comentário publicado com sucesso!",
+    "comments.postError": "Falha ao publicar comentário.",
+    "comments.loadingComments": "Carregando comentários...",
+    "comments.noComments": "Nenhum comentário ainda. Seja o primeiro a comentar!",
+    "comments.signInToComment": "Faça login para postar um comentário.",
+    "comments.anonymousUser": "Usuário Anônimo"
   },
   "ru": {
     "blog.title": "Записи Блога",
@@ -109,7 +163,16 @@
     "latestPosts.subtitle": "Исследуйте наши последние мысли и взгляды на спорт, техники и тактики.",
     "latestPosts.viewAll": "Посмотреть Все Записи",
     "latestPosts.loading": "Загрузка записей...",
-    "latestPosts.noPosts": "Записи недоступны"
+    "latestPosts.noPosts": "Записи недоступны",
+    "comments.title": "Комментарии",
+    "comments.writeComment": "Напишите свой комментарий...",
+    "comments.postComment": "Оставить комментарий",
+    "comments.postSuccess": "Комментарий успешно опубликован!",
+    "comments.postError": "Не удалось опубликовать комментарий.",
+    "comments.loadingComments": "Загрузка комментариев...",
+    "comments.noComments": "Пока нет комментариев. Будьте первым, кто оставит комментарий!",
+    "comments.signInToComment": "Войдите, чтобы оставить комментарий.",
+    "comments.anonymousUser": "Анонимный пользователь"
   },
   "pl": {
     "blog.title": "Wpisy Bloga",
@@ -125,7 +188,16 @@
     "latestPosts.subtitle": "Poznaj nasze najnowsze myśli i spostrzeżenia na temat sportu, technik i taktyk.",
     "latestPosts.viewAll": "Zobacz Wszystkie Wpisy",
     "latestPosts.loading": "Ładowanie wpisów...",
-    "latestPosts.noPosts": "Brak dostępnych wpisów"
+    "latestPosts.noPosts": "Brak dostępnych wpisów",
+    "comments.title": "Komentarze",
+    "comments.writeComment": "Napisz swój komentarz...",
+    "comments.postComment": "Opublikuj Komentarz",
+    "comments.postSuccess": "Komentarz opublikowany pomyślnie!",
+    "comments.postError": "Nie udało się opublikować komentarza.",
+    "comments.loadingComments": "Ładowanie komentarzy...",
+    "comments.noComments": "Brak komentarzy. Bądź pierwszym, który skomentuje!",
+    "comments.signInToComment": "Zaloguj się, aby dodać komentarz.",
+    "comments.anonymousUser": "Anonimowy Użytkownik"
   },
   "nl": {
     "blog.title": "Blog Berichten",
@@ -141,7 +213,16 @@
     "latestPosts.subtitle": "Ontdek onze nieuwste gedachten en inzichten over sport, technieken en tactieken.",
     "latestPosts.viewAll": "Bekijk Alle Berichten",
     "latestPosts.loading": "Berichten laden...",
-    "latestPosts.noPosts": "Geen berichten beschikbaar"
+    "latestPosts.noPosts": "Geen berichten beschikbaar",
+    "comments.title": "Reacties",
+    "comments.writeComment": "Schrijf je reactie...",
+    "comments.postComment": "Plaats Reactie",
+    "comments.postSuccess": "Reactie succesvol geplaatst!",
+    "comments.postError": "Fout bij het plaatsen van de reactie.",
+    "comments.loadingComments": "Reacties laden...",
+    "comments.noComments": "Nog geen reacties. Wees de eerste die reageert!",
+    "comments.signInToComment": "Log in om een reactie te plaatsen.",
+    "comments.anonymousUser": "Anonieme Gebruiker"
   },
   "sv": {
     "blog.title": "Blogginlägg",
@@ -157,7 +238,16 @@
     "latestPosts.subtitle": "Utforska våra senaste tankar och insikter om sport, tekniker och taktik.",
     "latestPosts.viewAll": "Visa Alla Inlägg",
     "latestPosts.loading": "Laddar inlägg...",
-    "latestPosts.noPosts": "Inga inlägg tillgängliga"
+    "latestPosts.noPosts": "Inga inlägg tillgängliga",
+    "comments.title": "Kommentarer",
+    "comments.writeComment": "Skriv din kommentar...",
+    "comments.postComment": "Skicka kommentar",
+    "comments.postSuccess": "Kommentar skickades framgångsrikt!",
+    "comments.postError": "Misslyckades med att skicka kommentar.",
+    "comments.loadingComments": "Laddar kommentarer...",
+    "comments.noComments": "Inga kommentarer ännu. Var den första att kommentera!",
+    "comments.signInToComment": "Logga in för att kommentera.",
+    "comments.anonymousUser": "Anonym Användare"
   },
   "no": {
     "blog.title": "Blogginnlegg",
@@ -173,7 +263,16 @@
     "latestPosts.subtitle": "Utforsk våre siste tanker og innsikter om sport, teknikker og taktikk.",
     "latestPosts.viewAll": "Se Alle Innlegg",
     "latestPosts.loading": "Laster innlegg...",
-    "latestPosts.noPosts": "Ingen innlegg tilgjengelige"
+    "latestPosts.noPosts": "Ingen innlegg tilgjengelige",
+    "comments.title": "Kommentarer",
+    "comments.writeComment": "Skriv din kommentar...",
+    "comments.postComment": "Legg inn kommentar",
+    "comments.postSuccess": "Kommentar lagt inn!",
+    "comments.postError": "Kunne ikke legge inn kommentar.",
+    "comments.loadingComments": "Laster kommentarer...",
+    "comments.noComments": "Ingen kommentarer ennå. Vær den første til å kommentere!",
+    "comments.signInToComment": "Logg inn for å legge inn en kommentar.",
+    "comments.anonymousUser": "Anonym Bruker"
   },
   "da": {
     "blog.title": "Blogindlæg",
@@ -189,7 +288,16 @@
     "latestPosts.subtitle": "Udforsk vores seneste tanker og indsigter om sport, teknikker og taktik.",
     "latestPosts.viewAll": "Se Alle Indlæg",
     "latestPosts.loading": "Indlæser indlæg...",
-    "latestPosts.noPosts": "Ingen indlæg tilgængelige"
+    "latestPosts.noPosts": "Ingen indlæg tilgængelige",
+    "comments.title": "Kommentarer",
+    "comments.writeComment": "Skriv din kommentar...",
+    "comments.postComment": "Send kommentar",
+    "comments.postSuccess": "Kommentar sendt!",
+    "comments.postError": "Kunne ikke sende kommentar.",
+    "comments.loadingComments": "Indlæser kommentarer...",
+    "comments.noComments": "Ingen kommentarer endnu. Vær den første til at kommentere!",
+    "comments.signInToComment": "Log ind for at skrive en kommentar.",
+    "comments.anonymousUser": "Anonym Bruger"
   },
   "fi": {
     "blog.title": "Blogikirjoitukset",
@@ -205,7 +313,16 @@
     "latestPosts.subtitle": "Tutustu viimeisimpiin ajatuksiimme ja oivalluksiimme urheilusta, tekniikoista ja taktiikasta.",
     "latestPosts.viewAll": "Näytä Kaikki Kirjoitukset",
     "latestPosts.loading": "Ladataan kirjoituksia...",
-    "latestPosts.noPosts": "Ei kirjoituksia saatavilla"
+    "latestPosts.noPosts": "Ei kirjoituksia saatavilla",
+    "comments.title": "Kommentit",
+    "comments.writeComment": "Kirjoita kommenttisi...",
+    "comments.postComment": "Lähetä kommentti",
+    "comments.postSuccess": "Kommentti lähetetty onnistuneesti!",
+    "comments.postError": "Kommentin lähettäminen epäonnistui.",
+    "comments.loadingComments": "Ladataan kommentteja...",
+    "comments.noComments": "Ei vielä kommentteja. Ole ensimmäinen kommentoija!",
+    "comments.signInToComment": "Kirjaudu sisään kommentoidaksesi.",
+    "comments.anonymousUser": "Anonyymi käyttäjä"
   },
   "zh": {
     "blog.title": "博客文章",
@@ -221,7 +338,16 @@
     "latestPosts.subtitle": "探索我们关于运动、技术和战术的最新想法和见解。",
     "latestPosts.viewAll": "查看所有文章",
     "latestPosts.loading": "加载文章中...",
-    "latestPosts.noPosts": "暂无文章"
+    "latestPosts.noPosts": "暂无文章",
+    "comments.title": "评论",
+    "comments.writeComment": "写下您的评论...",
+    "comments.postComment": "发表评论",
+    "comments.postSuccess": "评论发布成功！",
+    "comments.postError": "发布评论失败。",
+    "comments.loadingComments": "加载评论中...",
+    "comments.noComments": "暂无评论。成为第一个评论的人吧！",
+    "comments.signInToComment": "登录以发表评论。",
+    "comments.anonymousUser": "匿名用户"
   },
   "ja": {
     "blog.title": "ブログ投稿",
@@ -237,7 +363,16 @@
     "latestPosts.subtitle": "スポーツ、テクニック、戦術に関する私たちの最新の考えと洞察をご覧ください。",
     "latestPosts.viewAll": "すべての投稿を表示",
     "latestPosts.loading": "投稿を読み込み中...",
-    "latestPosts.noPosts": "投稿がありません"
+    "latestPosts.noPosts": "投稿がありません",
+    "comments.title": "コメント",
+    "comments.writeComment": "コメントを記入してください...",
+    "comments.postComment": "コメントを投稿",
+    "comments.postSuccess": "コメントが正常に投稿されました！",
+    "comments.postError": "コメントの投稿に失敗しました。",
+    "comments.loadingComments": "コメントを読み込み中...",
+    "comments.noComments": "まだコメントはありません。最初のコメントを投稿しましょう！",
+    "comments.signInToComment": "コメントを投稿するにはサインインしてください。",
+    "comments.anonymousUser": "匿名ユーザー"
   },
   "ko": {
     "blog.title": "블로그 포스트",
@@ -253,7 +388,16 @@
     "latestPosts.subtitle": "스포츠, 기술, 전술에 대한 우리의 최신 생각과 통찰을 탐험해보세요.",
     "latestPosts.viewAll": "모든 게시물 보기",
     "latestPosts.loading": "게시물 로딩 중...",
-    "latestPosts.noPosts": "게시물이 없습니다"
+    "latestPosts.noPosts": "게시물이 없습니다",
+    "comments.title": "댓글",
+    "comments.writeComment": "댓글을 작성하세요...",
+    "comments.postComment": "댓글 게시",
+    "comments.postSuccess": "댓글이 성공적으로 게시되었습니다!",
+    "comments.postError": "댓글 게시 실패.",
+    "comments.loadingComments": "댓글 로딩 중...",
+    "comments.noComments": "아직 댓글이 없습니다. 첫 번째 댓글을 작성해 보세요!",
+    "comments.signInToComment": "댓글을 게시하려면 로그인하세요.",
+    "comments.anonymousUser": "익명 사용자"
   },
   "hi": {
     "blog.title": "ब्लॉग पोस्ट्स",
@@ -269,7 +413,16 @@
     "latestPosts.subtitle": "खेल, तकनीकों और रणनीतियों पर हमारे नवीनतम विचारों और अंतर्दृष्टि का अन्वेषण करें।",
     "latestPosts.viewAll": "सभी पोस्ट्स देखें",
     "latestPosts.loading": "पोस्ट्स लोड हो रही हैं...",
-    "latestPosts.noPosts": "कोई पोस्ट उपलब्ध नहीं"
+    "latestPosts.noPosts": "कोई पोस्ट उपलब्ध नहीं",
+    "comments.title": "टिप्पणियाँ",
+    "comments.writeComment": "अपनी टिप्पणी लिखें...",
+    "comments.postComment": "टिप्पणी पोस्ट करें",
+    "comments.postSuccess": "टिप्पणी सफलतापूर्वक पोस्ट की गई!",
+    "comments.postError": "टिप्पणी पोस्ट करने में विफल।",
+    "comments.loadingComments": "टिप्पणियाँ लोड हो रही हैं...",
+    "comments.noComments": "अभी तक कोई टिप्पणी नहीं। टिप्पणी करने वाले पहले व्यक्ति बनें!",
+    "comments.signInToComment": "टिप्पणी पोस्ट करने के लिए साइन इन करें।",
+    "comments.anonymousUser": "अनाम उपयोगकर्ता"
   },
   "bn": {
     "blog.title": "ব্লগ পোস্ট",
@@ -285,11 +438,20 @@
     "latestPosts.subtitle": "খেলাধুলা, কৌশল এবং কৌশল সম্পর্কে আমাদের সর্বশেষ চিন্তাভাবনা এবং অন্তর্দৃষ্টি অন্বেষণ করুন।",
     "latestPosts.viewAll": "সব পোস্ট দেখুন",
     "latestPosts.loading": "পোস্ট লোড হচ্ছে...",
-    "latestPosts.noPosts": "কোনো পোস্ট উপলব্ধ নেই"
+    "latestPosts.noPosts": "কোনো পোস্ট উপলব্ধ নেই",
+    "comments.title": "মন্তব্য",
+    "comments.writeComment": "আপনার মন্তব্য লিখুন...",
+    "comments.postComment": "মন্তব্য পোস্ট করুন",
+    "comments.postSuccess": "মন্তব্য সফলভাবে পোস্ট করা হয়েছে!",
+    "comments.postError": "মন্তব্য পোস্ট করতে ব্যর্থ হয়েছে।",
+    "comments.loadingComments": "মন্তব্য লোড হচ্ছে...",
+    "comments.noComments": "এখনো কোনো মন্তব্য নেই। প্রথম মন্তব্যকারী হন!",
+    "comments.signInToComment": "একটি মন্তব্য পোস্ট করতে সাইন ইন করুন।",
+    "comments.anonymousUser": "বেনামী ব্যবহারকারী"
   },
   "ta": {
     "blog.title": "வலைப்பதிவு இடுகைகள்",
-    "blog.subtitle": "வடிவமைப்பு, மேம்பாடு மற்றும் உற்பத்தித்திறன் பற்றிய எண்ণங்கள், நுண்ணறிவுகள் மற்றும் கதைகள்।",
+    "blog.subtitle": "வடிவமைப்பு, மேம்பாடு மற்றும் உற்பத்தித்திறன் பற்றிய எண்ணங்கள், நுண்ணறிவுகள் மற்றும் கதைகள்।",
     "blog.searchPlaceholder": "கட்டுரைகளைத் தேடவும்...",
     "blog.articlesFound": "கட்டுரைகள் கண்டறியப்பட்டன",
     "blog.articleFound": "கட்டுரை கண்டறியப்பட்டது",
@@ -301,7 +463,16 @@
     "latestPosts.subtitle": "விளையாட்டு, நுட்பங்கள் மற்றும் தந்திரங்கள் குறித்த எங்கள் சமீபத்திய எண்ணங்கள் மற்றும் நுண்ணறிவுகளை ஆராயுங்கள்।",
     "latestPosts.viewAll": "அனைத்து இடுகைகளையும் பார்க்கவும்",
     "latestPosts.loading": "இடுகைகள் ஏற்றப்படுகின்றன...",
-    "latestPosts.noPosts": "இடுகைகள் எதுவும் கிடைக்கவில்லை"
+    "latestPosts.noPosts": "இடுகைகள் எதுவும் கிடைக்கவில்லை",
+    "comments.title": "கருத்துகள்",
+    "comments.writeComment": "உங்கள் கருத்தை எழுதுங்கள்...",
+    "comments.postComment": "கருத்தை இடுகையிடவும்",
+    "comments.postSuccess": "கருத்து வெற்றிகரமாக இடுகையிடப்பட்டது!",
+    "comments.postError": "கருத்தை இடுகையிட முடியவில்லை.",
+    "comments.loadingComments": "கருத்துகள் ஏற்றப்படுகின்றன...",
+    "comments.noComments": "இன்னும் கருத்துகள் இல்லை. முதலில் கருத்து தெரிவிக்கவும்!",
+    "comments.signInToComment": "கருத்து இடுகையிட உள்நுழையவும்.",
+    "comments.anonymousUser": "அநாமதேய பயனர்"
   },
   "te": {
     "blog.title": "బ్లాగ్ పోస్ట్‌లు",
@@ -317,7 +488,16 @@
     "latestPosts.subtitle": "క్రీడలు, టెక్నిక్‌లు మరియు వ్యూహాలపై మా తాజా ఆలోచనలు మరియు అంతర్దృష్టులను అన్వేషించండి.",
     "latestPosts.viewAll": "అన్ని పోస్ట్‌లను చూడండి",
     "latestPosts.loading": "పోస్ట్‌లు లోడ్ అవుతున్నాయి...",
-    "latestPosts.noPosts": "పోస్ట్‌లు ఏవీ అందుబాటులో లేవు"
+    "latestPosts.noPosts": "పోస్ట్‌లు ఏవీ అందుబాటులో లేవు",
+    "comments.title": "వ్యాఖ్యలు",
+    "comments.writeComment": "మీ వ్యాఖ్యను వ్రాయండి...",
+    "comments.postComment": "వ్యాఖ్యను పోస్ట్ చేయండి",
+    "comments.postSuccess": "వ్యాఖ్య విజయవంతంగా పోస్ట్ చేయబడింది!",
+    "comments.postError": "వ్యాఖ్యను పోస్ట్ చేయడంలో విఫలమైంది.",
+    "comments.loadingComments": "వ్యాఖ్యలు లోడ్ అవుతున్నాయి...",
+    "comments.noComments": "ఇంకా వ్యాఖ్యలు లేవు. వ్యాఖ్యానించిన మొదటి వ్యక్తి అవ్వండి!",
+    "comments.signInToComment": "వ్యాఖ్యను పోస్ట్ చేయడానికి సైన్ ఇన్ చేయండి.",
+    "comments.anonymousUser": "అనామక వినియోగదారు"
   },
   "mr": {
     "blog.title": "ब्लॉग पोस्ट्स",
@@ -333,7 +513,16 @@
     "latestPosts.subtitle": "खेळ, तंत्रे आणि रणनीतींवर आमचे नवीनतम विचार आणि अंतर्दृष्टी एक्सप्लोर करा.",
     "latestPosts.viewAll": "सर्व पोस्ट्स पहा",
     "latestPosts.loading": "पोस्ट्स लोड होत आहेत...",
-    "latestPosts.noPosts": "कोणत्याही पोस्ट्स उपलब्ध नाहीत"
+    "latestPosts.noPosts": "कोणत्याही पोस्ट्स उपलब्ध नाहीत",
+    "comments.title": "टिप्पण्या",
+    "comments.writeComment": "तुमची टिप्पणी लिहा...",
+    "comments.postComment": "टिप्पणी पोस्ट करा",
+    "comments.postSuccess": "टिप्पणी यशस्वीरित्या पोस्ट केली!",
+    "comments.postError": "टिप्पणी पोस्ट करण्यात अयशस्वी.",
+    "comments.loadingComments": "टिप्पण्या लोड होत आहेत...",
+    "comments.noComments": "अद्याप कोणतीही टिप्पणी नाही. टिप्पणी करणारे पहिले व्हा!",
+    "comments.signInToComment": "टिप्पणी पोस्ट करण्यासाठी साइन इन करा.",
+    "comments.anonymousUser": "अनामिक वापरकर्ता"
   },
   "gu": {
     "blog.title": "બ્લોગ પોસ્ટ્સ",
@@ -349,7 +538,16 @@
     "latestPosts.subtitle": "રમતગમત, તકનીકો અને વ્યૂહરચનાઓ પર અમારા નવીનતમ વિચારો અને આંતરદૃષ્ટિનું અન્વેષણ કરો.",
     "latestPosts.viewAll": "બધી પોસ્ટ્સ જુઓ",
     "latestPosts.loading": "પોસ્ટ્સ લોડ થઈ રહી છે...",
-    "latestPosts.noPosts": "કોઈ પોસ્ટ્સ ઉપલબ્ધ નથી"
+    "latestPosts.noPosts": "કોઈ પોસ્ટ્સ ઉપલબ્ધ નથી",
+    "comments.title": "ટિપ્પણીઓ",
+    "comments.writeComment": "તમારી ટિપ્પણી લખો...",
+    "comments.postComment": "ટિપ્પણી પોસ્ટ કરો",
+    "comments.postSuccess": "ટિપ્પણી સફળતાપૂર્વક પોસ્ટ થઈ!",
+    "comments.postError": "ટિપ્પણી પોસ્ટ કરવામાં નિષ્ફળ.",
+    "comments.loadingComments": "ટિપ્પણીઓ લોડ થઈ રહી છે...",
+    "comments.noComments": "હજી સુધી કોઈ ટિપ્પણીઓ નથી. ટિપ્પણી કરનાર પ્રથમ બનો!",
+    "comments.signInToComment": "ટિપ્પણી પોસ્ટ કરવા માટે સાઇન ઇન કરો.",
+    "comments.anonymousUser": "અનામી વપરાશકર્તા"
   },
   "ar": {
     "blog.title": "منشورات المدونة",
@@ -365,7 +563,16 @@
     "latestPosts.subtitle": "استكشف أحدث أفكارنا ورؤانا حول الرياضة والتقنيات والتكتيكات.",
     "latestPosts.viewAll": "عرض جميع المنشورات",
     "latestPosts.loading": "تحميل المنشورات...",
-    "latestPosts.noPosts": "لا توجد منشورات متاحة"
+    "latestPosts.noPosts": "لا توجد منشورات متاحة",
+    "comments.title": "التعليقات",
+    "comments.writeComment": "اكتب تعليقك...",
+    "comments.postComment": "نشر تعليق",
+    "comments.postSuccess": "تم نشر التعليق بنجاح!",
+    "comments.postError": "فشل نشر التعليق.",
+    "comments.loadingComments": "جارٍ تحميل التعليقات...",
+    "comments.noComments": "لا توجد تعليقات بعد. كن أول من يعلق!",
+    "comments.signInToComment": "سجل الدخول لنشر تعليق.",
+    "comments.anonymousUser": "مستخدم مجهول"
   },
   "he": {
     "blog.title": "פוסטים בבלוג",
@@ -381,7 +588,16 @@
     "latestPosts.subtitle": "חקור את המחשבות והתובנות האחרונות שלנו על ספורט, טכניקות וטקטיקות.",
     "latestPosts.viewAll": "צפה בכל הפוסטים",
     "latestPosts.loading": "טוען פוסטים...",
-    "latestPosts.noPosts": "אין פוסטים זמינים"
+    "latestPosts.noPosts": "אין פוסטים זמינים",
+    "comments.title": "תגובות",
+    "comments.writeComment": "כתוב את תגובתך...",
+    "comments.postComment": "פרסם תגובה",
+    "comments.postSuccess": "התגובה פורסמה בהצלחה!",
+    "comments.postError": "התגובה לא פורסמה.",
+    "comments.loadingComments": "טוען תגובות...",
+    "comments.noComments": "אין עדיין תגובות. היה הראשון להגיב!",
+    "comments.signInToComment": "התחבר כדי לפרסם תגובה.",
+    "comments.anonymousUser": "משתמש אנונימי"
   },
   "fa": {
     "blog.title": "پست‌های وبلاگ",
@@ -397,7 +613,16 @@
     "latestPosts.subtitle": "آخرین افکار و بینش‌های ما درباره ورزش، تکنیک‌ها و تاکتیک‌ها را کشف کنید.",
     "latestPosts.viewAll": "مشاهده همه پست‌ها",
     "latestPosts.loading": "در حال بارگذاری پست‌ها...",
-    "latestPosts.noPosts": "هیچ پستی در دسترس نیست"
+    "latestPosts.noPosts": "هیچ پستی در دسترس نیست",
+    "comments.title": "نظرات",
+    "comments.writeComment": "نظر خود را بنویسید...",
+    "comments.postComment": "ارسال نظر",
+    "comments.postSuccess": "نظر با موفقیت ارسال شد!",
+    "comments.postError": "ارسال نظر با شکست مواجه شد.",
+    "comments.loadingComments": "در حال بارگذاری نظرات...",
+    "comments.noComments": "هنوز نظری وجود ندارد. اولین نفر باشید که نظر می‌دهید!",
+    "comments.signInToComment": "برای ارسال نظر وارد شوید.",
+    "comments.anonymousUser": "کاربر ناشناس"
   },
   "tr": {
     "blog.title": "Blog Yazıları",
@@ -413,7 +638,16 @@
     "latestPosts.subtitle": "Spor, teknikler ve taktikler hakkındaki en son düşüncelerimizi ve anlayışlarımızı keşfedin.",
     "latestPosts.viewAll": "Tüm Yazıları Görüntüle",
     "latestPosts.loading": "Yazılar yükleniyor...",
-    "latestPosts.noPosts": "Mevcut yazı yok"
+    "latestPosts.noPosts": "Mevcut yazı yok",
+    "comments.title": "Yorumlar",
+    "comments.writeComment": "Yorumunuzu yazın...",
+    "comments.postComment": "Yorum Gönder",
+    "comments.postSuccess": "Yorum başarıyla gönderildi!",
+    "comments.postError": "Yorum gönderilemedi.",
+    "comments.loadingComments": "Yorumlar yükleniyor...",
+    "comments.noComments": "Henüz yorum yok. İlk yorumu siz yapın!",
+    "comments.signInToComment": "Yorum yapmak için giriş yapın.",
+    "comments.anonymousUser": "Anonim Kullanıcı"
   },
   "th": {
     "blog.title": "โพสต์บล็อก",
@@ -429,6 +663,15 @@
     "latestPosts.subtitle": "สำรวจความคิดและข้อมูลเชิงลึกล่าสุดของเราเกี่ยวกับกีฬา เทคนิค และกลยุทธ์",
     "latestPosts.viewAll": "ดูโพสต์ทั้งหมด",
     "latestPosts.loading": "กำลังโหลดโพสต์...",
-    "latestPosts.noPosts": "ไม่มีโพสต์ที่มี"
+    "latestPosts.noPosts": "ไม่มีโพสต์ที่มี",
+    "comments.title": "ความคิดเห็น",
+    "comments.writeComment": "เขียนความคิดเห็นของคุณ...",
+    "comments.postComment": "โพสต์ความคิดเห็น",
+    "comments.postSuccess": "โพสต์ความคิดเห็นสำเร็จ!",
+    "comments.postError": "ไม่สามารถโพสต์ความคิดเห็นได้",
+    "comments.loadingComments": "กำลังโหลดความคิดเห็น...",
+    "comments.noComments": "ยังไม่มีความคิดเห็น เป็นคนแรกที่แสดงความคิดเห็น!",
+    "comments.signInToComment": "เข้าสู่ระบบเพื่อโพสต์ความคิดเห็น",
+    "comments.anonymousUser": "ผู้ใช้ที่ไม่ระบุชื่อ"
   }
 }

@@ -6,7 +6,8 @@ import BlogCard from "@/components/BlogCard";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
 import { Tables } from "@/integrations/supabase/types";
-import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
+import LoadingScreen from "@/components/LoadingScreen";
+import CommentsSection from "@/components/CommentsSection"; // Import CommentsSection
 
 type BlogPostType = Tables<'blog_posts'>;
 
@@ -128,7 +129,7 @@ const BlogPost = () => {
           </div>
 
           {/* Comments Section */}
-          {/* Removed CommentsSection */}
+          <CommentsSection postId={post.id} />
         </div>
       </article>
 
