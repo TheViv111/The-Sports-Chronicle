@@ -102,10 +102,10 @@ const Home = () => {
             <LoadingScreen message={t("latestPosts.loading")} />
           ) : posts.length > 0 ? (
             <div className="relative">
-              <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex -ml-4">
+              <div className="embla" ref={emblaRef}>
+                <div className="embla__container">
                   {posts.map((blogPost) => (
-                    <div key={blogPost.id} className="flex-none w-full sm:w-1/2 lg:w-1/3 pl-4">
+                    <div key={blogPost.id} className="embla__slide flex-none w-full sm:w-1/2 lg:w-1/3">
                       <BlogCard 
                         post={{
                           ...blogPost,

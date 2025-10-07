@@ -228,4 +228,19 @@
   .language-dropdown {
     @apply relative inline-block;
   }
+
+  /* Embla Carousel styles */
+  .embla {
+    overflow: hidden;
+    padding: 0 1rem; /* Add horizontal padding to the viewport */
+  }
+  .embla__container {
+    display: flex;
+    margin-left: -1rem; /* Compensate for the padding on the viewport */
+  }
+  .embla__slide {
+    flex: 0 0 auto; /* Let the width classes handle the sizing */
+    min-width: 0;
+    padding-left: 1rem; /* Add padding between slides */
+  }
 }
