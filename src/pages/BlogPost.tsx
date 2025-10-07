@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import BlogCard from "@/components/BlogCard";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
-import CommentsSection from "@/components/CommentsSection";
 import { Tables } from "@/integrations/supabase/types";
 import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
 
@@ -129,7 +128,7 @@ const BlogPost = () => {
           </div>
 
           {/* Comments Section */}
-          <CommentsSection postId={post.id} />
+          {/* Removed CommentsSection */}
         </div>
       </article>
 
