@@ -55,18 +55,35 @@ const Profile = () => {
   const { data: profile, isLoading: isProfileLoading, error: profileError } = useQuery<Tables<'profiles'> | null, Error>({
     queryKey: ["profile", userId],
     queryFn: async () => {
-      if (!userId) return null;
+      if (!userId) {
+        console.log("Profile Fetch: No userId available.");
+        return null;
+      }
+      console.log("Profile Fetch: Attempting to fetch profile for userId:", userId);
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", userId)
         .maybeSingle();
 
-      if (error) throw error;
+      if (error) {
+        console.error("Profile Fetch: Supabase profile fetch error:", error);
+        throw error;
+      }
+      console.log("Profile Fetch: Fetched profile data:", data);
       return data;
     },
     enabled: !!userId,
   });
+
+  // Add a log here to see the final state of profile and loading
+  React.useEffect(() => {
+    console.log("Profile Component State - session:", session);
+    console.log("Profile Component State - userId:", userId);
+    console.log("Profile Component State - profile:", profile);
+    console.log("Profile Component State - isProfileLoading:", isProfileLoading);
+    console.log("Profile Component State - profileError:", profileError);
+  }, [session, userId, profile, isProfileLoading, profileError]);
 
   const createProfileMutation = useMutation({
     mutationFn: async (values: ProfileFormValues) => {
