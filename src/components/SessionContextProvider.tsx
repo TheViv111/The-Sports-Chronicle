@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
+import LoadingScreen from './LoadingScreen'; // Import the new LoadingScreen
 
 interface SessionContextType {
   session: Session | null;
@@ -14,10 +14,16 @@ const SessionContext = createContext<SessionContextType | undefined>(undefined);
 export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [minLoadTimerActive, setMinLoadTimerActive] = useState(true); // State for minimum load time
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
+    // Set a minimum loading time to prevent flickering
+    const timer = setTimeout(() => {
+      setMinLoadTimerActive(false);
+    }, 1500); // 1.5 seconds minimum load time
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
       setSession(currentSession);
       setIsLoading(false);
@@ -29,7 +35,10 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
         }
       } else {
         // User is not authenticated
-        // No automatic redirect to sign-in/sign-up here, let routes handle protection
+        // Redirect from protected routes like /profile to /signin
+        if (location.pathname === '/profile') {
+          navigate('/signin');
+        }
       }
     });
 
@@ -39,19 +48,19 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
       setIsLoading(false);
       if (initialSession && (location.pathname === '/signin' || location.pathname === '/signup')) {
         navigate('/');
+      } else if (!initialSession && location.pathname === '/profile') {
+        navigate('/signin');
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      clearTimeout(timer);
+      subscription.unsubscribe();
+    };
   }, [navigate, location.pathname]);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        <span className="ml-2 text-muted-foreground">Loading authentication...</span>
-      </div>
-    );
+  if (isLoading || minLoadTimerActive) {
+    return <LoadingScreen message="Authenticating session..." />;
   }
 
   return (

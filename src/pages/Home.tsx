@@ -1,21 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/BlogCard";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2 } from "lucide-react";
-import { Tables } from "@/integrations/supabase/types"; // Import Supabase types
+import { Tables } from "@/integrations/supabase/types";
+import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
+import useEmblaCarousel from 'embla-carousel-react';
 
-type BlogPostType = Tables<'blog_posts'>; // Use Supabase type for blog posts
+type BlogPostType = Tables<'blog_posts'>;
 
 const Home = () => {
   const [posts, setPosts] = useState<BlogPostType[]>([]);
   const [loadingPosts, setLoadingPosts] = useState(true);
   const { t } = useTranslation();
 
-  // Load posts from Supabase
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   useEffect(() => {
     loadPosts();
   }, []);
@@ -38,7 +48,6 @@ const Home = () => {
     }
   };
 
-  // Scroll reveal effect
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -82,7 +91,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Latest Posts Section (replaces carousel for simplicity and Supabase integration) */}
+      {/* Latest Posts Section with Carousel */}
       <section className="py-16 bg-secondary/20">
         <div className="container mx-auto px-4">
           <h2 className="font-heading text-3xl font-bold mb-8 text-center reveal-on-scroll">
@@ -93,28 +102,46 @@ const Home = () => {
           </p>
 
           {loadingPosts ? (
-            <div className="flex items-center justify-center py-8">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              <span className="ml-2 text-muted-foreground">{t("latestPosts.loading")}</span>
-            </div>
+            <LoadingScreen message={t("latestPosts.loading")} />
           ) : posts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {posts.map((blogPost) => (
-                <BlogCard 
-                  key={blogPost.id} 
-                  post={{
-                    ...blogPost,
-                    date: new Date(blogPost.created_at).toLocaleDateString("en-US", { 
-                      year: "numeric", 
-                      month: "short", 
-                      day: "numeric" 
-                    }),
-                    readTime: blogPost.read_time || "5 min read",
-                    image: blogPost.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"
-                  }} 
-                  className="scroll-reveal"
-                />
-              ))}
+            <div className="relative">
+              <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex -ml-4">
+                  {posts.map((blogPost) => (
+                    <div key={blogPost.id} className="flex-none w-full sm:w-1/2 lg:w-1/3 pl-4">
+                      <BlogCard 
+                        post={{
+                          ...blogPost,
+                          date: new Date(blogPost.created_at).toLocaleDateString("en-US", { 
+                            year: "numeric", 
+                            month: "short", 
+                            day: "numeric" 
+                          }),
+                          readTime: blogPost.read_time || "5 min read",
+                          image: blogPost.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"
+                        }} 
+                        className="scroll-reveal"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Button
+                className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 z-10 rounded-full p-2"
+                variant="outline"
+                size="icon"
+                onClick={scrollPrev}
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </Button>
+              <Button
+                className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 z-10 rounded-full p-2"
+                variant="outline"
+                size="icon"
+                onClick={scrollNext}
+              >
+                <ArrowRight className="h-4 w-4" />
+              </Button>
             </div>
           ) : (
             <p className="text-muted-foreground text-center py-8">

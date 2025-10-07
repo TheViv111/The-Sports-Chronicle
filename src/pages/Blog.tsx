@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Search, Loader2 } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/BlogCard";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Tables } from "@/integrations/supabase/types"; // Import Supabase types
+import { Tables } from "@/integrations/supabase/types";
+import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
 
-type BlogPostType = Tables<'blog_posts'>; // Use Supabase type for blog posts
+type BlogPostType = Tables<'blog_posts'>;
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -18,7 +19,6 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
-  // Load posts from Supabase
   useEffect(() => {
     loadPosts();
   }, []);
@@ -40,7 +40,6 @@ const Blog = () => {
     }
   };
 
-  // Initialize search query from URL params
   useEffect(() => {
     const search = searchParams.get("search");
     if (search) {
@@ -110,10 +109,7 @@ const Blog = () => {
 
         {/* Blog Posts Grid */}
         {loading ? (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            <span className="ml-2 text-muted-foreground">{t("latestPosts.loading")}</span>
-          </div>
+          <LoadingScreen message={t("latestPosts.loading")} />
         ) : filteredPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (

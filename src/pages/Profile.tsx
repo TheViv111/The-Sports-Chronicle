@@ -18,6 +18,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { useSession } from "@/components/SessionContextProvider";
 import { Tables } from "@/integrations/supabase/types";
+import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
 
 const profileSchema = z.object({
   display_name: z.string().min(2, { message: "Display name must be at least 2 characters." }).max(50, { message: "Display name must not be longer than 50 characters." }).optional(),
@@ -39,7 +40,7 @@ const Profile = () => {
   // Redirect if not authenticated and session is loaded
   React.useEffect(() => {
     if (!isSessionLoading && !session) {
-      navigate("/auth");
+      navigate("/signin"); // Changed from /auth to /signin
       toast.error("You must be logged in to view your profile.");
     }
   }, [session, isSessionLoading, navigate]);
@@ -110,12 +111,7 @@ const Profile = () => {
   };
 
   if (isSessionLoading || isProfileLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        <span className="ml-2 text-muted-foreground">{t("common.loading")}</span>
-      </div>
-    );
+    return <LoadingScreen message={t("common.loading")} />;
   }
 
   if (profileError) {

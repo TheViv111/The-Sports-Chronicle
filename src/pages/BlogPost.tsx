@@ -6,9 +6,10 @@ import BlogCard from "@/components/BlogCard";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
 import CommentsSection from "@/components/CommentsSection";
-import { Tables } from "@/integrations/supabase/types"; // Import Supabase types
+import { Tables } from "@/integrations/supabase/types";
+import LoadingScreen from "@/components/LoadingScreen"; // Import LoadingScreen
 
-type BlogPostType = Tables<'blog_posts'>; // Use Supabase type for blog posts
+type BlogPostType = Tables<'blog_posts'>;
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -56,11 +57,7 @@ const BlogPost = () => {
   };
   
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-muted-foreground">Loading post...</p>
-      </div>
-    );
+    return <LoadingScreen message="Loading post..." />;
   }
 
   if (!post) {
