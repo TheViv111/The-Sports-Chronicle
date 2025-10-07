@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,6 @@ import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Tables } from "@/integrations/supabase/types";
 import LoadingScreen from "@/components/LoadingScreen";
-import ContinuousCarousel from "@/components/ContinuousCarousel"; // Import the new carousel component
 
 type BlogPostType = Tables<'blog_posts'>;
 
@@ -27,7 +26,7 @@ const Home = () => {
         .from('blog_posts')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(6); // Fetch enough posts for a good carousel effect
+        .limit(6); // Fetch a limited number of posts for display
 
       if (error) throw error;
       setLatestPosts(data || []);
@@ -56,7 +55,7 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Prepare posts for the carousel, adding derived fields
+  // Prepare posts for display, adding derived fields
   const postsForDisplay = latestPosts.map(post => ({
     ...post,
     date: new Date(post.created_at).toLocaleDateString("en-US", {
@@ -93,7 +92,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Latest Posts Section with Embla Carousel */}
+      {/* Latest Posts Section */}
       <section className="py-16 bg-secondary/20">
         <div className="container mx-auto px-4">
           <h2 className="font-heading text-3xl font-bold mb-8 text-center reveal-on-scroll">
@@ -106,22 +105,11 @@ const Home = () => {
           {loadingLatestPosts ? (
             <LoadingScreen message={t("latestPosts.loading")} />
           ) : postsForDisplay.length > 0 ? (
-            <ContinuousCarousel
-              options={{
-                align: 'start',
-                slidesToScroll: 1,
-                breakpoints: {
-                  '(min-width: 640px)': { slidesToScroll: 2 },
-                  '(min-width: 1024px)': { slidesToScroll: 3 },
-                },
-              }}
-              slideClassName="px-4"
-              className="-mx-4" // Counteract the padding from slideClassName
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {postsForDisplay.map((post) => (
                 <BlogCard key={post.id} post={post} />
               ))}
-            </ContinuousCarousel>
+            </div>
           ) : (
             <p className="text-muted-foreground text-center py-8">
               {t("latestPosts.noPosts")}
