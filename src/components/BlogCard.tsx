@@ -20,7 +20,7 @@ const BlogCard = ({ post, className = "", style }: BlogCardProps) => {
     const lowerCaseCategory = category.toLowerCase();
     switch (lowerCaseCategory) {
       case 'basketball':
-        return 'basketball'; // Custom variant for Tailwind
+        return 'basketball';
       case 'soccer':
         return 'soccer';
       case 'swimming':
@@ -34,7 +34,7 @@ const BlogCard = ({ post, className = "", style }: BlogCardProps) => {
       case 'football':
         return 'football';
       default:
-        return 'outline';
+        return 'outline'; // Fallback to a standard variant
     }
   };
 
@@ -59,8 +59,8 @@ const BlogCard = ({ post, className = "", style }: BlogCardProps) => {
             </div>
             
             <Badge 
-              variant={getCategoryBadgeVariant(post.category) as "default" | "secondary" | "destructive" | "outline" | "ghost" | null | undefined} 
-              className={`uppercase text-xs mb-3 bg-${getCategoryBadgeVariant(post.category)} text-white`}
+              variant={getCategoryBadgeVariant(post.category) as "default" | "secondary" | "destructive" | "outline" | "ghost" | "basketball" | "soccer" | "swimming" | "tennis" | "baseball" | "athletics" | "football"} 
+              className="uppercase text-xs mb-3"
             >
               {post.category}
             </Badge>
