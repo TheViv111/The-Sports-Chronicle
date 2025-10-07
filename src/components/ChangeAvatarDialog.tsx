@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useDropzone } from 'react-dropzone';
 import { Loader2, UploadCloud, Link as LinkIcon, Save } from 'lucide-react';
+import imageCompression from 'browser-image-compression'; // Import the image compression library
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -53,18 +54,31 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
       return;
     }
 
-    const file = acceptedFiles[0];
-    const fileExt = file.name.split('.').pop();
+    const originalFile = acceptedFiles[0];
+    const fileExt = originalFile.name.split('.').pop();
     const fileName = `${userId}-${Math.random()}.${fileExt}`;
     const filePath = `${fileName}`;
 
     setUploading(true);
     try {
+      // Image compression options
+      const options = {
+        maxSizeMB: 0.2, // Max file size in MB
+        maxWidthOrHeight: 256, // Max width or height in pixels
+        useWebWorker: true,
+        fileType: 'image/webp', // Convert to webp for better compression
+      };
+
+      const compressedFile = await imageCompression(originalFile, options);
+      console.log('Original file size:', originalFile.size / 1024 / 1024, 'MB');
+      console.log('Compressed file size:', compressedFile.size / 1024 / 1024, 'MB');
+
       const { error: uploadError } = await supabase.storage
         .from('avatars')
-        .upload(filePath, file, {
+        .upload(filePath, compressedFile, { // Upload the compressed file
           cacheControl: '3600',
           upsert: true,
+          contentType: 'image/webp', // Set content type for webp
         });
 
       if (uploadError) {
@@ -91,6 +105,7 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
       'image/jpeg': ['.jpeg', '.jpg'],
       'image/png': ['.png'],
       'image/gif': ['.gif'],
+      'image/webp': ['.webp'], // Add webp to accepted types
     },
     maxFiles: 1,
     disabled: uploading,
@@ -161,7 +176,7 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
                 <p>Drag 'n' drop some files here, or click to select files</p>
               )}
               <p className="text-xs text-muted-foreground mt-2">
-                (JPG, PNG, GIF up to 5MB)
+                (JPG, PNG, GIF, WEBP up to 0.2MB, resized to 256x256)
               </p>
             </div>
           </div>
