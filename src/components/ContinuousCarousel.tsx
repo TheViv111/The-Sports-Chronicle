@@ -58,8 +58,7 @@ const ContinuousCarousel: React.FC<ContinuousCarouselProps> = ({
           ))}
         </div>
       </div>
-    </DialogContent>
-    </Dialog>
+    </div>
   );
 };
 
