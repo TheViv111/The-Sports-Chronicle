@@ -23,7 +23,7 @@ interface BlogCarouselProps {
 const BlogCarousel: React.FC<BlogCarouselProps> = ({ posts }) => {
   const { t } = useTranslation();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }),
+    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }), // Changed delay to 2000ms (2 seconds)
   ]);
 
   const scrollPrev = React.useCallback(() => {
