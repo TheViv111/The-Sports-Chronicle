@@ -2,50 +2,57 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { TranslationProvider } from "@/contexts/TranslationContext";
-import { SessionContextProvider } from "@/components/SessionContextProvider";
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Admin from "./pages/Admin";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import Profile from "./pages/Profile";
-import NotFound from "./pages/NotFound";
+import { SessionContextProvider } from "@/components/auth/SessionContextProvider";
+import { HelmetProvider } from "react-helmet-async";
+import React, { Suspense } from "react";
+import LoadingScreen from "@/components/common/LoadingScreen";
+import Layout from "./components/layout/Layout";
+const Home = React.lazy(() => import("./pages/Home"));
+const Blog = React.lazy(() => import("./pages/Blog"));
+const BlogPost = React.lazy(() => import("./pages/BlogPost"));
+const About = React.lazy(() => import("./pages/About"));
+const Contact = React.lazy(() => import("./pages/Contact"));
+const Admin = React.lazy(() => import("./pages/Admin"));
+const SignIn = React.lazy(() => import("./pages/SignIn"));
+const SignUp = React.lazy(() => import("./pages/SignUp"));
+const Profile = React.lazy(() => import("./pages/Profile"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-      <TooltipProvider>
-        <TranslationProvider>
-          <Sonner />
-          <BrowserRouter>
-            <SessionContextProvider>
-              <Routes>
-                <Route path="/" element={<Layout />}>
-                  <Route index element={<Home />} />
-                  <Route path="blog" element={<Blog />} />
-                  <Route path="blog/:slug" element={<BlogPost />} />
-                  <Route path="about" element={<About />} />
-                  <Route path="contact" element={<Contact />} />
-                  <Route path="admin" element={<Admin />} />
-                  <Route path="signin" element={<SignIn />} />
-                  <Route path="signup" element={<SignUp />} />
-                  <Route path="profile" element={<Profile />} />
-                </Route>
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </SessionContextProvider>
-          </BrowserRouter>
-        </TranslationProvider>
-      </TooltipProvider>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+        <TooltipProvider>
+          <TranslationProvider>
+            <Sonner />
+            <BrowserRouter>
+              <SessionContextProvider>
+                <Suspense fallback={<LoadingScreen message="Loading..." />}>
+                  <Routes>
+                  <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="blog" element={<Blog />} />
+                    <Route path="blog/:slug" element={<BlogPost />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="contact" element={<Contact />} />
+                    <Route path="admin" element={<Admin />} />
+                    <Route path="signin" element={<SignIn />} />
+                    <Route path="signup" element={<SignUp />} />
+                    <Route path="profile" element={<Profile />} />
+                  </Route>
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                </Suspense>
+              </SessionContextProvider>
+            </BrowserRouter>
+          </TranslationProvider>
+        </TooltipProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 

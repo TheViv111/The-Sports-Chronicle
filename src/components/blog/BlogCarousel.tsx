@@ -4,7 +4,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-import BlogCard from '@/components/BlogCard';
+import BlogCard from "@/components/blog/BlogCard";
 import { Button } from '@/components/ui/button';
 import { Tables } from '@/integrations/supabase/types';
 import { useTranslation } from '@/contexts/TranslationContext';

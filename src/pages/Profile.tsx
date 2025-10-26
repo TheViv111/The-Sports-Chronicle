@@ -16,13 +16,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { toast } from "sonner"; // Using sonner for toasts
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "@/contexts/TranslationContext";
-import { useSession } from "@/components/SessionContextProvider";
+import { useSession } from "@/components/auth/SessionContextProvider";
 import { Tables } from "@/integrations/supabase/types";
-import LoadingScreen from "@/components/LoadingScreen";
-import AvatarActionsDialog from "@/components/AvatarActionsDialog";
-import ChangeAvatarDialog from "@/components/ChangeAvatarDialog";
-import ViewAvatarDialog from "@/components/ViewAvatarDialog";
+import LoadingScreen from "@/components/common/LoadingScreen";
+import AvatarActionsDialog from "@/components/profile/AvatarActionsDialog";
+import ChangeAvatarDialog from "@/components/profile/ChangeAvatarDialog";
+import ViewAvatarDialog from "@/components/profile/ViewAvatarDialog";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { SEO } from "@/components/common/SEO";
 
 const profileSchema = z.object({
   display_name: z.string().min(2, { message: "Display name must be at least 2 characters." }).max(50, { message: "Display name must not be longer than 50 characters." }).optional(),
@@ -58,10 +59,8 @@ const Profile = () => {
     queryKey: ["profile", userId],
     queryFn: async () => {
       if (!userId) {
-        console.log("Profile Fetch: No userId available.");
         return null;
       }
-      console.log("Profile Fetch: Attempting to fetch profile for userId:", userId);
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
@@ -72,19 +71,14 @@ const Profile = () => {
         console.error("Profile Fetch: Supabase profile fetch error:", error);
         throw error;
       }
-      console.log("Profile Fetch: Fetched profile data:", data);
       return data;
     },
     enabled: !!userId,
   });
 
-  // Add a log here to see the final state of profile and loading
+  // Effect to handle profile state changes
   React.useEffect(() => {
-    console.log("Profile Component State - session:", session);
-    console.log("Profile Component State - userId:", userId);
-    console.log("Profile Component State - profile:", profile);
-    console.log("Profile Component State - isProfileLoading:", isProfileLoading);
-    console.log("Profile Component State - profileError:", profileError);
+    // Profile state changes are now handled silently
   }, [session, userId, profile, isProfileLoading, profileError]);
 
   const createProfileMutation = useMutation({
@@ -184,7 +178,6 @@ const Profile = () => {
       console.error("Error updating user metadata avatar_url:", updateAuthError);
       toast.error("Failed to update avatar in user session.");
     } else {
-      console.log("User metadata avatar_url updated successfully.");
       // The onAuthStateChange listener in SessionContextProvider should pick this up
       // and update the session, which will then re-render the Header.
     }
@@ -199,20 +192,45 @@ const Profile = () => {
   };
 
   if (isSessionLoading || isProfileLoading) {
-    return <LoadingScreen message={t("common.loading")} />;
+    return (
+      <>
+        <SEO 
+          title="Your Profile - The Sports Chronicle"
+          description="Manage your profile and account preferences on The Sports Chronicle."
+          canonicalUrl="https://thesportschronicle.com/profile"
+          schemaType="ProfilePage"
+        />
+        <LoadingScreen message={t("common.loading")} />
+      </>
+    );
   }
 
   if (profileError) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-destructive">{t("common.error")}: {profileError.message}</p>
-      </div>
+      <>
+        <SEO 
+          title="Error - The Sports Chronicle"
+          description="An error occurred while loading your profile."
+          canonicalUrl="https://thesportschronicle.com/profile"
+          schemaType="ProfilePage"
+        />
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-destructive">{t("common.error")}: {profileError.message}</p>
+        </div>
+      </>
     );
   }
 
   if (!profile && !isProfileLoading && session) {
     return (
-      <div className="min-h-screen flex items-center justify-center py-12 px-4">
+      <>
+        <SEO 
+          title="Create Profile - The Sports Chronicle"
+          description="Set up your profile on The Sports Chronicle."
+          canonicalUrl="https://thesportschronicle.com/profile"
+          schemaType="ProfilePage"
+        />
+        <div className="min-h-screen flex items-center justify-center py-12 px-4">
           <Card className="w-full max-w-md reveal-on-scroll">
             <CardHeader className="text-center">
               <CardTitle className="font-heading text-2xl font-bold">
@@ -270,14 +288,22 @@ const Profile = () => {
             </CardContent>
           </Card>
         </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <Card className="reveal-on-scroll">
-          <CardHeader className="text-center">
+    <>
+      <SEO 
+        title={`${profile?.display_name || 'User'} Profile - The Sports Chronicle`}
+        description="View and manage your profile on The Sports Chronicle."
+        canonicalUrl="https://thesportschronicle.com/profile"
+        schemaType="ProfilePage"
+      />
+      <div className="min-h-screen py-12">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <Card className="reveal-on-scroll">
+            <CardHeader className="text-center">
             <Button
               variant="ghost"
               className="relative h-24 w-24 mx-auto mb-4 rounded-full p-0 group btn-hover-lift"
@@ -390,6 +416,7 @@ const Profile = () => {
         avatarUrl={profile?.avatar_url || ''}
       />
     </div>
+    </>
   );
 };
 

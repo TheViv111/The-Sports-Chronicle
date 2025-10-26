@@ -70,8 +70,6 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
       };
 
       const compressedFile = await imageCompression(originalFile, options);
-      console.log('Original file size:', originalFile.size / 1024 / 1024, 'MB');
-      console.log('Compressed file size:', compressedFile.size / 1024 / 1024, 'MB');
 
       const { error: uploadError } = await supabase.storage
         .from('avatars')

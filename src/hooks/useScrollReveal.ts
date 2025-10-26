@@ -9,10 +9,10 @@ const useScrollReveal = (selector: string, options: IntersectionObserverInit = {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('visible');
         } else {
-          // Remove 'is-visible' when the element is no longer intersecting
-          entry.target.classList.remove('is-visible');
+          // Remove 'visible' when the element is no longer intersecting
+          entry.target.classList.remove('visible');
         }
       });
     }, options);

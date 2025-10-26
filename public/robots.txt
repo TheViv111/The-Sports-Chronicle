@@ -1,3 +1,12 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin
+Disallow: /profile
+Disallow: /api/
+
+# Allow specific bots
 User-agent: Googlebot
 Allow: /
 
@@ -10,5 +19,5 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+# Sitemap location
+Sitemap: https://thesportschronicle.com/sitemap.xml

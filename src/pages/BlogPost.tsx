@@ -2,17 +2,18 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, User, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import BlogCard from "@/components/BlogCard";
+import BlogCard from "@/components/blog/BlogCard";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { Tables } from "@/integrations/supabase/types";
-import LoadingScreen from "@/components/LoadingScreen";
-import CommentsSection from "@/components/CommentsSection";
+import LoadingScreen from "@/components/common/LoadingScreen";
+import CommentsSection from "@/components/blog/CommentsSection";
 import ReactMarkdown from "react-markdown";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { formatBlogPostDate, transformBlogPostForDisplay } from "@/lib/blog-utils";
 import useScrollReveal from "@/hooks/useScrollReveal";
-import BlogCardSkeleton from "@/components/BlogCardSkeleton";
+import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
+import { SEO } from "@/components/common/SEO";
 
 type BlogPostType = Tables<'blog_posts'>;
 
@@ -78,15 +79,30 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-6">
-        <Link to="/blog">
-          <Button variant="ghost" className="group btn-hover-lift">
-            <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-            {t("blog.backToBlog")}
-          </Button>
-        </Link>
-      </div>
+    <>
+      <SEO 
+        title={`${post.title} - The Sports Chronicle`}
+        description={post.excerpt || `Read ${post.title} on The Sports Chronicle. Latest sports news and analysis.`}
+        canonicalUrl={`https://thesportschronicle.com/blog/${post.slug}`}
+        schemaType="Article"
+        articleData={{
+          headline: post.title,
+          datePublished: post.created_at,
+          dateModified: post.updated_at || post.created_at,
+          author: post.author || "The Sports Chronicle",
+          image: post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg",
+          category: post.category
+        }}
+      />
+      <div className="min-h-screen">
+        <div className="container mx-auto px-4 py-6">
+          <Link to="/blog">
+            <Button variant="ghost" className="group btn-hover-lift">
+              <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              {t("blog.backToBlog")}
+            </Button>
+          </Link>
+        </div>
 
       <article className="container mx-auto px-4 pb-12">
         <div className="max-w-4xl mx-auto">
@@ -149,6 +165,7 @@ const BlogPost = () => {
         </section>
       )}
     </div>
+    </>
   );
 };
 

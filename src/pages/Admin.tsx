@@ -11,8 +11,9 @@ import { Trash2, Edit, Loader2, ArrowLeft, Home } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Tables } from "@/integrations/supabase/types";
 import { useTranslation } from "@/contexts/TranslationContext";
-import BlogPostForm from "@/components/BlogPostForm"; // Import the new BlogPostForm
+import BlogPostForm from "@/components/blog/BlogPostForm"; // Import the new BlogPostForm
 import { formatBlogPostDate } from "@/lib/blog-utils"; // Import the utility function
+import { SEO } from "@/components/common/SEO";
 
 type BlogPost = Tables<'blog_posts'>;
 
@@ -184,16 +185,23 @@ const Admin = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center py-12 px-4">
-        <div className="w-full max-w-md">
-          <div className="mb-4 text-center">
-            <Link to="/">
-              <Button variant="ghost" className="btn-hover-lift">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                {t("common.backToSite")}
-              </Button>
-            </Link>
-          </div>
+      <>
+        <SEO 
+          title="Admin Dashboard - The Sports Chronicle"
+          description="Manage blog posts, categories and site settings for The Sports Chronicle."
+          canonicalUrl="https://thesportschronicle.com/admin"
+          schemaType="WebPage"
+        />
+        <div className="min-h-screen flex items-center justify-center py-12 px-4">
+          <div className="w-full max-w-md">
+            <div className="mb-4 text-center">
+              <Link to="/">
+                <Button variant="ghost" className="btn-hover-lift">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  {t("common.backToSite")}
+                </Button>
+              </Link>
+            </div>
           <Card>
             <CardHeader>
               <CardTitle className="text-center">{t("admin.loginTitle")}</CardTitle>
@@ -243,12 +251,20 @@ const Admin = () => {
         </Card>
         </div>
       </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4">
+    <>
+      <SEO 
+        title="Admin Dashboard - The Sports Chronicle"
+        description="Manage blog posts, categories and site settings for The Sports Chronicle."
+        canonicalUrl="https://thesportschronicle.com/admin"
+        schemaType="WebPage"
+      />
+      <div className="min-h-screen py-12">
+        <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="font-heading text-3xl font-bold">{t("admin.dashboardTitle")}</h1>
@@ -357,6 +373,7 @@ const Admin = () => {
         </Tabs>
       </div>
     </div>
+    </>
   );
 };
 

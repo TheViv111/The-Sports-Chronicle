@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import BlogCarousel from "@/components/BlogCarousel";
+import BlogCarousel from "@/components/blog/BlogCarousel";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-utils";
-import LoadingScreen from "@/components/LoadingScreen";
+import LoadingScreen from "@/components/common/LoadingScreen";
 import useScrollReveal from "@/hooks/useScrollReveal";
-import BlogCardSkeleton from "@/components/BlogCardSkeleton";
+import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
+import { SEO } from "@/components/common/SEO";
 
 const Home = () => {
   const [latestPosts, setLatestPosts] = useState<BlogPostWithDisplay[]>([]);
@@ -40,28 +41,33 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <section className="py-20 text-center">
-        <div className="container mx-auto px-4">
-          <p className="text-muted-foreground uppercase text-sm tracking-wide mb-4 reveal-on-scroll">
-            {t("hero.welcome")}
-          </p>
-          <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 max-w-4xl mx-auto leading-tight reveal-on-scroll">
-            {t("hero.title")}
-          </h1>
-          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto reveal-on-scroll">
-            {t("hero.subtitle")}
-          </p>
-          <div className="reveal-on-scroll">
-            <Link to="/blog">
-              <Button size="lg" className="group btn-hover-lift">
-                {t("hero.readLatest")}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
+    <>
+      <SEO 
+        schemaType="WebSite"
+        canonicalUrl="https://thesportschronicle.com/"
+      />
+      <div className="min-h-screen">
+        <section className="py-20 text-center">
+          <div className="container mx-auto px-4">
+            <p className="text-muted-foreground uppercase text-sm tracking-wide mb-4 reveal-on-scroll">
+              {t("hero.welcome")}
+            </p>
+            <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 max-w-4xl mx-auto leading-tight reveal-on-scroll">
+              {t("hero.title")}
+            </h1>
+            <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto reveal-on-scroll">
+              {t("hero.subtitle")}
+            </p>
+            <div className="reveal-on-scroll">
+              <Link to="/blog">
+                <Button size="lg" className="group btn-hover-lift">
+                  {t("hero.readLatest")}
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       <section className="py-16 bg-secondary/20">
         <div className="container mx-auto px-4">
@@ -95,6 +101,7 @@ const Home = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

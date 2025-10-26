@@ -1,3 +1,6 @@
+// @deno-types
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -12,7 +15,7 @@ interface ContactFormData {
   message: string;
 }
 
-Deno.serve(async (req: Request) => {
+serve(async (req: Request) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, {
@@ -24,10 +27,10 @@ Deno.serve(async (req: Request) => {
   try {
     const { firstName, lastName, email, subject, message }: ContactFormData = await req.json();
 
-    console.log("Processing contact form submission:", { firstName, lastName, email, subject });
+    // Processing contact form submission
 
     // Get Resend API key from environment
-    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+    const resendApiKey = Deno?.env?.get('RESEND_API_KEY');
     
     if (!resendApiKey) {
       console.error('CRITICAL ERROR: Resend API key not configured in environment variables. Please set RESEND_API_KEY in Supabase Edge Function secrets.');
@@ -105,7 +108,6 @@ Deno.serve(async (req: Request) => {
     }
 
     const result = await response.json();
-    console.log('Email sent successfully:', result);
 
     return new Response(
       JSON.stringify({ 

@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { useTranslation } from '@/contexts/TranslationContext';
-import { useSession } from '@/components/SessionContextProvider';
+import { useSession } from "@/components/auth/SessionContextProvider";
 
 const commentSchema = z.object({
   content: z.string().min(1, { message: "Comment cannot be empty." }).max(500, { message: "Comment must not be longer than 500 characters." }),

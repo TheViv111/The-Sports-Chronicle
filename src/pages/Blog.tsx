@@ -3,13 +3,14 @@ import { useSearchParams } from "react-router-dom";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import BlogCard from "@/components/BlogCard";
+import BlogCard from "@/components/blog/BlogCard";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-utils";
-import LoadingScreen from "@/components/LoadingScreen";
+import LoadingScreen from "@/components/common/LoadingScreen";
 import useScrollReveal from "@/hooks/useScrollReveal";
-import BlogCardSkeleton from "@/components/BlogCardSkeleton";
+import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
+import { SEO } from "@/components/common/SEO";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -69,12 +70,19 @@ const Blog = () => {
     );
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 reveal-on-scroll">
-            {t("blog.title")}
-          </h1>
+    <>
+      <SEO 
+        title="Sports Blog - The Sports Chronicle"
+        description="Explore the latest sports articles, analysis and insights across basketball, soccer, swimming and more."
+        canonicalUrl="https://thesportschronicle.com/blog"
+        schemaType="WebPage"
+      />
+      <div className="min-h-screen py-12">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 reveal-on-scroll">
+              {t("blog.title")}
+            </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8 reveal-on-scroll">
             {t("blog.subtitle")}
           </p>
@@ -131,6 +139,7 @@ const Blog = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

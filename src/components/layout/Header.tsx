@@ -4,12 +4,12 @@ import { Search, Menu, X, User as UserIcon, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { LanguageSelector } from "@/components/LanguageSelector";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { LanguageSelector } from "@/components/common/LanguageSelector";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useSession } from "@/components/SessionContextProvider";
+import { useSession } from "@/components/auth/SessionContextProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner"; // Using sonner for toasts
 import logo from "@/assets/logo.png";
@@ -188,8 +188,8 @@ const Header = () => {
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="lg:hidden h-8 w-8 p-0 btn-hover-lift">
-                <Menu className="h-4 w-4" />
+              <Button variant="ghost" size="sm" className="group lg:hidden h-8 w-8 p-0 btn-hover-lift btn-hover-glow transition-transform duration-300 hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-ring tap-press">
+                <Menu className="h-4 w-4 icon-hover-twist" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] bg-background">
@@ -212,7 +212,7 @@ const Header = () => {
                     <Link
                       key={item.name}
                       to={item.path}
-                      className={`text-base font-medium transition-colors hover:text-primary py-2 px-3 rounded-md ${
+                      className={`text-base font-medium link-hover-slide tap-press transition-colors hover:text-primary py-2 px-3 rounded-md ${
                         isActivePage(item.path)
                           ? "text-primary bg-primary/10"
                           : "text-muted-foreground hover:bg-accent"

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate, useLocation } from 'react-router-dom';
-import LoadingScreen from './LoadingScreen'; // Import the new LoadingScreen
+import LoadingScreen from '../common/LoadingScreen'; // Updated import path
 
 interface SessionContextType {
   session: Session | null;

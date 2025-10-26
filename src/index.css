@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* tailwindcss directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -51,17 +52,12 @@
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
-    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
     --shadow-hover: 0 20px 40px -15px hsl(var(--primary) / 0.4);
     
-    /* Sports Category Colors */
-    --basketball: 30 100% 50%; /* Orange */
-    --soccer: 120 100% 35%;    /* Green */
-    --swimming: 200 100% 50%;  /* Blue */
-    --tennis: 60 100% 50%;     /* Yellow */
-    --baseball: 350 100% 60%;  /* Reddish */
-    --athletics: 270 100% 50%; /* Purple */
-    --football: 240 100% 30%;  /* Dark Blue */
+    /* Performance optimizations */
+    --transition-fast: 150ms ease-out;
+    --transition-medium: 300ms ease-out;
+    --transition-slow: 500ms ease-out;
   }
 
   .dark {
@@ -141,67 +137,63 @@
     }
   }
 
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
   .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(30px); /* Default for fadeInUp */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    animation-fill-mode: forwards;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .reveal-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+  .reveal-on-scroll.visible {
+    animation-name: fadeInUp;
   }
 
-  .reveal-on-scroll.fade-in-left {
-    transform: translateX(-30px);
-  }
-  .reveal-on-scroll.fade-in-left.is-visible {
-    transform: translateX(0);
+  .fade-in-left.visible {
+    animation-name: fadeInLeft;
   }
 
-  .reveal-on-scroll.fade-in-right {
-    transform: translateX(30px);
-  }
-  .reveal-on-scroll.fade-in-right.is-visible {
-    transform: translateX(0);
+  .fade-in-right.visible {
+    animation-name: fadeInRight;
   }
 
-  .reveal-on-scroll.scale-in {
-    transform: scale(0.8);
-  }
-  .reveal-on-scroll.scale-in.is-visible {
-    transform: scale(1);
+  /* Staggered animation delay */
+  .reveal-on-scroll[style*="--stagger-delay"] {
+    animation-delay: var(--stagger-delay);
   }
 
-  /* Staggered animations for grids */
-  .staggered-grid > .reveal-on-scroll {
-    transition-delay: var(--stagger-delay, 0ms);
+  /* Category badges */
+  .category-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors;
   }
-  
-  /* Category Pills */
-  .category-pill {
-    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-300;
+
+  .category-badge.basketball {
+    @apply bg-orange-500/20 text-orange-600 hover:bg-orange-500/30;
   }
-  
-  .category-pill.active {
-    @apply bg-primary text-primary-foreground shadow-md;
+
+  .category-badge.soccer {
+    @apply bg-green-500/20 text-green-600 hover:bg-green-500/30;
   }
-  
-  .category-pill:not(.active) {
-    @apply bg-secondary text-secondary-foreground hover:bg-primary/10 hover:text-primary hover:shadow-sm hover:scale-105;
+
+  .category-badge.swimming {
+    @apply bg-blue-500/20 text-blue-600 hover:bg-blue-500/30;
   }
-  
+
+  .category-badge.tennis {
+    @apply bg-yellow-500/20 text-yellow-600 hover:bg-yellow-500/30;
+  }
+
+  .category-badge.baseball {
+    @apply bg-red-500/20 text-red-600 hover:bg-red-500/30;
+  }
+
+  .category-badge.athletics {
+    @apply bg-purple-500/20 text-purple-600 hover:bg-purple-500/30;
+  }
+
+  .category-badge.football {
+    @apply bg-indigo-500/20 text-indigo-600 hover:bg-indigo-500/30;
+  }
+
   /* Enhanced Blog Card Hover Effects */
   .blog-card {
     @apply transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02];
@@ -221,7 +213,7 @@
   }
 
   .btn-hover-glow {
-    @apply transition-all duration-300 hover:shadow-glow hover:scale-105;
+    @apply transition-all duration-300 hover:shadow-lg hover:scale-105;
   }
 
   /* Page transition effects */
@@ -257,14 +249,69 @@
   .prose h5, .prose h6 {
     @apply font-heading text-lg md:text-xl font-semibold mb-2 mt-6;
   }
-
-  /* Make numbered list items that act as main subheadings more prominent */
-  .prose ol > li:has(strong:first-child) {
-    @apply text-xl font-bold mt-8 mb-4; /* Apply heading-like styles to list items containing a leading strong tag */
-  }
-
-  /* Make bolded terms at the start of a paragraph act as sub-points */
-  .prose p > strong:first-child {
+  
+  /* Improved form field styling */
+  .form-field-label {
     @apply block text-lg font-semibold mt-6 mb-2; /* Make it block, larger, and add vertical spacing */
   }
+}
+
+/* Prevent horizontal scrollbar caused by carousel transitions */
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  min-width: 0; /* prevent flex item overflow */
+}
+
+/* Ensure root does not show horizontal scroll during transforms */
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Interaction utilities */
+.tap-press {
+  @apply transition-transform active:scale-95 active:opacity-90;
+}
+.icon-hover-twist {
+  @apply transition-transform duration-300 group-hover:rotate-12;
+}
+.link-hover-slide {
+  @apply transition-all duration-200 hover:translate-x-1;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Performance optimizations */
+img {
+  content-visibility: auto;
+}
+
+/* Reduce layout shifts */
+.layout-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }

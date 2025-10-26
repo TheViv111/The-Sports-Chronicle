@@ -74,36 +74,27 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
   const loadTranslations = async (language: LanguageCode) => {
     try {
       setIsLoading(true);
-      // Import all translation modules
-      const modules = await Promise.all([
-        import(`../data/translations/navigation.json`),
-        import(`../data/translations/hero.json`),
-        import(`../data/translations/footer.json`),
-        import(`../data/translations/contact.json`),
-        import(`../data/translations/about.json`),
-        import(`../data/translations/blog.json`),
-        import(`../data/translations/auth.json`),
-        import(`../data/translations/categories.json`),
-        import(`../data/translations/common.json`),
-        import(`../data/translations/profile.json`),
-        import(`../data/translations/admin.json`), // New admin translations
-        import(`../data/translations/languages.json`) // New languages translations
-      ]);
+      // Dynamically import only the selected locale file to reduce bundle size
+      const translationsModule = await import(
+        /* @vite-ignore */ `../data/translations/${language}.json`
+      );
 
-      // Combine all translations for the current language
-      const combined = {};
-      modules.forEach(module => {
-        if (module.default[language]) {
-          Object.assign(combined, module.default[language]);
-        }
-      });
-
-      setTranslations(combined);
+      const localeTranslations = translationsModule.default || {};
+      setTranslations(localeTranslations);
     } catch (error) {
       console.warn(`Failed to load translations for ${language}, falling back to English`);
-      // Fallback to English if translations fail to load
       if (language !== 'en') {
-        loadTranslations('en');
+        try {
+          const fallbackModule = await import(
+            /* @vite-ignore */ `../data/translations/en.json`
+          );
+          setTranslations(fallbackModule.default || {});
+        } catch (fallbackError) {
+          console.error('Failed to load fallback English translations:', fallbackError);
+          setTranslations({});
+        }
+      } else {
+        setTranslations({});
       }
     } finally {
       setIsLoading(false);
@@ -116,8 +107,28 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
   };
 
   const t = (key: string, fallback?: string): string => {
-    const value = translations[key];
-    if (value) return value;
+    // Check if the key exists in translations
+    if (translations && typeof translations === 'object') {
+      // Direct lookup for the key
+      if (translations[key] !== undefined) {
+        return translations[key];
+      }
+      
+      // Try nested lookup for keys with dots (e.g., "nav.home")
+      const parts = key.split('.');
+      if (parts.length > 1) {
+        let current = translations;
+        for (const part of parts) {
+          if (current[part] === undefined) {
+            return fallback || key;
+          }
+          current = current[part];
+        }
+        if (typeof current === 'string') {
+          return current;
+        }
+      }
+    }
     
     // Return fallback or key if translation is missing
     return fallback || key;

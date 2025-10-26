@@ -2,6 +2,7 @@ import skiingImage from "@/assets/skiing-1.jpg";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { Card, CardContent } from "@/components/ui/card";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { SEO } from "@/components/common/SEO";
 
 const About = () => {
   const { t } = useTranslation();
@@ -9,13 +10,20 @@ const About = () => {
   useScrollReveal('.staggered-grid > .reveal-on-scroll', { threshold: 0.1 });
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 reveal-on-scroll">
-            {t("about.title")}
-          </h1>
+    <>
+      <SEO 
+        title="About Us - The Sports Chronicle"
+        description="Learn about The Sports Chronicle team, our mission to deliver quality sports journalism, and our commitment to covering basketball, soccer, swimming and more."
+        canonicalUrl="https://thesportschronicle.com/about"
+        schemaType="Organization"
+      />
+      <div className="min-h-screen py-12">
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 reveal-on-scroll">
+              {t("about.title")}
+            </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto reveal-on-scroll">
             {t("about.subtitle")}
           </p>
@@ -162,6 +170,7 @@ const About = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
