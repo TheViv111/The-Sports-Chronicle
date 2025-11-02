@@ -1,7 +1,7 @@
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { TranslationProvider } from "@/contexts/TranslationContext";
 import { SessionContextProvider } from "@/components/auth/SessionContextProvider";
@@ -39,7 +39,11 @@ const App = () => (
                     <Route path="blog/:slug" element={<BlogPost />} />
                     <Route path="about" element={<About />} />
                     <Route path="contact" element={<Contact />} />
-                    <Route path="admin" element={<Admin />} />
+                    <Route path="admin">
+                      <Route index element={<Navigate to="posts" replace />} />
+                      <Route path=":tab" element={<Admin />} />
+                      <Route path="edit/:id" element={<Admin />} />
+                    </Route>
                     <Route path="signin" element={<SignIn />} />
                     <Route path="signup" element={<SignUp />} />
                     <Route path="profile" element={<Profile />} />

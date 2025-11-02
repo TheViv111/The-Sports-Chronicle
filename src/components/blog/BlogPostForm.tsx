@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useMemo, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, Plus, Save } from 'lucide-react';
+import { Loader2, Plus, Save, Type } from 'lucide-react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -86,6 +88,383 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
 
   const handleSubmit = async (values: BlogPostFormValues) => {
     await onSubmit(values);
+  };
+
+  const quillRef = useRef<ReactQuill>(null);
+  
+  // Define font families with Google Fonts and their corresponding CSS classes
+  const fontFamilies = [
+    { label: 'Arial', value: 'Arial, sans-serif', class: 'ql-font-arial' },
+    { label: 'Times New Roman', value: '"Times New Roman", serif', class: 'ql-font-times' },
+    { label: 'Georgia', value: 'Georgia, serif', class: 'ql-font-georgia' },
+    { label: 'Courier New', value: '"Courier New", monospace', class: 'ql-font-courier' },
+    { label: 'Verdana', value: 'Verdana, sans-serif', class: 'ql-font-verdana' },
+    { label: 'Roboto', value: '"Roboto", sans-serif', class: 'ql-font-roboto' },
+    { label: 'Open Sans', value: '"Open Sans", sans-serif', class: 'ql-font-opensans' },
+    { label: 'Lato', value: '"Lato", sans-serif', class: 'ql-font-lato' },
+    { label: 'Montserrat', value: '"Montserrat", sans-serif', class: 'ql-font-montserrat' },
+    { label: 'Roboto Condensed', value: '"Roboto Condensed", sans-serif', class: 'ql-font-roboto-condensed' },
+    { label: 'Source Sans Pro', value: '"Source Sans Pro", sans-serif', class: 'ql-font-sourcesans' },
+    { label: 'Oswald', value: '"Oswald", sans-serif', class: 'ql-font-oswald' },
+    { label: 'Raleway', value: '"Raleway", sans-serif', class: 'ql-font-raleway' },
+    { label: 'Poppins', value: '"Poppins", sans-serif', class: 'ql-font-poppins' },
+    { label: 'Merriweather', value: '"Merriweather", serif', class: 'ql-font-merriweather' },
+    { label: 'Playfair Display', value: '"Playfair Display", serif', class: 'ql-font-playfair' },
+  ];
+
+  // Define font sizes for the dropdown
+  const fontSizeOptions = [
+    '10px', '12px', '14px', '16px', '18px', '20px', '24px', '28px', '32px', '36px', '40px', '48px'
+  ];
+
+  // Load Google Fonts
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=' + [
+      'Roboto:400,400i,500,500i,700,700i',
+      'Open+Sans:400,400i,600,600i,700,700i',
+      'Lato:400,400i,700,700i',
+      'Montserrat:400,400i,500,500i,600,600i,700,700i',
+      'Roboto+Condensed:400,400i,700,700i',
+      'Source+Sans+Pro:400,400i,600,600i,700,700i',
+      'Oswald:400,500,600,700',
+      'Raleway:400,400i,500,500i,600,600i,700,700i',
+      'Poppins:400,400i,500,500i,600,600i,700,700i',
+      'Merriweather:400,400i,700,700i',
+      'Playfair+Display:400,400i,500,500i,600,600i,700,700i'
+    ].join('&family=') + '&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  // Custom toolbar with font family and size dropdowns
+  const modules = useMemo(() => {
+    // Register font format
+    const Font = ReactQuill.Quill.import('formats/font');
+    const fonts = fontFamilies.map(f => f.label);
+    Font.whitelist = fonts;
+    ReactQuill.Quill.register(Font, true);
+
+    // Register custom font class
+    const FontAttributor = ReactQuill.Quill.import('attributors/class/font');
+    FontAttributor.whitelist = fonts;
+    ReactQuill.Quill.register(FontAttributor, true);
+
+    // Register size style for the font size dropdown
+    const Size = ReactQuill.Quill.import('attributors/style/size');
+    Size.whitelist = fontSizeOptions;
+    ReactQuill.Quill.register(Size, true);
+
+    // Register formats for toggleable styles
+    const Bold = ReactQuill.Quill.import('formats/bold');
+    const Italic = ReactQuill.Quill.import('formats/italic');
+    const Underline = ReactQuill.Quill.import('formats/underline');
+    ReactQuill.Quill.register(Bold, true);
+    ReactQuill.Quill.register(Italic, true);
+    ReactQuill.Quill.register(Underline, true);
+
+    // Custom font handler
+    const fontHandler = (value: string) => {
+      const quill = quillRef.current?.getEditor();
+      if (quill) {
+        const selection = quill.getSelection();
+        if (selection) {
+          if (value === 'false') {
+            quill.format('font', false);
+          } else {
+            quill.format('font', value);
+          }
+        }
+      }
+    };
+
+    return {
+      toolbar: {
+        container: [
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+          [{ 'font': fonts }],
+          [{ 'size': fontSizeOptions }],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          ['link', 'image'],
+          ['clean']
+        ],
+        handlers: {
+          font: fontHandler
+        }
+      },
+      clipboard: {
+        matchVisual: false, // Don't convert text styles automatically
+      },
+    };
+  }, []);
+
+  // Add font size styles to the document head
+  React.useEffect(() => {
+    // Create a style element for the font sizes
+    const style = document.createElement('style');
+    style.textContent = `
+      .ql-snow .ql-picker.ql-size .ql-picker-label::before,
+      .ql-snow .ql-picker.ql-size .ql-picker-label::before {
+        content: attr(data-value) !important;
+        font-size: 14px !important;
+      }
+      ${fontSizeOptions.map(size => `
+        .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="${size}"]::before,
+        .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="${size}"]::before {
+          content: '${size}' !important;
+        }
+        .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="${size}"] {
+          font-size: ${size} !important;
+        }
+        .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="${size}"] {
+          padding-left: 12px !important;
+        }
+        .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="${size}"] {
+          padding-left: 12px !important;
+        }
+      `).join('')}
+      
+      /* Style for the dropdown items */
+      .ql-snow .ql-picker.ql-size .ql-picker-item {
+        padding-left: 12px !important;
+      }
+      
+      /* Style for the selected item */
+      .ql-snow .ql-toolbar .ql-size .ql-picker-label {
+        padding-left: 12px !important;
+      }
+      
+      /* Ensure the dropdown has enough width */
+      .ql-snow .ql-picker.ql-size {
+        width: 90px !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
+
+  // Style for the editor with font families
+  const editorStyle = {
+    minHeight: '300px',
+    fontSize: '16px',
+    backgroundColor: '#fff',
+    borderRadius: '0 0 4px 4px'
+  } as React.CSSProperties;
+
+  // Add font styles and fix dropdown
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Apply font families to the editor content */
+      ${fontFamilies.map(font => {
+        return `
+          .${font.class} {
+            font-family: ${font.value} !important;
+          }
+          .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="${font.label}"] {
+            font-family: ${font.value} !important;
+            padding-left: 12px !important;
+          }
+          .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="${font.label}"] {
+            font-family: ${font.value} !important;
+          }
+          .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="${font.label}"]::before {
+            content: "${font.label}" !important;
+            font-family: ${font.value} !important;
+          }
+        `;
+      }).join('')}
+      
+      /* Ensure the editor content can display different fonts */
+      .ql-editor {
+        font-family: inherit;
+      }
+      
+      /* Make sure the font dropdown is wide enough */
+      .ql-snow .ql-picker.ql-font {
+        width: 150px !important;
+      }
+      
+      /* Set default font for the editor */
+      .ql-editor {
+        font-family: 'Arial', sans-serif;
+        min-height: 300px;
+      }
+      
+      /* Toolbar styling */
+      .ql-toolbar.ql-snow {
+        border: 1px solid #e2e8f0;
+        border-radius: 4px 4px 0 0;
+        background-color: #f8fafc;
+        padding: 8px;
+      }
+      
+      .ql-container.ql-snow {
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+        font-family: 'Arial', sans-serif;
+      }
+      
+      /* Hover states */
+      .ql-snow .ql-toolbar button:hover,
+      .ql-snow .ql-toolbar button:focus {
+        color: #1e40af;
+      }
+      
+      /* Active state */
+      .ql-snow .ql-toolbar button.ql-active {
+        color: #1e40af;
+        font-weight: bold;
+      }
+      
+      /* Ensure formatting buttons work properly */
+      .ql-snow .ql-editor {
+        white-space: normal;
+      }
+      
+      /* Make sure formatting is visible */
+      .ql-snow .ql-editor b,
+      .ql-snow .ql-editor strong {
+        font-weight: bold !important;
+      }
+      
+      .ql-snow .ql-editor i,
+      .ql-snow .ql-editor em {
+        font-style: italic !important;
+      }
+      
+      .ql-snow .ql-editor u {
+        text-decoration: underline !important;
+      }
+      
+      /* Make dropdowns scrollable */
+      .ql-snow .ql-picker.ql-font .ql-picker-options,
+      .ql-snow .ql-picker.ql-size .ql-picker-options {
+        max-height: 300px !important;
+        overflow-y: auto !important;
+      }
+      /* Make font and size dropdowns scrollable and center text */
+      .ql-snow .ql-picker.ql-font .ql-picker-options,
+      .ql-snow .ql-picker.ql-size .ql-picker-options {
+        max-height: 300px !important;
+        overflow-y: auto !important;
+        width: 120px !important;
+        padding: 4px 0 !important;
+        text-align: center !important;
+      }
+      
+      /* Style font and size dropdown items */
+      .ql-snow .ql-picker.ql-font .ql-picker-item,
+      .ql-snow .ql-picker.ql-size .ql-picker-item {
+        padding: 8px 16px !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        white-space: nowrap;
+        text-align: center !important;
+        display: block !important;
+        margin: 0 auto !important;
+      }
+      
+      /* Force consistent font and size for size dropdown */
+      .ql-snow .ql-picker.ql-size .ql-picker-item,
+      .ql-snow .ql-picker.ql-size .ql-picker-item span {
+        font-family: Arial, sans-serif !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+      }
+      
+      /* Override any inline styles on the size elements */
+      .ql-snow .ql-picker.ql-size .ql-picker-item[data-value] {
+        font-size: 14px !important;
+      }
+      
+      /* Style the font and size picker labels */
+      .ql-snow .ql-picker.ql-font .ql-picker-label,
+      .ql-snow .ql-picker.ql-size .ql-picker-label {
+        padding: 6px 12px !important;
+        font-size: 14px !important;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      /* Apply the actual fonts to the dropdown items and labels */
+      ${fontFamilies.map(font => `
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="${font.label}"] {
+          font-family: ${font.value} !important;
+        }
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value="${font.label}"] {
+          font-family: ${font.value} !important;
+        }
+        /* Set the content of the dropdown items to show the font name */
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value="${font.label}"]::before {
+          content: "${font.label}" !important;
+          font-family: ${font.value} !important;
+        }
+      `).join('')}
+      
+      /* Set default font for the editor */
+      .ql-snow .ql-editor {
+        font-family: 'Arial', sans-serif;
+      }
+      
+      /* Apply the selected font to the content */
+      ${fontFamilies.map(font => `
+        .ql-font-${font.label.replace(/\s+/g, '-').toLowerCase()} {
+          font-family: ${font.value} !important;
+        }
+      `).join('')}
+      
+      /* Ensure the dropdown shows the font name */
+      .ql-snow .ql-picker.ql-font .ql-picker-label::before {
+        content: attr(data-value) !important;
+      }
+      
+      /* Center align text */
+      .ql-editor.ql-blank::before {
+        text-align: center;
+      }
+      
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+  
+  // Handle editor change
+  const handleEditorChange = (content: string) => {
+    form.setValue('content', content, { shouldValidate: true });
+  };
+
+  // Handle font change
+  const handleFontChange = (value: string) => {
+    const quill = quillRef.current?.getEditor();
+    if (quill) {
+      const range = quill.getSelection(true);
+      if (range) {
+        if (value === 'sans-serif') {
+          // Remove font formatting
+          quill.formatText(range.index, range.length, 'font', false);
+        } else {
+          // Apply the selected font
+          quill.format('font', value);
+        }
+      }
+    }
   };
 
   return (
@@ -203,14 +582,24 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{tf("admin.postContent", "Content")}</FormLabel>
+              <div className="flex justify-between items-center mb-2">
+                <FormLabel>{tf("admin.postContent", "Content")}</FormLabel>
+              </div>
               <FormControl>
-                <Textarea
-                  placeholder={tf("admin.postContent", "Write your content here...")}
-                  className="min-h-64 h-96"
-                  {...field}
-                  disabled={isSubmitting}
-                />
+                <div className="border rounded-md overflow-hidden" style={editorStyle}>
+                  <div className="w-full">
+                    <ReactQuill
+                      ref={quillRef}
+                      theme="snow"
+                      value={field.value}
+                      onChange={handleEditorChange}
+                      modules={modules}
+                      style={editorStyle}
+                      placeholder={tf("admin.postContent", "Write your content here...")}
+                      formats={['font', 'size', 'bold', 'italic', 'underline', 'strike', 'header', 'list', 'color', 'background', 'link', 'image']}
+                    />
+                  </div>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>

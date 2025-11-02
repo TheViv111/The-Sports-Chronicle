@@ -81,14 +81,34 @@ export function LanguageSelector({ variant = "desktop" }: LanguageSelectorProps)
     return acc;
   }, {} as Record<string, Record<string, any>>);
 
-  const handleLanguageSelect = (code: string) => {
-    setLanguage(code as LanguageCode);
-    setSearchQuery("");
+  const handleLanguageSelect = (e: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element> | Event, code: string) => {
+    // Prevent default form submission behavior
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Only proceed if the language is changing
+    if (code !== currentLanguage) {
+      // Save current scroll position
+      const scrollPosition = window.scrollY;
+      
+      // Change language
+      setLanguage(code as LanguageCode);
+      setSearchQuery("");
+      
+      // Update URL with language parameter without reloading
+      const newUrl = `${window.location.pathname}?lang=${code}${window.location.hash}`;
+      window.history.replaceState({}, '', newUrl);
+      
+      // Restore scroll position after a small delay to allow for re-render
+      setTimeout(() => {
+        window.scrollTo(0, scrollPosition);
+      }, 0);
+    }
   };
 
   if (variant === "mobile") {
     return (
-      <DropdownMenu>
+      <DropdownMenu onOpenChange={(open) => !open && setSearchQuery("")}>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="w-full justify-between">
             <span>{supportedLanguages[currentLanguage].nativeName}</span>
@@ -116,10 +136,11 @@ export function LanguageSelector({ variant = "desktop" }: LanguageSelectorProps)
                 {Object.entries(languages).map(([code, lang]) => (
                   <DropdownMenuItem
                     key={code}
-                    onClick={() => handleLanguageSelect(code)}
-                    className={`text-sm mx-1 px-2 py-2 rounded-md cursor-pointer hover:bg-accent ${
-                      currentLanguage === code ? "bg-accent font-medium" : ""
-                    }`}
+                    className={`flex items-center gap-2 cursor-pointer ${currentLanguage === code ? 'bg-accent' : ''}`}
+                    onSelect={(e: Event) => {
+                      e.preventDefault();
+                      handleLanguageSelect(e, code);
+                    }}
                   >
                     <span className="flex items-center justify-between w-full">
                       <div className="flex items-center gap-2">
@@ -146,7 +167,7 @@ export function LanguageSelector({ variant = "desktop" }: LanguageSelectorProps)
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={(open) => !open && setSearchQuery("")}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className="h-8 px-2">
           <span className="text-sm">{supportedLanguages[currentLanguage].nativeName}</span>
@@ -174,7 +195,8 @@ export function LanguageSelector({ variant = "desktop" }: LanguageSelectorProps)
               {Object.entries(languages).map(([code, lang]) => (
                 <DropdownMenuItem
                   key={code}
-                  onClick={() => handleLanguageSelect(code)}
+                  onClick={(e) => handleLanguageSelect(e, code)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleLanguageSelect(e, code)}
                   className={`text-sm mx-1 px-2 py-2 rounded-md cursor-pointer hover:bg-accent ${
                     currentLanguage === code ? "bg-accent font-medium" : ""
                   }`}

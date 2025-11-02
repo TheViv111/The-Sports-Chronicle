@@ -47,6 +47,7 @@ interface TranslationContextType {
   setLanguage: (language: LanguageCode) => void;
   t: (key: string, fallback?: string) => string;
   isRTL: boolean;
+  currentPath: string;
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
@@ -59,6 +60,7 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
 
   const [translations, setTranslations] = useState<Record<string, any>>({});
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
     loadTranslations(currentLanguage);
@@ -102,8 +104,23 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
   };
 
   const setLanguage = (language: LanguageCode) => {
-    setCurrentLanguage(language);
-    localStorage.setItem('language', language);
+    if (language !== currentLanguage) {
+      // Save current scroll position
+      const scrollPosition = window.scrollY;
+      
+      // Update language
+      setCurrentLanguage(language);
+      localStorage.setItem('language', language);
+      
+      // Update the URL without causing a page reload
+      const newUrl = `${window.location.pathname}?lang=${language}${window.location.hash}`;
+      window.history.replaceState({}, '', newUrl);
+      
+      // Restore scroll position after a small delay
+      setTimeout(() => {
+        window.scrollTo(0, scrollPosition);
+      }, 0);
+    }
   };
 
   const t = (key: string, fallback?: string): string => {
@@ -136,11 +153,25 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
 
   const isRTL = supportedLanguages[currentLanguage].direction === 'rtl';
 
+  // Update current path when route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    // Listen for route changes
+    window.addEventListener('popstate', handleRouteChange);
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
+
   const value: TranslationContextType = {
     currentLanguage,
     setLanguage,
     t,
-    isRTL
+    isRTL,
+    currentPath
   };
 
   // Show loading state while translations are being loaded

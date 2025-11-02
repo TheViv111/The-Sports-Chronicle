@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+
+type AdminTab = 'posts' | 'create' | 'edit';
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,6 +28,10 @@ type BlogPostFormValues = {
   cover_image?: string;
 };
 
+interface AdminProps {
+  tab?: 'posts' | 'create' | 'edit';
+}
+
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
@@ -33,7 +40,10 @@ const Admin = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [loadingPosts, setLoadingPosts] = useState(false);
-  const [activeTab, setActiveTab] = useState("posts");
+  const navigate = useNavigate();
+  const { tab: tabParam = 'posts', id } = useParams<{ tab?: AdminTab; id?: string }>();
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState<AdminTab>('posts');
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -43,6 +53,31 @@ const Admin = () => {
       loadPosts();
     }
   }, []);
+
+  useEffect(() => {
+    if (location.pathname.includes('edit/')) {
+      setActiveTab('edit');
+    } else if (tabParam && (tabParam === 'posts' || tabParam === 'create' || tabParam === 'edit')) {
+      setActiveTab(tabParam);
+    } else {
+      navigate('/admin/posts', { replace: true });
+    }
+  }, [tabParam, location.pathname, navigate]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const tab = searchParams.get('tab') || 'posts';
+      if (tab && (tab === 'posts' || tab === 'create' || tab === 'edit') && tab !== activeTab) {
+        setActiveTab(tab);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [activeTab]);
 
   const loadPosts = async () => {
     setLoadingPosts(true);
@@ -167,12 +202,12 @@ const Admin = () => {
 
   const startEditingPost = (post: BlogPost) => {
     setEditingPost(post);
-    setActiveTab("create");
+    navigate(`/admin/edit/${post.id}`);
   };
 
   const handleCancelEdit = () => {
     setEditingPost(null);
-    setActiveTab("posts");
+    navigate('/admin/posts');
   };
 
   const handleDeletePost = async (postId: string) => {
@@ -293,7 +328,14 @@ const Admin = () => {
           </div>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs 
+          value={activeTab} 
+          onValueChange={(value: string) => {
+            if (value === 'edit') return; // Handle edit case separately
+            navigate(`/admin/${value}`);
+          }} 
+          className="w-full"
+        >
           <TabsList>
             <TabsTrigger value="posts">{t("admin.managePosts")}</TabsTrigger>
             <TabsTrigger value="create">
