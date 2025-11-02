@@ -6,6 +6,7 @@ import viteCompression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: './',  // Add this line for correct base path in production
   server: {
     host: "::",
     port: 8081,
@@ -13,8 +14,18 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
-    viteCompression({ algorithm: "gzip", ext: ".gz", threshold: 1024 }),
-    viteCompression({ algorithm: "brotliCompress", ext: ".br", threshold: 1024 })
+    viteCompression({ 
+      algorithm: "gzip", 
+      ext: ".gz", 
+      threshold: 1024,
+      deleteOriginFile: false  // Keep original files
+    }),
+    viteCompression({ 
+      algorithm: "brotliCompress", 
+      ext: ".br", 
+      threshold: 1024,
+      deleteOriginFile: false  // Keep original files
+    })
   ].filter(Boolean),
   resolve: {
     alias: {

@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "封面图片",
+  "admin.coverImageUrl": "封面图片链接",
+  "admin.upload": "上传",
   "footer.quickLinks": "快速链接",
   "footer.categories": "分类",
   "footer.allPosts": "所有文章",

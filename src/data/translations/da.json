@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Coverbillede",
+  "admin.coverImageUrl": "Coverbillede URL",
+  "admin.upload": "Upload",
   "footer.quickLinks": "Hurtige Links",
   "footer.categories": "Kategorier",
   "footer.allPosts": "Alle Indlæg",

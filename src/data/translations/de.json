@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Titelbild",
+  "admin.coverImageUrl": "Titelbild-URL",
+  "admin.upload": "Hochladen",
   "footer.quickLinks": "Schnelllinks",
   "footer.categories": "Kategorien",
   "footer.allPosts": "Alle Beiträge",

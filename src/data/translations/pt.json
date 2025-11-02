@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Imagem de Capa",
+  "admin.coverImageUrl": "URL da Imagem de Capa",
+  "admin.upload": "Carregar",
   "footer.quickLinks": "Links Rápidos",
   "footer.categories": "Categorias",
   "footer.allPosts": "Todos os Posts",

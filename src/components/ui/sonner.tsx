@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Toaster as Sonner, toast } from "sonner"
 import { useTheme } from "@/components/common/ThemeProvider" // Corrected import path
 
@@ -7,6 +8,15 @@ type ToasterProps = React.ComponentProps<typeof Sonner>
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  
+  // Use useEffect to prevent state updates during render
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Only render the Toaster after component has mounted
+  if (!mounted) return null
 
   return (
     <Sonner

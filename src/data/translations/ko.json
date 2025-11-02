@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "커버 이미지",
+  "admin.coverImageUrl": "커버 이미지 URL",
+  "admin.upload": "업로드",
   "footer.quickLinks": "빠른 링크",
   "footer.categories": "카테고리",
   "footer.allPosts": "모든 게시물",

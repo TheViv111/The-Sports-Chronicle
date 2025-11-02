@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Omslagafbeelding",
+  "admin.coverImageUrl": "Omslagafbeelding URL",
+  "admin.upload": "Uploaden",
   "footer.quickLinks": "Snelle Links",
   "footer.categories": "Categorieën",
   "footer.allPosts": "Alle Berichten",

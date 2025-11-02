@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "அட்டைப் படம்",
+  "admin.coverImageUrl": "அட்டைப் பட URL",
+  "admin.upload": "பதிவேற்று",
   "footer.quickLinks": "விரைவு இணைப்புகள்",
   "footer.categories": "வகைகள்",
   "footer.allPosts": "எல்லா இடுகைகள்",

@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "কভার ইমেজ",
+  "admin.coverImageUrl": "কভার ইমেজ URL",
+  "admin.upload": "আপলোড",
   "footer.quickLinks": "দ্রুত লিঙ্ক",
   "footer.categories": "বিভাগসমূহ",
   "footer.allPosts": "সমস্ত পোস্ট",

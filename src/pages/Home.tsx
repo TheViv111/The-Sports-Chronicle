@@ -6,7 +6,6 @@ import BlogCarousel from "@/components/blog/BlogCarousel";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-utils";
-import LoadingScreen from "@/components/common/LoadingScreen";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
@@ -17,6 +16,8 @@ const Home = () => {
   const { t, currentLanguage } = useTranslation();
 
   useScrollReveal('.reveal-on-scroll');
+
+  
 
   useEffect(() => {
     loadLatestPosts();
@@ -58,6 +59,9 @@ const Home = () => {
             <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto reveal-on-scroll">
               {t("hero.subtitle")}
             </p>
+
+            
+
             <div className="reveal-on-scroll">
               <Link to="/blog">
                 <Button size="lg" className="group btn-hover-lift">

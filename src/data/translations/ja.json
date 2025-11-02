@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "カバー画像",
+  "admin.coverImageUrl": "カバー画像URL",
+  "admin.upload": "アップロード",
   "footer.quickLinks": "クイックリンク",
   "footer.categories": "カテゴリー",
   "footer.allPosts": "すべての投稿",

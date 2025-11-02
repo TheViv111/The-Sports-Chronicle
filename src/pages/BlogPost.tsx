@@ -76,6 +76,8 @@ const BlogPost = () => {
   }
   const displayPost = transformBlogPostForDisplay(post, currentLanguage);
 
+  
+
   return (
     <>
       <SEO 
@@ -156,7 +158,9 @@ const BlogPost = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto staggered-grid">
               {relatedPosts.map((relatedPost: any, index: number) => (
-                <BlogCard key={relatedPost.id} post={relatedPost} className="reveal-on-scroll" style={{ '--stagger-delay': `${index * 100}ms` } as React.CSSProperties} />
+                <div key={relatedPost.id} className="reveal-on-scroll" style={{ ['--stagger-delay' as any]: `${index * 100}ms` }}>
+                  <BlogCard post={relatedPost} />
+                </div>
               ))}
             </div>
           </div>

@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Обложка",
+  "admin.coverImageUrl": "URL Обложки",
+  "admin.upload": "Загрузить",
   "footer.quickLinks": "Быстрые ссылки",
   "footer.categories": "Категории",
   "footer.allPosts": "Все посты",

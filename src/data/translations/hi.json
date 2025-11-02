@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "कवर इमेज",
+  "admin.coverImageUrl": "कवर इमेज URL",
+  "admin.upload": "अपलोड",
   "footer.quickLinks": "त्वरित लिंक",
   "footer.categories": "श्रेणियाँ",
   "footer.allPosts": "सभी पोस्ट",

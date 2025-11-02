@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "תמונת שער",
+  "admin.coverImageUrl": "כתובת URL של תמונת שער",
+  "admin.upload": "העלאה",
   "footer.quickLinks": "קישורים מהירים",
   "footer.categories": "קטגוריות",
   "footer.allPosts": "כל הפוסטים",

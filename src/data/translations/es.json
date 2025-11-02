@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Imagen de Portada",
+  "admin.coverImageUrl": "URL de Imagen de Portada",
+  "admin.upload": "Subir",
   "footer.quickLinks": "Enlaces Rápidos",
   "footer.categories": "Categorías",
   "footer.allPosts": "Todas las Publicaciones",
@@ -147,6 +150,9 @@
   "admin.postCreatedSuccess": "Tu publicación de blog ha sido creada con éxito.",
   "admin.errorCreatingPost": "Error al crear publicación",
   "admin.failedToCreatePost": "No se pudo crear la publicación del blog. Por favor, inténtalo de nuevo.",
+  "admin.coverImage": "Imagen de portada",
+  "admin.coverImageUrl": "Pegar URL de imagen o subir",
+  "admin.upload": "Subir",
   "admin.postUpdated": "¡Publicación actualizada!",
   "admin.postUpdatedSuccess": "Tu publicación de blog ha sido actualizada con éxito.",
   "admin.errorUpdatingPost": "Error al actualizar publicación",

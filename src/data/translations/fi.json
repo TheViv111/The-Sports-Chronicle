@@ -1,5 +1,8 @@
 {
-  "footer.quickLinks": "Pikalikit",
+  "admin.coverImage": "Kansikuva",
+  "admin.coverImageUrl": "Kansikuvan URL",
+  "admin.upload": "Lataa",
+  "footer.quickLinks": "Pikalinkit",
   "footer.categories": "Kategoriat",
   "footer.allPosts": "Kaikki Postaukset",
   "footer.aboutMe": "Minusta",

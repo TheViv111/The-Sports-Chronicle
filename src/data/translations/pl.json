@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Zdjęcie okładkowe",
+  "admin.coverImageUrl": "URL zdjęcia okładkowego",
+  "admin.upload": "Prześlij",
   "footer.quickLinks": "Szybkie Linki",
   "footer.categories": "Kategorie",
   "footer.allPosts": "Wszystkie Posty",

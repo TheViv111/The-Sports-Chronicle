@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Omslagsbild",
+  "admin.coverImageUrl": "Omslagsbild URL",
+  "admin.upload": "Ladda upp",
   "footer.quickLinks": "Snabblänkar",
   "footer.categories": "Kategorier",
   "footer.allPosts": "Alla Inlägg",

@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Image de Couverture",
+  "admin.coverImageUrl": "URL de l'Image de Couverture",
+  "admin.upload": "Télécharger",
   "footer.quickLinks": "Liens Rapides",
   "footer.categories": "Catégories",
   "footer.allPosts": "Tous les Articles",

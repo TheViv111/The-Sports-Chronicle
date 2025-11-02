@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Omslagsbilde",
+  "admin.coverImageUrl": "Omslagsbilde URL",
+  "admin.upload": "Last opp",
   "footer.quickLinks": "Hurtiglenker",
   "footer.categories": "Kategorier",
   "footer.allPosts": "Alle Innlegg",

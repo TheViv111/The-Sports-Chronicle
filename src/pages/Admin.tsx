@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,15 +8,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Trash2, Edit, Loader2, ArrowLeft, Home } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { Tables } from "@/integrations/supabase/types";
+import { supabase } from "@/lib/supabase";
 import { useTranslation } from "@/contexts/TranslationContext";
-import BlogPostForm from "@/components/blog/BlogPostForm"; // Import the new BlogPostForm
-import TranslationsEditor from "@/components/blog/TranslationsEditor";
-import { formatBlogPostDate } from "@/lib/blog-utils"; // Import the utility function
+import BlogPostForm from "@/components/blog/BlogPostForm";
+import { formatBlogPostDate } from "@/lib/blog-utils";
 import { SEO } from "@/components/common/SEO";
+import { BlogPost } from "@/types/supabase";
+import Header from "@/components/layout/Header";
 
-type BlogPost = Tables<'blog_posts'>;
+// Define the form values type
+type BlogPostFormValues = {
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  cover_image?: string;
+};
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -90,22 +97,24 @@ const Admin = () => {
     });
   };
 
-  const handleCreateOrUpdatePost = async (values: { title: string; category: string; excerpt: string; content: string }) => {
+  const handleCreateOrUpdatePost = async (values: BlogPostFormValues) => {
     setIsLoading(true);
     const slug = values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    const now = new Date().toISOString();
 
     try {
       if (editingPost) {
         // Update existing post
         const { data, error } = await supabase
           .from('blog_posts')
-          .update({
+          .update<Partial<BlogPost>>({
             title: values.title,
             excerpt: values.excerpt,
             content: values.content,
             category: values.category,
+            cover_image: values.cover_image || null,
             slug,
-            updated_at: new Date().toISOString()
+            updated_at: now
           })
           .eq('id', editingPost.id)
           .select()
@@ -113,31 +122,34 @@ const Admin = () => {
 
         if (error) throw error;
 
-        setPosts(posts.map(post => post.id === editingPost.id ? data : post));
+        setPosts(posts.map(post => post.id === editingPost.id ? { ...post, ...data } : post));
         setEditingPost(null);
         toast.success(t("admin.postUpdated"), {
           description: t("admin.postUpdatedSuccess"),
         });
       } else {
         // Create new post
+        const newPost: Omit<BlogPost, 'id' | 'created_at' | 'updated_at'> = {
+          title: values.title,
+          excerpt: values.excerpt,
+          content: values.content,
+          category: values.category,
+          cover_image: values.cover_image || null,
+          slug,
+          read_time: "5 min read",
+          author: "Sports Chronicle Team",
+          language: "en"
+        };
+
         const { data, error } = await supabase
           .from('blog_posts')
-          .insert({
-            title: values.title,
-            excerpt: values.excerpt,
-            content: values.content,
-            category: values.category,
-            slug,
-            read_time: "5 min read",
-            author: "Sports Chronicle Team",
-            language: "en"
-          })
+          .insert<typeof newPost>(newPost)
           .select()
           .single();
 
         if (error) throw error;
 
-        setPosts([data, ...posts]);
+        setPosts([data as BlogPost, ...posts]);
         toast.success(t("admin.postCreated"), {
           description: t("admin.postCreatedSuccess"),
         });
@@ -193,6 +205,7 @@ const Admin = () => {
           canonicalUrl="https://thesportschronicle.com/admin"
           schemaType="WebPage"
         />
+        <Header />
         <div className="min-h-screen flex items-center justify-center py-12 px-4">
           <div className="w-full max-w-md">
             <div className="mb-4 text-center">
@@ -243,11 +256,6 @@ const Admin = () => {
                 {isLoading ? t("admin.loggingIn") : t("admin.loginButton")}
               </Button>
             </form>
-            <div className="mt-4 p-3 bg-muted rounded text-sm text-muted-foreground">
-              <p><strong>{t("admin.demoCredentials")}</strong></p>
-              <p>{t("admin.usernameDemo")}</p>
-              <p>{t("admin.passwordDemo")}</p>
-            </div>
           </CardContent>
         </Card>
         </div>
@@ -264,6 +272,7 @@ const Admin = () => {
         canonicalUrl="https://thesportschronicle.com/admin"
         schemaType="WebPage"
       />
+      <Header />
       <div className="min-h-screen py-12">
         <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
@@ -290,7 +299,6 @@ const Admin = () => {
             <TabsTrigger value="create">
               {editingPost ? t("admin.editPost") : t("admin.createPost")}
             </TabsTrigger>
-            <TabsTrigger value="translations">{t("admin.manageTranslations") || "Translations"}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="posts">
@@ -372,10 +380,6 @@ const Admin = () => {
               </CardContent>
             </Card>
           </TabsContent>
-
-          <TabsContent value="translations">
-            <TranslationsEditor posts={posts} onRefresh={loadPosts} />
-          </TabsContent>
         </Tabs>
       </div>
     </div>
@@ -383,4 +387,34 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error?: any }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(error: any) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error: any, errorInfo: any) {
+    console.error('Admin render error:', error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="container mx-auto px-4 py-12">
+          <h2 className="text-xl font-semibold mb-2">An error occurred while rendering this page.</h2>
+          <pre className="text-sm whitespace-pre-wrap break-words bg-muted p-3 rounded">{String(this.state.error)}</pre>
+        </div>
+      );
+    }
+    return this.props.children as any;
+  }
+}
+
+export default function AdminWithBoundary() {
+  return (
+    <ErrorBoundary>
+      <Admin />
+    </ErrorBoundary>
+  );
+}

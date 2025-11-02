@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "صورة الغلاف",
+  "admin.coverImageUrl": "رابط صورة الغلاف",
+  "admin.upload": "رفع",
   "footer.quickLinks": "روابط سريعة",
   "footer.categories": "التصنيفات",
   "footer.allPosts": "جميع المنشورات",

@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "Cover Image",
+  "admin.coverImageUrl": "Cover Image URL",
+  "admin.upload": "Upload",
   "footer.quickLinks": "Quick Links",
   "footer.categories": "Categories",
   "footer.allPosts": "All Posts",

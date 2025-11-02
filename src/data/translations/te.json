@@ -1,4 +1,7 @@
 {
+  "admin.coverImage": "కవర్ చిత్రం",
+  "admin.coverImageUrl": "కవర్ చిత్రం URL",
+  "admin.upload": "అప్‌లోడ్",
   "footer.quickLinks": "త్వరిత లింక్‌లు",
   "footer.categories": "వర్గాలు",
   "footer.allPosts": "అన్ని పోస్ట్‌లు",
