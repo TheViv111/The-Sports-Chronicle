@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "pnpm install && pnpm run build",
+  "installCommand": "pnpm install --frozen-lockfile",
   "builds": [
     {
       "src": "package.json",
