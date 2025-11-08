@@ -1,4 +1,27 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+
+// Error Boundary for translations
+class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
+  constructor(props: {children: React.ReactNode}) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error) {
+    console.error('Translation Error:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div className="p-4 text-red-600">Error loading translations. Please refresh the page.</div>;
+    }
+    return this.props.children;
+  }
+}
 
 // Language configuration
 export const supportedLanguages = {
@@ -73,24 +96,28 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
     document.documentElement.lang = currentLanguage;
   }, [currentLanguage]);
 
-  const loadTranslations = async (language: LanguageCode) => {
+  const loadTranslations = useCallback(async (language: LanguageCode) => {
     try {
       setIsLoading(true);
-      // Dynamically import only the selected locale file to reduce bundle size
-      const translationsModule = await import(
-        /* @vite-ignore */ `../data/translations/${language}.json`
-      );
-
-      const localeTranslations = translationsModule.default || {};
-      setTranslations(localeTranslations);
+      
+      // Use Vite's import.meta.glob for better static analysis
+      const modules = import.meta.glob('../data/translations/*.json');
+      const modulePath = `../data/translations/${language}.json`;
+      
+      if (modules[modulePath]) {
+        const module = await (modules[modulePath]() as Promise<{ default: Record<string, any> }>);
+        const translationsModule = module.default || {};
+        setTranslations(translationsModule);
+      } else {
+        throw new Error(`Translations not found for ${language}`);
+      }
     } catch (error) {
-      console.warn(`Failed to load translations for ${language}, falling back to English`);
+      console.warn(`Failed to load translations for ${language}, falling back to English`, error);
       if (language !== 'en') {
         try {
-          const fallbackModule = await import(
-            /* @vite-ignore */ `../data/translations/en.json`
-          );
-          setTranslations(fallbackModule.default || {});
+          const modules = import.meta.glob('../data/translations/en.json');
+          const module = await (modules['../data/translations/en.json']() as Promise<{ default: Record<string, any> }>);
+          setTranslations(module.default || {});
         } catch (fallbackError) {
           console.error('Failed to load fallback English translations:', fallbackError);
           setTranslations({});
@@ -101,7 +128,7 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   const setLanguage = (language: LanguageCode) => {
     if (language !== currentLanguage) {
@@ -123,32 +150,27 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
     }
   };
 
-  const t = (key: string, fallback?: string): string => {
-    // Check if the key exists in translations
-    if (translations && typeof translations === 'object') {
-      // Direct lookup for the key
-      if (translations[key] !== undefined) {
-        return translations[key];
-      }
-      
-      // Try nested lookup for keys with dots (e.g., "nav.home")
-      const parts = key.split('.');
-      if (parts.length > 1) {
-        let current = translations;
-        for (const part of parts) {
-          if (current[part] === undefined) {
-            return fallback || key;
-          }
-          current = current[part];
-        }
-        if (typeof current === 'string') {
-          return current;
-        }
-      }
-    }
+  const getTranslation = (key: string, fallback?: string): string => {
+    // If translations are still loading, return the key as is
+    if (isLoading) return key;
     
-    // Return fallback or key if translation is missing
-    return fallback || key;
+    // If no translations are loaded, return the fallback or key
+    if (Object.keys(translations).length === 0) {
+      return fallback || key;
+    }
+
+    // Try to get the translation
+    try {
+      const value = key.split('.').reduce((obj, k) => (obj && obj[k] !== undefined ? obj[k] : undefined), translations);
+      return value !== undefined ? value : (fallback || key);
+    } catch (error) {
+      console.warn(`Error accessing translation key '${key}':`, error);
+      return fallback || key;
+    }
+  };
+
+  const t = (key: string, fallback?: string): string => {
+    return getTranslation(key, fallback);
   };
 
   const isRTL = supportedLanguages[currentLanguage].direction === 'rtl';
@@ -184,9 +206,11 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
   }
 
   return (
-    <TranslationContext.Provider value={value}>
-      {children}
-    </TranslationContext.Provider>
+    <ErrorBoundary>
+      <TranslationContext.Provider value={value}>
+        {children}
+      </TranslationContext.Provider>
+    </ErrorBoundary>
   );
 }
 

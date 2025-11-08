@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { visualizer } from "rollup-plugin-visualizer";
 import viteCompression from "vite-plugin-compression";
+import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -27,12 +28,39 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react({
-      // Using default Babel configuration
+      babel: { 
+        plugins: [["babel-plugin-react-compiler", { compilationMode: "annotation" }]],
+      },
     }),
     // Visualize bundle size in production
     mode === 'analyze' && visualizer({
       open: true,
       filename: 'dist/bundle-analyzer.html',
+    }),
+    // PWA support
+    VitePWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}']
+      },
+      manifest: {
+        name: 'The Sports Chronicle',
+        short_name: 'SportsChronicle',
+        description: 'Your ultimate sports news and updates',
+        theme_color: '#ffffff',
+        icons: [
+          {
+            src: '/The Sports Chronicle Logo-modified.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/The Sports Chronicle Logo-modified.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      }
     }),
     // Compression for production
     mode === 'production' && viteCompression({ 
@@ -52,6 +80,12 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    // Ensure JSON files are properly resolved
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
+  },
+  // Handle JSON files properly
+  json: {
+    stringify: true
   },
   build: {
     outDir: 'dist',
@@ -60,6 +94,8 @@ export default defineConfig(({ mode }) => ({
     minify: 'esbuild',
     sourcemap: mode !== 'production',
     emptyOutDir: true,
+    // Ensure JSON files are properly handled
+    assetsInlineLimit: 0,
     rollupOptions: {
       output: {
         manualChunks: (id) => {
