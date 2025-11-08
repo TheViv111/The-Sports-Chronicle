@@ -102,9 +102,19 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
       
       const loadTranslationFile = async (lang: string) => {
         try {
-          // In both dev and prod, use dynamic import with a path that will be resolved by Vite
-          const module = await import(`../data/translations/${lang}.json`);
-          return module.default || module;
+          // In development, use dynamic import with Vite's import.meta.glob
+          if (import.meta.env.DEV) {
+            const modules = import.meta.glob<{ default: any }>('../data/translations/*.json');
+            const modulePath = `../data/translations/${lang}.json`;
+            const module = await modules[modulePath]?.();
+            if (!module) throw new Error(`Translation file not found: ${lang}.json`);
+            return module.default || module;
+          } else {
+            // In production, fetch the JSON file directly from the public directory
+            const response = await fetch(`/translations/${lang}.json`);
+            if (!response.ok) throw new Error('Failed to load translations');
+            return await response.json();
+          }
         } catch (error) {
           console.warn(`Failed to load translations for ${lang}:`, error);
           throw error;
