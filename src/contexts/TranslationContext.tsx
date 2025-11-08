@@ -100,30 +100,30 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
     try {
       setIsLoading(true);
       
-      // Use Vite's import.meta.glob for better static analysis
-      const modules = import.meta.glob('../data/translations/*.json');
-      const modulePath = `../data/translations/${language}.json`;
-      
-      if (modules[modulePath]) {
-        const module = await (modules[modulePath]() as Promise<{ default: Record<string, any> }>);
-        const translationsModule = module.default || {};
-        setTranslations(translationsModule);
-      } else {
-        throw new Error(`Translations not found for ${language}`);
-      }
-    } catch (error) {
-      console.warn(`Failed to load translations for ${language}, falling back to English`, error);
-      if (language !== 'en') {
-        try {
-          const modules = import.meta.glob('../data/translations/en.json');
-          const module = await (modules['../data/translations/en.json']() as Promise<{ default: Record<string, any> }>);
-          setTranslations(module.default || {});
-        } catch (fallbackError) {
-          console.error('Failed to load fallback English translations:', fallbackError);
+      // Direct import with type assertion
+      try {
+        const module = await import(
+          /* @vite-ignore */
+          `../data/translations/${language}.json`
+        );
+        setTranslations(module);
+      } catch (error) {
+        console.warn(`Failed to load translations for ${language}, falling back to English`, error);
+        
+        if (language !== 'en') {
+          try {
+            const fallbackModule = await import(
+              /* @vite-ignore */
+              '../data/translations/en.json'
+            );
+            setTranslations(fallbackModule);
+          } catch (fallbackError) {
+            console.error('Failed to load fallback English translations:', fallbackError);
+            setTranslations({});
+          }
+        } else {
           setTranslations({});
         }
-      } else {
-        setTranslations({});
       }
     } finally {
       setIsLoading(false);
