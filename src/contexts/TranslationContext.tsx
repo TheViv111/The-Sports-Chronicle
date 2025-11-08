@@ -100,22 +100,37 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
     try {
       setIsLoading(true);
       
-      // Direct import with type assertion
+      const loadTranslationFile = async (lang: string) => {
+        try {
+          // Construct the URL to the translation file
+          const url = new URL(
+            `../data/translations/${lang}.json?url`,
+            import.meta.url
+          ).href;
+          
+          // Fetch the JSON file
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.warn(`Failed to load translations for ${lang}:`, error);
+          throw error; // Re-throw to be caught by the outer catch
+        }
+      };
+
       try {
-        const module = await import(
-          /* @vite-ignore */
-          `../data/translations/${language}.json`
-        );
+        // Try to load the requested language
+        const module = await loadTranslationFile(language);
         setTranslations(module);
       } catch (error) {
         console.warn(`Failed to load translations for ${language}, falling back to English`, error);
         
+        // If not English, try to load English as fallback
         if (language !== 'en') {
           try {
-            const fallbackModule = await import(
-              /* @vite-ignore */
-              '../data/translations/en.json'
-            );
+            const fallbackModule = await loadTranslationFile('en');
             setTranslations(fallbackModule);
           } catch (fallbackError) {
             console.error('Failed to load fallback English translations:', fallbackError);
