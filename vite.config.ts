@@ -27,13 +27,7 @@ export default defineConfig(({ mode }) => ({
     }
   },
   plugins: [
-    react({
-      babel: {
-        plugins: [
-          ['babel-plugin-react-compiler', {}]
-        ]
-      }
-    }), 
+    react(), 
     // Visualize bundle size in production
     mode === 'analyze' && visualizer({
       open: true,
