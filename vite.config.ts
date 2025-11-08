@@ -92,7 +92,9 @@ export default defineConfig(({ mode }) => ({
     sourcemap: mode !== 'production',
     emptyOutDir: true,
     // Ensure JSON files are properly handled
-    assetsInlineLimit: 0,
+    assetsInlineLimit: 4096, // 4kb - files smaller than this will be inlined as base64
+    // Copy public assets to the dist folder
+    assetsInclude: ['**/*.json'],
     rollupOptions: {
       output: {
         manualChunks: (id) => {
