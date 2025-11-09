@@ -14,7 +14,7 @@ type ThemeProviderState = {
 }
 
 const initialState: ThemeProviderState = {
-  theme: "system",
+  theme: "dark",
   setTheme: () => null,
 }
 
@@ -22,31 +22,41 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = "dark",
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  )
+  const [theme, setTheme] = useState<Theme>(() => {
+    const storedTheme = localStorage.getItem(storageKey) as Theme
+    return storedTheme || defaultTheme
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
-
     root.classList.remove("light", "dark")
 
+    let themeToApply = theme
+    
     if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
+      themeToApply = window.matchMedia("(prefers-color-scheme: dark)").matches 
+        ? "dark" 
         : "light"
-
-      root.classList.add(systemTheme)
-      return
     }
 
-    root.classList.add(theme)
-  }, [theme])
+    root.classList.add(themeToApply)
+    root.style.colorScheme = themeToApply
+    
+    // Force a reflow to ensure the transition is applied
+    const rootStyle = window.getComputedStyle(root)
+    const transition = rootStyle.transition
+    root.style.transition = 'none'
+    // Trigger reflow
+    root.offsetHeight
+    root.style.transition = transition
+    
+    // Store the theme preference
+    localStorage.setItem(storageKey, theme)
+  }, [theme, storageKey])
 
   const value = {
     theme,
