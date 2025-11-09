@@ -1,42 +1,17 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
-import { visualizer } from "rollup-plugin-visualizer";
-import viteCompression from "vite-plugin-compression";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { visualizer } from 'rollup-plugin-visualizer';
+import viteCompression from 'vite-plugin-compression';
 import { VitePWA } from 'vite-plugin-pwa';
 import vitePluginTranslations from './vite.translations';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: '/',
-  server: {
-    host: "::",
-    port: 5173,
-    strictPort: true,
-    open: true,
-    proxy: {
-      // Proxy API requests to avoid CORS issues
-      '/api': {
-        target: 'https://whgjiirmcbsiqhjzgldy.supabase.co',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    },
-    fs: {
-      // Allow serving files from the project root
-      allow: ['..']
-    }
-  },
-  plugins: [
-    react(), 
+export default defineConfig(({ mode }) => {
+  const plugins = [
+    react(),
     // Copy translation files to build directory
     vitePluginTranslations(),
-    // Visualize bundle size in production
-    mode === 'analyze' && visualizer({
-      open: true,
-      gzipSize: true,
-      brotliSize: true,
-    }), 
     // PWA support
     VitePWA({
       registerType: 'autoUpdate',
@@ -62,62 +37,85 @@ export default defineConfig(({ mode }) => ({
         ]
       }
     }),
-    // Compression for production
-    mode === 'production' && viteCompression({ 
-      algorithm: 'brotliCompress',
-      ext: '.br',
-      threshold: 1024,
-      deleteOriginFile: false,
-    }),
-    mode === 'production' && viteCompression({
+    // Compression
+    viteCompression({
       algorithm: 'gzip',
       ext: '.gz',
-      threshold: 1024,
-      deleteOriginFile: false,
     }),
-  ].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-    // Ensure JSON files are properly resolved
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
-  },
-  // Handle JSON files properly
-  json: {
-    stringify: true
-  },
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    chunkSizeWarningLimit: 1000,
-    minify: 'esbuild',
-    sourcemap: mode !== 'production',
-    emptyOutDir: true,
-    // Ensure JSON files are properly handled
-    assetsInlineLimit: 4096, // 4kb - files smaller than this will be inlined as base64
-    // Copy public assets to the dist folder
-    assetsInclude: ['**/*.json'],
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            if (id.includes('@radix-ui')) {
-              return 'vendor-radix';
-            }
-            if (id.includes('@supabase')) {
-              return 'vendor-supabase';
-            }
-            if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
-              return 'vendor-react';
-            }
-            return 'vendor-other';
-          }
-        },
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash][extname]',
+    viteCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+    })
+  ];
+
+  // Add visualizer in analyze mode
+  if (mode === 'analyze') {
+    plugins.push(
+      visualizer({
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+      }) as any
+    );
+  }
+
+  // Add additional compression in production
+  if (mode === 'production') {
+    plugins.push(
+      viteCompression({
+        algorithm: 'gzip',
+        ext: '.gz',
+        threshold: 1024,
+        deleteOriginFile: false,
+      })
+    );
+  }
+
+  return {
+    base: '/',
+    server: {
+      host: '::',
+      port: 0, // 0 means any available port
+      strictPort: false, // Allow any available port
+      open: true,
+      proxy: {
+        // Proxy API requests to avoid CORS issues
+        '/api': {
+          target: 'https://whgjiirmcbsiqhjzgldy.supabase.co',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, '')
+        }
       },
+      fs: {
+        // Allow serving files from the project root
+        allow: ['..']
+      }
     },
-  },
-}));
+    plugins,
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src')
+      },
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+    },
+    build: {
+      outDir: 'dist',
+      assetsDir: 'assets',
+      sourcemap: mode !== 'production',
+      minify: mode === 'production' ? 'terser' : false,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            react: ['react', 'react-dom', 'react-router-dom'],
+            vendor: ['lodash', 'axios']
+          },
+          chunkFileNames: 'assets/[name]-[hash].js',
+          entryFileNames: 'assets/[name]-[hash].js',
+          assetFileNames: 'assets/[name]-[hash][extname]'
+        }
+      },
+      // Include all assets in the build
+      assetsInclude: ['**/*.json']
+    }
+  };
+});

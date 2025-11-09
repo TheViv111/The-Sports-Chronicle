@@ -1,29 +1,5 @@
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
-// Error Boundary for translations
-class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
-  constructor(props: {children: React.ReactNode}) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error) {
-    console.error('Translation Error:', error);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <div className="p-4 text-red-600">Error loading translations. Please refresh the page.</div>;
-    }
-    return this.props.children;
-  }
-}
-
-// Language configuration
 export const supportedLanguages = {
   // European Languages
   en: { name: 'English', nativeName: 'English', direction: 'ltr' },
@@ -61,178 +37,106 @@ export const supportedLanguages = {
   // Other Languages
   tr: { name: 'Turkish', nativeName: 'Türkçe', direction: 'ltr' },
   th: { name: 'Thai', nativeName: 'ไทย', direction: 'ltr' }
-};
+} as const;
 
 export type LanguageCode = keyof typeof supportedLanguages;
 
-interface TranslationContextType {
+type TranslationContextType = {
   currentLanguage: LanguageCode;
-  setLanguage: (language: LanguageCode) => void;
-  t: (key: string, fallback?: string) => any; // Changed return type to any to handle nested objects
-  isRTL: boolean;
-  currentPath: string;
-}
+  setLanguage: (lang: LanguageCode) => void;
+  t: (key: string, fallback?: string) => string;
+  isLoading: boolean;
+};
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
 
-export function TranslationProvider({ children }: { children: React.ReactNode }) {
-  const [currentLanguage, setCurrentLanguage] = useState<LanguageCode>(() => {
-    const saved = localStorage.getItem('language');
-    return (saved as LanguageCode) || 'en';
-  });
+const DEFAULT_LANGUAGE = 'en';
 
-  const [translations, setTranslations] = useState<Record<string, any>>({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+// Helper function to load translations
+async function loadTranslations(lang: string) {
+  try {
+    const base = import.meta.env.BASE_URL ?? '/';
+    const url = `${base}translations/${lang}.json`;
 
-  useEffect(() => {
-    loadTranslations(currentLanguage);
-  }, [currentLanguage]);
-
-  useEffect(() => {
-    // Update document direction for RTL languages
-    const direction = supportedLanguages[currentLanguage].direction;
-    document.documentElement.dir = direction;
-    document.documentElement.lang = currentLanguage;
-  }, [currentLanguage]);
-
-  const loadTranslations = useCallback(async (language: LanguageCode) => {
-    try {
-      setIsLoading(true);
-      
-      const loadTranslationFile = async (lang: string) => {
-        try {
-          // In development, use dynamic import with Vite's import.meta.glob
-          if (import.meta.env.DEV) {
-            const modules = import.meta.glob<{ default: any }>('../data/translations/*.json');
-            const modulePath = `../data/translations/${lang}.json`;
-            const module = await modules[modulePath]?.();
-            if (!module) throw new Error(`Translation file not found: ${lang}.json`);
-            return module.default || module;
-          } else {
-            // In production, fetch the JSON file directly from the public directory
-            const response = await fetch(`/translations/${lang}.json`);
-            if (!response.ok) throw new Error('Failed to load translations');
-            return await response.json();
-          }
-        } catch (error) {
-          console.warn(`Failed to load translations for ${lang}:`, error);
-          throw error;
-        }
-      };
-
-      try {
-        // Try to load the requested language
-        const module = await loadTranslationFile(language);
-        setTranslations(module);
-      } catch (error) {
-        console.warn(`Failed to load translations for ${language}, falling back to English`, error);
-        
-        // If not English, try to load English as fallback
-        if (language !== 'en') {
-          try {
-            const fallbackModule = await loadTranslationFile('en');
-            setTranslations(fallbackModule);
-          } catch (fallbackError) {
-            console.error('Failed to load fallback English translations:', fallbackError);
-            setTranslations({});
-          }
-        } else {
-          setTranslations({});
-        }
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  const setLanguage = (language: LanguageCode) => {
-    if (language !== currentLanguage) {
-      // Save current scroll position
-      const scrollPosition = window.scrollY;
-      
-      // Update language
-      setCurrentLanguage(language);
-      localStorage.setItem('language', language);
-      
-      // Update the URL without causing a page reload
-      const newUrl = `${window.location.pathname}?lang=${language}${window.location.hash}`;
-      window.history.replaceState({}, '', newUrl);
-      
-      // Restore scroll position after a small delay
-      setTimeout(() => {
-        window.scrollTo(0, scrollPosition);
-      }, 0);
-    }
-  };
-
-  const getTranslation = (key: string, fallback?: string): any => {
-    // If translations are still loading, return the key as is
-    if (isLoading) return key;
-    
-    // If no translations are loaded, return the fallback or key
-    if (Object.keys(translations).length === 0) {
-      return fallback || key;
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error(`Failed to load translations for ${lang} (status ${response.status}) at ${url}`);
     }
 
-    // Try to get the translation
-    try {
-      const value = key.split('.').reduce((obj, k) => (obj && obj[k] !== undefined ? obj[k] : undefined), translations);
-      return value !== undefined ? value : (fallback || key);
-    } catch (error) {
-      console.warn(`Error accessing translation key '${key}':`, error);
-      return fallback || key;
+    const contentType = response.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
+      const preview = await response.text();
+      throw new SyntaxError(`Unexpected content-type '${contentType}' at ${url}. First chars: ${preview.slice(0, 60)}`);
     }
-  };
 
-  const t = (key: string, fallback?: string): string => {
-    return getTranslation(key, fallback);
-  };
-
-  const isRTL = supportedLanguages[currentLanguage].direction === 'rtl';
-
-  // Update current path when route changes
-  useEffect(() => {
-    const handleRouteChange = () => {
-      setCurrentPath(window.location.pathname);
-    };
-
-    // Listen for route changes
-    window.addEventListener('popstate', handleRouteChange);
-    return () => {
-      window.removeEventListener('popstate', handleRouteChange);
-    };
-  }, []);
-
-  const value: TranslationContextType = {
-    currentLanguage,
-    setLanguage,
-    t,
-    isRTL,
-    currentPath
-  };
-
-  // Show loading state while translations are being loaded
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    );
+    const data = await response.json();
+    console.log(`Loaded ${Object.keys(data).length} translations for ${lang}`);
+    return data;
+  } catch (error) {
+    console.error(`Error loading translations for ${lang}:`, error);
+    return {};
   }
+}
+
+export function TranslationProvider({ children }: { children: ReactNode }) {
+  const [currentLanguage, setCurrentLanguage] = useState<LanguageCode>(DEFAULT_LANGUAGE);
+  const [translations, setTranslations] = useState<Record<string, string>>({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load translations when the language changes
+  useEffect(() => {
+    const load = async () => {
+      setIsLoading(true);
+      try {
+        const data = await loadTranslations(currentLanguage);
+        setTranslations(data);
+      } catch (error) {
+        console.error('Error loading translations:', error);
+        setTranslations({});
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    load();
+  }, [currentLanguage]);
+
+  // Translation function
+  const t = (key: string, fallback: string = key): string => {
+    if (isLoading) return fallback;
+    const translation = translations[key];
+    
+    if (translation === undefined) {
+      console.warn(`Translation key not found: ${key}`);
+      return fallback;
+    }
+    
+    return translation || fallback;
+  };
+
+  // Set language function
+  const setLanguage = (lang: LanguageCode) => {
+    setCurrentLanguage(lang);
+    localStorage.setItem('preferredLanguage', lang);
+  };
 
   return (
-    <ErrorBoundary>
-      <TranslationContext.Provider value={value}>
-        {children}
-      </TranslationContext.Provider>
-    </ErrorBoundary>
+    <TranslationContext.Provider
+      value={{
+        currentLanguage,
+        setLanguage,
+        t,
+        isLoading,
+      }}
+    >
+      {children}
+    </TranslationContext.Provider>
   );
 }
 
 export function useTranslation() {
   const context = useContext(TranslationContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useTranslation must be used within a TranslationProvider');
   }
   return context;
