@@ -27,32 +27,58 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
-    const storedTheme = localStorage.getItem(storageKey) as Theme
-    return storedTheme || defaultTheme
+    // Check for saved theme preference first
+    const savedTheme = localStorage.getItem(storageKey) as Theme | null
+    
+    // If no saved preference, use the default theme
+    if (!savedTheme) {
+      // If default is system, we'll use the system preference
+      if (defaultTheme === 'system') {
+        return 'system';
+      }
+      return defaultTheme;
+    }
+    
+    return savedTheme;
   })
 
   useEffect(() => {
     const root = window.document.documentElement
     
-    // Remove all theme classes first
+    // Remove all theme classes first from both html and body
     root.classList.remove('light', 'dark')
+    document.body.classList.remove('light', 'dark')
     
     // Determine which theme to apply
-    let themeToApply = theme === 'system'
-      ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-      : theme
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    const themeToApply = theme === 'system' ? systemTheme : theme
     
-    // Add the appropriate theme class
-    root.classList.add(themeToApply)
+    // Add the appropriate theme class to both html and body
+    if (themeToApply === 'dark') {
+      root.classList.add('dark')
+      document.body.classList.add('dark')
+    } else {
+      root.classList.add('light')
+      document.body.classList.add('light')
+    }
     
-    // Set the color scheme for form controls
+    // Set the color scheme for form controls and other elements
     root.style.colorScheme = themeToApply
     
-    // Add smooth transition
+    // Add smooth transition classes
     root.classList.add('transition-colors', 'duration-200')
     
     // Store the theme preference
     localStorage.setItem(storageKey, theme)
+    
+    // For debugging
+    console.log('Theme settings:', { 
+      selectedTheme: theme, 
+      systemTheme,
+      appliedTheme: themeToApply,
+      htmlClass: root.className,
+      bodyClass: document.body.className
+    })
   }, [theme, storageKey])
 
   const value = {

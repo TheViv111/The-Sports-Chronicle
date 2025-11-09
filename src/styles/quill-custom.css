@@ -1,0 +1,137 @@
+/* Quill Editor Container */
+.quill-container {
+  border-radius: 0.375rem;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+/* Light Theme */
+.ql-toolbar {
+  background-color: #f8fafc;
+  border-color: #e2e8f0 !important;
+}
+
+.ql-container {
+  background-color: #fff;
+  border-color: #e2e8f0 !important;
+  min-height: 200px;
+}
+
+.ql-editor {
+  color: #1a202c;
+  min-height: 200px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.ql-toolbar button,
+.ql-picker-label,
+.ql-picker-item {
+  color: #1a202c !important;
+}
+
+.ql-toolbar button:hover,
+.ql-picker-label:hover,
+.ql-picker-item:hover {
+  color: #2563eb !important;
+}
+
+.ql-toolbar button.ql-active {
+  color: #2563eb !important;
+}
+
+.ql-stroke {
+  stroke: #1a202c !important;
+}
+
+.ql-fill {
+  fill: #1a202c !important;
+}
+
+.ql-picker-options {
+  background-color: #fff !important;
+  border-color: #e2e8f0 !important;
+}
+
+.ql-picker-item {
+  color: #1a202c !important;
+}
+
+/* Dark Theme */
+.dark .ql-toolbar {
+  background-color: #1e1e1e;
+  border-color: #374151 !important;
+}
+
+.dark .ql-container {
+  background-color: #1e1e1e;
+  border-color: #374151 !important;
+  color: #e2e8f0;
+}
+
+.dark .ql-editor {
+  color: #e2e8f0;
+}
+
+.dark .ql-toolbar button,
+.dark .ql-picker-label,
+.dark .ql-picker-item {
+  color: #e2e8f0 !important;
+}
+
+.dark .ql-toolbar button:hover,
+.dark .ql-picker-label:hover,
+.dark .ql-picker-item:hover {
+  color: #60a5fa !important;
+}
+
+.dark .ql-toolbar button.ql-active {
+  color: #60a5fa !important;
+}
+
+.dark .ql-stroke {
+  stroke: #e2e8f0 !important;
+}
+
+.dark .ql-fill {
+  fill: #e2e8f0 !important;
+}
+
+.dark .ql-picker-options {
+  background-color: #1e1e1e !important;
+  border-color: #374151 !important;
+}
+
+.dark .ql-picker-item {
+  color: #e2e8f0 !important;
+}
+
+/* Fix for dropdown menus */
+.ql-snow .ql-picker-options {
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Fix for placeholder text */
+.ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+}
+
+.dark .ql-editor.ql-blank::before {
+  color: #6b7280;
+}
+
+/* Fix for code blocks */
+.ql-syntax {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+}
+
+.dark .ql-syntax {
+  background-color: #1f2937;
+  color: #f3f4f6;
+}

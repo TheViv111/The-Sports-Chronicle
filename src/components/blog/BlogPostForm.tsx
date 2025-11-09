@@ -2,13 +2,13 @@ import React, { useMemo, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, Plus, Save, Type } from 'lucide-react';
+import { Loader2, Plus, Save } from 'lucide-react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import CustomQuillEditor from './CustomQuillEditor';
+import '@/styles/quill-custom.css';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useTranslation } from '@/contexts/TranslationContext';
@@ -44,6 +44,9 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
   isSubmitting,
 }) => {
   const { t } = useTranslation();
+  
+  // Theme handling is now managed by CustomQuillEditor
+
   const tf = (key: string, fallback: string) => {
     if (!key) return fallback;
     const translation = t(key);
@@ -90,7 +93,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
     await onSubmit(values);
   };
 
-  const quillRef = useRef<ReactQuill>(null);
+  const quillRef = useRef<any>(null);
   
   // Define system fonts that are available on most devices
   const fontFamilies = [
@@ -267,14 +270,6 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
       document.head.removeChild(style);
     };
   }, []);
-
-  // Style for the editor with font families
-  const editorStyle = {
-    minHeight: '300px',
-    fontSize: '16px',
-    backgroundColor: '#fff',
-    borderRadius: '0 0 4px 4px'
-  } as React.CSSProperties;
 
   // Apply font styles to the editor
   useEffect(() => {
@@ -462,26 +457,8 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
     };
   }, []);
   
-  // Handle editor change
-  const handleEditorChange = (content: string) => {
-    form.setValue('content', content, { shouldValidate: true });
-  };
-
-  // Handle font change
-  const handleFontChange = (value: string) => {
-    const quill = quillRef.current?.getEditor();
-    if (quill) {
-      const range = quill.getSelection();
-      const length = quill.getLength();
-      const targetValue = value === 'sans-serif' ? false : value;
-      if (!range || range.length === 0) {
-        // No selection: apply to whole content for clearer UX
-        quill.formatText(0, length, 'font', targetValue);
-      } else {
-        quill.format('font', targetValue);
-      }
-    }
-  };
+  // Theme handling is now managed by CustomQuillEditor
+  
 
   return (
     <Form {...form}>
@@ -598,25 +575,16 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           name="content"
           render={({ field }) => (
             <FormItem>
-              <div className="flex justify-between items-center mb-2">
-                <FormLabel>{tf("admin.postContent", "Content")}</FormLabel>
+              <FormLabel>{tf("admin.postContent", "Content")}</FormLabel>
+              <div className="mt-1">
+                <CustomQuillEditor
+                  ref={quillRef}
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="Write your blog post content here..."
+                  modules={modules}
+                />
               </div>
-              <FormControl>
-                <div className="border rounded-md overflow-hidden" style={editorStyle}>
-                  <div className="w-full">
-                    <ReactQuill
-                      ref={quillRef}
-                      theme="snow"
-                      value={field.value}
-                      onChange={handleEditorChange}
-                      modules={modules}
-                      style={editorStyle}
-                      placeholder={tf("admin.postContent", "Write your content here...")}
-                      formats={['font', 'size', 'bold', 'italic', 'underline', 'strike', 'header', 'list', 'color', 'background', 'link', 'image']}
-                    />
-                  </div>
-                </div>
-              </FormControl>
               <FormMessage />
             </FormItem>
           )}
