@@ -29,10 +29,43 @@
   background-color: #f8fafc;
 }
 
+/* Active button styles */
+.quill-editor-container .ql-toolbar .ql-formats button.ql-active,
+.quill-editor-container .ql-toolbar .ql-formats button:hover {
+  color: #3b82f6; /* Blue color for active/hover state */
+}
+
+.quill-editor-container .ql-toolbar .ql-formats button.ql-active .ql-stroke {
+  stroke: #3b82f6 !important;
+}
+
+.quill-editor-container .ql-toolbar .ql-formats button.ql-active .ql-fill,
+.quill-editor-container .ql-toolbar .ql-formats button:hover .ql-fill {
+  fill: #3b82f6 !important;
+}
+
 /* Dark Mode Styles */
 .dark .quill-editor-container .ql-toolbar {
   background-color: #1e293b;
   border-color: #334155;
+}
+
+.dark .quill-editor-container .ql-toolbar .ql-formats button {
+  color: #e2e8f0;
+}
+
+.dark .quill-editor-container .ql-toolbar .ql-formats button.ql-active,
+.dark .quill-editor-container .ql-toolbar .ql-formats button:hover {
+  color: #60a5fa; /* Lighter blue for dark mode */
+}
+
+.dark .quill-editor-container .ql-toolbar .ql-formats button.ql-active .ql-stroke {
+  stroke: #60a5fa !important;
+}
+
+.dark .quill-editor-container .ql-toolbar .ql-formats button.ql-active .ql-fill,
+.dark .quill-editor-container .ql-toolbar .ql-formats button:hover .ql-fill {
+  fill: #60a5fa !important;
 }
 
 .dark .quill-editor-container .ql-container {
