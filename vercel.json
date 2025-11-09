@@ -3,7 +3,7 @@
   "buildCommand": "pnpm run build",
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": "dist",
-  "public": "public",
+  "public": true,
   "routes": [
     {
       "src": "^/translations/(.*)",
