@@ -9,7 +9,10 @@ import vitePluginTranslations from './vite.translations';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const plugins = [
-    react(),
+    react({
+      // Add this to support path aliases in JSX
+      jsxImportSource: '@emotion/react',
+    }),
     // Copy translation files to build directory
     vitePluginTranslations(),
     // Copy public files to root of the build output
@@ -81,6 +84,11 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
+    },
     base: '/',
     server: {
       host: '::',

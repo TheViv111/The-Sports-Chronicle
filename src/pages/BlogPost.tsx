@@ -138,7 +138,16 @@ const BlogPost = () => {
 
           <div className="reveal-on-scroll">
             <div 
-              className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-heading prose-h1:text-3xl prose-h1:md:text-4xl prose-h2:text-2xl prose-h2:md:text-3xl prose-h3:text-xl prose-h3:md:text-2xl prose-p:mb-4 prose-p:leading-relaxed prose-ul:list-disc prose-ol:list-decimal prose-li:my-2 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:my-4 prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded-lg prose-a:text-primary hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-lg prose-img:my-6"
+              className="prose prose-lg max-w-none dark:prose-invert"
+              style={{
+                '--tw-prose-bullets': '#000',
+                '--tw-prose-links': '#2563eb',
+                '--tw-prose-links-hover': '#1d4ed8',
+                '--tw-prose-headings': '#111827',
+                '--tw-prose-body': '#374151',
+                '--tw-prose-pre-bg': 'rgba(0, 0, 0, 0.05)'
+              } as React.CSSProperties}
+            
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(displayPost.content || "", { 
                   ADD_TAGS: ["iframe"], 

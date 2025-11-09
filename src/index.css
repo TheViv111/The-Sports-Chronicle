@@ -107,6 +107,32 @@
   }
 }
 
+/* Ensure list items display bullet points */
+.prose ul > li {
+  position: relative;
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.prose ol > li {
+  position: relative;
+  list-style-type: decimal;
+  list-style-position: outside;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+/* Ensure list markers are visible in dark mode */
+.dark .prose ul > li::marker {
+  color: #9ca3af;
+}
+
+dark .prose ol > li::marker {
+  color: #9ca3af;
+}
+
 @layer components {
   /* Scroll reveal animations */
   @keyframes fadeInUp {

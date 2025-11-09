@@ -5,15 +5,15 @@ import * as z from 'zod';
 import { Loader2, Plus, Save } from 'lucide-react';
 import ReactQuill from 'react-quill';
 import CustomQuillEditor from './CustomQuillEditor';
-import '@/styles/quill-custom.css';
+import '../../styles/quill-custom.css';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { useTranslation } from '@/contexts/TranslationContext';
-import { Tables } from '@/integrations/supabase/types';
-import { supabase } from '@/integrations/supabase/client';
+import { Tables } from '@/types/supabase';
+import { supabase } from '@/lib/supabase';
 import { v4 as uuidv4 } from 'uuid';
 
 const blogPostSchema = z.object({

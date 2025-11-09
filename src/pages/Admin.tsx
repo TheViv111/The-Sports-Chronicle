@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { supabase } from "@/lib/supabase";
-import { useTranslation } from "@/contexts/TranslationContext";
-import { BlogPost } from "@/types/supabase";
-import { formatBlogPostDate } from "@/lib/blog-utils";
+import { supabase } from "../lib/supabase";
+import { useTranslation } from "../contexts/TranslationContext";
+import { BlogPost } from "../types/supabase";
+import { formatBlogPostDate } from "../lib/blog-utils";
 import { toast } from "sonner";
 import { Trash2, Edit, Loader2, Home } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import BlogPostForm from "@/components/blog/BlogPostForm";
-import { SEO } from "@/components/common/SEO";
-import Header from "@/components/layout/Header";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Badge } from "../components/ui/badge";
+import BlogPostForm from "../components/blog/BlogPostForm";
+import { SEO } from "../components/common/SEO";
+import Header from "../components/layout/Header";
 
 type AdminTab = 'posts' | 'create' | 'edit';
 

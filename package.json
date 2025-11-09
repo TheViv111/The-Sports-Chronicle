@@ -14,6 +14,10 @@
     "generate:translations": "node scripts/generateLanguageFiles.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@fontsource/merriweather": "^5.2.11",
+    "@fontsource/open-sans": "^5.2.7",
+    "@fontsource/roboto": "^5.2.8",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-avatar": "^1.1.10",

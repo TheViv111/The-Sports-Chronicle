@@ -1,0 +1,135 @@
+/* Editor Container */
+.quill-editor-container .ql-container {
+  min-height: 300px;
+  font-size: 16px;
+  line-height: 1.6;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  font-family: inherit;
+}
+
+.quill-editor-container .ql-editor {
+  min-height: 300px;
+  font-family: inherit;
+  padding: 12px 15px;
+}
+
+/* Make inserted images responsive */
+.quill-editor-container .ql-editor img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* Toolbar Styles */
+.quill-editor-container .ql-toolbar {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+}
+
+/* Dark Mode Styles */
+.dark .quill-editor-container .ql-toolbar {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.dark .quill-editor-container .ql-container {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+.dark .quill-editor-container .ql-editor.ql-blank::before {
+  color: #94a3b8;
+}
+
+/* Font dropdown styles */
+.ql-snow .ql-picker.ql-font .ql-picker-label::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item::before {
+  content: attr(data-value) !important;
+  font-family: inherit !important;
+}
+
+/* Apply font families to the editor content */
+.ql-editor {
+  font-family: inherit;
+}
+
+/* Ensure font is only applied to the text, not the entire editor */
+.ql-editor * {
+  font-family: inherit !important;
+}
+
+/* Style for font classes applied to text */
+.ql-font-roboto { font-family: 'Roboto', sans-serif !important; }
+.ql-font-arial { font-family: Arial, sans-serif !important; }
+.ql-font-georgia { font-family: Georgia, serif !important; }
+.ql-font-verdana { font-family: Verdana, sans-serif !important; }
+.ql-font-courier-new { font-family: 'Courier New', monospace !important; }
+.ql-font-times-new-roman { font-family: 'Times New Roman', serif !important; }
+.ql-font-merriweather { font-family: 'Merriweather', serif !important; }
+.ql-font-open-sans { font-family: 'Open Sans', sans-serif !important; }
+.ql-font-sans-serif { font-family: sans-serif !important; }
+.ql-font-serif { font-family: serif !important; }
+.ql-font-monospace { font-family: monospace !important; }
+
+/* List styles */
+.ql-editor ul > li {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
+
+.ql-editor ol > li {
+  list-style-type: decimal;
+  margin-left: 1.5em;
+}
+
+/* Paragraph and heading spacing */
+.ql-editor p {
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
+
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor h4,
+.ql-editor h5,
+.ql-editor h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  line-height: 1.3;
+}
+
+.ql-editor p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code blocks */
+.ql-snow .ql-editor pre.ql-syntax {
+  background-color: #f3f4f6;
+  border-radius: 0.375rem;
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow-x: auto;
+}
+
+.dark .ql-snow .ql-editor pre.ql-syntax {
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+/* Blockquotes */
+.ql-editor blockquote {
+  border-left: 4px solid #e2e8f0;
+  padding-left: 1em;
+  margin: 1em 0;
+  color: #64748b;
+}
+
+.dark .ql-editor blockquote {
+  border-left-color: #334155;
+  color: #94a3b8;
+}
