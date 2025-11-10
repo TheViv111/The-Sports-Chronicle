@@ -16,52 +16,101 @@ export type Database = {
     Tables: {
       blog_posts: {
         Row: {
-          author: string
-          category: string
-          content: string | null
-          cover_image: string | null
-          created_at: string
-          excerpt: string
-          id: string
-          language: string
-          read_time: string | null
-          slug: string
-          title: string
-          updated_at: string
-+          translations: Json
-        }
+          id: string;
+          author: string;
+          category: string;
+          content: string | null;
+          cover_image: string | null;
+          created_at: string;
+          excerpt: string;
+          language: string;
+          read_time: string | null;
+          slug: string;
+          title: string;
+          updated_at: string;
+          translations: Json | null;
+        };
         Insert: {
-          author?: string
-          category: string
-          content?: string | null
-          cover_image?: string | null
-          created_at?: string
-          excerpt: string
-          id?: string
-          language?: string
-          read_time?: string | null
-          slug: string
-          title: string
-          updated_at?: string
-+          translations?: Json
-        }
+          id?: string;
+          author?: string;
+          category: string;
+          content?: string | null;
+          cover_image?: string | null;
+          created_at?: string;
+          excerpt: string;
+          language?: string;
+          read_time?: string | null;
+          slug: string;
+          title: string;
+          updated_at?: string;
+          translations?: Json | null;
+        };
         Update: {
-          author?: string
-          category?: string
-          content?: string | null
-          cover_image?: string | null
-          created_at?: string
-          excerpt?: string
-          id?: string
-          language?: string
-          read_time?: string | null
-          slug?: string
-          title?: string
-          updated_at?: string
-+          translations?: Json
-        }
-        Relationships: []
-      }
+          id?: string;
+          author?: string;
+          category?: string;
+          content?: string | null;
+          cover_image?: string | null;
+          created_at?: string;
+          excerpt?: string;
+          language?: string;
+          read_time?: string | null;
+          slug?: string;
+          title?: string;
+          updated_at?: string;
+          translations?: Json | null;
+        };
+        Relationships: [];
+      };
+      comments: {
+        Row: {
+          id: string;
+          post_id: string;
+          user_id: string | null;
+          author_name: string;
+          content: string;
+          created_at: string;
+          updated_at: string | null;
+          deleted_at: string | null;
+          is_edited: boolean;
+        };
+        Insert: {
+          id?: string;
+          post_id: string;
+          user_id?: string | null;
+          author_name: string;
+          content: string;
+          created_at?: string;
+          updated_at?: string | null;
+          deleted_at?: string | null;
+          is_edited?: boolean;
+        };
+        Update: {
+          id?: string;
+          post_id?: string;
+          user_id?: string | null;
+          author_name?: string;
+          content?: string;
+          created_at?: string;
+          updated_at?: string | null;
+          deleted_at?: string | null;
+          is_edited?: boolean;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "comments_post_id_fkey";
+            columns: ["post_id"];
+            referencedRelation: "blog_posts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "comments_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
       blog_translations: {
         Row: {
           blog_id: string
@@ -121,44 +170,6 @@ export type Database = {
           {
             foreignKeyName: "blog_translations_blog_id_fkey"
             columns: ["blog_id"]
-            isOneToOne: false
-            referencedRelation: "blog_posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      comments: {
-        Row: {
-          author_name: string
-          content: string
-          created_at: string
-          id: string
-          post_id: string
-          updated_at: string
-          user_id: string | null
-        }
-        Insert: {
-          author_name: string
-          content: string
-          created_at?: string
-          id?: string
-          post_id: string
-          updated_at?: string
-          user_id?: string | null
-        }
-        Update: {
-          author_name?: string
-          content?: string
-          created_at?: string
-          id?: string
-          post_id?: string
-          updated_at?: string
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "comments_post_id_fkey"
-            columns: ["post_id"]
             isOneToOne: false
             referencedRelation: "blog_posts"
             referencedColumns: ["id"]
@@ -477,6 +488,20 @@ export type CompositeTypes<
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
+
+// Profile type for user data
+export interface Profile {
+  id: string;
+  display_name: string | null;
+  avatar_url: string | null;
+  created_at: string;
+  updated_at: string | null;
+}
+
+// Comment with profile data
+export type CommentWithProfile = Tables<'comments'> & {
+  profiles?: Profile | null;
+};
 
 export const Constants = {
   public: {

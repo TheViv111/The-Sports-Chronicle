@@ -6,7 +6,7 @@ import { useSession } from "@/components/auth/SessionContextProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Tables, TablesInsert } from "@/integrations/supabase/types";
+import { Tables } from "@/integrations/supabase/types";
 
 interface CommentFormProps {
   postId: string;
@@ -41,26 +41,54 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
       if (!session?.user) {
         throw new Error("Not authenticated");
       }
-      const authorName = profile?.display_name || session.user.email?.split("@")[0] || t("comments.anonymousUser") || "Anonymous";
-      const newComment: TablesInsert<'comments'> = {
-        post_id: postId,
-        content,
-        author_name: authorName,
-        user_id: session.user.id,
-      };
-      const { error } = await supabase
+      
+      const authorName = profile?.display_name || 
+                       session.user.email?.split("@")[0] || 
+                       t("comments.anonymousUser") || 
+                       "Anonymous";
+      
+      const { data, error } = await supabase
         .from("comments")
-        .insert(newComment as any);
+        .insert({
+          post_id: postId,
+          content: content.trim(),
+          author_name: authorName,
+          user_id: session.user.id,
+          created_at: new Date().toISOString(),
+          is_edited: false
+        } as any)
+        .select()
+        .single();
+        
       if (error) throw error;
+      return data;
+    },
+    onMutate: async () => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({ queryKey: ['comments', postId] });
+
+      // Snapshot the previous value
+      const previousComments = queryClient.getQueryData(['comments', postId]) || [];
+
+      // Return a context with the previous value
+      return { previousComments };
+    },
+    onError: (err: Error, _: void, context) => {
+      console.error("Failed to post comment", err);
+      toast.error(t("comments.postError") || "Failed to post comment. Please try again.");
+      
+      // Rollback to previous comments on error
+      if (context?.previousComments) {
+        queryClient.setQueryData(['comments', postId], context.previousComments);
+      }
+    },
+    onSettled: () => {
+      // Always refetch after error or success
+      queryClient.invalidateQueries({ queryKey: ['comments', postId] });
     },
     onSuccess: () => {
       setContent("");
-      toast.success(t("common.success") || "Success");
-      queryClient.invalidateQueries({ queryKey: ["comments", postId] });
-    },
-    onError: (err: any) => {
-      console.error("Failed to post comment", err);
-      toast.error(t("common.error") || "Error");
+      toast.success(t("comments.postSuccess") || "Comment posted successfully!");
     },
   });
 
@@ -93,9 +121,30 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
         onChange={(e) => setContent(e.target.value)}
         className="min-h-[100px]"
       />
-      <div className="flex justify-end">
-        <Button type="submit" disabled={insertMutation.isPending} className="btn-hover-lift">
-          {t("comments.postComment") || "Post Comment"}
+      <div className="flex justify-between items-center">
+        <div>
+          {insertMutation.isError && (
+            <p className="text-sm text-red-500">
+              {t("comments.postError") || "Failed to post comment"}
+            </p>
+          )}
+        </div>
+        <Button 
+          type="submit" 
+          disabled={insertMutation.isPending || !content.trim()} 
+          className="btn-hover-lift min-w-[120px]"
+        >
+          {insertMutation.isPending ? (
+            <>
+              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              {t("common.posting") || "Posting..."}
+            </>
+          ) : (
+            t("comments.postComment") || "Post Comment"
+          )}
         </Button>
       </div>
     </form>
