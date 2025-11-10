@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { Tables } from "@/integrations/supabase/types";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -12,9 +13,9 @@ import { SEO } from "@/components/common/SEO";
 const UserProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data: profile, isLoading, error } = useQuery({
+  const { data: profile, isLoading, error } = useQuery<Tables<'profiles'> | null>({
     queryKey: ["publicProfile", id],
-    queryFn: async () => {
+    queryFn: async (): Promise<Tables<'profiles'> | null> => {
       if (!id) return null;
       const { data, error } = await supabase
         .from("profiles")
@@ -25,6 +26,7 @@ const UserProfile: React.FC = () => {
       return data;
     },
     enabled: !!id,
+    staleTime: 1000 * 60 * 5,
   });
 
   if (isLoading) {
