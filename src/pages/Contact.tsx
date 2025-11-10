@@ -5,7 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner"; // Using sonner for toasts
 import { useTranslation } from "@/contexts/TranslationContext";
-import { supabase } from "@/integrations/supabase/client";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/common/SEO";
 import { Loader2, CheckCircle2 } from "lucide-react";
@@ -57,7 +56,8 @@ const Contact = () => {
         throw new Error(errorMessage);
       }
 
-      const result = JSON.parse(responseText); // Parse the already read text as JSON for success
+      // Successfully sent the contact form
+      JSON.parse(responseText); // Parse the response to ensure it's valid JSON
 
       toast.success(t("contact.messageSentSuccess"), {
         description: t("contact.messageSentDescription"),
