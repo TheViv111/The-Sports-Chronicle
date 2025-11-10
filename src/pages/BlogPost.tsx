@@ -7,7 +7,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { Tables } from "@/integrations/supabase/types";
 import LoadingScreen from "@/components/common/LoadingScreen";
-import CommentsSection from "@/components/blog/CommentsSection";
 import DOMPurify from "dompurify";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { formatBlogPostDate, transformBlogPostForDisplay } from "@/lib/blog-utils";
@@ -157,8 +156,6 @@ const BlogPost = () => {
               }}
             />
           </div>
-
-          <CommentsSection postId={displayPost.id} />
         </div>
       </article>
 
