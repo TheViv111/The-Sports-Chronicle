@@ -98,7 +98,7 @@ const Contact = () => {
 
         {/* Content */}
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1">
             {/* Contact Form */}
             <div className="reveal-on-scroll fade-in-left">
               <h2 className="font-heading text-2xl font-semibold mb-6">
@@ -192,40 +192,6 @@ const Contact = () => {
                   </div>
                 </div>
               )}
-            </div>
-
-            {/* Newsroom */}
-            <div className="reveal-on-scroll fade-in-right">
-              <h2 className="font-heading text-2xl font-semibold mb-6">
-                {t("contact.newsroom")}
-              </h2>
-              
-              <div className="space-y-4">
-                <p className="text-muted-foreground">
-                  {t("contact.pressReleases")}
-                </p>
-                <p className="font-medium">
-                  newsroom@sportschronicle.com
-                </p>
-              </div>
-
-              <div className="mt-8 p-6 bg-secondary/20 rounded-lg">
-                <h3 className="font-heading text-lg font-semibold mb-3">
-                  {t("contact.editorial")}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {t("contact.editorialInquiries")}
-                </p>
-              </div>
-
-              <div className="mt-8 p-6 bg-secondary/20 rounded-lg">
-                <h3 className="font-heading text-lg font-semibold mb-3">
-                  {t("contact.advertising")}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {t("contact.advertisingOpportunities")}
-                </p>
-              </div>
             </div>
           </div>
         </div>
