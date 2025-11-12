@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://thesportschronicle.com/</loc>
+    <loc>https://the-sports-chronicle.vercel.app/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -10,7 +10,7 @@
   
   <!-- Blog -->
   <url>
-    <loc>https://thesportschronicle.com/blog</loc>
+    <loc>https://the-sports-chronicle.vercel.app/blog</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -18,7 +18,7 @@
   
   <!-- About -->
   <url>
-    <loc>https://thesportschronicle.com/about</loc>
+    <loc>https://the-sports-chronicle.vercel.app/about</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -26,7 +26,7 @@
   
   <!-- Contact -->
   <url>
-    <loc>https://thesportschronicle.com/contact</loc>
+    <loc>https://the-sports-chronicle.vercel.app/contact</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -34,14 +34,14 @@
   
   <!-- Auth Pages -->
   <url>
-    <loc>https://thesportschronicle.com/signin</loc>
+    <loc>https://the-sports-chronicle.vercel.app/signin</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://thesportschronicle.com/signup</loc>
+    <loc>https://the-sports-chronicle.vercel.app/signup</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -50,7 +50,7 @@
   <!-- Note: Blog post URLs would be dynamically generated in a real application -->
   <!-- Example blog post entries: -->
   <url>
-    <loc>https://thesportschronicle.com/blog/sample-post</loc>
+    <loc>https://the-sports-chronicle.vercel.app/blog/sample-post</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
