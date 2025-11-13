@@ -90,11 +90,13 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground min-h-screen transition-colors duration-200;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    @apply min-h-screen transition-colors duration-200;
   }
   
   /* Ensure the root element takes full height */
@@ -103,7 +105,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    font-family: var(--font-heading);
   }
 }
 

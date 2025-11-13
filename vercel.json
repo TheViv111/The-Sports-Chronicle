@@ -13,18 +13,7 @@
       ]
     }
   ],
-  "routes": [
-    {
-      "src": "^/translations/(.*)",
-      "dest": "/translations/$1"
-    },
-    {
-      "src": "^/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|json|txt|xml))$",
-      "dest": "/$1"
-    },
-    {
-      "src": "^/.*",
-      "dest": "/index.html"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
