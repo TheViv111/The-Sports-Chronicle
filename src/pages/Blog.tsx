@@ -51,16 +51,11 @@ const Blog = () => {
     }
   }, [searchParams]);
 
-  const categories = [
-    { id: "all", name: t("category.all") || "All" },
-    { id: "basketball", name: t("category.basketball") },
-    { id: "soccer", name: t("category.soccer") },
-    { id: "swimming", name: t("category.swimming") || "Swimming" },
-    { id: "tennis", name: t("category.tennis") || "Tennis" },
-    { id: "baseball", name: t("category.baseball") || "Baseball" },
-    { id: "athletics", name: t("category.athletics") || "Athletics" },
-    { id: "football", name: t("category.football") || "Football" },
-  ];
+ const categories = [
+  { id: "all", name: t("category.all") || "All" },
+  { id: "basketball", name: t("category.basketball") },
+  { id: "football", name: t("category.football") || "Football" },
+];
 
   const filteredPosts = posts
     .filter(post => selectedCategory === "all" || post.category.toLowerCase() === selectedCategory.toLowerCase())
