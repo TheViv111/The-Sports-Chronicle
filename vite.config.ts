@@ -83,12 +83,16 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, './src'),
       },
+      dedupe: ['react', 'react-dom']
     },
     base: '/',
+    optimizeDeps: {
+      include: ['react', 'react-dom']
+    },
     server: {
       host: '::',
-      port: 0, // 0 means any available port
-      strictPort: false, // Allow any available port
+      port: 0,
+      strictPort: false,
       open: true,
       proxy: {
         // Proxy API requests to avoid CORS issues

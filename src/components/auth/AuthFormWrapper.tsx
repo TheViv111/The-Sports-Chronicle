@@ -1,10 +1,16 @@
 import React from 'react';
-import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
+import { Mail, Lock, Loader2 } from "lucide-react";
+import logo from "@/assets/logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { useSession } from "@/components/auth/SessionContextProvider";
 
 interface AuthFormWrapperProps {
   view: 'sign_in' | 'sign_up' | 'forgotten_password' | 'update_password';
@@ -26,96 +32,228 @@ const AuthFormWrapper: React.FC<AuthFormWrapperProps> = ({
   linkPromptKey,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { session } = useSession();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
-  const localizationVariables = {
-    sign_in: {
-      email_label: t("auth.email"),
-      password_label: t("auth.password"),
-      email_input_placeholder: t("contact.yourEmail"),
-      password_input_placeholder: t("auth.password"),
-      button_label: t("auth.signIn"),
-      link_text: "", // Handled externally
-    },
-    sign_up: {
-      email_label: t("auth.email"),
-      password_label: t("auth.password"),
-      email_input_placeholder: t("contact.yourEmail"),
-      password_input_placeholder: t("auth.password"),
-      button_label: t("auth.signUp"),
-      link_text: "", // Handled externally
-    },
-    forgotten_password: {
-      email_label: t("auth.email"),
-      email_input_placeholder: t("contact.yourEmail"),
-      button_label: t("auth.sendResetInstructions"),
-      link_text: t("auth.forgotPassword"),
-    },
-    update_password: {
-      password_label: t("auth.password"),
-      password_input_placeholder: t("auth.password"),
-      button_label: t("auth.updatePassword"),
-    },
-  };
+  
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="font-heading text-3xl font-bold mb-2">
+        <div className="flex flex-col items-center mb-6">
+          <img src={logo} alt="The Sports Chronicle" className="h-12 w-12 rounded-full shadow-sm mb-3" />
+          <h1 className="font-heading text-3xl font-bold tracking-tight">
             {t(titleKey)}
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-sm text-muted-foreground mt-1">
             {t(subtitleKey)}
           </p>
         </div>
 
-        <Card>
+        <Card className="border-border/60 shadow-xl bg-background/80 backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-center">{t(titleKey)}</CardTitle>
             <CardDescription className="text-center">
               {t(descriptionKey)}
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <Auth
-              supabaseClient={supabase}
-              providers={['google']}
-              appearance={{
-                theme: ThemeSupa,
-                variables: {
-                  default: {
-                    colors: {
-                      brand: 'hsl(var(--primary))',
-                      brandAccent: 'hsl(var(--primary-foreground))',
-                      inputBackground: 'hsl(var(--input))',
-                      inputBorder: 'hsl(var(--border))',
-                      inputBorderHover: 'hsl(var(--ring))',
-                      inputBorderFocus: 'hsl(var(--ring))',
-                      inputText: 'hsl(var(--foreground))',
-                      defaultButtonBackground: 'hsl(var(--primary))',
-                      defaultButtonBackgroundHover: 'hsl(var(--primary)/90%)',
-                      defaultButtonBorder: 'hsl(var(--primary))',
-                      defaultButtonText: 'hsl(var(--primary-foreground))',
-                      anchorTextColor: 'hsl(var(--primary))',
-                      anchorTextHoverColor: 'hsl(var(--primary)/90%)',
-                    },
-                    radii: {
-                      borderRadiusButton: 'var(--radius)',
-                      buttonBorderRadius: 'var(--radius)',
-                      inputBorderRadius: 'var(--radius)',
-                    },
-                  },
-                },
-              }}
-              theme="light"
-              redirectTo={window.location.origin}
-              view={view}
-              localization={{
-                variables: localizationVariables,
-              }}
-            />
+          <CardContent className="space-y-5">
+            {view === 'sign_in' && (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  try {
+                    setLoading(true);
+                    const { error } = await supabase.auth.signInWithPassword({ email, password });
+                    if (error) throw error;
+                    toast.success(t('auth.signedIn'));
+                    navigate('/');
+                  } catch (err) {
+                    const message = err instanceof Error ? err.message : String(err);
+                    toast.error(message || t('auth.errorSignIn'));
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
+                className="space-y-4"
+              >
+                <div className="space-y-2">
+                  <Label htmlFor="email">{t('auth.email')}</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="pl-10" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="password">{t('auth.password')}</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="pl-10" />
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button type="submit" disabled={loading} className="w-full">
+                    {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {t('auth.signIn')}
+                  </Button>
+                </div>
+                <div className="relative py-1">
+                  <Separator />
+                  <p className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2 text-xs text-muted-foreground">{t('common.or')}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button type="button" variant="outline" disabled={loading} className="w-full"
+                    onClick={async () => {
+                      try {
+                        setLoading(true);
+                        await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
+                      } finally {
+                        setLoading(false);
+                      }
+                    }}
+                  >
+                    {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {t('auth.signInWithGoogle')}
+                  </Button>
+                </div>
+              </form>
+            )}
+
+            {view === 'sign_up' && (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  try {
+                    setLoading(true);
+                    const { error } = await supabase.auth.signUp({ email, password });
+                    if (error) throw error;
+                    toast.success(t('auth.checkInboxForConfirmation'));
+                    navigate('/');
+                  } catch (err) {
+                    const message = err instanceof Error ? err.message : String(err);
+                    toast.error(message || t('auth.errorSignUp'));
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
+                className="space-y-4"
+              >
+                <div className="space-y-2">
+                  <Label htmlFor="email">{t('auth.email')}</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="pl-10" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="password">{t('auth.password')}</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="pl-10" />
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button type="submit" disabled={loading} className="w-full">
+                    {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {t('auth.signUp')}
+                  </Button>
+                </div>
+                <div className="relative py-1">
+                  <Separator />
+                  <p className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2 text-xs text-muted-foreground">{t('common.or')}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button type="button" variant="outline" disabled={loading} className="w-full"
+                    onClick={async () => {
+                      try {
+                        setLoading(true);
+                        await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
+                      } finally {
+                        setLoading(false);
+                      }
+                    }}
+                  >
+                    {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {t('auth.signUpWithGoogle')}
+                  </Button>
+                </div>
+              </form>
+            )}
+
+            {view === 'forgotten_password' && (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  try {
+                    setLoading(true);
+                    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
+                    if (error) throw error;
+                    toast.success(t('auth.sentResetInstructions'));
+                    navigate('/');
+                  } catch (err) {
+                    const message = err instanceof Error ? err.message : String(err);
+                    toast.error(message || t('auth.errorForgotPassword'));
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
+                className="space-y-4"
+              >
+                <div className="space-y-2">
+                  <Label htmlFor="email">{t('auth.email')}</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="pl-10" />
+                  </div>
+                </div>
+                <Button type="submit" disabled={loading} className="w-full">
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {t('auth.sendResetInstructions')}
+                </Button>
+              </form>
+            )}
+
+            {view === 'update_password' && (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  try {
+                    if (!session) {
+                      toast.error(t('auth.mustBeLoggedIn'));
+                      return;
+                    }
+                    setLoading(true);
+                    const { error } = await supabase.auth.updateUser({ password });
+                    if (error) throw error;
+                    toast.success(t('auth.passwordUpdated'));
+                    navigate('/profile');
+                  } catch (err) {
+                    const message = err instanceof Error ? err.message : String(err);
+                    toast.error(message || t('auth.errorUpdatePassword'));
+                  } finally {
+                    setLoading(false);
+                  }
+                }}
+                className="space-y-4"
+              >
+                <div className="space-y-2">
+                  <Label htmlFor="password">{t('auth.password')}</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="pl-10" />
+                  </div>
+                </div>
+                <Button type="submit" disabled={loading} className="w-full">
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {t('auth.updatePassword')}
+                </Button>
+              </form>
+            )}
             {linkPath && linkTextKey && linkPromptKey && (
-              <div className="mt-4 text-center text-sm">
+              <div className="mt-2 text-center text-sm">
                 {t(linkPromptKey)}{" "}
                 <Link to={linkPath} className="font-medium text-primary hover:underline">
                   {t(linkTextKey)}

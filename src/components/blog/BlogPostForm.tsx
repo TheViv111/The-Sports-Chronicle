@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Loader2, Plus, Save } from 'lucide-react';
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill-new';
 import CustomQuillEditor from './CustomQuillEditor';
 import '../../styles/quill-custom.css';
 
@@ -163,28 +163,28 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
   // Custom toolbar with font family and size dropdowns
   const modules = useMemo(() => {
     // Register font format
-    const Font = ReactQuill.Quill.import('formats/font');
+    const Font = Quill.import('formats/font');
     const fonts = fontFamilies.map(f => f.class.replace('ql-font-', ''));
     Font.whitelist = fonts;
-    ReactQuill.Quill.register(Font, true);
+    Quill.register(Font, true);
     
     // Register font size format
-    const Size = ReactQuill.Quill.import('attributors/style/size');
+    const Size = Quill.import('attributors/style/size');
     Size.whitelist = fontSizeOptions;
-    ReactQuill.Quill.register(Size, true);
+    Quill.register(Size, true);
 
     // Register custom font class
-    const FontAttributor = ReactQuill.Quill.import('attributors/class/font');
+    const FontAttributor = Quill.import('attributors/class/font');
     FontAttributor.whitelist = fonts;
-    ReactQuill.Quill.register(FontAttributor, true);
+    Quill.register(FontAttributor, true);
 
     // Register formats for toggleable styles
-    const Bold = ReactQuill.Quill.import('formats/bold');
-    const Italic = ReactQuill.Quill.import('formats/italic');
-    const Underline = ReactQuill.Quill.import('formats/underline');
-    ReactQuill.Quill.register(Bold, true);
-    ReactQuill.Quill.register(Italic, true);
-    ReactQuill.Quill.register(Underline, true);
+    const Bold = Quill.import('formats/bold');
+    const Italic = Quill.import('formats/italic');
+    const Underline = Quill.import('formats/underline');
+    Quill.register(Bold, true);
+    Quill.register(Italic, true);
+    Quill.register(Underline, true);
 
     // Custom font handler: apply to selection, or whole content if none
     const fontHandler = (value: string) => {

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill-new';
+import 'quill/dist/quill.snow.css';
 import { modules } from './quill-config';
 import './CustomQuillEditor.css';
 
