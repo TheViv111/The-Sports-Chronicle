@@ -5,7 +5,6 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
 import { VitePWA } from 'vite-plugin-pwa';
 import vitePluginTranslations from './vite.translations';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vitejs.dev/config/
 import type { ViteDevServer } from 'vite';
@@ -20,19 +19,6 @@ export default defineConfig(({ mode }) => {
     }),
     // Copy translation files to build directory
     vitePluginTranslations(),
-    // Copy static files like sitemap.xml and robots.txt
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'public/sitemap.xml',
-          dest: ''
-        },
-        {
-          src: 'public/robots.txt', 
-          dest: ''
-        }
-      ]
-    }),
     // PWA support
     VitePWA({
       registerType: 'autoUpdate',
