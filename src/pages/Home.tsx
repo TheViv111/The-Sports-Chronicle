@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-uti
 import useScrollReveal from "@/hooks/useScrollReveal";
 import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
+import { Suspense } from "react";
 
 const Home = () => {
   const [latestPosts, setLatestPosts] = useState<BlogPostWithDisplay[]>([]);
@@ -23,7 +24,7 @@ const Home = () => {
     loadLatestPosts();
   }, [currentLanguage]);
 
-  const loadLatestPosts = async () => {
+const loadLatestPosts = useCallback(async () => {
     try {
       setLoadingLatestPosts(true);
       const { data, error } = await supabase
@@ -39,7 +40,7 @@ const Home = () => {
     } finally {
       setLoadingLatestPosts(false);
     }
-  };
+  }, [currentLanguage]);
 
   return (
     <>
@@ -48,15 +49,15 @@ const Home = () => {
         canonicalUrl="https://thesportschronicle.com/"
       />
       <div className="min-h-screen">
-        <section className="py-20 text-center">
-          <div className="container mx-auto px-4">
-            <p className="text-muted-foreground uppercase text-sm tracking-wide mb-4 reveal-on-scroll">
+        <section className="py-12 sm:py-16 md:py-20 text-center px-4">
+          <div className="max-w-7xl mx-auto">
+            <p className="text-muted-foreground uppercase text-xs sm:text-sm tracking-wide mb-3 sm:mb-4 reveal-on-scroll">
               {t("hero.welcome")}
             </p>
-            <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 max-w-4xl mx-auto leading-tight reveal-on-scroll">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 max-w-4xl mx-auto leading-tight reveal-on-scroll">
               {t("hero.title")}
             </h1>
-            <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto reveal-on-scroll">
+            <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto reveal-on-scroll">
               {t("hero.subtitle")}
             </p>
 
@@ -73,23 +74,31 @@ const Home = () => {
           </div>
         </section>
 
-      <section className="py-16 bg-secondary/20">
-        <div className="container mx-auto px-4">
-          <h2 className="font-heading text-3xl font-bold mb-8 text-center reveal-on-scroll">
+      <section className="py-12 sm:py-16 bg-secondary/20">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center reveal-on-scroll">
             {t("latestPosts.title")}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12 text-center reveal-on-scroll">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-12 text-center reveal-on-scroll">
             {t("latestPosts.subtitle")}
           </p>
 
           {loadingLatestPosts ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {[...Array(3)].map((_, index) => (
                 <BlogCardSkeleton key={index} />
               ))}
             </div>
           ) : (
-            <BlogCarousel posts={latestPosts} />
+            <Suspense fallback={
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                {[...Array(3)].map((_, index) => (
+                  <BlogCardSkeleton key={index} />
+                ))}
+              </div>
+            }>
+              <BlogCarousel posts={latestPosts} />
+            </Suspense>
           )}
 
           {latestPosts.length > 0 && (

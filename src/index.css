@@ -325,17 +325,61 @@ html, body {
   }
   
   h1 {
-    font-size: 1.75rem !important;
+    font-size: 1.5rem !important;
+    line-height: 1.2;
   }
   
   h2 {
-    font-size: 1.5rem !important;
+    font-size: 1.25rem !important;
+    line-height: 1.2;
+  }
+  
+  .text-xs {
+    font-size: 0.75rem;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 475px) {
+  .hidden\:xs\:block {
+    display: block;
+  }
+  
+  .xs\:text-xs {
+    font-size: 0.75rem;
+  }
+  
+  .xs\:text-sm {
+    font-size: 0.875rem;
+  }
+}
+
+/* Optimize animations for mobile */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Better touch targets for mobile */
+@media (pointer: coarse) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
 
 /* Performance optimizations */
 img {
   content-visibility: auto;
+  contain-intrinsic-size: 800px 450px;
 }
 
 /* Reduce layout shifts */

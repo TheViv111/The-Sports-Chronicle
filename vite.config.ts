@@ -23,13 +23,51 @@ export default defineConfig(({ mode }) => {
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/whgjiirmcbsiqhjzgldy\.supabase\.co\/.*/i,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'supabase-api',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 // 24 hours
+              }
+            }
+          },
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+              }
+            }
+          },
+          {
+            urlPattern: /\.(?:woff|woff2|ttf|eot)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'fonts',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+              }
+            }
+          }
+        ]
       },
       manifest: {
         name: 'The Sports Chronicle',
         short_name: 'SportsChronicle',
         description: 'Your ultimate sports news and updates',
-        theme_color: '#ffffff',
+        theme_color: '#1e293b',
+        background_color: '#ffffff',
+        display: 'standalone',
+        orientation: 'portrait',
         icons: [
           {
             src: '/The Sports Chronicle Logo-modified.png',
@@ -117,7 +155,11 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks: {
             react: ['react', 'react-dom', 'react-router-dom'],
-            vendor: ['lodash', 'axios']
+            ui: ['@radix-ui/react-avatar', '@radix-ui/react-dropdown-menu', '@radix-ui/react-dialog', '@radix-ui/react-label', '@radix-ui/react-scroll-area', '@radix-ui/react-select', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-tabs', '@radix-ui/react-tooltip'],
+            vendor: ['lodash', 'axios', 'clsx', 'tailwind-merge'],
+            carousel: ['embla-carousel-react', 'embla-carousel-autoplay'],
+            icons: ['lucide-react'],
+            supabase: ['@supabase/supabase-js', '@supabase/auth-ui-react', '@supabase/auth-ui-shared']
           },
           chunkFileNames: 'assets/[name]-[hash].js',
           entryFileNames: 'assets/[name]-[hash].js',

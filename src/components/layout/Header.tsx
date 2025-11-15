@@ -83,15 +83,15 @@ const Header = () => {
 
   return (
     <header className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-[90%] lg:w-[80%] rounded-2xl border border-white/20 dark:border-white/10 bg-background/50 backdrop-blur-xl shadow-lg supports-[backdrop-filter]:bg-background/40">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-6">
+      <div className="max-w-7xl mx-auto flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4 lg:px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2 sm:space-x-3">
+        <Link to="/" className="flex items-center space-x-1.5 sm:space-x-2 lg:space-x-3">
           <img 
             src={logo} 
             alt="The Sports Chronicle" 
-            className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover border-2 border-primary/20" 
+            className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 rounded-full object-cover border-2 border-primary/20" 
           />
-          <span className="font-heading text-sm sm:text-xl font-semibold">
+          <span className="font-heading text-xs sm:text-sm lg:text-xl font-semibold hidden xs:block sm:block">
             The Sports Chronicle
           </span>
         </Link>
@@ -118,10 +118,10 @@ const Header = () => {
           {/* Search */}
           <div className="relative">
             {isSearchOpen ? (
-              <form onSubmit={handleSearch} className="flex items-center space-x-2">
+              <form onSubmit={handleSearch} className="flex items-center space-x-1 sm:space-x-2">
                 <Input
                   placeholder={t("common.search")}
-                  className="w-32 sm:w-40 md:w-48 h-8"
+                  className="w-24 sm:w-32 md:w-40 lg:w-48 h-8 text-sm"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoFocus
@@ -134,6 +134,7 @@ const Header = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsSearchOpen(false)}
+                  className="h-8 w-8 p-0"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -213,27 +214,27 @@ const Header = () => {
                 <Menu className="h-4 w-4 icon-hover-twist" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-background">
-              <div className="flex flex-col space-y-6 mt-8">
+            <SheetContent side="right" className="w-[280px] sm:w-[320px] bg-background">
+              <div className="flex flex-col space-y-4 sm:space-y-6 mt-6 sm:mt-8">
                 {/* Logo in mobile menu */}
-                <div className="flex items-center space-x-3 pb-4 border-b">
+                <div className="flex items-center space-x-2 sm:space-x-3 pb-3 sm:pb-4 border-b">
                   <img 
                     src={logo} 
                     alt="The Sports Chronicle" 
                     className="h-8 w-8 rounded-full object-cover border-2 border-primary/20" 
                   />
-                  <SheetTitle className="font-heading text-lg font-semibold">
+                  <SheetTitle className="font-heading text-base sm:text-lg font-semibold">
                     The Sports Chronicle
                   </SheetTitle>
                 </div>
 
                 {/* Navigation */}
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-3 sm:space-y-4">
                   {navItems.map((item) => (
                     <Link
                       key={item.name}
                       to={item.path}
-                      className={`text-lg font-medium transition-colors hover:text-primary ${isActivePage(item.path) ? "text-primary" : "text-foreground"}`}
+                      className={`text-base sm:text-lg font-medium transition-colors hover:text-primary py-1 ${isActivePage(item.path) ? "text-primary" : "text-foreground"}`}
                       onClick={() => {}}
                     >
                       {item.name}
@@ -243,27 +244,27 @@ const Header = () => {
 
                 {/* Auth buttons / Profile for mobile */}
                 {session ? (
-                  <div className="lg:hidden border-t pt-4 flex flex-col space-y-3">
+                  <div className="lg:hidden border-t pt-3 sm:pt-4 flex flex-col space-y-2 sm:space-y-3">
                     <Link to="/profile">
-                      <Button variant="ghost" className="w-full justify-start btn-hover-lift">
+                      <Button variant="ghost" className="w-full justify-start btn-hover-lift h-10 sm:h-11">
                         <UserIcon className="mr-2 h-4 w-4" />
                         {t("nav.profile")}
                       </Button>
                     </Link>
-                    <Button onClick={handleSignOut} variant="ghost" className="w-full justify-start btn-hover-lift">
+                    <Button onClick={handleSignOut} variant="ghost" className="w-full justify-start btn-hover-lift h-10 sm:h-11">
                       <LogOut className="mr-2 h-4 w-4" />
                       {t("nav.signOut")}
                     </Button>
                   </div>
                 ) : (
-                  <div className="lg:hidden border-t pt-4 flex flex-col space-y-3">
+                  <div className="lg:hidden border-t pt-3 sm:pt-4 flex flex-col space-y-2 sm:space-y-3">
                     <Link to="/signin">
-                      <Button variant="ghost" className="w-full justify-start btn-hover-lift">
+                      <Button variant="ghost" className="w-full justify-start btn-hover-lift h-10 sm:h-11">
                         {t("nav.signIn")}
                       </Button>
                     </Link>
                     <Link to="/signup">
-                      <Button className="w-full btn-hover-lift">{t("nav.signUp")}</Button>
+                      <Button className="w-full btn-hover-lift h-10 sm:h-11">{t("nav.signUp")}</Button>
                     </Link>
                   </div>
                 )}
