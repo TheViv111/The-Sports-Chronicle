@@ -22,6 +22,7 @@ const Admin = React.lazy(() => import("./pages/Admin"));
 const SignIn = React.lazy(() => import("./pages/SignIn"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
 const Profile = React.lazy(() => import("./pages/Profile"));
+const Sitemap = React.lazy(() => import("./pages/Sitemap"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -56,6 +57,7 @@ const App = () => (
                       <Route path="signin" element={<SignIn />} />
                       <Route path="signup" element={<SignUp />} />
                       <Route path="profile" element={<Profile />} />
+                      <Route path="sitemap.xml" element={<Sitemap />} />
                     </Route>
                     <Route path="*" element={<NotFound />} />
                   </Routes>
