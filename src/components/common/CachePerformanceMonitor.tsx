@@ -36,7 +36,7 @@ export const CachePerformanceMonitor = () => {
   });
   
   const performanceMetrics = usePerformanceMonitoring();
-  const { cacheStats, cacheEntries, isPreloading, clearCacheByType, optimizeCache } = useAdvancedCacheManager();
+  const { cacheStats, isPreloading, clearCacheByType, optimizeCache } = useAdvancedCacheManager();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
