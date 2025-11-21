@@ -25,7 +25,7 @@ const Header = () => {
   const isMobile = useIsMobile(); // Use the hook to determine if it's a mobile device
 
   const [isAdmin, setIsAdmin] = useState(false);
-  
+
   useEffect(() => {
     const checkAdminStatus = async () => {
       if (session?.user?.email) {
@@ -86,13 +86,13 @@ const Header = () => {
       <div className="max-w-7xl mx-auto flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4 lg:px-6">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-1.5 sm:space-x-2 lg:space-x-3">
-          <img 
-            src="/android-chrome-192x192.png" 
-            alt="The Sports Chronicle" 
-            className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 rounded-full object-cover border-2 border-primary/20" 
+          <img
+            src={logo}
+            alt="The Sports Chronicle"
+            className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 rounded-full object-cover border-2 border-primary/20"
             loading="eager"
             decoding="async"
-            fetchpriority="high"
+            fetchPriority="high"
           />
           <span className="font-heading text-xs sm:text-sm lg:text-xl font-semibold hidden xs:block sm:block">
             The Sports Chronicle
@@ -105,11 +105,10 @@ const Header = () => {
             <Link
               key={item.name}
               to={item.path}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActivePage(item.path)
+              className={`text-sm font-medium transition-colors hover:text-primary ${isActivePage(item.path)
                   ? "text-primary"
                   : "text-muted-foreground"
-              }`}
+                }`}
             >
               {item.name}
             </Link>
@@ -164,8 +163,8 @@ const Header = () => {
           {session ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className="relative h-8 w-8 rounded-full btn-hover-lift"
                 >
                   <Avatar className="h-8 w-8">
@@ -221,13 +220,13 @@ const Header = () => {
               <div className="flex flex-col space-y-4 sm:space-y-6 mt-6 sm:mt-8">
                 {/* Logo in mobile menu */}
                 <div className="flex items-center space-x-2 sm:space-x-3 pb-3 sm:pb-4 border-b">
-                  <img 
-                    src="/android-chrome-192x192.png" 
-                    alt="The Sports Chronicle" 
-                    className="h-8 w-8 rounded-full object-cover border-2 border-primary/20" 
+                  <img
+                    src={logo}
+                    alt="The Sports Chronicle"
+                    className="h-8 w-8 rounded-full object-cover border-2 border-primary/20"
                     loading="eager"
                     decoding="async"
-                    fetchpriority="high"
+                    fetchPriority="high"
                   />
                   <SheetTitle className="font-heading text-base sm:text-lg font-semibold">
                     The Sports Chronicle
@@ -241,7 +240,7 @@ const Header = () => {
                       key={item.name}
                       to={item.path}
                       className={`text-base sm:text-lg font-medium transition-colors hover:text-primary py-1 ${isActivePage(item.path) ? "text-primary" : "text-foreground"}`}
-                      onClick={() => {}}
+                      onClick={() => { }}
                     >
                       {item.name}
                     </Link>
