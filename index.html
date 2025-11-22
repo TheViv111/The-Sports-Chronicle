@@ -10,22 +10,16 @@
   <meta name="author" content="The Sports Chronicle" />
   <meta name="theme-color" content="#1e293b" />
 
-  <!-- Advanced Performance Optimization -->
-  <!-- DNS prefetch for external resources -->
+  <!-- DNS prefetch -->
   <link rel="dns-prefetch" href="//whgjiirmcbsiqhjzgldy.supabase.co" />
-  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
   <link rel="dns-prefetch" href="//vercel-insights.com" />
 
-  <!-- Preconnect for critical external resources -->
+  <!-- Preconnect -->
   <link rel="preconnect" href="https://whgjiirmcbsiqhjzgldy.supabase.co" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Preload critical fonts for mobile performance -->
-  <link rel="preload" as="font" type="font/woff2"
-    href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2"
-    crossorigin />
+  <!-- Preload critical fonts to avoid waterfall -->
+  <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/playfair-display-bold.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- SEO and Open Graph -->
   <meta property="og:title" content="The Sports Chronicle" />
@@ -46,63 +40,332 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1e293b" />
   <meta name="msapplication-TileColor" content="#1e293b" />
 
-  <!-- Security Headers (Note: X-Frame-Options should be set via server HTTP headers) -->
+  <!-- Security Headers -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
 
-  <!-- Critical CSS inline -->
+  <!-- CRITICAL CSS - Expanded to eliminate render-blocking -->
   <style>
-    /* Critical CSS for above-the-fold content */
-    body {
-      margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #f8fafc;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    /* Fonts - Inline to avoid waterfall */
+    @font-face {
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url(/fonts/inter-var.woff2) format('woff2')
     }
 
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url(/fonts/playfair-display-bold.woff2) format('woff2')
+    }
+
+    /* CSS Variables */
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 0 0% 9%;
+      --primary: 0 0% 9%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 0 0% 96%;
+      --secondary-foreground: 0 0% 9%;
+      --muted: 0 0% 96%;
+      --muted-foreground: 0 0% 45%;
+      --accent: 0 0% 96%;
+      --accent-foreground: 0 0% 9%;
+      --card: 0 0% 100%;
+      --card-foreground: 0 0% 9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 0 0% 9%;
+      --border: 0 0% 90%;
+      --input: 0 0% 90%;
+      --ring: 0 0% 9%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 0 0% 98%;
+      --radius: 0.5rem
+    }
+
+    .dark {
+      --background: 0 0% 9%;
+      --foreground: 0 0% 98%;
+      --primary: 0 0% 98%;
+      --primary-foreground: 0 0% 9%;
+      --secondary: 0 0% 15%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 0 0% 15%;
+      --muted-foreground: 0 0% 64%;
+      --accent: 0 0% 15%;
+      --accent-foreground: 0 0% 98%;
+      --card: 0 0% 12%;
+      --card-foreground: 0 0% 98%;
+      --popover: 0 0% 9%;
+      --popover-foreground: 0 0% 98%;
+      --border: 0 0% 15%;
+      --input: 0 0% 15%;
+      --ring: 0 0% 98%
+    }
+
+    /* Base Reset */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: 0 solid hsl(var(--border))
+    }
+
+    /* Critical Body & Root */
+    html {
+      -webkit-text-size-adjust: 100%;
+      tab-size: 4
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      line-height: 1.5
+    }
+
+    #root {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column
+    }
+
+    /* Header - Critical (Above the fold) */
+    header {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      width: 95%;
+      max-width: 1280px;
+      border-radius: 16px;
+      border: 1px solid hsl(var(--border)/.2);
+      background: hsl(var(--background)/.5);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 10px 30px -10px hsl(var(--primary)/.1);
+      padding: 12px 20px
+    }
+
+    /* Core Utilities - Most Used */
+    .flex {
+      display: flex
+    }
+
+    .inline-flex {
+      display: inline-flex
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .items-start {
+      align-items: flex-start
+    }
+
+    .justify-between {
+      justify-content: space-between
+    }
+
+    .justify-center {
+      justify-content: center
+    }
+
+    .gap-2 {
+      gap: 0.5rem
+    }
+
+    .gap-4 {
+      gap: 1rem
+    }
+
+    .space-x-2>:not([hidden])~:not([hidden]) {
+      margin-left: 0.5rem
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .rounded-md {
+      border-radius: calc(var(--radius) - 2px)
+    }
+
+    .rounded-lg {
+      border-radius: var(--radius)
+    }
+
+    .h-8 {
+      height: 2rem
+    }
+
+    .h-10 {
+      height: 2.5rem
+    }
+
+    .w-8 {
+      width: 2rem
+    }
+
+    .w-10 {
+      width: 2.5rem
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    .relative {
+      position: relative
+    }
+
+    .absolute {
+      position: absolute
+    }
+
+    .fixed {
+      position: fixed
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem
+    }
+
+    .font-medium {
+      font-weight: 500
+    }
+
+    .font-semibold {
+      font-weight: 600
+    }
+
+    .font-bold {
+      font-weight: 700
+    }
+
+    .text-foreground {
+      color: hsl(var(--foreground))
+    }
+
+    .text-muted-foreground {
+      color: hsl(var(--muted-foreground))
+    }
+
+    .bg-background {
+      background-color: hsl(var(--background))
+    }
+
+    .bg-primary {
+      background-color: hsl(var(--primary))
+    }
+
+    .bg-card {
+      background-color: hsl(var(--card))
+    }
+
+    .border {
+      border-width: 1px
+    }
+
+    .border-border {
+      border-color: hsl(var(--border))
+    }
+
+    .p-2 {
+      padding: 0.5rem
+    }
+
+    .p-4 {
+      padding: 1rem
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem
+    }
+
+    .shadow-md {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06)
+    }
+
+    .transition {
+      transition-property: all;
+      transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+      transition-duration: 150ms
+    }
+
+    /* Loading State */
     .loading {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: 100vh
     }
 
     .spinner {
       width: 40px;
       height: 40px;
-      border: 4px solid #e2e8f0;
-      border-top: 4px solid #1e293b;
+      border: 4px solid hsl(var(--border));
+      border-top: 4px solid hsl(var(--primary));
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: spin 1s linear infinite
     }
 
     @keyframes spin {
       0% {
-        transform: rotate(0deg);
+        transform: rotate(0deg)
       }
 
       100% {
-        transform: rotate(360deg);
+        transform: rotate(360deg)
       }
     }
 
-    /* Prevent layout shift */
-    #root {
-      min-height: 100vh;
+    /* Button Critical Styles */
+    button {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      cursor: pointer
     }
   </style>
-
-  <!-- Optimize font loading with font-display swap -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-      rel="stylesheet">
-  </noscript>
 
   <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="qITzL1z4xlgiIVCuteA5T48SKbczMvMPANORcOydMMs" />
