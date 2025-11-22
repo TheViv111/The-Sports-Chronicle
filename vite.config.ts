@@ -22,6 +22,8 @@ export default defineConfig(({ mode }) => {
       injectRegister: 'inline', // Inline to avoid blocking external script
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,webp,avif}'],
+        // Increase maximum file size to cache large vendor bundles
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MB
         // Advanced caching strategies for optimal performance
         runtimeCaching: [
           {
