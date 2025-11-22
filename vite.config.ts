@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
     // PWA support
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'inline', // Inline to avoid blocking external script
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,webp,avif}'],
         // Advanced caching strategies for optimal performance
