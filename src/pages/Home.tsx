@@ -10,15 +10,21 @@ import useScrollReveal from "@/hooks/useScrollReveal";
 import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
 import { Suspense } from "react";
+import Spline from "@splinetool/react-spline";
+import { useTheme } from "@/components/common/ThemeProvider";
 
 const Home = () => {
   const [latestPosts, setLatestPosts] = useState<BlogPostWithDisplay[]>([]);
   const [loadingLatestPosts, setLoadingLatestPosts] = useState(true);
   const { t, currentLanguage } = useTranslation();
+  const { theme } = useTheme();
+
+  // Determine if dark mode is active
+  const isDarkMode = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   useScrollReveal('.reveal-on-scroll');
 
-  
+
 
   useEffect(() => {
     const schedule = () => {
@@ -31,7 +37,7 @@ const Home = () => {
     }
   }, [currentLanguage]);
 
-const loadLatestPosts = useCallback(async () => {
+  const loadLatestPosts = useCallback(async () => {
     try {
       setLoadingLatestPosts(true);
       const { data, error } = await supabase
@@ -51,13 +57,20 @@ const loadLatestPosts = useCallback(async () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         schemaType="WebSite"
         canonicalUrl="https://thesportschronicle.com/"
       />
       <div className="min-h-screen">
-        <section className="py-12 sm:py-16 md:py-20 text-center px-4">
-          <div className="max-w-7xl mx-auto">
+        <section className="relative py-12 sm:py-16 md:py-20 text-center px-4 min-h-[600px] overflow-hidden">
+          {/* Spline 3D Background - Only visible in dark mode */}
+          {isDarkMode && (
+            <div className="absolute inset-0 -z-10 opacity-60">
+              <Spline scene="https://prod.spline.design/6d4ygri42yVcAJ02/scene.splinecode" />
+            </div>
+          )}
+
+          <div className="relative z-10 max-w-7xl mx-auto">
             <p className="text-muted-foreground uppercase text-xs sm:text-sm tracking-wide mb-3 sm:mb-4 reveal-on-scroll">
               {t("hero.welcome")}
             </p>
@@ -68,7 +81,7 @@ const loadLatestPosts = useCallback(async () => {
               {t("hero.subtitle")}
             </p>
 
-            
+
 
             <div className="reveal-on-scroll">
               <Link to="/blog">
@@ -81,46 +94,46 @@ const loadLatestPosts = useCallback(async () => {
           </div>
         </section>
 
-      <section className="py-12 sm:py-16 bg-secondary/20">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center reveal-on-scroll">
-            {t("latestPosts.title")}
-          </h2>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-12 text-center reveal-on-scroll">
-            {t("latestPosts.subtitle")}
-          </p>
+        <section className="py-12 sm:py-16 bg-secondary/20">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center reveal-on-scroll">
+              {t("latestPosts.title")}
+            </h2>
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-12 text-center reveal-on-scroll">
+              {t("latestPosts.subtitle")}
+            </p>
 
-          {loadingLatestPosts ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {[...Array(3)].map((_, index) => (
-                <BlogCardSkeleton key={index} />
-              ))}
-            </div>
-          ) : (
-            <Suspense fallback={
+            {loadingLatestPosts ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 {[...Array(3)].map((_, index) => (
                   <BlogCardSkeleton key={index} />
                 ))}
               </div>
-            }>
-              <BlogCarousel posts={latestPosts} />
-            </Suspense>
-          )}
+            ) : (
+              <Suspense fallback={
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                  {[...Array(3)].map((_, index) => (
+                    <BlogCardSkeleton key={index} />
+                  ))}
+                </div>
+              }>
+                <BlogCarousel posts={latestPosts} />
+              </Suspense>
+            )}
 
-          {latestPosts.length > 0 && (
-            <div className="text-center mt-12 reveal-on-scroll">
-              <Link to="/blog">
-                <Button variant="outline" size="lg" className="group btn-hover-lift">
-                  {t("latestPosts.viewAll")}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
-    </div>
+            {latestPosts.length > 0 && (
+              <div className="text-center mt-12 reveal-on-scroll">
+                <Link to="/blog">
+                  <Button variant="outline" size="lg" className="group btn-hover-lift">
+                    {t("latestPosts.viewAll")}
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
     </>
   );
 };
