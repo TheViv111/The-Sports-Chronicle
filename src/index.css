@@ -390,3 +390,66 @@ img {
 main {
   flex: 1;
 }
+
+/* Forced Reflow Mitigation - Reduce layout thrashing from third-party libraries */
+@layer utilities {
+  /* Radix UI ScrollArea - Contain layout calculations */
+  [data-radix-scroll-area-viewport] {
+    contain: layout style;
+  }
+
+  /* Embla Carousel - Isolate reflow scope */
+  .embla {
+    contain: layout;
+  }
+
+  .embla__container {
+    contain: layout style;
+  }
+
+  /* Radix UI Dropdown/Dialog - Optimize portal rendering */
+  [data-radix-popper-content-wrapper],
+  [data-radix-portal] {
+    contain: layout style paint;
+  }
+
+  /* Animated elements - Hint browser for optimization */
+  [data-motion],
+  .animate-in,
+  .fade-in,
+  .slide-in,
+  .carousel-item-reveal {
+    will-change: transform, opacity;
+  }
+
+  /* After animation completes, remove will-change */
+  [data-motion="false"],
+  .animate-in.complete {
+    will-change: auto;
+  }
+
+  /* Off-screen content virtualization */
+  .lazy-load,
+  [data-state="inactive"],
+  [hidden] {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
+  }
+
+  /* Optimize list rendering */
+  article,
+  .blog-card,
+  .post-item {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+  }
+
+  /* GPU acceleration for transforms */
+  .transform,
+  .translate,
+  .scale,
+  .rotate {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
