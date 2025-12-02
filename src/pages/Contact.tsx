@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,23 +8,36 @@ import { useTranslation } from "@/contexts/TranslationContext";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/common/SEO";
 import { Loader2, CheckCircle2 } from "lucide-react";
+import { useSession } from "@/components/auth/SessionContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [justSubmitted, setJustSubmitted] = useState(false);
   const { t } = useTranslation();
+  const { session } = useSession();
+  const navigate = useNavigate();
+
+  const userEmail = session?.user?.email || "";
 
   useScrollReveal('.reveal-on-scroll');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!session) {
+      toast.error(t("common.authenticationRequired"), {
+        description: t("auth.signIn"),
+      });
+      navigate("/signin");
+      return;
+    }
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
     const contactData = {
       firstName: formData.get("firstName") as string,
       lastName: formData.get("lastName") as string,
-      email: formData.get("email") as string,
+      email: userEmail,
       subject: formData.get("subject") as string,
       message: formData.get("message") as string,
     };
@@ -35,6 +48,7 @@ const Contact = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          ...(session?.access_token ? { 'Authorization': `Bearer ${session.access_token}` } : {}),
         },
         body: JSON.stringify(contactData),
       });
@@ -135,8 +149,10 @@ const Contact = () => {
                     id="email"
                     name="email"
                     type="email"
+                    value={userEmail}
+                    readOnly
+                    disabled={!session}
                     placeholder={t("contact.yourEmail")}
-                    required
                     className="mt-1"
                   />
                 </div>
@@ -166,7 +182,7 @@ const Contact = () => {
                 <Button
                   type="submit"
                   className="w-full btn-hover-lift tap-press"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !session}
                 >
                   {isSubmitting ? (
                     <span className="inline-flex items-center gap-2">
