@@ -87,7 +87,9 @@ const App = () => {
                         <SpeedInsights />
                       </>
                     )}
-                    {import.meta.env.DEV && <CachePerformanceMonitor />}
+                    {(import.meta.env.DEV && import.meta.env.VITE_SHOW_CACHE_MONITOR === 'true') && (
+                      <CachePerformanceMonitor />
+                    )}
                   </Suspense>
                 </SessionContextProvider>
               </BrowserRouter>
