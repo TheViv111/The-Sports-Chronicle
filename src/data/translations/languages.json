@@ -1,0 +1,272 @@
+{
+  "en": {
+    "languages.searchPlaceholder": "Search languages...",
+    "languages.current": "Current",
+    "languages.group.default": "Default",
+    "languages.group.indian": "Indian Languages",
+    "languages.group.european": "European Languages",
+    "languages.group.eastAsian": "East Asian Languages",
+    "languages.group.middleEastern": "Middle Eastern Languages",
+    "languages.group.other": "Other Languages"
+  },
+  "es": {
+    "languages.searchPlaceholder": "Buscar idiomas...",
+    "languages.current": "Actual",
+    "languages.group.default": "Predeterminado",
+    "languages.group.indian": "Idiomas Indios",
+    "languages.group.european": "Idiomas Europeos",
+    "languages.group.eastAsian": "Idiomas de Asia Oriental",
+    "languages.group.middleEastern": "Idiomas de Oriente Medio",
+    "languages.group.other": "Otros Idiomas"
+  },
+  "fr": {
+    "languages.searchPlaceholder": "Rechercher des langues...",
+    "languages.current": "Actuel",
+    "languages.group.default": "Par défaut",
+    "languages.group.indian": "Langues Indiennes",
+    "languages.group.european": "Langues Européennes",
+    "languages.group.eastAsian": "Langues d'Asie de l'Est",
+    "languages.group.middleEastern": "Langues du Moyen-Orient",
+    "languages.group.other": "Autres Langues"
+  },
+  "de": {
+    "languages.searchPlaceholder": "Sprachen suchen...",
+    "languages.current": "Aktuell",
+    "languages.group.default": "Standard",
+    "languages.group.indian": "Indische Sprachen",
+    "languages.group.european": "Europäische Sprachen",
+    "languages.group.eastAsian": "Ostasische Sprachen",
+    "languages.group.middleEastern": "Nahöstliche Sprachen",
+    "languages.group.other": "Andere Sprachen"
+  },
+  "it": {
+    "languages.searchPlaceholder": "Cerca lingue...",
+    "languages.current": "Attuale",
+    "languages.group.default": "Predefinito",
+    "languages.group.indian": "Lingue Indiane",
+    "languages.group.european": "Lingue Europee",
+    "languages.group.eastAsian": "Lingue dell'Asia Orientale",
+    "languages.group.middleEastern": "Lingue del Medio Oriente",
+    "languages.group.other": "Altre Lingue"
+  },
+  "pt": {
+    "languages.searchPlaceholder": "Pesquisar idiomas...",
+    "languages.current": "Atual",
+    "languages.group.default": "Padrão",
+    "languages.group.indian": "Idiomas Indianos",
+    "languages.group.european": "Idiomas Europeus",
+    "languages.group.eastAsian": "Idiomas do Leste Asiático",
+    "languages.group.middleEastern": "Idiomas do Oriente Médio",
+    "languages.group.other": "Outros Idiomas"
+  },
+  "ru": {
+    "languages.searchPlaceholder": "Поиск языков...",
+    "languages.current": "Текущий",
+    "languages.group.default": "По умолчанию",
+    "languages.group.indian": "Индийские языки",
+    "languages.group.european": "Европейские языки",
+    "languages.group.eastAsian": "Восточноазиатские языки",
+    "languages.group.middleEastern": "Ближневосточные языки",
+    "languages.group.other": "Другие языки"
+  },
+  "pl": {
+    "languages.searchPlaceholder": "Szukaj języków...",
+    "languages.current": "Aktualny",
+    "languages.group.default": "Domyślny",
+    "languages.group.indian": "Języki Indyjskie",
+    "languages.group.european": "Języki Europejskie",
+    "languages.group.eastAsian": "Języki Wschodnioazjatyckie",
+    "languages.group.middleEastern": "Języki Bliskiego Wschodu",
+    "languages.group.other": "Inne Języki"
+  },
+  "nl": {
+    "languages.searchPlaceholder": "Zoek talen...",
+    "languages.current": "Huidig",
+    "languages.group.default": "Standaard",
+    "languages.group.indian": "Indiase Talen",
+    "languages.group.european": "Europese Talen",
+    "languages.group.eastAsian": "Oost-Aziatische Talen",
+    "languages.group.middleEastern": "Midden-Oosterse Talen",
+    "languages.group.other": "Andere Talen"
+  },
+  "sv": {
+    "languages.searchPlaceholder": "Sök språk...",
+    "languages.current": "Aktuell",
+    "languages.group.default": "Standard",
+    "languages.group.indian": "Indiska Språk",
+    "languages.group.european": "Europeiska Språk",
+    "languages.group.eastAsian": "Östasiatiska Språk",
+    "languages.group.middleEastern": "Mellanösternspråk",
+    "languages.group.other": "Andra Språk"
+  },
+  "no": {
+    "languages.searchPlaceholder": "Søk språk...",
+    "languages.current": "Nåværende",
+    "languages.group.default": "Standard",
+    "languages.group.indian": "Indiske Språk",
+    "languages.group.european": "Europeiske Språk",
+    "languages.group.eastAsian": "Østasiatiske Språk",
+    "languages.group.middleEastern": "Midtøstens Språk",
+    "languages.group.other": "Andre Språk"
+  },
+  "da": {
+    "languages.searchPlaceholder": "Søg sprog...",
+    "languages.current": "Nuværende",
+    "languages.group.default": "Standard",
+    "languages.group.indian": "Indiske Sprog",
+    "languages.group.european": "Europæiske Sprog",
+    "languages.group.eastAsian": "Østasiatiske Sprog",
+    "languages.group.middleEastern": "Mellemøstlige Sprog",
+    "languages.group.other": "Andre Sprog"
+  },
+  "fi": {
+    "languages.searchPlaceholder": "Hae kieliä...",
+    "languages.current": "Nykyinen",
+    "languages.group.default": "Oletus",
+    "languages.group.indian": "Intialaiset kielet",
+    "languages.group.european": "Eurooppalaiset kielet",
+    "languages.group.eastAsian": "Itä-Aasian kielet",
+    "languages.group.middleEastern": "Lähi-idän kielet",
+    "languages.group.other": "Muut kielet"
+  },
+  "zh": {
+    "languages.searchPlaceholder": "搜索语言...",
+    "languages.current": "当前",
+    "languages.group.default": "默认",
+    "languages.group.indian": "印度语言",
+    "languages.group.european": "欧洲语言",
+    "languages.group.eastAsian": "东亚语言",
+    "languages.group.middleEastern": "中东语言",
+    "languages.group.other": "其他语言"
+  },
+  "ja": {
+    "languages.searchPlaceholder": "言語を検索...",
+    "languages.current": "現在",
+    "languages.group.default": "デフォルト",
+    "languages.group.indian": "インドの言語",
+    "languages.group.european": "ヨーロッパの言語",
+    "languages.group.eastAsian": "東アジアの言語",
+    "languages.group.middleEastern": "中東の言語",
+    "languages.group.other": "その他の言語"
+  },
+  "ko": {
+    "languages.searchPlaceholder": "언어 검색...",
+    "languages.current": "현재",
+    "languages.group.default": "기본",
+    "languages.group.indian": "인도 언어",
+    "languages.group.european": "유럽 언어",
+    "languages.group.eastAsian": "동아시아 언어",
+    "languages.group.middleEastern": "중동 언어",
+    "languages.group.other": "기타 언어"
+  },
+  "hi": {
+    "languages.searchPlaceholder": "भाषाएं खोजें...",
+    "languages.current": "वर्तमान",
+    "languages.group.default": "डिफ़ॉल्ट",
+    "languages.group.indian": "भारतीय भाषाएँ",
+    "languages.group.european": "यूरोपीय भाषाएँ",
+    "languages.group.eastAsian": "पूर्वी एशियाई भाषाएँ",
+    "languages.group.middleEastern": "मध्य पूर्वी भाषाएँ",
+    "languages.group.other": "अन्य भाषाएँ"
+  },
+  "bn": {
+    "languages.searchPlaceholder": "ভাষা খুঁজুন...",
+    "languages.current": "বর্তমান",
+    "languages.group.default": "ডিফল্ট",
+    "languages.group.indian": "ভারতীয় ভাষা",
+    "languages.group.european": "ইউরোপীয় ভাষা",
+    "languages.group.eastAsian": "পূর্ব এশীয় ভাষা",
+    "languages.group.middleEastern": "মধ্যপ্রাচ্যের ভাষা",
+    "languages.group.other": "অন্যান্য ভাষা"
+  },
+  "ta": {
+    "languages.searchPlaceholder": "மொழிகளைத் தேடவும்...",
+    "languages.current": "தற்போதைய",
+    "languages.group.default": "இயல்புநிலை",
+    "languages.group.indian": "இந்திய மொழிகள்",
+    "languages.group.european": "ஐரோப்பிய மொழிகள்",
+    "languages.group.eastAsian": "கிழக்கு ஆசிய மொழிகள்",
+    "languages.group.middleEastern": "மத்திய கிழக்கு மொழிகள்",
+    "languages.group.other": "பிற மொழிகள்"
+  },
+  "te": {
+    "languages.searchPlaceholder": "భాషలను వెతకండి...",
+    "languages.current": "ప్రస్తుత",
+    "languages.group.default": "డిఫాల్ట్",
+    "languages.group.indian": "భారతీయ భాషలు",
+    "languages.group.european": "యూరోపియన్ భాషలు",
+    "languages.group.eastAsian": "తూర్పు ఆసియా భాషలు",
+    "languages.group.middleEastern": "మధ్యప్రాచ్య భాషలు",
+    "languages.group.other": "ఇతర భాషలు"
+  },
+  "mr": {
+    "languages.searchPlaceholder": "भाषा शोधा...",
+    "languages.current": "वर्तमान",
+    "languages.group.default": "डीफॉल्ट",
+    "languages.group.indian": "भारतीय भाषा",
+    "languages.group.european": "युरोपियन भाषा",
+    "languages.group.eastAsian": "पूर्व आशियाई भाषा",
+    "languages.group.middleEastern": "मध्य पूर्व भाषा",
+    "languages.group.other": "इतर भाषा"
+  },
+  "gu": {
+    "languages.searchPlaceholder": "ભાષાઓ શોધો...",
+    "languages.current": "વર્તમાન",
+    "languages.group.default": "ડિફૉલ્ટ",
+    "languages.group.indian": "ભારતીય ભાષાઓ",
+    "languages.group.european": "યુરોપિયન ભાષાઓ",
+    "languages.group.eastAsian": "પૂર્વ એશિયન ભાષાઓ",
+    "languages.group.middleEastern": "મધ્ય પૂર્વીય ભાષાઓ",
+    "languages.group.other": "અન્ય ભાષાઓ"
+  },
+  "ar": {
+    "languages.searchPlaceholder": "البحث عن اللغات...",
+    "languages.current": "الحالية",
+    "languages.group.default": "افتراضي",
+    "languages.group.indian": "اللغات الهندية",
+    "languages.group.european": "اللغات الأوروبية",
+    "languages.group.eastAsian": "لغات شرق آسيا",
+    "languages.group.middleEastern": "لغات الشرق الأوسط",
+    "languages.group.other": "لغات أخرى"
+  },
+  "he": {
+    "languages.searchPlaceholder": "חפש שפות...",
+    "languages.current": "נוכחי",
+    "languages.group.default": "ברירת מחדל",
+    "languages.group.indian": "שפות הודיות",
+    "languages.group.european": "שפות אירופאיות",
+    "languages.group.eastAsian": "שפות מזרח אסיה",
+    "languages.group.middleEastern": "שפות המזרח התיכון",
+    "languages.group.other": "שפות אחרות"
+  },
+  "fa": {
+    "languages.searchPlaceholder": "جستجوی زبان‌ها...",
+    "languages.current": "فعلی",
+    "languages.group.default": "پیش‌فرض",
+    "languages.group.indian": "زبان‌های هندی",
+    "languages.group.european": "زبان‌های اروپایی",
+    "languages.group.eastAsian": "زبان‌های شرق آسیا",
+    "languages.group.middleEastern": "زبان‌های خاورمیانه",
+    "languages.group.other": "سایر زبان‌ها"
+  },
+  "tr": {
+    "languages.searchPlaceholder": "Dilleri ara...",
+    "languages.current": "Mevcut",
+    "languages.group.default": "Varsayılan",
+    "languages.group.indian": "Hint Dilleri",
+    "languages.group.european": "Avrupa Dilleri",
+    "languages.group.eastAsian": "Doğu Asya Dilleri",
+    "languages.group.middleEastern": "Orta Doğu Dilleri",
+    "languages.group.other": "Diğer Diller"
+  },
+  "th": {
+    "languages.searchPlaceholder": "ค้นหาภาษา...",
+    "languages.current": "ปัจจุบัน",
+    "languages.group.default": "ค่าเริ่มต้น",
+    "languages.group.indian": "ภาษาอินเดีย",
+    "languages.group.european": "ภาษาในยุโรป",
+    "languages.group.eastAsian": "ภาษาเอเชียตะวันออก",
+    "languages.group.middleEastern": "ภาษาตะวันออกกลาง",
+    "languages.group.other": "ภาษาอื่นๆ"
+  }
+}

@@ -1,0 +1,272 @@
+{
+  "en": {
+    "category.all": "All",
+    "category.football": "Football",
+    "category.basketball": "Basketball",
+    "category.soccer": "Soccer",
+    "category.tennis": "Tennis",
+    "category.baseball": "Baseball",
+    "category.athletics": "Athletics",
+    "category.swimming": "Swimming"
+  },
+  "es": {
+    "category.all": "Todos",
+    "category.football": "Fútbol Americano",
+    "category.basketball": "Baloncesto",
+    "category.soccer": "Fútbol",
+    "category.tennis": "Tenis",
+    "category.baseball": "Béisbol",
+    "category.athletics": "Atletismo",
+    "category.swimming": "Natación"
+  },
+  "fr": {
+    "category.all": "Tous",
+    "category.football": "Football Américain",
+    "category.basketball": "Basketball",
+    "category.soccer": "Football",
+    "category.tennis": "Tennis",
+    "category.baseball": "Baseball",
+    "category.athletics": "Athlétisme",
+    "category.swimming": "Natation"
+  },
+  "de": {
+    "category.all": "Alle",
+    "category.football": "American Football",
+    "category.basketball": "Basketball",
+    "category.soccer": "Fußball",
+    "category.tennis": "Tennis",
+    "category.baseball": "Baseball",
+    "category.athletics": "Leichtathletik",
+    "category.swimming": "Schwimmen"
+  },
+  "it": {
+    "category.all": "Tutti",
+    "category.football": "Football Americano",
+    "category.basketball": "Pallacanestro",
+    "category.soccer": "Calcio",
+    "category.tennis": "Tenis",
+    "category.baseball": "Baseball",
+    "category.athletics": "Atletica",
+    "category.swimming": "Nuoto"
+  },
+  "pt": {
+    "category.all": "Todos",
+    "category.football": "Futebol Americano",
+    "category.basketball": "Basquete",
+    "category.soccer": "Futebol",
+    "category.tennis": "Tênis",
+    "category.baseball": "Beisebol",
+    "category.athletics": "Atletismo",
+    "category.swimming": "Natação"
+  },
+  "ru": {
+    "category.all": "Все",
+    "category.football": "Американский футбол",
+    "category.basketball": "Баскетбол",
+    "category.soccer": "Футбол",
+    "category.tennis": "Теннис",
+    "category.baseball": "Бейсбол",
+    "category.athletics": "Легкая атлетика",
+    "category.swimming": "Плавание"
+  },
+  "pl": {
+    "category.all": "Wszystkie",
+    "category.football": "Futbol Amerykański",
+    "category.basketball": "Koszykówka",
+    "category.soccer": "Piłka Nożna",
+    "category.tennis": "Tenis",
+    "category.baseball": "Baseball",
+    "category.athletics": "Lekkoatletyka",
+    "category.swimming": "Pływanie"
+  },
+  "nl": {
+    "category.all": "Alle",
+    "category.football": "American Football",
+    "category.basketball": "Basketbal",
+    "category.soccer": "Voetbal",
+    "category.tennis": "Tennis",
+    "category.baseball": "Honkbal",
+    "category.athletics": "Atletiek",
+    "category.swimming": "Zwemmen"
+  },
+  "sv": {
+    "category.all": "Alla",
+    "category.football": "Amerikansk Fotboll",
+    "category.basketball": "Basket",
+    "category.soccer": "Fotboll",
+    "category.tennis": "Tennis",
+    "category.baseball": "Baseball",
+    "category.athletics": "Friidrott",
+    "category.swimming": "Simning"
+  },
+  "no": {
+    "category.all": "Alle",
+    "category.football": "Amerikansk Fotball",
+    "category.basketball": "Basketball",
+    "category.soccer": "Fotball",
+    "category.tennis": "Tennis",
+    "category.baseball": "Baseball",
+    "category.athletics": "Friidrett",
+    "category.swimming": "Svømming"
+  },
+  "da": {
+    "category.all": "Alle",
+    "category.football": "Amerikansk Fodbold",
+    "category.basketball": "Basketball",
+    "category.soccer": "Fodbold",
+    "category.tennis": "Tennis",
+    "category.baseball": "Baseball",
+    "category.athletics": "Atletik",
+    "category.swimming": "Svømning"
+  },
+  "fi": {
+    "category.all": "Kaikki",
+    "category.football": "Amerikkalainen Jalkapallo",
+    "category.basketball": "Koripallo",
+    "category.soccer": "Jalkapallo",
+    "category.tennis": "Tennis",
+    "category.baseball": "Pesäpallo",
+    "category.athletics": "Yleisurheilu",
+    "category.swimming": "Uinti"
+  },
+  "zh": {
+    "category.all": "全部",
+    "category.football": "美式足球",
+    "category.basketball": "篮球",
+    "category.soccer": "足球",
+    "category.tennis": "网球",
+    "category.baseball": "棒球",
+    "category.athletics": "田径",
+    "category.swimming": "游泳"
+  },
+  "ja": {
+    "category.all": "すべて",
+    "category.football": "アメリカンフットボール",
+    "category.basketball": "バスケットボール",
+    "category.soccer": "サッカー",
+    "category.tennis": "テニス",
+    "category.baseball": "野球",
+    "category.athletics": "陸上競技",
+    "category.swimming": "水泳"
+  },
+  "ko": {
+    "category.all": "모두",
+    "category.football": "미식축구",
+    "category.basketball": "농구",
+    "category.soccer": "축구",
+    "category.tennis": "테니스",
+    "category.baseball": "야구",
+    "category.athletics": "육상",
+    "category.swimming": "수영"
+  },
+  "hi": {
+    "category.all": "सभी",
+    "category.football": "अमेरिकी फुटबॉल",
+    "category.basketball": "बास्केटबॉल",
+    "category.soccer": "फुटबॉल",
+    "category.tennis": "टेनिस",
+    "category.baseball": "बेसबॉल",
+    "category.athletics": "एथलेटिक्स",
+    "category.swimming": "तैराकी"
+  },
+  "bn": {
+    "category.all": "সব",
+    "category.football": "আমেরিকান ফুটবল",
+    "category.basketball": "বাস্কেটবল",
+    "category.soccer": "ফুটবল",
+    "category.tennis": "টেনিস",
+    "category.baseball": "বেসবল",
+    "category.athletics": "অ্যাথলেটিক্স",
+    "category.swimming": "সাঁতার"
+  },
+  "ta": {
+    "category.all": "அனைத்தும்",
+    "category.football": "அமெரிக்க கால்பந்து",
+    "category.basketball": "கூடைப்பந்து",
+    "category.soccer": "கால்பந்து",
+    "category.tennis": "டென்னிஸ்",
+    "category.baseball": "பேஸ்பால்",
+    "category.athletics": "தடகளம்",
+    "category.swimming": "நீச்சல்"
+  },
+  "te": {
+    "category.all": "అన్ని",
+    "category.football": "అమెరికన్ ఫుట్‌బాల్",
+    "category.basketball": "బాస్కెట్‌బాల్",
+    "category.soccer": "ఫుట్‌బాల్",
+    "category.tennis": "టెన్నిస్",
+    "category.baseball": "బేస్‌బాల్",
+    "category.athletics": "అథ్లెటిక్స్",
+    "category.swimming": "ఈత"
+  },
+  "mr": {
+    "category.all": "सर्व",
+    "category.football": "अमेरिकन फुटबॉल",
+    "category.basketball": "बास्केटबॉल",
+    "category.soccer": "फुटबॉल",
+    "category.tennis": "टेनिस",
+    "category.baseball": "बेसबॉल",
+    "category.athletics": "अॅथलेटिक्स",
+    "category.swimming": "जलतरण"
+  },
+  "gu": {
+    "category.all": "બધા",
+    "category.football": "અમેરિકન ફૂટબોલ",
+    "category.basketball": "બાસ્કેટબોલ",
+    "category.soccer": "ફૂટબોલ",
+    "category.tennis": "ટેનિસ",
+    "category.baseball": "બેઝબોલ",
+    "category.athletics": "એથ્લેટિક્સ",
+    "category.swimming": "સ્વિમિંગ"
+  },
+  "ar": {
+    "category.all": "الكل",
+    "category.football": "كرة القدم الأمريكية",
+    "category.basketball": "كرة السلة",
+    "category.soccer": "كرة القدم",
+    "category.tennis": "التنس",
+    "category.baseball": "البيسبول",
+    "category.athletics": "ألعاب القوى",
+    "category.swimming": "السباحة"
+  },
+  "he": {
+    "category.all": "הכל",
+    "category.football": "פוטבול אמריקאי",
+    "category.basketball": "כדורסל",
+    "category.soccer": "כדורגל",
+    "category.tennis": "טניס",
+    "category.baseball": "בייסבול",
+    "category.athletics": "אתלטיקה",
+    "category.swimming": "שחייה"
+  },
+  "fa": {
+    "category.all": "همه",
+    "category.football": "فوتبال آمریکایی",
+    "category.basketball": "بسکتبال",
+    "category.soccer": "فوتبال",
+    "category.tennis": "تنیس",
+    "category.baseball": "بیسبال",
+    "category.athletics": "دو و میدانی",
+    "category.swimming": "شنا"
+  },
+  "tr": {
+    "category.all": "Tümü",
+    "category.football": "Amerikan Futbolu",
+    "category.basketball": "Basketbol",
+    "category.soccer": "Futbol",
+    "category.tennis": "Tenis",
+    "category.baseball": "Beyzbol",
+    "category.athletics": "Atletizm",
+    "category.swimming": "Yüzme"
+  },
+  "th": {
+    "category.all": "ทั้งหมด",
+    "category.football": "อเมริกันฟุตบอล",
+    "category.basketball": "บาสเกตบอล",
+    "category.soccer": "ฟุตบอล",
+    "category.tennis": "เทนนิส",
+    "category.baseball": "เบสบอล",
+    "category.athletics": "กรีฑา",
+    "category.swimming": "ว่ายน้ำ"
+  }
+}

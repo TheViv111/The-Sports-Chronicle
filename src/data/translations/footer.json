@@ -1,0 +1,218 @@
+{
+  "en": {
+    "footer.quickLinks": "Quick Links",
+    "footer.categories": "Categories",
+    "footer.allPosts": "All Posts",
+    "footer.aboutMe": "About Me",
+    "footer.contact": "Contact",
+    "footer.rightsReserved": "All rights reserved."
+  },
+  "es": {
+    "footer.quickLinks": "Enlaces Rápidos",
+    "footer.categories": "Categorías",
+    "footer.allPosts": "Todas las Publicaciones",
+    "footer.aboutMe": "Acerca de Mí",
+    "footer.contact": "Contacto",
+    "footer.rightsReserved": "Todos los derechos reservados."
+  },
+  "fr": {
+    "footer.quickLinks": "Liens Rapides",
+    "footer.categories": "Catégories",
+    "footer.allPosts": "Tous les Articles",
+    "footer.aboutMe": "À Propos de Moi",
+    "footer.contact": "Contact",
+    "footer.rightsReserved": "Tous droits réservés."
+  },
+  "de": {
+    "footer.quickLinks": "Schnelllinks",
+    "footer.categories": "Kategorien",
+    "footer.allPosts": "Alle Beiträge",
+    "footer.aboutMe": "Über Mich",
+    "footer.contact": "Kontakt",
+    "footer.rightsReserved": "Alle Rechte vorbehalten."
+  },
+  "it": {
+    "footer.quickLinks": "Collegamenti Rapidi",
+    "footer.categories": "Categorie",
+    "footer.allPosts": "Tutti i Post",
+    "footer.aboutMe": "Chi Sono",
+    "footer.contact": "Contatti",
+    "footer.rightsReserved": "Tutti i diritti riservati."
+  },
+  "pt": {
+    "footer.quickLinks": "Links Rápidos",
+    "footer.categories": "Categorias",
+    "footer.allPosts": "Todos os Posts",
+    "footer.aboutMe": "Sobre Mim",
+    "footer.contact": "Contato",
+    "footer.rightsReserved": "Todos os direitos reservados."
+  },
+  "ru": {
+    "footer.quickLinks": "Быстрые ссылки",
+    "footer.categories": "Категории",
+    "footer.allPosts": "Все посты",
+    "footer.aboutMe": "Обо мне",
+    "footer.contact": "Контакты",
+    "footer.rightsReserved": "Все права защищены."
+  },
+  "pl": {
+    "footer.quickLinks": "Szybkie Linki",
+    "footer.categories": "Kategorie",
+    "footer.allPosts": "Wszystkie Posty",
+    "footer.aboutMe": "O Mnie",
+    "footer.contact": "Kontakt",
+    "footer.rightsReserved": "Wszelkie prawa zastrzeżone."
+  },
+  "nl": {
+    "footer.quickLinks": "Snelle Links",
+    "footer.categories": "Categorieën",
+    "footer.allPosts": "Alle Berichten",
+    "footer.aboutMe": "Over Mij",
+    "footer.contact": "Contact",
+    "footer.rightsReserved": "Alle rechten voorbehouden."
+  },
+  "sv": {
+    "footer.quickLinks": "Snabblänkar",
+    "footer.categories": "Kategorier",
+    "footer.allPosts": "Alla Inlägg",
+    "footer.aboutMe": "Om Mig",
+    "footer.contact": "Kontakt",
+    "footer.rightsReserved": "Alla rättigheter förbehållna."
+  },
+  "no": {
+    "footer.quickLinks": "Hurtiglenker",
+    "footer.categories": "Kategorier",
+    "footer.allPosts": "Alle Innlegg",
+    "footer.aboutMe": "Om Meg",
+    "footer.contact": "Kontakt",
+    "footer.rightsReserved": "Alle rettigheter forbeholdt."
+  },
+  "da": {
+    "footer.quickLinks": "Hurtige Links",
+    "footer.categories": "Kategorier",
+    "footer.allPosts": "Alle Indlæg",
+    "footer.aboutMe": "Om Mig",
+    "footer.contact": "Kontakt",
+    "footer.rightsReserved": "Alle rettigheder forbeholdes."
+  },
+  "fi": {
+    "footer.quickLinks": "Pikalikit",
+    "footer.categories": "Kategoriat",
+    "footer.allPosts": "Kaikki Postaukset",
+    "footer.aboutMe": "Minusta",
+    "footer.contact": "Yhteystiedot",
+    "footer.rightsReserved": "Kaikki oikeudet pidätetään."
+  },
+  "zh": {
+    "footer.quickLinks": "快速链接",
+    "footer.categories": "分类",
+    "footer.allPosts": "所有文章",
+    "footer.aboutMe": "关于我",
+    "footer.contact": "联系我们",
+    "footer.rightsReserved": "版权所有。"
+  },
+  "ja": {
+    "footer.quickLinks": "クイックリンク",
+    "footer.categories": "カテゴリー",
+    "footer.allPosts": "すべての投稿",
+    "footer.aboutMe": "私について",
+    "footer.contact": "お問い合わせ",
+    "footer.rightsReserved": "すべての権利を留保。"
+  },
+  "ko": {
+    "footer.quickLinks": "빠른 링크",
+    "footer.categories": "카테고리",
+    "footer.allPosts": "모든 게시물",
+    "footer.aboutMe": "나에 대해",
+    "footer.contact": "연락처",
+    "footer.rightsReserved": "모든 권리 보유."
+  },
+  "hi": {
+    "footer.quickLinks": "त्वरित लिंक",
+    "footer.categories": "श्रेणियाँ",
+    "footer.allPosts": "सभी पोस्ट",
+    "footer.aboutMe": "मेरे बारे में",
+    "footer.contact": "संपर्क करें",
+    "footer.rightsReserved": "सभी अधिकार सुरक्षित।"
+  },
+  "bn": {
+    "footer.quickLinks": "দ্রুত লিঙ্ক",
+    "footer.categories": "বিভাগসমূহ",
+    "footer.allPosts": "সমস্ত পোস্ট",
+    "footer.aboutMe": "আমার সম্পর্কে",
+    "footer.contact": "যোগাযোগ",
+    "footer.rightsReserved": "সমস্ত অধিকার সংরক্ষিত।"
+  },
+  "ta": {
+    "footer.quickLinks": "விரைவு இணைப்புகள்",
+    "footer.categories": "வகைகள்",
+    "footer.allPosts": "எல்லா இடுகைகள்",
+    "footer.aboutMe": "என்னைப் பற்றி",
+    "footer.contact": "தொடர்பு",
+    "footer.rightsReserved": "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை।"
+  },
+  "te": {
+    "footer.quickLinks": "త్వరిత లింక్‌లు",
+    "footer.categories": "వర్గాలు",
+    "footer.allPosts": "అన్ని పోస్ట్‌లు",
+    "footer.aboutMe": "నా గురించి",
+    "footer.contact": "సంప్రదించండి",
+    "footer.rightsReserved": "అన్ని హక్కులు రక్షించబడ్డాయి।"
+  },
+  "mr": {
+    "footer.quickLinks": "जलद दुवे",
+    "footer.categories": "श्रेणी",
+    "footer.allPosts": "सर्व पोस्ट",
+    "footer.aboutMe": "माझ्याबद्दल",
+    "footer.contact": "संपर्क",
+    "footer.rightsReserved": "सर्व हक्क राखीव।"
+  },
+  "gu": {
+    "footer.quickLinks": "ઝડપી લિંક્સ",
+    "footer.categories": "કેટેગરી",
+    "footer.allPosts": "બધી પોસ્ટ",
+    "footer.aboutMe": "મારા વિશે",
+    "footer.contact": "સંપર્ક",
+    "footer.rightsReserved": "બધા અધિકારો આરક્ષિત છે।"
+  },
+  "ar": {
+    "footer.quickLinks": "روابط سريعة",
+    "footer.categories": "التصنيفات",
+    "footer.allPosts": "جميع المنشورات",
+    "footer.aboutMe": "نبذة عني",
+    "footer.contact": "تواصل معنا",
+    "footer.rightsReserved": "جميع الحقوق محفوظة."
+  },
+  "he": {
+    "footer.quickLinks": "קישורים מהירים",
+    "footer.categories": "קטגוריות",
+    "footer.allPosts": "כל הפוסטים",
+    "footer.aboutMe": "אודותיי",
+    "footer.contact": "צור קשר",
+    "footer.rightsReserved": "כל הזכויות שמורות."
+  },
+  "fa": {
+    "footer.quickLinks": "پیوندهای سریع",
+    "footer.categories": "دسته‌بندی‌ها",
+    "footer.allPosts": "همه مطالب",
+    "footer.aboutMe": "درباره من",
+    "footer.contact": "تماس",
+    "footer.rightsReserved": "تمامی حقوق محفوظ است."
+  },
+  "tr": {
+    "footer.quickLinks": "Hızlı Bağlantılar",
+    "footer.categories": "Kategoriler",
+    "footer.allPosts": "Tüm Gönderiler",
+    "footer.aboutMe": "Hakkımda",
+    "footer.contact": "İletişim",
+    "footer.rightsReserved": "Tüm hakları saklıdır."
+  },
+  "th": {
+    "footer.quickLinks": "ลิงก์ด่วน",
+    "footer.categories": "หมวดหมู่",
+    "footer.allPosts": "โพสต์ทั้งหมด",
+    "footer.aboutMe": "เกี่ยวกับฉัน",
+    "footer.contact": "ติดต่อ",
+    "footer.rightsReserved": "สงวนสิทธิ์ทุกประการ"
+  }
+}

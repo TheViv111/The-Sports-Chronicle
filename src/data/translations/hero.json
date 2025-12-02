@@ -1,0 +1,164 @@
+{
+  "en": {
+    "hero.welcome": "Welcome to our Blog",
+    "hero.title": "Exploring Skills, Techniques & Tactics in Various Sports",
+    "hero.subtitle": "We write about various sports and the tactics, techniques, and skills that can be implemented in these sports.",
+    "hero.readLatest": "Read Latest Posts"
+  },
+  "es": {
+    "hero.welcome": "Bienvenido a nuestro Blog",
+    "hero.title": "Explorando Habilidades, Técnicas y Tácticas en Varios Deportes",
+    "hero.subtitle": "Escribimos sobre varios deportes y las tácticas, técnicas y habilidades que se pueden implementar en estos deportes.",
+    "hero.readLatest": "Leer Últimas Publicaciones"
+  },
+  "fr": {
+    "hero.welcome": "Bienvenue sur notre Blog",
+    "hero.title": "Explorer les Compétences, Techniques et Tactiques dans Divers Sports",
+    "hero.subtitle": "Nous écrivons sur divers sports et les tactiques, techniques et compétences qui peuvent être mises en œuvre dans ces sports.",
+    "hero.readLatest": "Lire les Derniers Articles"
+  },
+  "de": {
+    "hero.welcome": "Willkommen in unserem Blog",
+    "hero.title": "Erkundung von Fähigkeiten, Techniken und Taktiken in verschiedenen Sportarten",
+    "hero.subtitle": "Wir schreiben über verschiedene Sportarten und die Taktiken, Techniken und Fähigkeiten, die in diesen Sportarten angewendet werden können.",
+    "hero.readLatest": "Neueste Beiträge Lesen"
+  },
+  "it": {
+    "hero.welcome": "Benvenuti nel nostro Blog",
+    "hero.title": "Esplorando Competenze, Tecniche e Tattiche in Vari Sport",
+    "hero.subtitle": "Scriviamo di vari sport e delle tattiche, tecniche e competenze che possono essere implementate in questi sport.",
+    "hero.readLatest": "Leggi gli Ultimi Post"
+  },
+  "pt": {
+    "hero.welcome": "Bem-vindos ao nosso Blog",
+    "hero.title": "Explorando Habilidades, Técnicas e Táticas em Vários Esportes",
+    "hero.subtitle": "Escrevemos sobre vários esportes e as táticas, técnicas e habilidades que podem ser implementadas nesses esportes.",
+    "hero.readLatest": "Ler Posts Recentes"
+  },
+  "ru": {
+    "hero.welcome": "Добро пожаловать в наш блог",
+    "hero.title": "Изучение навыков, техники и тактики в различных видах спорта",
+    "hero.subtitle": "Мы пишем о различных видах спорта и тактике, технике и навыках, которые можно применить в этих видах спорта.",
+    "hero.readLatest": "Читать последние посты"
+  },
+  "pl": {
+    "hero.welcome": "Witamy w naszym Blogu",
+    "hero.title": "Odkrywanie Umiejętności, Technik i Taktyk w Różnych Sportach",
+    "hero.subtitle": "Piszemy o różnych sportach oraz taktykach, technikach i umiejętnościach, które można w nich zastosować.",
+    "hero.readLatest": "Czytaj Najnowsze Posty"
+  },
+  "nl": {
+    "hero.welcome": "Welkom op onze Blog",
+    "hero.title": "Verkennen van Vaardigheden, Technieken en Tactieken in Verschillende Sporten",
+    "hero.subtitle": "We schrijven over verschillende sporten en de tactieken, technieken en vaardigheden die in deze sporten kunnen worden toegepast.",
+    "hero.readLatest": "Lees Laatste Berichten"
+  },
+  "sv": {
+    "hero.welcome": "Välkommen till vår Blogg",
+    "hero.title": "Utforska Färdigheter, Tekniker och Taktik inom Olika Sporter",
+    "hero.subtitle": "Vi skriver om olika sporter och de taktiker, tekniker och färdigheter som kan implementeras inom dessa sporter.",
+    "hero.readLatest": "Läs Senaste Inlägg"
+  },
+  "no": {
+    "hero.welcome": "Velkommen til bloggen vår",
+    "hero.title": "Utforske Ferdigheter, Teknikker og Taktikk i Ulike Idretter",
+    "hero.subtitle": "Vi skriver om ulike idretter og taktikkene, teknikkene og ferdighetene som kan implementeres i disse idrettene.",
+    "hero.readLatest": "Les Siste Innlegg"
+  },
+  "da": {
+    "hero.welcome": "Velkommen til vores Blog",
+    "hero.title": "Udforskning af Færdigheder, Teknikker og Taktik i Forskellige Sportsgrene",
+    "hero.subtitle": "Vi skriver om forskellige sportsgrene og de taktikker, teknikker og færdigheder, der kan implementeres i disse sportsgrene.",
+    "hero.readLatest": "Læs Seneste Indlæg"
+  },
+  "fi": {
+    "hero.welcome": "Tervetuloa blogiimme",
+    "hero.title": "Tutkimme Taitoja, Tekniikoita ja Taktiikoita Eri Urheilulajeissa",
+    "hero.subtitle": "Kirjoitamme eri urheilulajeista ja taktiikoista, tekniikoista ja taidoista, joita voidaan soveltaa näissä urheilulajeissa.",
+    "hero.readLatest": "Lue Viimeisimmät Postaukset"
+  },
+  "zh": {
+    "hero.welcome": "欢迎来到我们的博客",
+    "hero.title": "探索各种运动的技能、技术和战术",
+    "hero.subtitle": "我们撰写关于各种运动以及可以在这些运动中实施的战术、技术和技能的文章。",
+    "hero.readLatest": "阅读最新文章"
+  },
+  "ja": {
+    "hero.welcome": "ブログへようこそ",
+    "hero.title": "様々なスポーツのスキル、テクニック、戦術の探求",
+    "hero.subtitle": "私たちは、様々なスポーツと、これらのスポーツで実装できる戦術、テクニック、スキルについて書いています。",
+    "hero.readLatest": "最新の投稿を読む"
+  },
+  "ko": {
+    "hero.welcome": "블로그에 오신 것을 환영합니다",
+    "hero.title": "다양한 스포츠의 기술, 테크닉, 전술 탐구",
+    "hero.subtitle": "우리는 다양한 스포츠와 이러한 스포츠에서 구현될 수 있는 전술, 기법, 기술에 대해 씁니다.",
+    "hero.readLatest": "최신 게시물 읽기"
+  },
+  "hi": {
+    "hero.welcome": "हमारे ब्लॉग में आपका स्वागत है",
+    "hero.title": "विभिन्न खेलों में कौशल, तकनीक और रणनीति की खोज",
+    "hero.subtitle": "हम विभिन्न खेलों और उन रणनीतियों, तकनीकों और कौशलों के बारे में लिखते हैं जो इन खेलों में लागू की जा सकती हैं।",
+    "hero.readLatest": "नवीनतम पोस्ट पढ़ें"
+  },
+  "bn": {
+    "hero.welcome": "আমাদের ব্লগে স্বাগতম",
+    "hero.title": "বিভিন্ন খেলায় দক্ষতা, কৌশল এবং কৌশল অন্বেষণ",
+    "hero.subtitle": "আমরা বিভিন্ন খেলা এবং কৌশল, কৌশল এবং দক্ষতা সম্পর্কে লিখি যা এই খেলায় প্রয়োগ করা যেতে পারে।",
+    "hero.readLatest": "সর্বশেষ পোস্ট পড়ুন"
+  },
+  "ta": {
+    "hero.welcome": "எங்கள் வலைப்பதிவுக்கு வரவேற்கிறோம்",
+    "hero.title": "பல்வேறு விளையாட்டுகளில் திறன்கள், நுட்பங்கள் மற்றும் தந்திரங்களை ஆராய்தல்",
+    "hero.subtitle": "நாங்கள் பல்வேறு விளையாட்டுகள் மற்றும் இந்த விளையாட்டுகளில் செயல்படுத்தக்கூடிய தந்திரங்கள், நுட்பங்கள் மற்றும் திறன்களைப் பற்றி எழுதுகிறோம்.",
+    "hero.readLatest": "சமீபத்திய இடுகைகளைப் படிக்கவும்"
+  },
+  "te": {
+    "hero.welcome": "మా బ్లాగ్‌కు స్వాగతం",
+    "hero.title": "వివిధ క్రీడలలో నైపుణ్యాలు, టెక్నిక్‌లు మరియు వ్యూహాలను అన్వేషించడం",
+    "hero.subtitle": "మేము వివిధ క్రీడలు మరియు ఈ క్రీడలలో అమలు చేయగల వ్యూహాలు, టెక్నిక్‌లు మరియు నైపుణ్యాల గురించి వ్రాస్తాము.",
+    "hero.readLatest": "తాజా పోస్ట్‌లను చదవండి"
+  },
+  "mr": {
+    "hero.welcome": "आमच्या ब्लॉगमध्ये आपले स्वागत आहे",
+    "hero.title": "विविध खेळांमध्ये कौशल्ये, तंत्रे आणि रणनीती एक्सप्लोर करणे",
+    "hero.subtitle": "आम्ही विविध खेळ आणि या खेळांमध्ये राबवता येणाऱ्या रणनीती, तंत्रे आणि कौशल्यांबद्दल लिहितो.",
+    "hero.readLatest": "नवीनतम पोस्ट वाचा"
+  },
+  "gu": {
+    "hero.welcome": "અમારા બ્લોગમાં આપનું સ્વાગત છે",
+    "hero.title": "વિવિધ રમતોમાં કુશળતા, ટેકનિક અને વ્યૂહરચનાની શોધ",
+    "hero.subtitle": "અમે વિવિધ રમતો અને વ્યૂહરચના, ટેકનિક અને કુશળતા વિશે લખીએ છીએ જે આ રમતોમાં લાગુ કરી શકાય છે.",
+    "hero.readLatest": "નવીનતમ પોસ્ટ વાંચો"
+  },
+  "ar": {
+    "hero.welcome": "مرحباً بكم في مدونتنا",
+    "hero.title": "استكشاف المهارات والتقنيات والتكتيكات في الرياضات المختلفة",
+    "hero.subtitle": "نكتب عن الرياضات المختلفة والتكتيكات والتقنيات والمهارات التي يمكن تطبيقها في هذه الرياضات.",
+    "hero.readLatest": "اقرأ أحدث المنشورات"
+  },
+  "he": {
+    "hero.welcome": "ברוכים הבאים לבלוג שלנו",
+    "hero.title": "חקר כישורים, טכניקות וטקטיקות בספורט שונים",
+    "hero.subtitle": "אנו כותבים על ענפי ספורט שונים והטקטיקות, הטכניקות והכישורים שניתן ליישם בענפי הספורט הללו.",
+    "hero.readLatest": "קרא פוסטים אחרונים"
+  },
+  "fa": {
+    "hero.welcome": "به وبلاگ ما خوش آمدید",
+    "hero.title": "کشف مهارت‌ها، تکنیک‌ها و تاکتیک‌ها در ورزش‌های مختلف",
+    "hero.subtitle": "ما در مورد ورزش‌های مختلف و تاکتیک‌ها، تکنیک‌ها و مهارت‌هایی که می‌توان در این ورزش‌ها به کار برد می‌نویسیم.",
+    "hero.readLatest": "آخرین مطالب را بخوانید"
+  },
+  "tr": {
+    "hero.welcome": "Blogumuza Hoş Geldiniz",
+    "hero.title": "Çeşitli Sporlarda Beceri, Teknik ve Taktikleri Keşfetmek",
+    "hero.subtitle": "Çeşitli sporlar ve bu sporlarda uygulanabilecek taktikler, teknikler ve beceriler hakkında yazıyoruz.",
+    "hero.readLatest": "En Son Gönderileri Okuyun"
+  },
+  "th": {
+    "hero.welcome": "ยินดีต้อนรับสู่บล็อกของเรา",
+    "hero.title": "สำรวจทักษะ เทคนิค และกลยุทธ์ในกีฬาต่างๆ",
+    "hero.subtitle": "เราเขียนเกี่ยวกับกีฬาต่างๆ และกลยุทธ์ เทคนิค และทักษะที่สามารถนำไปใช้ในกีฬาเหล่านี้",
+    "hero.readLatest": "อ่านโพสต์ล่าสุด"
+  }
+}
