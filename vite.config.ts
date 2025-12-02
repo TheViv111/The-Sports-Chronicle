@@ -142,6 +142,21 @@ export default defineConfig(({ mode }) => {
               }
             }
           }
+          ,
+          {
+            urlPattern: /\/translations\/.+\.json$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'translations',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
         ],
         // Skip waiting for immediate updates
         skipWaiting: true,

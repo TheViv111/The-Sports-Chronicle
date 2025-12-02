@@ -55,13 +55,7 @@ const DEFAULT_LANGUAGE = 'en';
 async function loadTranslations(lang: string) {
   try {
     const url = `translations/${lang}.json`;
-    const response = await fetch(url, {
-      cache: 'no-store',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
-    });
+    const response = await fetch(url);
     
     if (!response.ok) {
       console.error(`Failed to load translations from: ${url}`);

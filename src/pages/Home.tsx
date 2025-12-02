@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,7 @@ import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-uti
 import useScrollReveal from "@/hooks/useScrollReveal";
 import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
-import { Suspense } from "react";
-import Spline from "@splinetool/react-spline";
+const Spline = lazy(() => import("@splinetool/react-spline"));
 import { useTheme } from "@/components/common/ThemeProvider";
 
 const Home = () => {
@@ -21,6 +20,7 @@ const Home = () => {
 
   // Determine if dark mode is active
   const isDarkMode = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const [showSpline, setShowSpline] = useState(false);
 
   useScrollReveal('.reveal-on-scroll');
 
@@ -29,6 +29,7 @@ const Home = () => {
   useEffect(() => {
     const schedule = () => {
       loadLatestPosts();
+      setShowSpline(true);
     };
     if ('requestIdleCallback' in window) {
       (window as any).requestIdleCallback(schedule);
@@ -64,9 +65,11 @@ const Home = () => {
       <div className="min-h-screen">
         <section className="relative py-12 sm:py-16 md:py-20 text-center px-4 min-h-[600px] overflow-hidden">
           {/* Spline 3D Background - Only visible in dark mode */}
-          {isDarkMode && (
+          {isDarkMode && showSpline && (
             <div className="absolute inset-0 -z-10 opacity-60">
-              <Spline scene="https://prod.spline.design/6d4ygri42yVcAJ02/scene.splinecode" />
+              <Suspense fallback={null}>
+                <Spline scene="https://prod.spline.design/6d4ygri42yVcAJ02/scene.splinecode" />
+              </Suspense>
             </div>
           )}
 
