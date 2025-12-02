@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -53,25 +53,32 @@ const Contact = () => {
         body: JSON.stringify(contactData),
       });
 
-      // Read the response body once as text
-      const responseText = await response.text();
-
+      const contentType = response.headers.get('content-type') || '';
       if (!response.ok) {
         let errorMessage = t("common.error");
-        try {
-          // Try to parse the text as JSON
-          const errorJson = JSON.parse(responseText);
-          errorMessage = errorJson.error || errorMessage;
-        } catch {
-          // If JSON parsing fails, use the raw text
-          errorMessage = responseText || errorMessage;
+        if (contentType.includes('application/json')) {
+          try {
+            const errJson = await response.json();
+            errorMessage = errJson.error || errorMessage;
+          } catch {
+            const raw = await response.text();
+            errorMessage = raw || errorMessage;
+          }
+        } else {
+          const raw = await response.text();
+          errorMessage = raw || errorMessage;
         }
         console.error('Edge Function error response:', response.status, errorMessage);
         throw new Error(errorMessage);
       }
 
-      // Successfully sent the contact form
-      JSON.parse(responseText); // Parse the response to ensure it's valid JSON
+      if (contentType.includes('application/json')) {
+        try {
+          await response.json();
+        } catch {
+          // Ignore parse failures for success path and proceed
+        }
+      }
 
       toast.success(t("contact.messageSentSuccess"), {
         description: t("contact.messageSentDescription"),
