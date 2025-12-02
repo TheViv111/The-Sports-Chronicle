@@ -52,18 +52,10 @@ const TranslationContext = createContext<TranslationContextType | undefined>(und
 
 const DEFAULT_LANGUAGE = 'en';
 
-// Helper function to load translations
 async function loadTranslations(lang: string) {
   try {
-    // Use absolute path for production, relative for development
-    const isProduction = import.meta.env.PROD;
-    const base = isProduction ? '/' : import.meta.env.BASE_URL || '/';
-    const url = `${base}translations/${lang}.json`;
-    const absoluteUrl = isProduction 
-      ? new URL(`/translations/${lang}.json`, window.location.origin).toString()
-      : url;
-
-    const response = await fetch(absoluteUrl, { 
+    const url = `translations/${lang}.json`;
+    const response = await fetch(url, {
       cache: 'no-store',
       headers: {
         'Cache-Control': 'no-cache',
@@ -72,8 +64,8 @@ async function loadTranslations(lang: string) {
     });
     
     if (!response.ok) {
-      console.error(`Failed to load translations from: ${absoluteUrl}`);
-      throw new Error(`Failed to load translations for ${lang} (status ${response.status}) at ${absoluteUrl}`);
+      console.error(`Failed to load translations from: ${url}`);
+      throw new Error(`Failed to load translations for ${lang} (status ${response.status}) at ${url}`);
     }
 
     const contentType = response.headers.get('content-type') || '';
