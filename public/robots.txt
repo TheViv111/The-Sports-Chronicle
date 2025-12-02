@@ -1,23 +1,33 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
-
 
 # Sitemap
 Sitemap: https://the-sports-chronicle.vercel.app/sitemap.xml
 
-# Disallow admin and private areas
+# Crawl-delay: 10  # Uncomment and adjust if needed to prevent server overload
+
+# Directives for all search engines
 Disallow: /admin
 Disallow: /profile
 Disallow: /api/
+Disallow: /private/
+Disallow: /account/
+Disallow: /dashboard/
+Disallow: /*?*  # Avoid duplicate content from URL parameters
+Disallow: /*?  # Avoid empty query strings
 
-# Allow specific bots
+# Allow specific bots with their own rules
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 5
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 5
 
 User-agent: Twitterbot
+Allow: /
 Allow: /
 
 User-agent: facebookexternalhit
