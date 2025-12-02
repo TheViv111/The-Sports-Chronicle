@@ -1,5 +1,6 @@
-// @deno-types
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+
+
+/// <reference path="../global.d.ts" />
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -15,7 +16,7 @@ interface ContactFormData {
   message: string;
 }
 
-serve(async (req: Request) => {
+Deno.serve(async (req: Request) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, {
@@ -30,14 +31,14 @@ serve(async (req: Request) => {
     // Processing contact form submission
 
     // Get Resend API key from environment
-    const resendApiKey = Deno?.env?.get('RESEND_API_KEY');
-    
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+
     if (!resendApiKey) {
       console.error('CRITICAL ERROR: Resend API key not configured in environment variables. Please set RESEND_API_KEY in Supabase Edge Function secrets.');
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: "Server configuration error: Resend API key is missing. Please contact support." 
+        JSON.stringify({
+          success: false,
+          error: "Server configuration error: Resend API key is missing. Please contact support."
         }),
         {
           status: 500,
@@ -93,9 +94,9 @@ serve(async (req: Request) => {
       const errorData = await response.json(); // Attempt to parse error as JSON
       console.error('Resend API error:', errorData);
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: errorData.message || `Failed to send email: ${response.status}` 
+        JSON.stringify({
+          success: false,
+          error: errorData.message || `Failed to send email: ${response.status}`
         }),
         {
           status: response.status, // Use the actual status from Resend
@@ -110,8 +111,8 @@ serve(async (req: Request) => {
     const result = await response.json();
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
+      JSON.stringify({
+        success: true,
         message: "Contact form submitted successfully",
         emailId: result.id
       }),
@@ -125,11 +126,11 @@ serve(async (req: Request) => {
     );
   } catch (error: any) {
     console.error("Error processing contact form:", error);
-    
+
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        error: error.message || "Failed to process contact form" 
+      JSON.stringify({
+        success: false,
+        error: error.message || "Failed to process contact form"
       }),
       {
         status: 500,
