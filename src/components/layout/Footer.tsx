@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Twitter, Github, Linkedin } from "lucide-react";
+import { Twitter, Youtube, Instagram } from "lucide-react";
 import { useTranslation } from "@/contexts/TranslationContext";
 
 const Footer = () => {
@@ -8,11 +8,7 @@ const Footer = () => {
   
   const sportsCategories = [
     { name: t("category.football"), path: "/blog?category=football" },
-    { name: t("category.basketball"), path: "/blog?category=basketball" },
-    { name: t("category.soccer"), path: "/blog?category=soccer" },
-    { name: t("category.tennis"), path: "/blog?category=tennis" },
-    { name: t("category.baseball"), path: "/blog?category=baseball" },
-    { name: t("category.athletics"), path: "/blog?category=athletics" },
+    { name: t("category.basketball"), path: "/blog?category=basketball" }
   ];
 
   return (
@@ -38,13 +34,13 @@ const Footer = () => {
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <Github className="h-5 w-5" />
+                <Youtube className="h-5 w-5" />
               </a>
               <a
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <Linkedin className="h-5 w-5" />
+                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -76,12 +72,6 @@ const Footer = () => {
                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
                >
                  {t("footer.contact")}
-               </Link>
-               <Link
-                 to="/admin"
-                 className="text-muted-foreground hover:text-primary transition-colors text-xs opacity-50"
-               >
-                 {t("nav.admin")}
                </Link>
             </div>
           </div>
