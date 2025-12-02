@@ -58,14 +58,15 @@ async function loadTranslations(lang: string) {
     const response = await fetch(url);
     
     if (!response.ok) {
-      console.error(`Failed to load translations from: ${url}`);
-      throw new Error(`Failed to load translations for ${lang} (status ${response.status}) at ${url}`);
+      console.warn(`Failed to load translations from: ${url} (status ${response.status})`);
+      return {};
     }
 
     const contentType = response.headers.get('content-type') || '';
     if (!contentType.includes('application/json')) {
       const preview = await response.text();
-      throw new SyntaxError(`Unexpected content-type '${contentType}' at ${url}. First chars: ${preview.slice(0, 60)}`);
+      console.warn(`Non-JSON response for translations '${lang}' at ${url}. First chars: ${preview.slice(0, 60)}`);
+      return {};
     }
 
     const data = await response.json();
