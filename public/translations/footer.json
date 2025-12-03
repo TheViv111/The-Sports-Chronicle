@@ -14,7 +14,8 @@
     "footer.allPosts": "Todas las Publicaciones",
     "footer.aboutMe": "Acerca de Mí",
     "footer.contact": "Contacto",
-    "footer.rightsReserved": "Todos los derechos reservados."
+    "footer.rightsReserved": "Todos los derechos reservados.",
+    "footer.description": "Tu destino definitivo para análisis deportivo e ideas del mundo deportivo."
   },
   "fr": {
     "footer.quickLinks": "Liens Rapides",
@@ -22,7 +23,8 @@
     "footer.allPosts": "Tous les Articles",
     "footer.aboutMe": "À Propos de Moi",
     "footer.contact": "Contact",
-    "footer.rightsReserved": "Tous droits réservés."
+    "footer.rightsReserved": "Tous droits réservés.",
+    "footer.description": "Votre destination ultime pour l'analyse sportive et les aperçus du monde sportif."
   },
   "de": {
     "footer.quickLinks": "Schnelllinks",
@@ -30,7 +32,8 @@
     "footer.allPosts": "Alle Beiträge",
     "footer.aboutMe": "Über Mich",
     "footer.contact": "Kontakt",
-    "footer.rightsReserved": "Alle Rechte vorbehalten."
+    "footer.rightsReserved": "Alle Rechte vorbehalten.",
+    "footer.description": "Ihre ultimative Destination für Sportanalyse und Einblicke aus der Sportwelt."
   },
   "it": {
     "footer.quickLinks": "Collegamenti Rapidi",
@@ -38,7 +41,8 @@
     "footer.allPosts": "Tutti i Post",
     "footer.aboutMe": "Chi Sono",
     "footer.contact": "Contatti",
-    "footer.rightsReserved": "Tutti i diritti riservati."
+    "footer.rightsReserved": "Tutti i diritti riservati.",
+    "footer.description": "La tua destinazione definitiva per analisi sportive e approfondimenti dal mondo sportivo."
   },
   "pt": {
     "footer.quickLinks": "Links Rápidos",
@@ -46,7 +50,8 @@
     "footer.allPosts": "Todos os Posts",
     "footer.aboutMe": "Sobre Mim",
     "footer.contact": "Contato",
-    "footer.rightsReserved": "Todos os direitos reservados."
+    "footer.rightsReserved": "Todos os direitos reservados.",
+    "footer.description": "Seu destino definitivo para análise esportiva e insights do mundo esportivo."
   },
   "ru": {
     "footer.quickLinks": "Быстрые ссылки",
@@ -54,7 +59,8 @@
     "footer.allPosts": "Все посты",
     "footer.aboutMe": "Обо мне",
     "footer.contact": "Контакты",
-    "footer.rightsReserved": "Все права защищены."
+    "footer.rightsReserved": "Все права защищены.",
+    "footer.description": "Ваше конечное назначение для спортивного анализа и идей из мира спорта."
   },
   "pl": {
     "footer.quickLinks": "Szybkie Linki",
@@ -62,7 +68,8 @@
     "footer.allPosts": "Wszystkie Posty",
     "footer.aboutMe": "O Mnie",
     "footer.contact": "Kontakt",
-    "footer.rightsReserved": "Wszelkie prawa zastrzeżone."
+    "footer.rightsReserved": "Wszelkie prawa zastrzeżone.",
+    "footer.description": "Twoje ostateczne przeznaczenie dla analizy sportowej i insightów ze świata sportu."
   },
   "nl": {
     "footer.quickLinks": "Snelle Links",
@@ -70,7 +77,8 @@
     "footer.allPosts": "Alle Berichten",
     "footer.aboutMe": "Over Mij",
     "footer.contact": "Contact",
-    "footer.rightsReserved": "Alle rechten voorbehouden."
+    "footer.rightsReserved": "Alle rechten voorbehouden.",
+    "footer.description": "Uw ultieme bestemming voor sportanalyse en inzichten uit de sportwereld."
   },
   "sv": {
     "footer.quickLinks": "Snabblänkar",
@@ -78,7 +86,8 @@
     "footer.allPosts": "Alla Inlägg",
     "footer.aboutMe": "Om Mig",
     "footer.contact": "Kontakt",
-    "footer.rightsReserved": "Alla rättigheter förbehållna."
+    "footer.rightsReserved": "Alla rättigheter förbehållna.",
+    "footer.description": "Din ultimata destination för sportanalys och insikter från sportvärlden."
   },
   "no": {
     "footer.quickLinks": "Hurtiglenker",
@@ -86,7 +95,8 @@
     "footer.allPosts": "Alle Innlegg",
     "footer.aboutMe": "Om Meg",
     "footer.contact": "Kontakt",
-    "footer.rightsReserved": "Alle rettigheter forbeholdt."
+    "footer.rightsReserved": "Alle rettigheter forbeholdt.",
+    "footer.description": "Din endelige destinasjon for sportsanalyse og innsikt fra sportsverdenen."
   },
   "da": {
     "footer.quickLinks": "Hurtige Links",
@@ -94,7 +104,8 @@
     "footer.allPosts": "Alle Indlæg",
     "footer.aboutMe": "Om Mig",
     "footer.contact": "Kontakt",
-    "footer.rightsReserved": "Alle rettigheder forbeholdes."
+    "footer.rightsReserved": "Alle rettigheder forbeholdes.",
+    "footer.description": "Din endelige destination for sportsanalyse og indblik fra sportsverdenen."
   },
   "fi": {
     "footer.quickLinks": "Pikalikit",
@@ -102,7 +113,8 @@
     "footer.allPosts": "Kaikki Postaukset",
     "footer.aboutMe": "Minusta",
     "footer.contact": "Yhteystiedot",
-    "footer.rightsReserved": "Kaikki oikeudet pidätetään."
+    "footer.rightsReserved": "Kaikki oikeudet pidätetään.",
+    "footer.description": "Lopullinen kohteesi urheiluanalyysille ja oivalluksille urheilumaailmasta."
   },
   "zh": {
     "footer.quickLinks": "快速链接",
@@ -110,7 +122,8 @@
     "footer.allPosts": "所有文章",
     "footer.aboutMe": "关于我",
     "footer.contact": "联系我们",
-    "footer.rightsReserved": "版权所有。"
+    "footer.rightsReserved": "版权所有。",
+    "footer.description": "您体育分析和体育世界见解的终极目的地。"
   },
   "ja": {
     "footer.quickLinks": "クイックリンク",
