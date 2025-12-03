@@ -17,7 +17,7 @@ const About = () => {
     <>
       <SEO
         title="About Us - The Sports Chronicle"
-        description="Learn about The Sports Chronicle team, our mission to deliver quality sports journalism, and our commitment to covering basketball, soccer, swimming and more."
+        description="Learn about The Sports Chronicle team, our mission to democratize sports knowledge, and our commitment to providing accessible, in-depth analysis for basketball and football."
         canonicalUrl="https://thesportschronicle.com/about"
         schemaType="Organization"
       />
@@ -26,10 +26,10 @@ const About = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 reveal-on-scroll">
-              {t("about.title")}
+              About Us
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto reveal-on-scroll">
-              {t("about.subtitle")}
+              Your ultimate destination for sports analysis, and insights from around the sporting world.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ const About = () => {
           <div className="max-w-4xl mx-auto prose prose-lg">
             <div className="space-y-6 text-foreground leading-relaxed">
               <p className="reveal-on-scroll">
-                {t("about.foundationText")}
+                The Sports Chronicle was founded on a simple belief: sports knowledge shouldn't be locked behind paywalls, complex jargon, or exclusive communities. Whether you're picking up a basketball for the first time or refining your football technique, we're here to help you understand the game at a deeper level. We break down the mechanics, strategies, and nuances of sports in a way that's clear, engaging, and actionable. From the fundamentals to advanced tactics, our goal is to make quality sports education accessible to everyone—especially those who might not have access to expensive coaching or training resources.
               </p>
 
               <p className="reveal-on-scroll">
@@ -61,10 +61,10 @@ const About = () => {
               </p>
 
               <h2 className="font-heading text-2xl font-semibold mt-8 mb-4 reveal-on-scroll">
-                {t("about.missionTitle")}
+                Our Mission: Democratizing Sports Knowledge
               </h2>
               <p className="reveal-on-scroll">
-                {t("about.missionText")}
+                We believe that everyone deserves the opportunity to learn, improve, and fall in love with sports. Our mission is to provide in-depth, jargon-free analysis that helps you understand the 'why' behind every move, play, and strategy, develop your skills with clear, practical guidance, and appreciate the game on a deeper level, whether you're a player or a fan. We're committed to making sports education free, accessible, and understandable for all—regardless of background, location, or resources.
               </p>
 
               {/* Team Section */}
@@ -179,23 +179,23 @@ const About = () => {
               </div>
 
               <h2 className="font-heading text-2xl font-semibold mt-8 mb-4 reveal-on-scroll">
-                {t("about.coverageTitle")}
+                What We Cover
               </h2>
               <ul className="space-y-2 reveal-on-scroll">
-                <li><strong>{t("category.soccer")}</strong> - {t("about.footballCoverage")}</li>
-                <li><strong>{t("category.basketball")}</strong> - {t("about.basketballCoverage")}</li>
-                <li><strong>{t("category.baseball")}</strong> - {t("about.baseballCoverage")}</li>
-                <li><strong>{t("category.tennis")}</strong> - {t("about.tennisCoverage")}</li>
-                <li><strong>{t("about.olympicSports")}</strong> - {t("about.olympicCoverage")}</li>
-                <li><strong>{t("about.emergingSportsTitle")}</strong> - {t("about.emergingSports")}</li>
+                <li><strong>Basketball</strong> - NBA, college basketball, and international leagues</li>
+                <li><strong>Football (Soccer)</strong> - Leagues, tournaments, and international competitions</li>
               </ul>
 
               <h2 className="font-heading text-2xl font-semibold mt-8 mb-4 reveal-on-scroll">
-                {t("about.valuesTitle")}
+                Our Values
               </h2>
-              <p className="reveal-on-scroll">
-                {t("about.valuesText")}
-              </p>
+              <ul className="space-y-2 reveal-on-scroll list-disc pl-5">
+                <li><strong>Accessibility</strong> - Sports knowledge should be free and available to everyone, everywhere.</li>
+                <li><strong>Clarity</strong> - We explain complex concepts in simple terms, without dumbing them down.</li>
+                <li><strong>Depth</strong> - Our analysis goes beyond surface-level coverage to help you truly understand the game.</li>
+                <li><strong>Empowerment</strong> - We believe in giving you the tools to improve, learn, and grow as an athlete or fan.</li>
+                <li><strong>Inclusivity</strong> - Sports are for everyone, and our content reflects that commitment.</li>
+              </ul>
             </div>
           </div>
         </div>
