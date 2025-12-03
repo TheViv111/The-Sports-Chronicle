@@ -7,35 +7,21 @@ interface LoadingScreenProps {
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({
   message = "Loading...",
-  minDisplayTime = 800
+  // minDisplayTime is kept in props for future implementation but unused for now
 }) => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [shouldRender, setShouldRender] = useState(true);
-
-  useEffect(() => {
-    const startTime = Date.now();
-
-    return () => {
-      const elapsedTime = Date.now() - startTime;
-      const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
-
-      // If the component is unmounting (loading finished), 
-      // we can handle any cleanup here if needed.
-      // However, for a suspense fallback, the unmounting happens automatically.
-    };
-  }, [minDisplayTime]);
-
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-colors duration-300">
       <div className="relative flex flex-col items-center">
         {/* Logo Container with Pulse Animation */}
         <div className="relative mb-8 animate-pulse-slow">
           <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl transform scale-150 animate-pulse"></div>
-          <img
-            src="/logo-160.png"
-            alt="The Sports Chronicle"
-            className="relative w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-lg"
-          />
+          <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden bg-background drop-shadow-lg">
+            <img
+              src="/logo-160.png"
+              alt="The Sports Chronicle"
+              className="w-full h-full object-contain"
+            />
+          </div>
         </div>
 
         {/* Loading Bar */}

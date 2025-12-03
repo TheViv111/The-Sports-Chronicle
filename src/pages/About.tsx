@@ -16,9 +16,9 @@ const About = () => {
   return (
     <>
       <SEO
-        title="About Us - The Sports Chronicle"
-        description="Learn about The Sports Chronicle team, our mission to democratize sports knowledge, and our commitment to providing accessible, in-depth analysis for basketball and football."
-        canonicalUrl="https://thesportschronicle.com/about"
+        title="About The Sports Chronicle - Our Team & Mission"
+        description="Meet The Sports Chronicle team dedicated to delivering expert sports analysis and breaking news. Learn our mission to provide comprehensive coverage of basketball, soccer, swimming, and football worldwide."
+        canonicalUrl="https://the-sports-chronicle.vercel.app/about"
         schemaType="Organization"
       />
       <div className="min-h-screen py-12">

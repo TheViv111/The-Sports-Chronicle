@@ -2,14 +2,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { toast } from "sonner"; // Using sonner for toasts
+import { toast } from "sonner";
 import { useTranslation } from "@/contexts/TranslationContext";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/common/SEO";
 import { Loader2, CheckCircle2 } from "lucide-react";
 import { useSession } from "@/components/auth/SessionContextProvider";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Tables } from "@/integrations/supabase/types";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,7 +20,24 @@ const Contact = () => {
   const { session } = useSession();
   const navigate = useNavigate();
 
+  const userId = session?.user?.id;
   const userEmail = session?.user?.email || "";
+
+  // Fetch user profile to get first and last name
+  const { data: profile } = useQuery<Tables<'profiles'> | null>({
+    queryKey: ["profile", userId],
+    queryFn: async () => {
+      if (!userId) return null;
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!userId,
+  });
 
   useScrollReveal('.reveal-on-scroll');
 
@@ -100,9 +119,9 @@ const Contact = () => {
   return (
     <>
       <SEO 
-        title="Contact Us - The Sports Chronicle"
-        description="Get in touch with The Sports Chronicle team. Send us your questions, feedback, or story ideas about sports news and coverage."
-        canonicalUrl="https://thesportschronicle.com/contact"
+        title="Contact The Sports Chronicle - Get in Touch"
+        description="Contact The Sports Chronicle team with questions, feedback, or story ideas. We welcome your input on sports news coverage and analysis across basketball, soccer, swimming, and football."
+        canonicalUrl="https://the-sports-chronicle.vercel.app/contact"
         schemaType="ContactPage"
       />
       <div className="min-h-screen py-12">
@@ -129,66 +148,65 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="firstName">{t("contact.firstName")}</Label>
                     <Input
                       id="firstName"
                       name="firstName"
+                      label={t("contact.firstName")}
                       placeholder={t("contact.yourFirstName")}
+                      defaultValue={profile?.first_name || ""}
                       required
-                      className="mt-1"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="lastName">{t("contact.lastName")}</Label>
                     <Input
                       id="lastName"
                       name="lastName"
+                      label={t("contact.lastName")}
                       placeholder={t("contact.yourLastName")}
+                      defaultValue={profile?.last_name || ""}
                       required
-                      className="mt-1"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="email">{t("auth.email")}</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
+                    label={t("auth.email")}
                     value={userEmail}
                     readOnly
                     disabled={!session}
                     placeholder={t("contact.yourEmail")}
-                    className="mt-1"
+                    helperText={!session ? t("auth.signInRequired") : ""}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="subject">{t("contact.subject")}</Label>
                   <Input
                     id="subject"
                     name="subject"
+                    label={t("contact.subject")}
                     placeholder={t("contact.whatAbout")}
                     required
-                    className="mt-1"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="message">{t("contact.message")}</Label>
                   <Textarea
                     id="message"
                     name="message"
+                    label={t("contact.message")}
                     placeholder={t("contact.tellUsMore")}
                     required
-                    className="mt-1 min-h-[120px]"
+                    className="min-h-[120px]"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full btn-hover-lift tap-press"
+                  className="w-full btn-hover-lift tap-press animate-glow"
                   disabled={isSubmitting || !session}
                 >
                   {isSubmitting ? (
@@ -211,7 +229,7 @@ const Contact = () => {
                 >
                   <div className="flex flex-col items-center gap-2 animate-in zoom-in-95 fade-in duration-300 p-6 rounded-lg bg-background shadow-lg">
                     <CheckCircle2 className="h-12 w-12 text-green-600" />
-                    <p className="font-medium text-green-700">{t("form.success")}</p>
+                    <p className="font-medium text-green-700">{t("contact.messageSentSuccess")}</p>
                   </div>
                 </div>
               )}

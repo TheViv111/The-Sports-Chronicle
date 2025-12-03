@@ -81,16 +81,46 @@ const BlogPost = () => {
     <>
       <SEO
         title={`${displayPost.title} - The Sports Chronicle`}
-        description={displayPost.excerpt || `Read ${displayPost.title} on The Sports Chronicle. Latest sports news and analysis.`}
-        canonicalUrl={`https://thesportschronicle.com/blog/${displayPost.slug}`}
+        description={displayPost.excerpt || `Read ${displayPost.title} on The Sports Chronicle. Latest sports news and analysis with expert insights on ${displayPost.category}.`}
+        canonicalUrl={`https://the-sports-chronicle.vercel.app/blog/${displayPost.slug}`}
         schemaType="Article"
+        imageUrl={displayPost.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"}
         articleData={{
           headline: displayPost.title,
           datePublished: displayPost.created_at,
           dateModified: displayPost.updated_at || displayPost.created_at,
-          author: displayPost.author || "The Sports Chronicle",
+          author: {
+            "@type": "Person",
+            name: displayPost.author || "The Sports Chronicle"
+          },
           image: displayPost.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg",
-          category: displayPost.category
+          category: displayPost.category,
+          keywords: `${displayPost.category}, sports news, ${displayPost.title}, the sports chronicle, sports analysis`,
+          articleSection: displayPost.category
+        }}
+        additionalSchema={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://the-sports-chronicle.vercel.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://the-sports-chronicle.vercel.app/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": displayPost.title,
+              "item": `https://the-sports-chronicle.vercel.app/blog/${displayPost.slug}`
+            }
+          ]
         }}
       />
       <div className="min-h-screen">

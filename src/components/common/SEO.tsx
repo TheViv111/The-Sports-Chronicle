@@ -11,31 +11,35 @@ interface SEOProps {
     headline?: string;
     datePublished?: string;
     dateModified?: string;
-    author?: string;
+    author?: string | { "@type": string; name: string };
     image?: string;
     category?: string;
     tags?: string[];
+    keywords?: string;
+    articleSection?: string;
   };
   noindex?: boolean;
+  additionalSchema?: object;
 }
 
 export function SEO({
   title = 'The Sports Chronicle - Sports News & Analysis',
   description = 'Your ultimate destination for sports news, analysis, and insights. Covering basketball, soccer, swimming, and more sports worldwide.',
-  canonicalUrl = 'https://thesportschronicle.com',
+  canonicalUrl = 'https://the-sports-chronicle.vercel.app',
   type = 'website',
   imageUrl = '/og-image.png',
   schemaType = 'WebSite',
   articleData,
   noindex = false,
+  additionalSchema,
 }: SEOProps) {
   // Base schema for all pages
   const baseSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'The Sports Chronicle',
-    url: 'https://thesportschronicle.com',
-    logo: 'https://thesportschronicle.com/og-image.png',
+    url: 'https://the-sports-chronicle.vercel.app',
+    logo: 'https://the-sports-chronicle.vercel.app/og-image.png',
     sameAs: [
       'https://facebook.com/thesportschronicle',
       'https://instagram.com/thesportschronicle'
@@ -65,7 +69,7 @@ export function SEO({
     isPartOf: {
       '@type': 'WebSite',
       name: 'The Sports Chronicle',
-      url: 'https://thesportschronicle.com'
+      url: 'https://the-sports-chronicle.vercel.app'
     }
   };
 
@@ -79,7 +83,7 @@ export function SEO({
     isPartOf: {
       '@type': 'WebSite',
       name: 'The Sports Chronicle',
-      url: 'https://thesportschronicle.com'
+      url: 'https://the-sports-chronicle.vercel.app'
     }
   };
 
@@ -93,14 +97,14 @@ export function SEO({
     dateModified: articleData.dateModified || articleData.datePublished,
     author: {
       '@type': 'Person',
-      name: articleData.author || 'The Sports Chronicle'
+      name: typeof articleData.author === 'string' ? articleData.author : articleData.author?.name || 'The Sports Chronicle'
     },
     publisher: {
       '@type': 'Organization',
       name: 'The Sports Chronicle',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://thesportschronicle.com/og-image.png'
+        url: 'https://the-sports-chronicle.vercel.app/og-image.png'
       }
     },
     description: description,
@@ -109,7 +113,8 @@ export function SEO({
       '@id': canonicalUrl
     },
     keywords: articleData.tags?.join(', '),
-    articleSection: articleData.category
+    articleSection: articleData.articleSection || articleData.category,
+    ...(articleData.keywords && { keywords: articleData.keywords })
   } : null;
 
   // Determine which schema to use based on the page type
@@ -127,6 +132,9 @@ export function SEO({
   } else {
     schemaMarkup = webPageSchema;
   }
+
+  // Combine main schema with additional schema if provided
+  const allSchemas = additionalSchema ? [schemaMarkup, additionalSchema] : [schemaMarkup];
 
   return (
     <Helmet>
@@ -152,9 +160,11 @@ export function SEO({
       <meta name="twitter:image" content={imageUrl} />
 
       {/* JSON-LD structured data */}
-      <script type="application/ld+json">
-        {JSON.stringify(schemaMarkup)}
-      </script>
+      {allSchemas.map((schema, index) => (
+        <script key={index} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Helmet>
   );
 }

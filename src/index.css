@@ -182,6 +182,140 @@ dark .prose ol>li::marker {
     }
   }
 
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes rotateIn {
+    from {
+      opacity: 0;
+      transform: rotate(-10deg) scale(0.8);
+    }
+
+    to {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(var(--primary), 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(var(--primary), 0.6);
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(var(--primary), 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(var(--primary), 0.8), 0 0 30px rgba(var(--primary), 0.4);
+    }
+  }
+
+  @keyframes magnetic-pull {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(var(--mouse-x), var(--mouse-y));
+    }
+  }
+
   .reveal-on-scroll {
     opacity: 0;
     animation-fill-mode: forwards;
@@ -199,6 +333,30 @@ dark .prose ol>li::marker {
 
   .fade-in-right.visible {
     animation-name: fadeInRight;
+  }
+
+  .fade-in-down.visible {
+    animation-name: fadeInDown;
+  }
+
+  .scale-in.visible {
+    animation-name: scaleIn;
+  }
+
+  .slide-in-up.visible {
+    animation-name: slideInUp;
+  }
+
+  .slide-in-down.visible {
+    animation-name: slideInDown;
+  }
+
+  .rotate-in.visible {
+    animation-name: rotateIn;
+  }
+
+  .bounce-in.visible {
+    animation-name: bounceIn;
   }
 
   @keyframes pulse-slow {
@@ -232,7 +390,6 @@ dark .prose ol>li::marker {
     animation: progress-indeterminate 1.5s infinite linear;
   }
 
-
   /* Staggered animation delay */
   .reveal-on-scroll[style*="--stagger-delay"] {
     animation-delay: var(--stagger-delay);
@@ -240,48 +397,52 @@ dark .prose ol>li::marker {
 
   /* Category badges */
   .category-badge {
-    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors;
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-all duration-300 hover:scale-110 hover:shadow-md;
   }
 
   .category-badge.basketball {
-    @apply bg-orange-500/20 text-orange-600 hover:bg-orange-500/30;
+    @apply bg-orange-500/20 text-orange-600 hover:bg-orange-500/30 hover:shadow-orange-500/25;
   }
 
   .category-badge.soccer {
-    @apply bg-green-500/20 text-green-600 hover:bg-green-500/30;
+    @apply bg-green-500/20 text-green-600 hover:bg-green-500/30 hover:shadow-green-500/25;
   }
 
   .category-badge.swimming {
-    @apply bg-blue-500/20 text-blue-600 hover:bg-blue-500/30;
+    @apply bg-blue-500/20 text-blue-600 hover:bg-blue-500/30 hover:shadow-blue-500/25;
   }
 
   .category-badge.tennis {
-    @apply bg-yellow-500/20 text-yellow-600 hover:bg-yellow-500/30;
+    @apply bg-yellow-500/20 text-yellow-600 hover:bg-yellow-500/30 hover:shadow-yellow-500/25;
   }
 
   .category-badge.baseball {
-    @apply bg-red-500/20 text-red-600 hover:bg-red-500/30;
+    @apply bg-red-500/20 text-red-600 hover:bg-red-500/30 hover:shadow-red-500/25;
   }
 
   .category-badge.athletics {
-    @apply bg-purple-500/20 text-purple-600 hover:bg-purple-500/30;
+    @apply bg-purple-500/20 text-purple-600 hover:bg-purple-500/30 hover:shadow-purple-500/25;
   }
 
   .category-badge.football {
-    @apply bg-indigo-500/20 text-indigo-600 hover:bg-indigo-500/30;
+    @apply bg-indigo-500/20 text-indigo-600 hover:bg-indigo-500/30 hover:shadow-indigo-500/25;
   }
 
   /* Enhanced Blog Card Hover Effects */
   .blog-card {
-    @apply transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02];
+    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02];
+    transform-style: preserve-3d;
+    perspective: 1000px;
   }
 
   .blog-card img {
-    @apply transition-transform duration-500 group-hover:scale-110;
+    @apply transition-transform duration-700 group-hover:scale-110;
+    transform: translateZ(0);
   }
 
   .blog-card-content {
     @apply transition-all duration-300 group-hover:text-primary;
+    transform: translateZ(20px);
   }
 
   /* Enhanced button hover effects */
@@ -291,6 +452,11 @@ dark .prose ol>li::marker {
 
   .btn-hover-glow {
     @apply transition-all duration-300 hover:shadow-lg hover:scale-105;
+    animation: pulse-glow 2s infinite;
+  }
+
+  .btn-magnetic {
+    transition: transform 0.1s ease-out;
   }
 
   /* Page transition effects */
@@ -303,6 +469,54 @@ dark .prose ol>li::marker {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .page-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .page-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+
+  /* Loading skeleton with shimmer */
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Floating animation */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Glow animation */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  /* Ripple effect container */
+  .ripple-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
   }
 
   /* Language Dropdown */
@@ -439,6 +653,7 @@ body {
 img {
   content-visibility: auto;
   contain-intrinsic-size: 800px 450px;
+  will-change: transform;
 }
 
 /* Reduce layout shifts */
@@ -480,13 +695,20 @@ main {
   .animate-in,
   .fade-in,
   .slide-in,
-  .carousel-item-reveal {
+  .carousel-item-reveal,
+  .blog-card,
+  .btn-hover-lift,
+  .reveal-on-scroll {
     will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 
   /* After animation completes, remove will-change */
   [data-motion="false"],
-  .animate-in.complete {
+  .animate-in.complete,
+  .reveal-on-scroll.visible {
     will-change: auto;
   }
 
@@ -513,5 +735,35 @@ main {
   .rotate {
     transform: translateZ(0);
     backface-visibility: hidden;
+  }
+
+  /* Hardware acceleration for buttons */
+  button,
+  .btn-hover-lift {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Optimize particle rendering */
+  canvas {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Reduce paint complexity for hover states */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+  }
+
+  /* Optimize scroll performance */
+  .scroll-container {
+    overflow-anchor: none;
+  }
+
+  /* Improve rendering performance for animated backgrounds */
+  .animated-bg {
+    will-change: background-position;
+    contain: layout style paint;
   }
 }

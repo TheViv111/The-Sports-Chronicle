@@ -7,7 +7,6 @@ import BlogCard from "@/components/blog/BlogCard";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { supabase } from "@/integrations/supabase/client";
 import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-utils";
-import LoadingScreen from "@/components/common/LoadingScreen";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
@@ -15,7 +14,7 @@ import { SEO } from "@/components/common/SEO";
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [posts, setPosts] = useState<BlogPostWithDisplay[]>([]);
   const [loading, setLoading] = useState(true);
   const { t, currentLanguage } = useTranslation();
@@ -67,9 +66,9 @@ const Blog = () => {
   return (
     <>
       <SEO 
-        title="Sports Blog - The Sports Chronicle"
-        description="Explore the latest sports articles, analysis and insights across basketball, soccer, swimming and more."
-        canonicalUrl="https://thesportschronicle.com/blog"
+        title="Sports Chronicle Blog - Latest Sports News & Analysis"
+        description="The Sports Chronicle Blog: Expert sports analysis, training guides, and latest news covering basketball, soccer, swimming, football and more sports worldwide."
+        canonicalUrl="https://the-sports-chronicle.vercel.app/blog"
         schemaType="WebPage"
       />
       <div className="min-h-screen py-12">
