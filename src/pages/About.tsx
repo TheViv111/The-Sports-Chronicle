@@ -1,4 +1,4 @@
-import footballStrategyImage from "@/assets/football-strategy.jpg";
+import aboutHeroImage from "@/assets/about-page-hero-image.png";
 import shauryaGuptaNew from "@/assets/shaurya-gupta-new.jpg";
 import vivaanHandaNew from "@/assets/vivaan-handa-new.jpg";
 import shouryaGuptaNew from "@/assets/shourya-gupta-new.jpg";
@@ -37,8 +37,8 @@ const About = () => {
           <div className="mb-12 reveal-on-scroll scale-in">
             <div className="aspect-[21/9] overflow-hidden rounded-lg max-w-4xl mx-auto">
               <img
-                src={footballStrategyImage}
-                alt="Football strategy analysis with player positions and movement"
+                src={aboutHeroImage}
+                alt="Sports analysis and strategy visualization"
                 className="w-full h-full object-cover"
                 width={1260}
                 height={540}
