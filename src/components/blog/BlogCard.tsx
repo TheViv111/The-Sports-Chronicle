@@ -31,7 +31,7 @@ export default function BlogCard({ post }: BlogCardProps) {
               <OptimizedImage
                 src={imageSrc}
                 alt={displayPost.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                 onError={() => setImageError(true)}
                 width={800}
                 height={450}

@@ -21,7 +21,7 @@ const Footer = () => {
               The Sports Chronicle
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              {t("about.subtitle")}
+              {t("footer.description")}
             </p>
             <div className="flex space-x-4">
               <a

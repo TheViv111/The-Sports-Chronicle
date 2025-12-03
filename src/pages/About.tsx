@@ -26,20 +26,20 @@ const About = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 reveal-on-scroll">
-              About Us
+              {t("about.title")}
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto reveal-on-scroll">
-              Your ultimate destination for sports analysis, and insights from around the sporting world.
+              {t("about.subtitle")}
             </p>
           </div>
 
           {/* Hero Image */}
           <div className="mb-12 reveal-on-scroll scale-in">
-            <div className="aspect-[21/9] overflow-hidden rounded-lg max-w-4xl mx-auto">
+            <div className="w-full max-w-4xl mx-auto bg-gray-100 rounded-lg overflow-hidden">
               <img
                 src={aboutHeroImage}
                 alt="Sports analysis and strategy visualization"
-                className="w-full h-full object-cover"
+                className="w-full h-auto max-h-[70vh] object-contain mx-auto"
                 width={1260}
                 height={540}
                 loading="eager"
@@ -53,7 +53,7 @@ const About = () => {
           <div className="max-w-4xl mx-auto prose prose-lg">
             <div className="space-y-6 text-foreground leading-relaxed">
               <p className="reveal-on-scroll">
-                The Sports Chronicle was founded on a simple belief: sports knowledge shouldn't be locked behind paywalls, complex jargon, or exclusive communities. Whether you're picking up a basketball for the first time or refining your football technique, we're here to help you understand the game at a deeper level. We break down the mechanics, strategies, and nuances of sports in a way that's clear, engaging, and actionable. From the fundamentals to advanced tactics, our goal is to make quality sports education accessible to everyone—especially those who might not have access to expensive coaching or training resources.
+                {t("about.foundationText")}
               </p>
 
               <p className="reveal-on-scroll">
@@ -61,10 +61,10 @@ const About = () => {
               </p>
 
               <h2 className="font-heading text-2xl font-semibold mt-8 mb-4 reveal-on-scroll">
-                Our Mission: Democratizing Sports Knowledge
+                {t("about.missionTitle")}
               </h2>
               <p className="reveal-on-scroll">
-                We believe that everyone deserves the opportunity to learn, improve, and fall in love with sports. Our mission is to provide in-depth, jargon-free analysis that helps you understand the 'why' behind every move, play, and strategy, develop your skills with clear, practical guidance, and appreciate the game on a deeper level, whether you're a player or a fan. We're committed to making sports education free, accessible, and understandable for all—regardless of background, location, or resources.
+                {t("about.missionText")}
               </p>
 
               {/* Team Section */}
@@ -179,23 +179,19 @@ const About = () => {
               </div>
 
               <h2 className="font-heading text-2xl font-semibold mt-8 mb-4 reveal-on-scroll">
-                What We Cover
+                {t("about.coverageTitle")}
               </h2>
               <ul className="space-y-2 reveal-on-scroll">
-                <li><strong>Basketball</strong> - NBA, college basketball, and international leagues</li>
-                <li><strong>Football (Soccer)</strong> - Leagues, tournaments, and international competitions</li>
+                <li>{t("about.basketballCoverage")}</li>
+                <li>{t("about.footballCoverage")}</li>
               </ul>
 
               <h2 className="font-heading text-2xl font-semibold mt-8 mb-4 reveal-on-scroll">
-                Our Values
+                {t("about.valuesTitle")}
               </h2>
-              <ul className="space-y-2 reveal-on-scroll list-disc pl-5">
-                <li><strong>Accessibility</strong> - Sports knowledge should be free and available to everyone, everywhere.</li>
-                <li><strong>Clarity</strong> - We explain complex concepts in simple terms, without dumbing them down.</li>
-                <li><strong>Depth</strong> - Our analysis goes beyond surface-level coverage to help you truly understand the game.</li>
-                <li><strong>Empowerment</strong> - We believe in giving you the tools to improve, learn, and grow as an athlete or fan.</li>
-                <li><strong>Inclusivity</strong> - Sports are for everyone, and our content reflects that commitment.</li>
-              </ul>
+              <p className="reveal-on-scroll">
+                {t("about.valuesText")}
+              </p>
             </div>
           </div>
         </div>
