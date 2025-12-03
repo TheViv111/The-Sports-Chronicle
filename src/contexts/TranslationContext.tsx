@@ -54,24 +54,47 @@ const DEFAULT_LANGUAGE = 'en';
 
 async function loadTranslations(lang: string) {
   try {
-    const url = `translations/${lang}.json`;
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      console.warn(`Failed to load translations from: ${url} (status ${response.status})`);
-      return {};
+    // Load per-language file
+    const langUrl = `translations/${lang}.json`;
+    const langResp = await fetch(langUrl);
+    let langData: Record<string, string> = {};
+
+    if (!langResp.ok) {
+      console.warn(`Failed to load translations from: ${langUrl} (status ${langResp.status})`);
+    } else {
+      const ct = langResp.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) {
+        const preview = await langResp.text();
+        console.warn(`Non-JSON response for translations '${lang}' at ${langUrl}. First chars: ${preview.slice(0, 60)}`);
+      } else {
+        langData = await langResp.json();
+      }
     }
 
-    const contentType = response.headers.get('content-type') || '';
-    if (!contentType.includes('application/json')) {
-      const preview = await response.text();
-      console.warn(`Non-JSON response for translations '${lang}' at ${url}. First chars: ${preview.slice(0, 60)}`);
-      return {};
+    // Load consolidated translations and overlay language section if available
+    const consolidatedUrl = `translations/consolidated.json`;
+    let consolidatedData: Record<string, Record<string, string>> = {};
+    try {
+      const consResp = await fetch(consolidatedUrl);
+      if (consResp.ok) {
+        const consCT = consResp.headers.get('content-type') || '';
+        if (consCT.includes('application/json')) {
+          consolidatedData = await consResp.json();
+        } else {
+          const preview = await consResp.text();
+          console.warn(`Non-JSON consolidated translations at ${consolidatedUrl}. First chars: ${preview.slice(0, 60)}`);
+        }
+      } else {
+        console.warn(`Failed to load consolidated translations (status ${consResp.status})`);
+      }
+    } catch (e) {
+      console.warn('Error loading consolidated translations:', e);
     }
 
-    const data = await response.json();
-    console.log(`Loaded ${Object.keys(data).length} translations for ${lang}`);
-    return data;
+    const overlay = consolidatedData[lang] || {};
+    const merged = { ...overlay, ...langData };
+    console.log(`Loaded ${Object.keys(merged).length} translations for ${lang} (merged with consolidated)`);
+    return merged;
   } catch (error) {
     console.error(`Error loading translations for ${lang}:`, error);
     return {};
