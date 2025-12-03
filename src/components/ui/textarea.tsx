@@ -35,9 +35,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           <label
             htmlFor={textareaId}
             className={cn(
-              "absolute left-3 transition-all duration-200 pointer-events-none bg-background px-1 z-10",
+              "absolute left-3 transition-all duration-200 pointer-events-none bg-background px-1 z-10 border border-background",
               isFocused || hasValue
-                ? "text-xs text-primary top-0"
+                ? "text-xs text-primary top-0 -mt-2"
                 : "text-sm text-muted-foreground top-3"
             )}
           >
