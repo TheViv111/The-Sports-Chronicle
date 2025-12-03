@@ -5,7 +5,7 @@
   "footer.quickLinks": "Links Rápidos",
   "footer.categories": "Categorias",
   "footer.allPosts": "Todos os Posts",
-  "footer.aboutMe": "Sobre Mim",
+  "footer.aboutUs": "Sobre N�s",
   "footer.contact": "Contato",
   "footer.rightsReserved": "Todos os direitos reservados.",
   "hero.welcome": "Bem-vindos ao nosso Blog",
@@ -220,5 +220,7 @@
   "contact.advertisingOpportunities": "Interessado em oportunidades de publicidade? Entre em contato com nossa equipe de desenvolvimento de negócios para saber mais sobre nossos pacotes.",
   "contact.messageSentSuccess": "Mensagem enviada com sucesso!",
   "contact.messageSentDescription": "Obrigado pela sua mensagem. Entraremos em contato em breve.",
-  "contact.failedToSend": "Falha ao enviar mensagem."
+  "contact.failedToSend": "Falha ao enviar mensagem.",
+  "footer.description": "Seu destino definitivo para habilidades esportivas, técnicas e análise tática. Domine o jogo com insights especializados sobre futebol, basquete e mais."
 }
+

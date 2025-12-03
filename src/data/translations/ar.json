@@ -5,7 +5,7 @@
   "footer.quickLinks": "روابط سريعة",
   "footer.categories": "التصنيفات",
   "footer.allPosts": "جميع المنشورات",
-  "footer.aboutMe": "نبذة عني",
+  "footer.aboutUs": "نبذة عني",
   "footer.contact": "تواصل معنا",
   "footer.rightsReserved": "جميع الحقوق محفوظة.",
   "hero.welcome": "مرحباً بكم في مدونتنا",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "هل أنت مهتم بفرص الإعلان؟ اتصل بفريق تطوير الأعمال لدينا لمعرفة المزيد عن باقاتنا.",
   "contact.messageSentSuccess": "تم إرسال الرسالة بنجاح!",
   "contact.messageSentDescription": "شكراً لرسالتك. سنتواصل معك قريباً.",
-  "contact.failedToSend": "فشل إرسال الرسالة."
+  "contact.failedToSend": "فشل إرسال الرسالة.",
+  "footer.description": "وجهتكم النهائية لمهارات الرياضة والتقنيات والتحليل التكتيكي. أتقن اللعبة مع رؤى الخبراء حول كرة القدم وكرة السلة والمزيد."
 }

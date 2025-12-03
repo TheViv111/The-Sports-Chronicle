@@ -60,7 +60,7 @@ const App = () => {
             <TranslationProvider>
               <BrowserRouter>
                 <SessionContextProvider>
-                  <Suspense fallback={<LoadingScreen message="Loading..." />}>
+                  <Suspense fallback={<LoadingScreen message="Preparing your experience..." />}>
                     <Routes>
                       <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />

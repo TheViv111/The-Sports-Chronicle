@@ -5,7 +5,7 @@
   "footer.quickLinks": "जलद दुवे",
   "footer.categories": "श्रेणी",
   "footer.allPosts": "सर्व पोस्ट",
-  "footer.aboutMe": "माझ्याबद्दल",
+  "footer.aboutUs": "माझ्याबद्दल",
   "footer.contact": "संपर्क",
   "footer.rightsReserved": "सर्व हक्क राखीव.",
   "hero.welcome": "आमच्या ब्लॉगमध्ये आपले स्वागत आहे",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "जाहिरात संधींमध्ये स्वारस्य आहे? आमच्या पॅकेजेसबद्दल जाणून घेण्यासाठी आमच्या व्यवसाय विकास टीमशी संपर्क साधा.",
   "contact.messageSentSuccess": "संदेश यशस्वीरित्या पाठवला!",
   "contact.messageSentDescription": "तुमच्या संदेशाबद्दल धन्यवाद. आम्ही लवकरच तुमच्याशी संपर्क साधू.",
-  "contact.failedToSend": "संदेश पाठवण्यात अयशस्वी."
+  "contact.failedToSend": "संदेश पाठवण्यात अयशस्वी.",
+  "footer.description": "क्रीडा कौशल्ये, तंत्रे आणि रणनीतिक विश्लेषणासाठी तुमचे अंतिम गंतव्य। फुटबॉल, बास्केटबॉल आणि अधिकवर तज्ञ अंतर्दृष्टीसह खेळात प्रभुत्व मिळवा।"
 }

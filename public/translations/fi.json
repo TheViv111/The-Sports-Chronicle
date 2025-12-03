@@ -5,7 +5,7 @@
   "footer.quickLinks": "Pikalinkit",
   "footer.categories": "Kategoriat",
   "footer.allPosts": "Kaikki Postaukset",
-  "footer.aboutMe": "Minusta",
+  "footer.aboutUs": "Minusta",
   "footer.contact": "Yhteystiedot",
   "footer.rightsReserved": "Kaikki oikeudet pidätetään.",
   "hero.welcome": "Tervetuloa blogiimme",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "Kiinnostaako mainosmahdollisuudet? Ota yhteyttä liiketoiminnan kehitystiimiimme saadaksesi lisätietoja paketeistamme.",
   "contact.messageSentSuccess": "Viesti lähetetty onnistuneesti!",
   "contact.messageSentDescription": "Kiitos viestistäsi. Otamme sinuun yhteyttä pian.",
-  "contact.failedToSend": "Viestin lähettäminen epäonnistui."
+  "contact.failedToSend": "Viestin lähettäminen epäonnistui.",
+  "footer.description": "Lopullinen kohteesi urheilutaidoille, tekniikoille ja taktiselle analyysille. Hallitse peli asiantuntijanäkemyksillä jalkapallosta, koripallosta ja muusta."
 }

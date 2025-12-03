@@ -5,7 +5,7 @@
   "footer.quickLinks": "빠른 링크",
   "footer.categories": "카테고리",
   "footer.allPosts": "모든 게시물",
-  "footer.aboutMe": "나에 대해",
+  "footer.aboutUs": "나에 대해",
   "footer.contact": "연락처",
   "footer.rightsReserved": "모든 권리 보유.",
   "hero.welcome": "블로그에 오신 것을 환영합니다",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "광고 기회에 관심이 있으신가요? 저희 비즈니스 개발팀에 연락하여 패키지에 대해 알아보세요.",
   "contact.messageSentSuccess": "메시지가 성공적으로 전송되었습니다!",
   "contact.messageSentDescription": "메시지 주셔서 감사합니다. 곧 연락드리겠습니다.",
-  "contact.failedToSend": "메시지 전송 실패."
+  "contact.failedToSend": "메시지 전송 실패.",
+  "footer.description": "스포츠 기술, 기법 및 전술 분석을 위한 궁극적인 목적지입니다. 축구, 농구 등에 대한 전문가 통찰력으로 게임을 마스터하세요."
 }

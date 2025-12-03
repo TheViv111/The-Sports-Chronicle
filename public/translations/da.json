@@ -5,7 +5,7 @@
   "footer.quickLinks": "Hurtige Links",
   "footer.categories": "Kategorier",
   "footer.allPosts": "Alle Indlæg",
-  "footer.aboutMe": "Om Mig",
+  "footer.aboutUs": "Om Os",
   "footer.contact": "Kontakt",
   "footer.rightsReserved": "Alle rettigheder forbeholdes.",
   "hero.welcome": "Velkommen til vores Blog",
@@ -220,5 +220,7 @@
   "contact.advertisingOpportunities": "Interesseret i annonceringsmuligheder? Kontakt vores forretningsudviklingsteam for at lære om vores pakker.",
   "contact.messageSentSuccess": "Besked sendt!",
   "contact.messageSentDescription": "Tak for din besked. Vi vender tilbage til dig snart.",
-  "contact.failedToSend": "Kunne ikke sende besked."
+  "contact.failedToSend": "Kunne ikke sende besked.",
+  "footer.description": "Din ultimative destination for sportsfærdigheder, teknikker og taktisk analyse. Mestre spillet med ekspertindsigt om fodbold, basketball og mere."
 }
+

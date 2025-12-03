@@ -2,7 +2,7 @@
   "footer.quickLinks": "Enlaces Rápidos",
   "footer.categories": "Categorías",
   "footer.allPosts": "Todas las Publicaciones",
-  "footer.aboutMe": "Acerca de Mí",
+  "footer.aboutUs": "Acerca de Mí",
   "footer.contact": "Contacto",
   "footer.rightsReserved": "Todos los derechos reservados.",
   "hero.welcome": "Bienvenido a nuestro Blog",
@@ -220,5 +220,7 @@
   "contact.advertisingOpportunities": "¿Interesado en oportunidades publicitarias? Contacta a nuestro equipo de desarrollo de negocios para conocer nuestros paquetes.",
   "contact.messageSentSuccess": "¡Mensaje enviado con éxito!",
   "contact.messageSentDescription": "Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.",
-  "contact.failedToSend": "Error al enviar mensaje."
+  "contact.failedToSend": "Error al enviar mensaje.",
+  "footer.description": "Tu destino definitivo para habilidades deportivas, técnicas y análisis táctico. Domina el juego con conocimientos expertos sobre fútbol, baloncesto y más."
 }
+

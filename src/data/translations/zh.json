@@ -5,7 +5,7 @@
   "footer.quickLinks": "快速链接",
   "footer.categories": "分类",
   "footer.allPosts": "所有文章",
-  "footer.aboutMe": "关于我",
+  "footer.aboutUs": "关于我",
   "footer.contact": "联系我们",
   "footer.rightsReserved": "版权所有。",
   "hero.welcome": "欢迎来到我们的博客",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "对广告机会感兴趣？联系我们的业务发展团队了解我们的套餐。",
   "contact.messageSentSuccess": "消息发送成功！",
   "contact.messageSentDescription": "感谢您的留言。我们会尽快回复您。",
-  "contact.failedToSend": "消息发送失败。"
+  "contact.failedToSend": "消息发送失败。",
+  "footer.description": "您获取体育技能、技术和战术分析的终极目的地。通过足球、篮球等方面的专家见解掌握比赛。"
 }

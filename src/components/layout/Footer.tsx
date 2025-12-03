@@ -30,12 +30,7 @@ const Footer = () => {
               >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Youtube className="h-5 w-5" />
-              </a>
+              <a href="https://www.youtube.com/@SportsChronicleBlog" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer"><Youtube className="h-5 w-5" /></a>
               <a
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -65,7 +60,7 @@ const Footer = () => {
                 to="/about"
                 className="text-muted-foreground hover:text-primary transition-colors text-sm"
               >
-                {t("footer.aboutMe")}
+                {t("footer.aboutUs")}
               </Link>
                <Link
                  to="/contact"
@@ -105,3 +100,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

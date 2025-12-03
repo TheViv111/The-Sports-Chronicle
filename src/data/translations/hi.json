@@ -5,7 +5,7 @@
   "footer.quickLinks": "त्वरित लिंक",
   "footer.categories": "श्रेणियाँ",
   "footer.allPosts": "सभी पोस्ट",
-  "footer.aboutMe": "मेरे बारे में",
+  "footer.aboutUs": "मेरे बारे में",
   "footer.contact": "संपर्क करें",
   "footer.rightsReserved": "सभी अधिकार सुरक्षित।",
   "hero.welcome": "हमारे ब्लॉग में आपका स्वागत है",
@@ -234,5 +234,6 @@
   "contact.advertisingOpportunities": "विज्ञापन के अवसरों में रुचि है? हमारे पैकेज के बारे में जानने के लिए हमारी व्यापार विकास टीम से संपर्क करें।",
   "contact.messageSentSuccess": "संदेश सफलतापूर्वक भेजा गया!",
   "contact.messageSentDescription": "आपके संदेश के लिए धन्यवाद। हम जल्द ही आपसे संपर्क करेंगे।",
-  "contact.failedToSend": "संदेश भेजने में विफल।"
+  "contact.failedToSend": "संदेश भेजने में विफल।",
+  "footer.description": "खेल कौशल, तकनीक और रणनीतिक विश्लेषण के लिए आपका अंतिम गंतव्य। फुटबॉल, बास्केटबॉल और अधिक पर विशेषज्ञ अंतर्दृष्टि के साथ खेल में महारत हासिल करें।"
 }

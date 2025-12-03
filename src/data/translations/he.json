@@ -5,7 +5,7 @@
   "footer.quickLinks": "קישורים מהירים",
   "footer.categories": "קטגוריות",
   "footer.allPosts": "כל הפוסטים",
-  "footer.aboutMe": "אודותיי",
+  "footer.aboutUs": "אודותיי",
   "footer.contact": "צור קשר",
   "footer.rightsReserved": "כל הזכויות שמורות.",
   "hero.welcome": "ברוכים הבאים לבלוג שלנו",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "מעוניין בהזדמנויות פרסום? צור קשר עם צוות פיתוח העסקים שלנו כדי ללמוד על החבילות שלנו.",
   "contact.messageSentSuccess": "ההודעה נשלחה בהצלחה!",
   "contact.messageSentDescription": "תודה על הודעתך. נחזור אליך בקרוב.",
-  "contact.failedToSend": "שליחת ההודעה נכשלה."
+  "contact.failedToSend": "שליחת ההודעה נכשלה.",
+  "footer.description": "היעד האולטימטיבי שלכם לכישורי ספורט, טכניקות וניתוח טקטי. שלטו במשחק עם תובנות מומחים על כדורגל, כדורסל ועוד."
 }

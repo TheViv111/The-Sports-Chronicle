@@ -5,7 +5,7 @@
   "footer.quickLinks": "クイックリンク",
   "footer.categories": "カテゴリー",
   "footer.allPosts": "すべての投稿",
-  "footer.aboutMe": "私について",
+  "footer.aboutUs": "私について",
   "footer.contact": "お問い合わせ",
   "footer.rightsReserved": "すべての権利を留保。",
   "hero.welcome": "ブログへようこそ",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "広告の機会に興味がありますか？当社のビジネス開発チームにお問い合わせいただき、パッケージについてご確認ください。",
   "contact.messageSentSuccess": "メッセージが正常に送信されました！",
   "contact.messageSentDescription": "メッセージありがとうございます。近日中にご連絡いたします。",
-  "contact.failedToSend": "メッセージの送信に失敗しました。"
+  "contact.failedToSend": "メッセージの送信に失敗しました。",
+  "footer.description": "スポーツのスキル、テクニック、戦術分析のための究極の目的地。サッカー、バスケットボールなどに関する専門家の洞察でゲームをマスターしましょう。"
 }

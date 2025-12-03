@@ -5,7 +5,7 @@
   "footer.quickLinks": "Snabblänkar",
   "footer.categories": "Kategorier",
   "footer.allPosts": "Alla Inlägg",
-  "footer.aboutMe": "Om Mig",
+  "footer.aboutUs": "Om Oss",
   "footer.contact": "Kontakt",
   "footer.rightsReserved": "Alla rättigheter förbehållna.",
   "hero.welcome": "Välkommen till vår Blogg",
@@ -220,5 +220,7 @@
   "contact.advertisingOpportunities": "Intresserad av annonseringsmöjligheter? Kontakta vårt affärsutvecklingsteam för att lära dig mer om våra paket.",
   "contact.messageSentSuccess": "Meddelande skickat!",
   "contact.messageSentDescription": "Tack för ditt meddelande. Vi återkommer snart.",
-  "contact.failedToSend": "Misslyckades med att skicka meddelande."
+  "contact.failedToSend": "Misslyckades med att skicka meddelande.",
+  "footer.description": "Din ultimata destination för sportfärdigheter, tekniker och taktisk analys. Bemästra spelet med expertinsikter om fotboll, basket och mer."
 }
+

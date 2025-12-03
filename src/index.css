@@ -201,6 +201,38 @@ dark .prose ol>li::marker {
     animation-name: fadeInRight;
   }
 
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(0.98);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes progress-indeterminate {
+    0% {
+      transform: translateX(-100%) scaleX(0.2);
+    }
+    50% {
+      transform: translateX(0%) scaleX(0.5);
+    }
+    100% {
+      transform: translateX(100%) scaleX(0.2);
+    }
+  }
+
+  .animate-progress-indeterminate {
+    animation: progress-indeterminate 1.5s infinite linear;
+  }
+
+
   /* Staggered animation delay */
   .reveal-on-scroll[style*="--stagger-delay"] {
     animation-delay: var(--stagger-delay);

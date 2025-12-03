@@ -5,7 +5,7 @@
   "footer.quickLinks": "Schnelllinks",
   "footer.categories": "Kategorien",
   "footer.allPosts": "Alle Beiträge",
-  "footer.aboutMe": "Über Mich",
+  "footer.aboutUs": "Über Mich",
   "footer.contact": "Kontakt",
   "footer.rightsReserved": "Alle Rechte vorbehalten.",
   "hero.welcome": "Willkommen in unserem Blog",
@@ -220,5 +220,8 @@
   "contact.advertisingOpportunities": "Interessiert an Werbemöglichkeiten? Kontaktieren Sie unser Business Development Team, um mehr über unsere Pakete zu erfahren.",
   "contact.messageSentSuccess": "Nachricht erfolgreich gesendet!",
   "contact.messageSentDescription": "Vielen Dank für Ihre Nachricht. Wir werden uns in Kürze bei Ihnen melden.",
-  "contact.failedToSend": "Nachricht konnte nicht gesendet werden."
+  "contact.failedToSend": "Nachricht konnte nicht gesendet werden.",
+  "footer.description": "Ihr ultimatives Ziel für sportliche Fähigkeiten, Techniken und taktische Analysen. Meistern Sie das Spiel mit Experteneinblicken zu Fußball, Basketball und mehr."
 }
+
+

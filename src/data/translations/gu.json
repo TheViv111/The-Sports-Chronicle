@@ -5,7 +5,7 @@
   "footer.quickLinks": "ઝડપી લિંક્સ",
   "footer.categories": "કેટેગરી",
   "footer.allPosts": "બધી પોસ્ટ",
-  "footer.aboutMe": "મારા વિશે",
+  "footer.aboutUs": "મારા વિશે",
   "footer.contact": "સંપર્ક",
   "footer.rightsReserved": "બધા અધિકારો આરક્ષિત છે.",
   "hero.welcome": "અમારા બ્લોગમાં આપનું સ્વાગત છે",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "જાહેરાતની તકોમાં રસ છે? અમારા પેકેજો વિશે જાણવા માટે અમારી વ્યવસાય વિકાસ ટીમનો સંપર્ક કરો.",
   "contact.messageSentSuccess": "સંદેશ સફળતાપૂર્વક મોકલવામાં આવ્યો!",
   "contact.messageSentDescription": "તમારા સંદેશ બદલ આભાર. અમે ટૂંક સમયમાં તમારો સંપર્ક કરીશું.",
-  "contact.failedToSend": "સંદેશ મોકલવામાં નિષ્ફળ."
+  "contact.failedToSend": "સંદેશ મોકલવામાં નિષ્ફળ.",
+  "footer.description": "રમતગમત કૌશલ્યો, તકનીકો અને વ્યૂહાત્મક વિશ્લેષણ માટે તમારું અંતિમ ગંતવ્ય. ફૂટબોલ, બાસ્કેટબોલ અને વધુ પર નિષ્ણાત આંતરદૃષ્ટિ સાથે રમતમાં નિપુણતા મેળવો।"
 }

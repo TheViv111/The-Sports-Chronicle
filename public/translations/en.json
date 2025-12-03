@@ -5,7 +5,7 @@
   "footer.quickLinks": "Quick Links",
   "footer.categories": "Categories",
   "footer.allPosts": "All Posts",
-  "footer.aboutMe": "About Me",
+  "footer.aboutUs": "About Us",
   "footer.contact": "Contact",
   "footer.rightsReserved": "All rights reserved.",
   "hero.welcome": "Welcome to our Blog",
@@ -221,5 +221,7 @@
   "contact.advertisingOpportunities": "Interested in advertising opportunities? Contact our business development team to learn about our packages.",
   "contact.messageSentSuccess": "Message sent successfully!",
   "contact.messageSentDescription": "Thank you for your message. We'll get back to you soon.",
-  "contact.failedToSend": "Failed to send message."
+  "contact.failedToSend": "Failed to send message.",
+  "footer.description": "Your ultimate destination for sports skills, techniques, and tactical analysis. Master the game with expert insights on football, basketball, and more."
 }
+

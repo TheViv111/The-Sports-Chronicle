@@ -5,7 +5,7 @@
   "footer.quickLinks": "দ্রুত লিঙ্ক",
   "footer.categories": "বিভাগসমূহ",
   "footer.allPosts": "সমস্ত পোস্ট",
-  "footer.aboutMe": "আমার সম্পর্কে",
+  "footer.aboutUs": "আমার সম্পর্কে",
   "footer.contact": "যোগাযোগ",
   "footer.rightsReserved": "সমস্ত অধিকার সংরক্ষিত।",
   "hero.welcome": "আমাদের ব্লগে স্বাগতম",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "বিজ্ঞাপনের সুযোগে আগ্রহী? আমাদের প্যাকেজ সম্পর্কে জানতে আমাদের ব্যবসা উন্নয়ন দলের সাথে যোগাযোগ করুন।",
   "contact.messageSentSuccess": "বার্তা সফলভাবে পাঠানো হয়েছে!",
   "contact.messageSentDescription": "আপনার বার্তার জন্য ধন্যবাদ। আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।",
-  "contact.failedToSend": "বার্তা পাঠাতে ব্যর্থ হয়েছে।"
+  "contact.failedToSend": "বার্তা পাঠাতে ব্যর্থ হয়েছে।",
+  "footer.description": "খেলাধুলার দক্ষতা, কৌশল এবং কৌশলগত বিশ্লেষণের জন্য আপনার চূড়ান্ত গন্তব্য। ফুটবল, বাস্কেটবল এবং আরও অনেক কিছুতে বিশেষজ্ঞ অন্তর্দৃষ্টি দিয়ে খেলায় দক্ষতা অর্জন করুন।"
 }

@@ -5,7 +5,7 @@
   "footer.quickLinks": "Snelle Links",
   "footer.categories": "Categorieën",
   "footer.allPosts": "Alle Berichten",
-  "footer.aboutMe": "Over Mij",
+  "footer.aboutUs": "Over Ons",
   "footer.contact": "Contact",
   "footer.rightsReserved": "Alle rechten voorbehouden.",
   "hero.welcome": "Welkom op onze Blog",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "Geïnteresseerd in advertentiemogelijkheden? Neem contact op met ons business development team om meer te weten te komen over onze pakketten.",
   "contact.messageSentSuccess": "Bericht succesvol verzonden!",
   "contact.messageSentDescription": "Bedankt voor je bericht. We nemen snel contact met je op.",
-  "contact.failedToSend": "Niet gelukt om bericht te verzenden."
+  "contact.failedToSend": "Niet gelukt om bericht te verzenden.",
+  "footer.description": "Jouw ultieme bestemming voor sportvaardigheden, technieken en tactische analyse. Beheers het spel met deskundige inzichten over voetbal, basketbal en meer."
 }

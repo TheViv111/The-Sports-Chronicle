@@ -5,7 +5,7 @@
   "footer.quickLinks": "Hurtiglenker",
   "footer.categories": "Kategorier",
   "footer.allPosts": "Alle Innlegg",
-  "footer.aboutMe": "Om Meg",
+  "footer.aboutUs": "Om Oss",
   "footer.contact": "Kontakt",
   "footer.rightsReserved": "Alle rettigheter forbeholdt.",
   "hero.welcome": "Velkommen til bloggen vår",
@@ -220,5 +220,6 @@
   "contact.advertisingOpportunities": "Interessert i annonseringsmuligheter? Kontakt vårt forretningsutviklingsteam for å lære om våre pakker.",
   "contact.messageSentSuccess": "Melding sendt!",
   "contact.messageSentDescription": "Takk for meldingen din. Vi kommer tilbake til deg snart.",
-  "contact.failedToSend": "Kunne ikke sende melding."
+  "contact.failedToSend": "Kunne ikke sende melding.",
+  "footer.description": "Din ultimate destinasjon for sportferdigheter, teknikker og taktisk analyse. Mestre spillet med ekspertinnsikt om fotball, basketball og mer."
 }
