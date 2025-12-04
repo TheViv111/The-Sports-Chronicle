@@ -75,15 +75,40 @@ const Admin = () => {
   }, []);
 
   const fetchAuthors = async () => {
-    const { data } = await supabase
-      .from('profiles')
-      .select('id, full_name, username, avatar_url');
-    if (data) {
-      setAuthors(data.map(p => ({
-        ...p,
-        email: p.username // Fallback or use username
-      })));
-    }
+    // Hardcoded team members from About page
+    const teamMembers = [
+      {
+        id: 'team',
+        full_name: 'The Sports Chronicle Team',
+        username: 'team',
+        email: 'team'
+      },
+      {
+        id: 'vivaan-handa',
+        full_name: 'Vivaan Handa',
+        username: 'vivaan',
+        email: 'vivaan'
+      },
+      {
+        id: 'ved-mehta',
+        full_name: 'Ved Mehta',
+        username: 'ved',
+        email: 'ved'
+      },
+      {
+        id: 'shourya-gupta',
+        full_name: 'Shourya Gupta',
+        username: 'shourya',
+        email: 'shourya'
+      },
+      {
+        id: 'shaurya-gupta',
+        full_name: 'Shaurya Gupta',
+        username: 'shaurya2',
+        email: 'shaurya2'
+      }
+    ];
+    setAuthors(teamMembers);
   };
 
   useEffect(() => {

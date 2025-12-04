@@ -12,11 +12,18 @@ export interface Author {
 }
 
 export const AUTHORS: Record<string, Author> = {
+    'team': {
+        id: 'team',
+        name: 'The Sports Chronicle Team',
+        title: 'Editorial Team',
+        bio: 'We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.',
+        avatarUrl: '/src/assets/team-logo.png'
+    },
     'sports-chronicle-team': {
         id: 'sports-chronicle-team',
-        name: 'Sports Chronicle Team',
+        name: 'The Sports Chronicle Team',
         title: 'Editorial Team',
-        bio: 'The collective voice of Sports Chronicle, bringing together comprehensive sports coverage, analysis, and insights from our dedicated team of sports enthusiasts and experts.',
+        bio: 'We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.',
         avatarUrl: '/src/assets/team-logo.png'
     },
     'vivaan-handa': {
