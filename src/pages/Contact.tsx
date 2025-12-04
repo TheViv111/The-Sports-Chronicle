@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useTranslation } from "@/contexts/TranslationContext";
 import useScrollReveal from "@/hooks/useScrollReveal";
@@ -23,7 +21,7 @@ const Contact = () => {
   const userId = session?.user?.id;
   const userEmail = session?.user?.email || "";
 
-  // Fetch user profile to get first and last name
+  // Fetch user profile to get first and last name for autofill
   const { data: profile } = useQuery<Tables<'profiles'> | null>({
     queryKey: ["profile", userId],
     queryFn: async () => {
@@ -118,7 +116,7 @@ const Contact = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Contact The Sports Chronicle - Get in Touch"
         description="Contact The Sports Chronicle team with questions, feedback, or story ideas. We welcome your input on sports news coverage and analysis across basketball, soccer, swimming, and football."
         canonicalUrl="https://the-sports-chronicle.vercel.app/contact"
@@ -131,79 +129,119 @@ const Contact = () => {
             <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 reveal-on-scroll">
               {t("contact.pageTitle")}
             </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto reveal-on-scroll">
-            {t("contact.pageSubtitle")}
-          </p>
-        </div>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto reveal-on-scroll">
+              {t("contact.pageSubtitle")}
+            </p>
+          </div>
 
-        {/* Content */}
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1">
-            {/* Contact Form */}
-            <div className="reveal-on-scroll fade-in-left">
+          {/* Content */}
+          <div className="max-w-2xl mx-auto">
+            <div className="reveal-on-scroll fade-in-left relative">
               <h2 className="font-heading text-2xl font-semibold mb-6">
                 {t("contact.sendMessage")}
               </h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name Fields */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Input
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm font-semibold mb-2"
+                    >
+                      {t("contact.firstName")}
+                    </label>
+                    <input
                       id="firstName"
                       name="firstName"
-                      label={t("contact.firstName")}
-                      placeholder={t("contact.yourFirstName")}
+                      type="text"
                       defaultValue={profile?.first_name || ""}
+                      placeholder={t("contact.yourFirstName")}
                       required
+                      className="w-full px-4 py-2.5 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
                     />
                   </div>
                   <div>
-                    <Input
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm font-semibold mb-2"
+                    >
+                      {t("contact.lastName")}
+                    </label>
+                    <input
                       id="lastName"
                       name="lastName"
-                      label={t("contact.lastName")}
-                      placeholder={t("contact.yourLastName")}
+                      type="text"
                       defaultValue={profile?.last_name || ""}
+                      placeholder={t("contact.yourLastName")}
                       required
+                      className="w-full px-4 py-2.5 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
                     />
                   </div>
                 </div>
 
+                {/* Email Field */}
                 <div>
-                  <Input
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-semibold mb-2"
+                  >
+                    {t("auth.email")}
+                  </label>
+                  <input
                     id="email"
                     name="email"
                     type="email"
-                    label={t("auth.email")}
                     value={userEmail}
                     readOnly
                     disabled={!session}
                     placeholder={t("contact.yourEmail")}
-                    helperText={!session ? t("auth.signInRequired") : ""}
+                    className="w-full px-4 py-2.5 rounded-md border border-input bg-muted text-foreground placeholder:text-muted-foreground cursor-not-allowed opacity-75"
                   />
+                  {!session && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {t("auth.signInRequired")}
+                    </p>
+                  )}
                 </div>
 
+                {/* Subject Field */}
                 <div>
-                  <Input
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-semibold mb-2"
+                  >
+                    {t("contact.subject")}
+                  </label>
+                  <input
                     id="subject"
                     name="subject"
-                    label={t("contact.subject")}
+                    type="text"
                     placeholder={t("contact.whatAbout")}
                     required
+                    className="w-full px-4 py-2.5 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
                   />
                 </div>
 
+                {/* Message Field */}
                 <div>
-                  <Textarea
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-semibold mb-2"
+                  >
+                    {t("contact.message")}
+                  </label>
+                  <textarea
                     id="message"
                     name="message"
-                    label={t("contact.message")}
+                    rows={6}
                     placeholder={t("contact.tellUsMore")}
                     required
-                    className="min-h-[120px]"
+                    className="w-full px-4 py-2.5 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none"
                   />
                 </div>
 
+                {/* Submit Button */}
                 <Button
                   type="submit"
                   className="w-full btn-hover-lift tap-press animate-glow"
@@ -222,6 +260,7 @@ const Contact = () => {
                 </Button>
               </form>
 
+              {/* Success Overlay */}
               {justSubmitted && (
                 <div
                   className="absolute inset-0 grid place-items-center bg-background/70 backdrop-blur-sm animate-in fade-in duration-300"
@@ -237,7 +276,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

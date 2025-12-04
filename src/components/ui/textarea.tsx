@@ -13,17 +13,17 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const [isFocused, setIsFocused] = React.useState(false);
     const [hasValue, setHasValue] = React.useState(false);
     const textareaId = id || name || React.useId();
-    
+
     const handleFocus = (event: React.FocusEvent<HTMLTextAreaElement>) => {
       setIsFocused(true);
       props.onFocus?.(event);
     };
-    
+
     const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
       setIsFocused(false);
       props.onBlur?.(event);
     };
-    
+
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       setHasValue(event.target.value.length > 0);
       props.onChange?.(event);
