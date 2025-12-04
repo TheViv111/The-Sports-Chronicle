@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Registrer deg med Google",
   "auth.sendResetInstructions": "Send tilbakestillingsinstruksjoner",
   "auth.updatePassword": "Oppdater passord",
+  "auth.signInRequired": "Logg inn for å sende en melding",
   "latestPosts.title": "Siste Innlegg",
   "latestPosts.subtitle": "Utforsk våre siste tanker og innsikter om sport, teknikker og taktikk.",
   "latestPosts.viewAll": "Se Alle Innlegg",

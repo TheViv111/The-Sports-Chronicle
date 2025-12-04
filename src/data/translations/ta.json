@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Google உடன் பதிவுசெய்யவும்",
   "auth.sendResetInstructions": "மீட்டமைக்கும் வழிமுறைகளை அனுப்பவும்",
   "auth.updatePassword": "கடவுச்சொல்லைப் புதுப்பிக்கவும்",
+  "auth.signInRequired": "செய்தி அனுப்ப உள்நுழையவும்",
   "latestPosts.title": "சமீபத்திய இடுகைகள்",
   "latestPosts.subtitle": "விளையாட்டு, நுட்பங்கள் மற்றும் தந்திரங்கள் குறித்த எங்கள் சமீபத்திய எண்ணங்கள் மற்றும் நுண்ணறிவுகளை ஆராயுங்கள்।",
   "latestPosts.viewAll": "அனைத்து இடுகைகளையும் பார்க்கவும்",

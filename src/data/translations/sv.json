@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Registrera dig med Google",
   "auth.sendResetInstructions": "Skicka återställningsinstruktioner",
   "auth.updatePassword": "Uppdatera lösenord",
+  "auth.signInRequired": "Logga in för att skicka ett meddelande",
   "latestPosts.title": "Senaste Inlägg",
   "latestPosts.subtitle": "Utforska våra senaste tankar och insikter om sport, tekniker och taktik.",
   "latestPosts.viewAll": "Visa Alla Inlägg",

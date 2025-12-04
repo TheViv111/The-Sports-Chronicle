@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "ثبت‌نام با Google",
   "auth.sendResetInstructions": "ارسال دستورالعمل‌های بازنشانی",
   "auth.updatePassword": "به‌روزرسانی رمز عبور",
+  "auth.signInRequired": "لطفاً برای ارسال پیام وارد شوید",
   "latestPosts.title": "آخرین مطالب",
   "latestPosts.subtitle": "آخرین افکار و بینش‌های ما درباره ورزش، تکنیک‌ها و تاکتیک‌ها را کشف کنید.",
   "latestPosts.viewAll": "مشاهده همه مطالب",

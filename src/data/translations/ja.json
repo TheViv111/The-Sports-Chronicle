@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Google でサインアップ",
   "auth.sendResetInstructions": "リセット手順を送信",
   "auth.updatePassword": "パスワードを更新",
+  "auth.signInRequired": "メッセージを送信するにはサインインしてください",
   "latestPosts.title": "最新の投稿",
   "latestPosts.subtitle": "スポーツ、テクニック、戦術に関する私たちの最新の考えと洞察をご覧ください。",
   "latestPosts.viewAll": "すべての投稿を表示",

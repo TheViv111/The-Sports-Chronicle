@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Googleతో సైన్ అప్ చేయండి",
   "auth.sendResetInstructions": "రీసెట్ సూచనలను పంపండి",
   "auth.updatePassword": "పాస్‌వర్డ్‌ను నవీకరించండి",
+  "auth.signInRequired": "సందేశం పంపడానికి దయచేసి సైన్ ఇన్ చేయండి",
   "latestPosts.title": "తాజా పోస్ట్‌లు",
   "latestPosts.subtitle": "క్రీడలు, టెక్నిక్‌లు మరియు వ్యూహాలపై మా తాజా ఆలోచనలు మరియు అంతర్దృష్టులను అన్వేషించండి.",
   "latestPosts.viewAll": "అన్ని పోస్ట్‌లను చూడండి",

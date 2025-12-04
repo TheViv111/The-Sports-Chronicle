@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Зарегистрироваться через Google",
   "auth.sendResetInstructions": "Отправить инструкции по сбросу",
   "auth.updatePassword": "Обновить пароль",
+  "auth.signInRequired": "Пожалуйста, войдите, чтобы отправить сообщение",
   "latestPosts.title": "Последние Записи",
   "latestPosts.subtitle": "Исследуйте наши последние мысли и взгляды на спорт, техники и тактики.",
   "latestPosts.viewAll": "Посмотреть Все Записи",

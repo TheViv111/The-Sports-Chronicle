@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Zarejestruj się przez Google",
   "auth.sendResetInstructions": "Wyślij instrukcje resetowania",
   "auth.updatePassword": "Zaktualizuj hasło",
+  "auth.signInRequired": "Zaloguj się, aby wysłać wiadomość",
   "latestPosts.title": "Najnowsze Wpisy",
   "latestPosts.subtitle": "Poznaj nasze najnowsze myśli i spostrzeżenia na temat sportu, technik i taktyk.",
   "latestPosts.viewAll": "Zobacz Wszystkie Wpisy",

@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "إنشاء حساب باستخدام Google",
   "auth.sendResetInstructions": "إرسال تعليمات إعادة التعيين",
   "auth.updatePassword": "تحديث كلمة المرور",
+  "auth.signInRequired": "يرجى تسجيل الدخول لإرسال رسالة",
   "latestPosts.title": "أحدث المنشورات",
   "latestPosts.subtitle": "استكشف أحدث أفكارنا ورؤانا حول الرياضة والتقنيات والتكتيكات.",
   "latestPosts.viewAll": "عرض جميع المنشورات",

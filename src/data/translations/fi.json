@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Rekisteröidy Googlella",
   "auth.sendResetInstructions": "Lähetä nollausohjeet",
   "auth.updatePassword": "Päivitä salasana",
+  "auth.signInRequired": "Kirjaudu sisään lähettääksesi viestin",
   "latestPosts.title": "Viimeisimmät Kirjoitukset",
   "latestPosts.subtitle": "Tutustu viimeisimpiin ajatuksiimme ja oivalluksiimme urheilusta, tekniikoista ja taktiikasta.",
   "latestPosts.viewAll": "Näytä Kaikki Kirjoitukset",

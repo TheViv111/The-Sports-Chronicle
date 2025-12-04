@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Registreren met Google",
   "auth.sendResetInstructions": "Verzend reset instructies",
   "auth.updatePassword": "Wachtwoord bijwerken",
+  "auth.signInRequired": "Log in om een bericht te verzenden",
   "latestPosts.title": "Nieuwste Berichten",
   "latestPosts.subtitle": "Ontdek onze nieuwste gedachten en inzichten over sport, technieken en tactieken.",
   "latestPosts.viewAll": "Bekijk Alle Berichten",

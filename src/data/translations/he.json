@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "הירשם באמצעות Google",
   "auth.sendResetInstructions": "שלח הוראות איפוס",
   "auth.updatePassword": "עדכן סיסמה",
+  "auth.signInRequired": "אנא התחבר כדי לשלוח הודעה",
   "latestPosts.title": "פוסטים אחרונים",
   "latestPosts.subtitle": "חקור את המחשבות והתובנות האחרונות שלנו על ספורט, טכניקות וטקטיקות.",
   "latestPosts.viewAll": "צפה בכל הפוסטים",

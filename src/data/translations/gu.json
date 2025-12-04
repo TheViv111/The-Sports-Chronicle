@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Google સાથે સાઇન અપ કરો",
   "auth.sendResetInstructions": "રીસેટ સૂચનાઓ મોકલો",
   "auth.updatePassword": "પાસવર્ડ અપડેટ કરો",
+  "auth.signInRequired": "સંદેશ મોકલવા માટે કૃપા કરીને સાઇન ઇન કરો",
   "latestPosts.title": "નવીનતમ પોસ્ટ્સ",
   "latestPosts.subtitle": "રમતગમત, તકનીકો અને વ્યૂહરચનાઓ પર અમારા નવીનતમ વિચારો અને આંતરદૃષ્ટિનું અન્વેષણ કરો.",
   "latestPosts.viewAll": "બધી પોસ્ટ્સ જુઓ",

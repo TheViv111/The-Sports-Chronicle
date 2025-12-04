@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Google로 회원가입",
   "auth.sendResetInstructions": "재설정 지침 보내기",
   "auth.updatePassword": "비밀번호 업데이트",
+  "auth.signInRequired": "메시지를 보내려면 로그인하세요",
   "latestPosts.title": "최신 게시물",
   "latestPosts.subtitle": "스포츠, 기술, 전술에 대한 우리의 최신 생각과 통찰을 탐험해보세요.",
   "latestPosts.viewAll": "모든 게시물 보기",

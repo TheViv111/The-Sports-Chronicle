@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Google ile kayıt ol",
   "auth.sendResetInstructions": "Sıfırlama talimatlarını gönder",
   "auth.updatePassword": "Şifreyi güncelle",
+  "auth.signInRequired": "Mesaj göndermek için lütfen giriş yapın",
   "latestPosts.title": "Son Gönderiler",
   "latestPosts.subtitle": "Spor, teknikler ve taktikler hakkındaki en son düşüncelerimizi ve görüşlerimizi keşfedin.",
   "latestPosts.viewAll": "Tüm Gönderileri Görüntüle",

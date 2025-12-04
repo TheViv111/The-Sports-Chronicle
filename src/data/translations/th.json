@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "สมัครสมาชิกด้วย Google",
   "auth.sendResetInstructions": "ส่งคำแนะนำการรีเซ็ต",
   "auth.updatePassword": "อัปเดตรหัสผ่าน",
+  "auth.signInRequired": "กรุณาเข้าสู่ระบบเพื่อส่งข้อความ",
   "latestPosts.title": "โพสต์ล่าสุด",
   "latestPosts.subtitle": "สำรวจความคิดและข้อมูลเชิงลึกล่าสุดของเราเกี่ยวกับกีฬา เทคนิค และกลยุทธ์",
   "latestPosts.viewAll": "ดูโพสต์ทั้งหมด",

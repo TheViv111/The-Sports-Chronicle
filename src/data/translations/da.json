@@ -47,6 +47,7 @@
   "auth.signUpWithGoogle": "Tilmeld dig med Google",
   "auth.sendResetInstructions": "Send nulstillingsinstruktioner",
   "auth.updatePassword": "Opdater adgangskode",
+  "auth.signInRequired": "Log ind for at sende en besked",
   "latestPosts.title": "Seneste Indlæg",
   "latestPosts.subtitle": "Udforsk vores seneste tanker og indsigter om sport, teknikker og taktik.",
   "latestPosts.viewAll": "Se Alle Indlæg",
