@@ -12,6 +12,13 @@ export interface Author {
 }
 
 export const AUTHORS: Record<string, Author> = {
+    'sports-chronicle-team': {
+        id: 'sports-chronicle-team',
+        name: 'Sports Chronicle Team',
+        title: 'Editorial Team',
+        bio: 'The collective voice of Sports Chronicle, bringing together comprehensive sports coverage, analysis, and insights from our dedicated team of sports enthusiasts and experts.',
+        avatarUrl: '/src/assets/team-logo.png'
+    },
     'vivaan-handa': {
         id: 'vivaan-handa',
         name: 'Vivaan Handa',

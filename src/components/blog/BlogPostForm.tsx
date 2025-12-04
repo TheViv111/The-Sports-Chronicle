@@ -2,8 +2,8 @@ import React, { useMemo, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, Plus, Save } from 'lucide-react';
-import ReactQuill, { Quill } from 'react-quill-new';
+import { Loader2, Plus, Save, Clock } from 'lucide-react';
+import { Quill } from 'react-quill-new';
 import CustomQuillEditor from './CustomQuillEditor';
 import '../../styles/quill-custom.css';
 
@@ -11,8 +11,10 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+
 import { useTranslation } from '@/contexts/TranslationContext';
-import { Tables } from '@/types/supabase';
+import { BlogPost } from '@/types/supabase';
 import { supabase } from '@/lib/supabase';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -26,15 +28,25 @@ const blogPostSchema = z.object({
     .url({ message: 'Must be a valid URL' })
     .optional()
     .or(z.literal('')),
+  author_id: z.string().min(1, { message: "Author is required." }),
+  status: z.enum(['draft', 'published', 'scheduled']),
+  scheduled_publish_at: z.string().optional().nullable(),
 });
 
 type BlogPostFormValues = z.infer<typeof blogPostSchema>;
 
+interface Author {
+  id: string;
+  full_name: string;
+  email: string;
+}
+
 interface BlogPostFormProps {
-  initialData?: Tables<'blog_posts'> | null;
+  initialData?: BlogPost | null;
   onSubmit: (values: BlogPostFormValues) => Promise<void>;
   onCancel?: () => void;
   isSubmitting: boolean;
+  authors: Author[];
 }
 
 const BlogPostForm: React.FC<BlogPostFormProps> = ({
@@ -42,9 +54,10 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
   onSubmit,
   onCancel,
   isSubmitting,
+  authors,
 }) => {
   const { t } = useTranslation();
-  
+
   // Theme handling is now managed by CustomQuillEditor
 
   const tf = (key: string, fallback: string) => {
@@ -52,7 +65,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
     const translation = t(key);
     return (translation && translation !== key) ? translation : fallback;
   };
-  
+
   // Get translations with fallbacks
   const coverImageLabel = t("admin.coverImage") || "Cover image";
   const coverImagePlaceholder = t("admin.coverImageUrl") || "Paste image URL or upload below";
@@ -66,6 +79,9 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
       excerpt: initialData?.excerpt || "",
       content: initialData?.content || "",
       cover_image: (initialData as any)?.cover_image || "",
+      author_id: (initialData as any)?.author_id || "",
+      status: (initialData as any)?.status || "draft",
+      scheduled_publish_at: (initialData as any)?.scheduled_publish_at || null,
     },
   });
 
@@ -77,6 +93,9 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
         excerpt: initialData.excerpt || "",
         content: initialData.content || "",
         cover_image: (initialData as any)?.cover_image || "",
+        author_id: (initialData as any)?.author_id || "",
+        status: (initialData as any)?.status || "draft",
+        scheduled_publish_at: (initialData as any)?.scheduled_publish_at || null,
       });
     } else {
       form.reset({
@@ -85,71 +104,87 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
         excerpt: "",
         content: "",
         cover_image: "",
+        author_id: "",
+        status: "draft",
+        scheduled_publish_at: null,
       });
     }
   }, [initialData]);
 
   const handleSubmit = async (values: BlogPostFormValues) => {
+    // If scheduled, ensure date is set
+    if (values.status === 'scheduled' && !values.scheduled_publish_at) {
+      form.setError('scheduled_publish_at', { message: 'Date is required for scheduled posts' });
+      return;
+    }
     await onSubmit(values);
   };
 
+  // Calculate read time
+  const content = form.watch('content');
+  const readTime = React.useMemo(() => {
+    const text = content.replace(/<[^>]*>/g, '');
+    const wordCount = text.trim().split(/\s+/).length;
+    return Math.ceil(wordCount / 200);
+  }, [content]);
+
   const quillRef = useRef<any>(null);
-  
+
   // Define system fonts that are available on most devices
   const fontFamilies = [
-    { 
-      key: 'system', 
-      label: 'System Default', 
-      value: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif', 
-      class: 'ql-font-system' 
+    {
+      key: 'system',
+      label: 'System Default',
+      value: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      class: 'ql-font-system'
     },
-    { 
-      key: 'arial', 
-      label: 'Arial', 
-      value: 'Arial, Helvetica, sans-serif', 
-      class: 'ql-font-arial' 
+    {
+      key: 'arial',
+      label: 'Arial',
+      value: 'Arial, Helvetica, sans-serif',
+      class: 'ql-font-arial'
     },
-    { 
-      key: 'times', 
-      label: 'Times New Roman', 
-      value: '"Times New Roman", Times, serif', 
-      class: 'ql-font-times' 
+    {
+      key: 'times',
+      label: 'Times New Roman',
+      value: '"Times New Roman", Times, serif',
+      class: 'ql-font-times'
     },
-    { 
-      key: 'georgia', 
-      label: 'Georgia', 
-      value: 'Georgia, serif', 
-      class: 'ql-font-georgia' 
+    {
+      key: 'georgia',
+      label: 'Georgia',
+      value: 'Georgia, serif',
+      class: 'ql-font-georgia'
     },
-    { 
-      key: 'courier', 
-      label: 'Courier New', 
-      value: '"Courier New", Courier, monospace', 
-      class: 'ql-font-courier' 
+    {
+      key: 'courier',
+      label: 'Courier New',
+      value: '"Courier New", Courier, monospace',
+      class: 'ql-font-courier'
     },
-    { 
-      key: 'verdana', 
-      label: 'Verdana', 
-      value: 'Verdana, Geneva, sans-serif', 
-      class: 'ql-font-verdana' 
+    {
+      key: 'verdana',
+      label: 'Verdana',
+      value: 'Verdana, Geneva, sans-serif',
+      class: 'ql-font-verdana'
     },
-    { 
-      key: 'tahoma', 
-      label: 'Tahoma', 
-      value: 'Tahoma, Geneva, sans-serif', 
-      class: 'ql-font-tahoma' 
+    {
+      key: 'tahoma',
+      label: 'Tahoma',
+      value: 'Tahoma, Geneva, sans-serif',
+      class: 'ql-font-tahoma'
     },
-    { 
-      key: 'trebuchet', 
-      label: 'Trebuchet MS', 
-      value: '"Trebuchet MS", Helvetica, sans-serif', 
-      class: 'ql-font-trebuchet' 
+    {
+      key: 'trebuchet',
+      label: 'Trebuchet MS',
+      value: '"Trebuchet MS", Helvetica, sans-serif',
+      class: 'ql-font-trebuchet'
     },
-    { 
-      key: 'impact', 
-      label: 'Impact', 
-      value: 'Impact, Charcoal, sans-serif', 
-      class: 'ql-font-impact' 
+    {
+      key: 'impact',
+      label: 'Impact',
+      value: 'Impact, Charcoal, sans-serif',
+      class: 'ql-font-impact'
     }
   ];
 
@@ -163,25 +198,25 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
   // Custom toolbar with font family and size dropdowns
   const modules = useMemo(() => {
     // Register font format
-    const Font = Quill.import('formats/font');
+    const Font = Quill.import('formats/font') as any;
     const fonts = fontFamilies.map(f => f.class.replace('ql-font-', ''));
     Font.whitelist = fonts;
     Quill.register(Font, true);
-    
+
     // Register font size format
-    const Size = Quill.import('attributors/style/size');
+    const Size = Quill.import('attributors/style/size') as any;
     Size.whitelist = fontSizeOptions;
     Quill.register(Size, true);
 
     // Register custom font class
-    const FontAttributor = Quill.import('attributors/class/font');
+    const FontAttributor = Quill.import('attributors/class/font') as any;
     FontAttributor.whitelist = fonts;
     Quill.register(FontAttributor, true);
 
     // Register formats for toggleable styles
-    const Bold = Quill.import('formats/bold');
-    const Italic = Quill.import('formats/italic');
-    const Underline = Quill.import('formats/underline');
+    const Bold = Quill.import('formats/bold') as any;
+    const Italic = Quill.import('formats/italic') as any;
+    const Underline = Quill.import('formats/underline') as any;
     Quill.register(Bold, true);
     Quill.register(Italic, true);
     Quill.register(Underline, true);
@@ -209,7 +244,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           [{ 'font': fontFamilies.map(f => f.class.replace('ql-font-', '')) }],
           [{ 'size': fontSizeOptions }],
           [{ 'color': [] }, { 'background': [] }],
-          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
           ['link', 'image'],
           ['clean']
         ],
@@ -456,9 +491,9 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
       document.head.removeChild(style);
     };
   }, []);
-  
+
   // Theme handling is now managed by CustomQuillEditor
-  
+
 
   return (
     <Form {...form}>
@@ -481,23 +516,54 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="category"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{tf("admin.postCategory", "Category")}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder={tf("admin.enterCategory", "Enter category")}
-                  {...field}
-                  disabled={isSubmitting}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField
+            control={form.control}
+            name="category"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{tf("admin.postCategory", "Category")}</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder={tf("admin.selectCategory", "Select category")} />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Basketball">Basketball</SelectItem>
+                    <SelectItem value="Football">Football</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="author_id"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{tf("admin.author", "Author")}</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder={tf("admin.selectAuthor", "Select author")} />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {authors.map((author) => (
+                      <SelectItem key={author.id} value={author.id}>
+                        {author.full_name || author.email}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}
@@ -575,7 +641,13 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{tf("admin.postContent", "Content")}</FormLabel>
+              <div className="flex justify-between items-center">
+                <FormLabel>{tf("admin.postContent", "Content")}</FormLabel>
+                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {readTime} min read
+                </span>
+              </div>
               <div className="mt-1">
                 <CustomQuillEditor
                   ref={quillRef}
@@ -590,22 +662,72 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           )}
         />
 
-        <div className="flex gap-2">
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : initialData ? (
-              <Save className="mr-2 h-4 w-4" />
-            ) : (
-              <Plus className="mr-2 h-4 w-4" />
+        <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between border-t pt-4 mt-6">
+          <div className="flex gap-2 items-center">
+            <FormField
+              control={form.control}
+              name="status"
+              render={({ field }) => (
+                <FormItem className="flex-1 min-w-[140px]">
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Status" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="draft">Draft</SelectItem>
+                      <SelectItem value="published">Published</SelectItem>
+                      <SelectItem value="scheduled">Scheduled</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {form.watch('status') === 'scheduled' && (
+              <FormField
+                control={form.control}
+                name="scheduled_publish_at"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        type="datetime-local"
+                        {...field}
+                        value={field.value || ''}
+                        onChange={(e) => field.onChange(e.target.value)}
+                        className="w-full"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             )}
-            {initialData ? t("admin.updatePost") : t("admin.createPost")}
-          </Button>
-          {onCancel && (
-            <Button type="button" variant="outline" onClick={onCancel} disabled={isSubmitting}>
-              {t("common.cancel")}
+          </div>
+
+          <div className="flex gap-2">
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : initialData ? (
+                <Save className="mr-2 h-4 w-4" />
+              ) : (
+                <Plus className="mr-2 h-4 w-4" />
+              )}
+              {initialData ? t("admin.updatePost") : t("admin.createPost")}
             </Button>
-          )}
+            {onCancel && (
+              <Button type="button" variant="outline" onClick={onCancel} disabled={isSubmitting}>
+                {t("common.cancel")}
+              </Button>
+            )}
+          </div>
         </div>
       </form>
     </Form>

@@ -25,6 +25,9 @@ type BlogPostFormValues = {
   content: string;
   category: string;
   cover_image?: string;
+  author_id: string;
+  status: 'draft' | 'published' | 'scheduled';
+  scheduled_publish_at?: string | null;
 };
 
 // Admin component handles its own tab state
@@ -40,6 +43,8 @@ const Admin = () => {
   const { t } = useTranslation();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [authors, setAuthors] = useState<any[]>([]);
+  const [filterStatus, setFilterStatus] = useState<string>('all');
 
   useEffect(() => {
     const checkUser = async () => {
@@ -66,7 +71,20 @@ const Admin = () => {
 
   useEffect(() => {
     loadPosts();
+    fetchAuthors();
   }, []);
+
+  const fetchAuthors = async () => {
+    const { data } = await supabase
+      .from('profiles')
+      .select('id, full_name, username, avatar_url');
+    if (data) {
+      setAuthors(data.map(p => ({
+        ...p,
+        email: p.username // Fallback or use username
+      })));
+    }
+  };
 
   useEffect(() => {
     if (location.pathname.includes('edit/')) {
@@ -83,7 +101,7 @@ const Admin = () => {
       const searchParams = new URLSearchParams(window.location.search);
       const tab = searchParams.get('tab') || 'posts';
       if (tab && (tab === 'posts' || tab === 'create' || tab === 'edit') && tab !== activeTab) {
-        setActiveTab(tab);
+        setActiveTab(tab as AdminTab);
       }
     };
 
@@ -113,45 +131,16 @@ const Admin = () => {
     }
   };
 
-  const handleCreateOrUpdatePost = async (values: BlogPostFormValues) => {
+  const handleCreatePost = async (values: BlogPostFormValues) => {
     const slug = values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     const now = new Date().toISOString();
-
-    // Calculate read time and word count
     const readTime = calculateReadTime(values.content);
     const wordCount = getWordCount(values.content);
 
     try {
-      if (editingPost) {
-        // Update existing post
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .update({
-            title: values.title,
-            excerpt: values.excerpt,
-            content: values.content,
-            category: values.category,
-            cover_image: values.cover_image || null,
-            slug,
-            read_time: readTime,
-            word_count: wordCount,
-            author_id: (values as any).author_id || 'ved-mehta',
-            updated_at: now
-          } as any)
-          .eq('id', editingPost.id)
-          .select()
-          .single();
-
-        if (error) throw error;
-
-        setPosts(posts.map(post => post.id === editingPost.id ? { ...post, ...data } : post));
-        setEditingPost(null);
-        toast.success(t("admin.postUpdated"), {
-          description: t("admin.postUpdatedSuccess"),
-        });
-      } else {
-        // Create new post
-        const newPost = {
+      const { error } = await supabase
+        .from('blog_posts')
+        .insert({
           title: values.title,
           excerpt: values.excerpt,
           content: values.content,
@@ -160,29 +149,75 @@ const Admin = () => {
           slug,
           read_time: readTime,
           word_count: wordCount,
-          author_id: (values as any).author_id || 'ved-mehta',
-          author: "Sports Chronicle Team",
-          language: "en"
-        };
+          author_id: values.author_id,
+          status: values.status,
+          published_at: values.status === 'published' ? now : null,
+          scheduled_publish_at: values.scheduled_publish_at || null,
+          created_at: now,
+          updated_at: now
+        } as any);
 
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .insert(newPost as any)
-          .select()
-          .single();
+      if (error) throw error;
 
-        if (error) throw error;
+      toast.success(t("admin.postCreated"), {
+        description: t("admin.postCreatedSuccess"),
+      });
+      loadPosts();
+      setActiveTab('posts');
+      navigate('/admin/posts');
+    } catch (error) {
+      console.error('Error creating post:', error);
+      toast.error(t("admin.errorCreatingPost"), {
+        description: t("admin.failedToCreatePost"),
+      });
+    }
+  };
 
-        setPosts([data as BlogPost, ...posts]);
-        toast.success(t("admin.postCreated"), {
-          description: t("admin.postCreatedSuccess"),
-        });
-      }
+  const handleUpdatePost = async (values: BlogPostFormValues) => {
+    if (!editingPost) return; // Only allow updates, not creation
+
+    const slug = values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    const now = new Date().toISOString();
+
+    // Calculate read time and word count
+    const readTime = calculateReadTime(values.content);
+    const wordCount = getWordCount(values.content);
+
+    try {
+      // Update existing post
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .update({
+          title: values.title,
+          excerpt: values.excerpt,
+          content: values.content,
+          category: values.category,
+          cover_image: values.cover_image || null,
+          slug,
+          read_time: readTime,
+          word_count: wordCount,
+          author_id: values.author_id,
+          status: values.status,
+          published_at: values.status === 'published' && editingPost.status !== 'published' ? now : editingPost.published_at,
+          scheduled_publish_at: values.scheduled_publish_at || null,
+          updated_at: now
+        } as any)
+        .eq('id', editingPost.id)
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      setPosts(posts.map(post => post.id === editingPost.id ? { ...post, ...data } : post));
+      setEditingPost(null);
+      toast.success(t("admin.postUpdated"), {
+        description: t("admin.postUpdatedSuccess"),
+      });
       setActiveTab("posts");
     } catch (error) {
-      console.error(`Error ${editingPost ? 'updating' : 'creating'} post:`, error);
-      toast.error(editingPost ? t("admin.errorUpdatingPost") : t("admin.errorCreatingPost"), {
-        description: editingPost ? t("admin.failedToUpdatePost") : t("admin.failedToCreatePost"),
+      console.error('Error updating post:', error);
+      toast.error(t("admin.errorUpdatingPost"), {
+        description: t("admin.failedToUpdatePost"),
       });
     }
   };
@@ -302,18 +337,68 @@ const Admin = () => {
           >
             <TabsList>
               <TabsTrigger value="posts">{t("admin.managePosts")}</TabsTrigger>
-              <TabsTrigger value="create">
-                {editingPost ? t("admin.editPost") : t("admin.createPost")}
-              </TabsTrigger>
+              <TabsTrigger value="create">{t("admin.createPost")}</TabsTrigger>
             </TabsList>
+
+            <TabsContent value="create">
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t("admin.createNewPost")}</CardTitle>
+                  <CardDescription>
+                    {t("admin.enterPostDetails")}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <BlogPostForm
+                    onSubmit={handleCreatePost}
+                    isSubmitting={false}
+                    authors={authors}
+                  />
+                </CardContent>
+              </Card>
+            </TabsContent>
 
             <TabsContent value="posts">
               <Card>
                 <CardHeader>
-                  <CardTitle>{t("admin.blogPosts")}</CardTitle>
-                  <CardDescription>
-                    {t("admin.manageExistingPosts")}
-                  </CardDescription>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <CardTitle>{t("admin.blogPosts")}</CardTitle>
+                      <CardDescription>
+                        {t("admin.manageExistingPosts")}
+                      </CardDescription>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        variant={filterStatus === 'all' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setFilterStatus('all')}
+                      >
+                        All
+                      </Button>
+                      <Button
+                        variant={filterStatus === 'published' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setFilterStatus('published')}
+                      >
+                        Published
+                      </Button>
+                      <Button
+                        variant={filterStatus === 'draft' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setFilterStatus('draft')}
+                      >
+                        Drafts
+                      </Button>
+                      <Button
+                        variant={filterStatus === 'scheduled' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setFilterStatus('scheduled')}
+                      >
+                        Scheduled
+                      </Button>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   {loadingPosts ? (
@@ -323,69 +408,77 @@ const Admin = () => {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {posts.map((post) => (
-                        <div key={post.id} className="border rounded-lg p-4">
-                          <div className="flex justify-between items-start mb-2">
-                            <div className="flex-1">
-                              <h3 className="font-semibold text-lg">{post.title}</h3>
-                              <p className="text-muted-foreground text-sm mb-2">
-                                {post.excerpt}
-                              </p>
-                              <div className="flex items-center gap-2">
-                                <Badge variant="outline">{post.category}</Badge>
-                                <span className="text-xs text-muted-foreground">
-                                  {post.created_at ? formatBlogPostDate(post.created_at) : ''} • {post.read_time || "5 min read"}
-                                </span>
+                      {posts
+                        .filter(post => filterStatus === 'all' || post.status === filterStatus)
+                        .map((post) => (
+                          <div key={post.id} className="border rounded-lg p-4">
+                            <div className="flex justify-between items-start mb-2">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <h3 className="font-semibold text-lg">{post.title}</h3>
+                                  <Badge variant={
+                                    post.status === 'published' ? 'default' :
+                                      post.status === 'scheduled' ? 'secondary' : 'outline'
+                                  }>
+                                    {post.status || 'draft'}
+                                  </Badge>
+                                </div>
+                                <p className="text-muted-foreground text-sm mb-2">
+                                  {post.excerpt}
+                                </p>
+                                <div className="flex items-center gap-2">
+                                  <Badge variant="outline">{post.category}</Badge>
+                                  <span className="text-xs text-muted-foreground">
+                                    {post.created_at ? formatBlogPostDate(post.created_at) : ''} • {post.read_time || "5 min read"}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="flex gap-2 ml-4">
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => startEditingPost(post)}
+                                >
+                                  <Edit className="h-4 w-4" />
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="destructive"
+                                  onClick={() => post.id && handleDeletePost(post.id)}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
                               </div>
                             </div>
-                            <div className="flex gap-2 ml-4">
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => startEditingPost(post)}
-                              >
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="destructive"
-                                onClick={() => post.id && handleDeletePost(post.id)}
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     </div>
                   )}
                 </CardContent>
               </Card>
             </TabsContent>
 
-            <TabsContent value="create">
-              <Card>
-                <CardHeader>
-                  <CardTitle>
-                    {editingPost ? t("admin.editPost") : t("admin.createPost")}
-                  </CardTitle>
-                  <CardDescription>
-                    {editingPost
-                      ? t("admin.updatePostDetails")
-                      : t("admin.addNewPost")
-                    }
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <BlogPostForm
-                    initialData={editingPost}
-                    onSubmit={handleCreateOrUpdatePost}
-                    onCancel={editingPost ? handleCancelEdit : undefined}
-                    isSubmitting={false}
-                  />
-                </CardContent>
-              </Card>
-            </TabsContent>
+            {editingPost && (
+              <TabsContent value="edit">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>{t("admin.editPost")}</CardTitle>
+                    <CardDescription>
+                      {t("admin.updatePostDetails")}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <BlogPostForm
+                      initialData={editingPost}
+                      onSubmit={handleUpdatePost}
+                      onCancel={handleCancelEdit}
+                      isSubmitting={false}
+                      authors={authors}
+                    />
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            )}
           </Tabs>
         </div>
       </div>

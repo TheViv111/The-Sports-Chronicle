@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import ReactQuill from 'react-quill-new';
 import 'quill/dist/quill.snow.css';
-import { modules } from './quill-config';
+import { modules as defaultModules } from './quill-config';
 import './CustomQuillEditor.css';
 
 interface CustomQuillEditorProps {
@@ -11,6 +11,7 @@ interface CustomQuillEditorProps {
   className?: string;
   readOnly?: boolean;
   theme?: 'snow' | 'bubble';
+  modules?: any;
 }
 
 const CustomQuillEditor = forwardRef<ReactQuill, CustomQuillEditorProps>(({
@@ -19,7 +20,8 @@ const CustomQuillEditor = forwardRef<ReactQuill, CustomQuillEditorProps>(({
   placeholder = 'Write something...',
   className = '',
   readOnly = false,
-  theme = 'snow'
+  theme = 'snow',
+  modules
 }, ref) => {
   return (
     <div className={`quill-editor-container ${className}`}>
@@ -29,7 +31,7 @@ const CustomQuillEditor = forwardRef<ReactQuill, CustomQuillEditorProps>(({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        modules={modules}
+        modules={modules || defaultModules}
         readOnly={readOnly}
         style={{ minHeight: '300px' }}
       />
