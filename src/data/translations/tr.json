@@ -208,5 +208,7 @@
   "contact.messageSentSuccess": "Mesaj başarıyla gönderildi!",
   "contact.messageSentDescription": "Mesajınız için teşekkür ederiz. Yakında sizinle iletişime geçeceğiz.",
   "contact.failedToSend": "Mesaj gönderilemedi.",
-  "footer.description": "Spor becerileri, teknikler ve taktik analiz için nihai hedefiniz. Futbol, basketbol ve daha fazlası hakkında uzman görüşleriyle oyunda ustalaşın."
+  "footer.description": "Spor becerileri, teknikler ve taktik analiz için nihai hedefiniz. Futbol, basketbol ve daha fazlası hakkında uzman görüşleriyle oyunda ustalaşın.",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

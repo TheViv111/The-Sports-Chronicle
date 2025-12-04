@@ -13,6 +13,8 @@ import { formatBlogPostDate, transformBlogPostForDisplay } from "@/lib/blog-util
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/common/SEO";
 import CommentsSection from "@/components/comments/CommentsSection";
+import { AuthorBio } from "@/components/blog/AuthorBio";
+import { getAuthorById } from "@/data/authors";
 
 type BlogPostType = Tables<'blog_posts'>;
 
@@ -194,6 +196,13 @@ const BlogPost = () => {
             </div>
           </div>
         </article>
+
+        {/* Author Bio Section */}
+        <div className="container mx-auto px-4 max-w-4xl">
+          {(post as any).author_id && getAuthorById((post as any).author_id) && (
+            <AuthorBio author={getAuthorById((post as any).author_id)!} />
+          )}
+        </div>
 
         {/* Comments Section */}
         <CommentsSection postId={post.id} />

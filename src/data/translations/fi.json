@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "Viesti lähetetty onnistuneesti!",
   "contact.messageSentDescription": "Kiitos viestistäsi. Otamme sinuun yhteyttä pian.",
   "contact.failedToSend": "Viestin lähettäminen epäonnistui.",
-  "footer.description": "Lopullinen kohteesi urheilutaidoille, tekniikoille ja taktiselle analyysille. Hallitse peli asiantuntijanäkemyksillä jalkapallosta, koripallosta ja muusta."
+  "footer.description": "Lopullinen kohteesi urheilutaidoille, tekniikoille ja taktiselle analyysille. Hallitse peli asiantuntijanäkemyksillä jalkapallosta, koripallosta ja muusta.",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

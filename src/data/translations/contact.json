@@ -148,5 +148,7 @@
     "contact.messageSentSuccess": "संदेश सफलतापूर्वक भेजा गया!",
     "contact.messageSentDescription": "आपके संदेश के लिए धन्यवाद। हम जल्द ही आपसे संपर्क करेंगे।",
     "contact.failedToSend": "संदेश भेजने में विफल।"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

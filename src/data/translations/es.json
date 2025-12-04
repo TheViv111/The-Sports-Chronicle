@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "¡Mensaje enviado con éxito!",
   "contact.messageSentDescription": "Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.",
   "contact.failedToSend": "Error al enviar mensaje.",
-  "footer.description": "Tu destino definitivo para habilidades deportivas, técnicas y análisis táctico. Domina el juego con conocimientos expertos sobre fútbol, baloncesto y más."
+  "footer.description": "Tu destino definitivo para habilidades deportivas, técnicas y análisis táctico. Domina el juego con conocimientos expertos sobre fútbol, baloncesto y más.",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

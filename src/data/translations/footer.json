@@ -241,6 +241,7 @@
     "footer.aboutUs": "เกี่ยวกับฉัน",
     "footer.contact": "ติดต่อ",
     "footer.rightsReserved": "สงวนสิทธิ์ทุกประการ"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }
-

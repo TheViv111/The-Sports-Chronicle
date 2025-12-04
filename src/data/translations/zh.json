@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "消息发送成功！",
   "contact.messageSentDescription": "感谢您的留言。我们会尽快回复您。",
   "contact.failedToSend": "消息发送失败。",
-  "footer.description": "您获取体育技能、技术和战术分析的终极目的地。通过足球、篮球等方面的专家见解掌握比赛。"
+  "footer.description": "您获取体育技能、技术和战术分析的终极目的地。通过足球、篮球等方面的专家见解掌握比赛。",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

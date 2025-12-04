@@ -5,10 +5,11 @@ import { Loader2, Save } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/contexts/TranslationContext';
-import { Tables } from '@/integrations/supabase/types';
+
 import { blogPostSchema, BlogPostFormValues, BlogPostFormProps } from './types';
 import FormField from './FormField';
 import ImageUploader from './ImageUploader';
+import { getAllAuthors } from '@/data/authors';
 
 const BlogPostForm: React.FC<BlogPostFormProps> = ({
   initialData,
@@ -27,6 +28,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
       excerpt: '',
       content: '',
       cover_image: '',
+      author_id: 'ved-mehta', // Default to Ved Mehta (Blog Author)
     },
   });
 
@@ -39,6 +41,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
         excerpt: initialData.excerpt || '',
         content: initialData.content || '',
         cover_image: (initialData as any)?.cover_image || '',
+        author_id: (initialData as any)?.author_id || 'ved-mehta',
       });
     } else {
       form.reset({
@@ -47,6 +50,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
         excerpt: '',
         content: '',
         cover_image: '',
+        author_id: 'ved-mehta',
       });
     }
   }, [initialData, form]);
@@ -86,7 +90,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
       <h2 className="text-2xl font-bold">
         {initialData ? t('admin.editPost') || 'Edit Post' : t('admin.createPost') || 'Create Post'}
       </h2>
-      
+
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
@@ -96,14 +100,36 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
               placeholder={tf('admin.titlePlaceholder', 'Enter post title')}
               component="input"
             />
-            
+
             <FormField
               name="category"
               label={tf('admin.category', 'Category')}
               placeholder={tf('admin.categoryPlaceholder', 'Enter category')}
               component="input"
             />
-            
+
+            {/* Author Selection */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium">
+                {tf('admin.author', 'Author')}
+              </label>
+              <select
+                {...form.register('author_id')}
+                className="w-full border rounded-md px-3 py-2 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {getAllAuthors().map((author) => (
+                  <option key={author.id} value={author.id}>
+                    {author.name} - {author.title}
+                  </option>
+                ))}
+              </select>
+              {form.formState.errors.author_id && (
+                <p className="text-sm text-destructive">
+                  {form.formState.errors.author_id.message}
+                </p>
+              )}
+            </div>
+
             <FormField
               name="excerpt"
               label={tf('admin.excerpt', 'Excerpt')}
@@ -112,7 +138,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
               rows={3}
             />
           </div>
-          
+
           <div className="space-y-4">
             <ImageUploader
               name="cover_image"

@@ -779,5 +779,7 @@
     "comments.noComments": "ยังไม่มีความคิดเห็น เป็นคนแรกที่แสดงความคิดเห็น!",
     "comments.signInToComment": "เข้าสู่ระบบเพื่อโพสต์ความคิดเห็น",
     "comments.anonymousUser": "ผู้ใช้ที่ไม่ระบุชื่อ"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

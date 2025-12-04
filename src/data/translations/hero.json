@@ -160,5 +160,7 @@
     "hero.title": "สำรวจทักษะ เทคนิค และกลยุทธ์ในกีฬาต่างๆ",
     "hero.subtitle": "เราเขียนเกี่ยวกับกีฬาต่างๆ และกลยุทธ์ เทคนิค และทักษะที่สามารถนำไปใช้ในกีฬาเหล่านี้",
     "hero.readLatest": "อ่านโพสต์ล่าสุด"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

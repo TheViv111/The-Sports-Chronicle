@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "Nachricht erfolgreich gesendet!",
   "contact.messageSentDescription": "Vielen Dank für Ihre Nachricht. Wir werden uns in Kürze bei Ihnen melden.",
   "contact.failedToSend": "Nachricht konnte nicht gesendet werden.",
-  "footer.description": "Ihr ultimatives Ziel für sportliche Fähigkeiten, Techniken und taktische Analysen. Meistern Sie das Spiel mit Experteneinblicken zu Fußball, Basketball und mehr."
+  "footer.description": "Ihr ultimatives Ziel für sportliche Fähigkeiten, Techniken und taktische Analysen. Meistern Sie das Spiel mit Experteneinblicken zu Fußball, Basketball und mehr.",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

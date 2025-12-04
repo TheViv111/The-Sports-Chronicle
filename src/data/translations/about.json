@@ -889,5 +889,7 @@
     "about.team.photographer.name": "เศาร์ยา กุปตา",
     "about.team.photographer.title": "ข้อเสนอแนะและการวิเคราะห์ข้อมูล",
     "about.team.photographer.description": "วิเคราะห์ข้อเสนอแนะของผู้ใช้และตัวชี้วัดประสิทธิภาพเพื่อปรับปรุงแพลตฟอร์มและคุณภาพเนื้อหาของเราอย่างต่อเนื่อง"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

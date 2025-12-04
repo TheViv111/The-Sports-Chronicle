@@ -268,5 +268,7 @@
     "category.baseball": "เบสบอล",
     "category.athletics": "กรีฑา",
     "category.swimming": "ว่ายน้ำ"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

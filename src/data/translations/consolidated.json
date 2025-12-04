@@ -5873,6 +5873,7 @@
     "profile.noProfileTitle": "ไม่พบโปรไฟล์",
     "profile.noProfileDescription": "ดูเหมือนว่าคุณยังไม่มีโปรไฟล์ สร้างโปรไฟล์เพื่อเริ่มต้น!",
     "profile.createProfile": "สร้างโปรไฟล์"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }
-

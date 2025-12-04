@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "Meddelande skickat!",
   "contact.messageSentDescription": "Tack för ditt meddelande. Vi återkommer snart.",
   "contact.failedToSend": "Misslyckades med att skicka meddelande.",
-  "footer.description": "Din ultimata destination för sportfärdigheter, tekniker och taktisk analys. Bemästra spelet med expertinsikter om fotboll, basket och mer."
+  "footer.description": "Din ultimata destination för sportfärdigheter, tekniker och taktisk analys. Bemästra spelet med expertinsikter om fotboll, basket och mer.",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

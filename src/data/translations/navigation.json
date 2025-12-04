@@ -295,5 +295,7 @@
     "nav.signOut": "ออกจากระบบ",
     "nav.profile": "โปรไฟล์",
     "nav.admin": "ผู้ดูแลระบบ"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

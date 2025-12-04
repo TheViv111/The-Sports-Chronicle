@@ -1456,5 +1456,7 @@
     "admin.demoCredentials": "ข้อมูลประจำตัวสาธิต:",
     "admin.usernameDemo": "ชื่อผู้ใช้: admin",
     "admin.passwordDemo": "รหัสผ่าน: admin123"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

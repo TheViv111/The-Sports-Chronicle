@@ -14,6 +14,7 @@ import { Badge } from "../components/ui/badge";
 import BlogPostForm from "../components/blog/BlogPostForm";
 import { SEO } from "../components/common/SEO";
 import Header from "../components/layout/Header";
+import { calculateReadTime, getWordCount } from "../lib/read-time";
 
 type AdminTab = 'posts' | 'create' | 'edit';
 
@@ -45,7 +46,7 @@ const Admin = () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
       setLoading(false);
-      
+
       if (session?.user) {
         loadPosts();
       }
@@ -116,20 +117,27 @@ const Admin = () => {
     const slug = values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     const now = new Date().toISOString();
 
+    // Calculate read time and word count
+    const readTime = calculateReadTime(values.content);
+    const wordCount = getWordCount(values.content);
+
     try {
       if (editingPost) {
         // Update existing post
         const { data, error } = await supabase
           .from('blog_posts')
-          .update<Partial<BlogPost>>({
+          .update({
             title: values.title,
             excerpt: values.excerpt,
             content: values.content,
             category: values.category,
             cover_image: values.cover_image || null,
             slug,
+            read_time: readTime,
+            word_count: wordCount,
+            author_id: (values as any).author_id || 'ved-mehta',
             updated_at: now
-          })
+          } as any)
           .eq('id', editingPost.id)
           .select()
           .single();
@@ -143,21 +151,23 @@ const Admin = () => {
         });
       } else {
         // Create new post
-        const newPost: Omit<BlogPost, 'id' | 'created_at' | 'updated_at'> = {
+        const newPost = {
           title: values.title,
           excerpt: values.excerpt,
           content: values.content,
           category: values.category,
           cover_image: values.cover_image || null,
           slug,
-          read_time: "5 min read",
+          read_time: readTime,
+          word_count: wordCount,
+          author_id: (values as any).author_id || 'ved-mehta',
           author: "Sports Chronicle Team",
           language: "en"
         };
 
         const { data, error } = await supabase
           .from('blog_posts')
-          .insert<typeof newPost>(newPost)
+          .insert(newPost as any)
           .select()
           .single();
 
@@ -255,7 +265,7 @@ const Admin = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Admin Dashboard - The Sports Chronicle"
         description="Manage blog posts, categories and site settings for The Sports Chronicle."
         canonicalUrl="https://thesportschronicle.com/admin"
@@ -264,121 +274,121 @@ const Admin = () => {
       <Header />
       <div className="min-h-screen py-12">
         <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="font-heading text-3xl font-bold">{t("admin.dashboardTitle")}</h1>
-            <p className="text-muted-foreground">{t("admin.dashboardSubtitle")}</p>
-          </div>
-          <div className="flex gap-2">
-            <Link to="/">
-              <Button variant="outline" className="btn-hover-lift">
-                <Home className="h-4 w-4 mr-2" />
-                {t("common.backToSite")}
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h1 className="font-heading text-3xl font-bold">{t("admin.dashboardTitle")}</h1>
+              <p className="text-muted-foreground">{t("admin.dashboardSubtitle")}</p>
+            </div>
+            <div className="flex gap-2">
+              <Link to="/">
+                <Button variant="outline" className="btn-hover-lift">
+                  <Home className="h-4 w-4 mr-2" />
+                  {t("common.backToSite")}
+                </Button>
+              </Link>
+              <Button onClick={handleLogout} variant="outline">
+                {t("admin.logout")}
               </Button>
-            </Link>
-            <Button onClick={handleLogout} variant="outline">
-              {t("admin.logout")}
-            </Button>
+            </div>
           </div>
-        </div>
 
-        <Tabs 
-          value={activeTab} 
-          onValueChange={(value: string) => {
-            if (value === 'edit') return; // Handle edit case separately
-            navigate(`/admin/${value}`);
-          }} 
-          className="w-full"
-        >
-          <TabsList>
-            <TabsTrigger value="posts">{t("admin.managePosts")}</TabsTrigger>
-            <TabsTrigger value="create">
-              {editingPost ? t("admin.editPost") : t("admin.createPost")}
-            </TabsTrigger>
-          </TabsList>
+          <Tabs
+            value={activeTab}
+            onValueChange={(value: string) => {
+              if (value === 'edit') return; // Handle edit case separately
+              navigate(`/admin/${value}`);
+            }}
+            className="w-full"
+          >
+            <TabsList>
+              <TabsTrigger value="posts">{t("admin.managePosts")}</TabsTrigger>
+              <TabsTrigger value="create">
+                {editingPost ? t("admin.editPost") : t("admin.createPost")}
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="posts">
-            <Card>
-              <CardHeader>
-                <CardTitle>{t("admin.blogPosts")}</CardTitle>
-                <CardDescription>
-                  {t("admin.manageExistingPosts")}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {loadingPosts ? (
-                  <div className="flex items-center justify-center p-8">
-                    <Loader2 className="h-8 w-8 animate-spin" />
-                    <span className="ml-2">{t("admin.loadingPosts")}</span>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {posts.map((post) => (
-                    <div key={post.id} className="border rounded-lg p-4">
-                      <div className="flex justify-between items-start mb-2">
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-lg">{post.title}</h3>
-                          <p className="text-muted-foreground text-sm mb-2">
-                            {post.excerpt}
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <Badge variant="outline">{post.category}</Badge>
-                            <span className="text-xs text-muted-foreground">
-                              {post.created_at ? formatBlogPostDate(post.created_at) : ''} • {post.read_time || "5 min read"}
-                            </span>
+            <TabsContent value="posts">
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t("admin.blogPosts")}</CardTitle>
+                  <CardDescription>
+                    {t("admin.manageExistingPosts")}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {loadingPosts ? (
+                    <div className="flex items-center justify-center p-8">
+                      <Loader2 className="h-8 w-8 animate-spin" />
+                      <span className="ml-2">{t("admin.loadingPosts")}</span>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {posts.map((post) => (
+                        <div key={post.id} className="border rounded-lg p-4">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex-1">
+                              <h3 className="font-semibold text-lg">{post.title}</h3>
+                              <p className="text-muted-foreground text-sm mb-2">
+                                {post.excerpt}
+                              </p>
+                              <div className="flex items-center gap-2">
+                                <Badge variant="outline">{post.category}</Badge>
+                                <span className="text-xs text-muted-foreground">
+                                  {post.created_at ? formatBlogPostDate(post.created_at) : ''} • {post.read_time || "5 min read"}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex gap-2 ml-4">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => startEditingPost(post)}
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => post.id && handleDeletePost(post.id)}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex gap-2 ml-4">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => startEditingPost(post)}
-                          >
-                            <Edit className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="destructive"
-                            onClick={() => post.id && handleDeletePost(post.id)}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-          <TabsContent value="create">
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  {editingPost ? t("admin.editPost") : t("admin.createPost")}
-                </CardTitle>
-                <CardDescription>
-                  {editingPost
-                    ? t("admin.updatePostDetails")
-                    : t("admin.addNewPost")
-                  }
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <BlogPostForm
-                  initialData={editingPost}
-                  onSubmit={handleCreateOrUpdatePost}
-                  onCancel={editingPost ? handleCancelEdit : undefined}
-                  isSubmitting={false}
-                />
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+            <TabsContent value="create">
+              <Card>
+                <CardHeader>
+                  <CardTitle>
+                    {editingPost ? t("admin.editPost") : t("admin.createPost")}
+                  </CardTitle>
+                  <CardDescription>
+                    {editingPost
+                      ? t("admin.updatePostDetails")
+                      : t("admin.addNewPost")
+                    }
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <BlogPostForm
+                    initialData={editingPost}
+                    onSubmit={handleCreateOrUpdatePost}
+                    onCancel={editingPost ? handleCancelEdit : undefined}
+                    isSubmitting={false}
+                  />
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
-    </div>
     </>
   );
 };

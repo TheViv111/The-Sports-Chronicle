@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "Messaggio inviato con successo!",
   "contact.messageSentDescription": "Grazie per il tuo messaggio. Ti risponderemo presto.",
   "contact.failedToSend": "Impossibile inviare il messaggio.",
-  "footer.description": "La vostra destinazione definitiva per abilità sportive, tecniche e analisi tattica. Padroneggia il gioco con approfondimenti esperti su calcio, basket e altro ancora."
+  "footer.description": "La vostra destinazione definitiva per abilità sportive, tecniche e analisi tattica. Padroneggia il gioco con approfondimenti esperti su calcio, basket e altro ancora.",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

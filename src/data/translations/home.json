@@ -295,5 +295,7 @@
     "latestPosts.viewAll": "ดูโพสต์ทั้งหมด",
     "latestPosts.loading": "กำลังโหลดโพสต์...",
     "latestPosts.noPosts": "ไม่มีโพสต์ที่มี"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

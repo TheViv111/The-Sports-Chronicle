@@ -781,5 +781,7 @@
     "common.loadingMessage": "กำลังโหลด...",
     "notFound.pageTitle": "โอ๊ะโอ! ไม่พบหน้า",
     "notFound.returnHome": "กลับสู่หน้าหลัก"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

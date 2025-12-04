@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "Besked sendt!",
   "contact.messageSentDescription": "Tak for din besked. Vi vender tilbage til dig snart.",
   "contact.failedToSend": "Kunne ikke sende besked.",
-  "footer.description": "Din ultimative destination for sportsfærdigheder, teknikker og taktisk analyse. Mestre spillet med ekspertindsigt om fodbold, basketball og mere."
+  "footer.description": "Din ultimative destination for sportsfærdigheder, teknikker og taktisk analyse. Mestre spillet med ekspertindsigt om fodbold, basketball og mere.",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

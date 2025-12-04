@@ -11,6 +11,7 @@ export const blogPostSchema = z.object({
     .url({ message: 'Must be a valid URL' })
     .optional()
     .or(z.literal('')),
+  author_id: z.string().min(1, { message: "Author is required." }),
 });
 
 export type BlogPostFormValues = z.infer<typeof blogPostSchema>;
@@ -23,7 +24,7 @@ export interface BlogPostFormProps {
 }
 
 export interface FormFieldProps {
-  name: 'title' | 'category' | 'excerpt' | 'content' | 'cover_image';
+  name: 'title' | 'category' | 'excerpt' | 'content' | 'cover_image' | 'author_id';
   label: string;
   placeholder: string;
   type?: string;

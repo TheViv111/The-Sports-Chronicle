@@ -268,5 +268,7 @@
     "languages.group.eastAsian": "ภาษาเอเชียตะวันออก",
     "languages.group.middleEastern": "ภาษาตะวันออกกลาง",
     "languages.group.other": "ภาษาอื่นๆ"
-  }
+  },
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

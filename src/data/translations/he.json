@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "ההודעה נשלחה בהצלחה!",
   "contact.messageSentDescription": "תודה על הודעתך. נחזור אליך בקרוב.",
   "contact.failedToSend": "שליחת ההודעה נכשלה.",
-  "footer.description": "היעד האולטימטיבי שלכם לכישורי ספורט, טכניקות וניתוח טקטי. שלטו במשחק עם תובנות מומחים על כדורגל, כדורסל ועוד."
+  "footer.description": "היעד האולטימטיבי שלכם לכישורי ספורט, טכניקות וניתוח טקטי. שלטו במשחק עם תובנות מומחים על כדורגל, כדורסל ועוד.",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }

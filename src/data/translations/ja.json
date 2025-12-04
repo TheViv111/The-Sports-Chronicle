@@ -207,5 +207,7 @@
   "contact.messageSentSuccess": "メッセージが正常に送信されました！",
   "contact.messageSentDescription": "メッセージありがとうございます。近日中にご連絡いたします。",
   "contact.failedToSend": "メッセージの送信に失敗しました。",
-  "footer.description": "スポーツのスキル、テクニック、戦術分析のための究極の目的地。サッカー、バスケットボールなどに関する専門家の洞察でゲームをマスターしましょう。"
+  "footer.description": "スポーツのスキル、テクニック、戦術分析のための究極の目的地。サッカー、バスケットボールなどに関する専門家の洞察でゲームをマスターしましょう。",
+  "blog.aboutAuthor": "About the Author",
+  "blog.writtenBy": "Written by"
 }
