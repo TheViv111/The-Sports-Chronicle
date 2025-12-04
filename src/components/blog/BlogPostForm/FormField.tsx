@@ -5,8 +5,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { FormControl, FormField as FormFieldComponent, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { FormFieldProps } from './types';
 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
 // Lazy load ReactQuill
-const ReactQuill = lazy(() => import('react-quill'));
+const ReactQuill = lazy(() => import('react-quill-new'));
 
 // Fallback component for lazy loading
 const EditorFallback = () => (
@@ -25,6 +27,7 @@ const FormField: React.FC<FormFieldProps> = ({
   component = 'input',
   editorRef,
   editorConfig,
+  options,
 }) => {
   const { control } = useFormContext();
 
@@ -55,6 +58,23 @@ const FormField: React.FC<FormFieldProps> = ({
               />
             </Suspense>
           </div>
+        );
+      case 'select':
+        return (
+          <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+            <FormControl>
+              <SelectTrigger className={className}>
+                <SelectValue placeholder={placeholder} />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              {options?.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         );
       default:
         return (

@@ -108,27 +108,16 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
               component="input"
             />
 
-            {/* Author Selection */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium">
-                {tf('admin.author', 'Author')}
-              </label>
-              <select
-                {...form.register('author_id')}
-                className="w-full border rounded-md px-3 py-2 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                {getAllAuthors().map((author) => (
-                  <option key={author.id} value={author.id}>
-                    {author.name} - {author.title}
-                  </option>
-                ))}
-              </select>
-              {form.formState.errors.author_id && (
-                <p className="text-sm text-destructive">
-                  {form.formState.errors.author_id.message}
-                </p>
-              )}
-            </div>
+            <FormField
+              name="author_id"
+              label={tf('admin.author', 'Author')}
+              placeholder={tf('admin.authorPlaceholder', 'Select an author')}
+              component="select"
+              options={getAllAuthors().map(author => ({
+                label: `${author.name} - ${author.title}`,
+                value: author.id
+              }))}
+            />
 
             <FormField
               name="excerpt"

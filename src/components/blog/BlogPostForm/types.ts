@@ -30,7 +30,8 @@ export interface FormFieldProps {
   type?: string;
   className?: string;
   rows?: number;
-  component?: 'input' | 'textarea' | 'editor';
+  component?: 'input' | 'textarea' | 'editor' | 'select';
   editorRef?: React.RefObject<any>;
   editorConfig?: any;
+  options?: { label: string; value: string }[];
 }
