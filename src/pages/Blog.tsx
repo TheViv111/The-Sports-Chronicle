@@ -50,11 +50,11 @@ const Blog = () => {
     }
   }, [searchParams]);
 
- const categories = [
-  { id: "all", name: t("category.all") || "All" },
-  { id: "basketball", name: t("category.basketball") },
-  { id: "football", name: t("category.football") || "Football" },
-];
+  const categories = [
+    { id: "all", name: t("category.all") || "All" },
+    { id: "basketball", name: t("category.basketball") },
+    { id: "football", name: t("category.football") || "Football" },
+  ];
 
   const filteredPosts = posts
     .filter(post => selectedCategory === "all" || post.category.toLowerCase() === selectedCategory.toLowerCase())
@@ -65,7 +65,7 @@ const Blog = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Sports Chronicle Blog - Latest Sports News & Analysis"
         description="The Sports Chronicle Blog: Expert sports analysis, training guides, and latest news covering basketball, soccer, swimming, football and more sports worldwide."
         canonicalUrl="https://the-sports-chronicle.vercel.app/blog"
@@ -77,62 +77,63 @@ const Blog = () => {
             <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4 reveal-on-scroll">
               {t("blog.title")}
             </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8 reveal-on-scroll">
-            {t("blog.subtitle")}
-          </p>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8 reveal-on-scroll">
+              {t("blog.subtitle")}
+            </p>
 
-          <div className="relative max-w-md mx-auto mb-8 reveal-on-scroll">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-            <Input
-              placeholder={t("blog.searchPlaceholder")}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
+            <div className="relative max-w-md mx-auto mb-8 reveal-on-scroll">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                placeholder={t("blog.searchPlaceholder")}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-2 reveal-on-scroll">
+              {categories.map((category) => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category.id)}
+                  className="category-pill btn-hover-lift"
+                >
+                  {category.name}
+                </Button>
+              ))}
+            </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 reveal-on-scroll">
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                variant={selectedCategory === category.id ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedCategory(category.id)}
-                className="category-pill btn-hover-lift"
-              >
-                {category.name}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-8 reveal-on-scroll">
-          <p className="text-muted-foreground">
-            {filteredPosts.length} {filteredPosts.length === 1 ? t("blog.articleFound") : t("blog.articlesFound")}
-          </p>
-        </div>
-
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, index) => (
-              <BlogCardSkeleton key={index} />
-            ))}
-          </div>
-        ) : filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 staggered-grid">
-            {filteredPosts.map((post, index) => (
-              <BlogCard key={post.id} post={post} className="reveal-on-scroll" style={{ '--stagger-delay': `${index * 100}ms` } as React.CSSProperties} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 reveal-on-scroll">
-            <p className="text-muted-foreground text-lg">
-              {t("blog.noArticles")}
+          <div className="mb-8 reveal-on-scroll">
+            <p className="text-muted-foreground">
+              {filteredPosts.length} {filteredPosts.length === 1 ? t("blog.articleFound") : t("blog.articlesFound")}
             </p>
           </div>
-        )}
+
+          {/* Blog Grid */}
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <BlogCardSkeleton key={i} />
+              ))}
+            </div>
+          ) : filteredPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPosts.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg">
+                {t("blog.noArticles")}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 };
