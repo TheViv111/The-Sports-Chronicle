@@ -1,7 +1,9 @@
 {
   "admin.coverImage": "Cover Image",
-  "admin.coverImageUrl": "Cover Image URL",
+  "admin.coverImageUrl": "Paste image URL or upload",
   "admin.upload": "Upload",
+  "admin.author": "Author",
+  "admin.authorPlaceholder": "Select an author",
   "footer.quickLinks": "Quick Links",
   "footer.categories": "Categories",
   "footer.allPosts": "All Posts",
