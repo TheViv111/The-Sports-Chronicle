@@ -10,8 +10,8 @@
   background-color: #f8fafc;
   border-color: #e2e8f0 !important;
   position: sticky;
-  top: 0;
-  z-index: 60;
+  top: 72px; /* Position below the navbar (navbar is ~64-72px from top) */
+  z-index: 40; /* Lower than navbar (which is z-50) */
 }
 
 .ql-container {
