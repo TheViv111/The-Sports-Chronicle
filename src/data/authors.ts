@@ -3,6 +3,11 @@
  * Team member information from About page
  */
 
+import vivaanHandaImg from '@/assets/vivaan-handa-new.jpg';
+import vedMehtaImg from '@/assets/ved-mehta-new.png';
+import shouryaGuptaImg from '@/assets/shourya-gupta-new.jpg';
+import shauryaGuptaImg from '@/assets/shaurya-gupta-new.jpg';
+
 export interface Author {
     id: string;
     name: string;
@@ -17,42 +22,42 @@ export const AUTHORS: Record<string, Author> = {
         name: 'The Sports Chronicle Team',
         title: 'Editorial Team',
         bio: 'We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.',
-        avatarUrl: '/src/assets/team-logo.png'
+        avatarUrl: '/logo-160.png' // Using the site logo for team
     },
     'sports-chronicle-team': {
         id: 'sports-chronicle-team',
         name: 'The Sports Chronicle Team',
         title: 'Editorial Team',
         bio: 'We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.',
-        avatarUrl: '/src/assets/team-logo.png'
+        avatarUrl: '/logo-160.png' // Using the site logo for team
     },
     'vivaan-handa': {
         id: 'vivaan-handa',
         name: 'Vivaan Handa',
         title: 'Research Head and Website Manager',
         bio: 'Leading our research initiatives and managing the digital platform with expertise in data analysis and web development.',
-        avatarUrl: '/src/assets/vivaan-handa-new.jpg'
+        avatarUrl: vivaanHandaImg
     },
     'ved-mehta': {
         id: 'ved-mehta',
         name: 'Ved Mehta',
         title: 'Blog Author and Skill Demonstrator',
         bio: 'Creating engaging content and showcasing sports techniques through detailed analysis and expert commentary.',
-        avatarUrl: '/src/assets/ved-mehta-new.png'
+        avatarUrl: vedMehtaImg
     },
     'shourya-gupta': {
         id: 'shourya-gupta',
         name: 'Shourya Gupta',
         title: 'Social Media Administrator',
         bio: 'Managing our social media presence and community engagement across all digital platforms.',
-        avatarUrl: '/src/assets/shourya-gupta-new.jpg'
+        avatarUrl: shouryaGuptaImg
     },
     'shaurya-gupta': {
         id: 'shaurya-gupta',
         name: 'Shaurya Gupta',
         title: 'Feedback and Data Analytics',
         bio: 'Analyzing user feedback and performance metrics to continuously improve our platform and content quality.',
-        avatarUrl: '/src/assets/shaurya-gupta-new.jpg'
+        avatarUrl: shauryaGuptaImg
     }
 };
 
