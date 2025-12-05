@@ -13,7 +13,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Badge } from "../components/ui/badge";
 import BlogPostForm from "../components/blog/BlogPostForm";
 import { SEO } from "../components/common/SEO";
-import Header from "../components/layout/Header";
 import { calculateReadTime, getWordCount } from "../lib/read-time";
 
 type AdminTab = 'posts' | 'create' | 'edit';
@@ -331,8 +330,7 @@ const Admin = () => {
         canonicalUrl="https://thesportschronicle.com/admin"
         schemaType="WebPage"
       />
-      <Header />
-      <div className="min-h-screen pt-16 admin-page">
+      <div className="min-h-screen admin-page">
         <div className="container mx-auto px-4 py-12">
           <div className="flex justify-between items-center mb-8">
             <div>

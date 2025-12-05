@@ -91,7 +91,11 @@ const Header = () => {
         ? "fixed top-0 left-0 right-0 z-50 w-full border-b bg-background shadow-sm"
         : "fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-[90%] lg:w-[80%] rounded-2xl border border-white/20 dark:border-white/10 bg-background/50 backdrop-blur-xl shadow-lg supports-[backdrop-filter]:bg-background/40"
     }>
-      <div className="max-w-7xl mx-auto flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4 lg:px-6">
+      <div className={
+        isAdminPage
+          ? "w-full flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6 lg:px-8"
+          : "max-w-7xl mx-auto flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4 lg:px-6"
+      }>
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-1.5 sm:space-x-2 lg:space-x-3">
           <img

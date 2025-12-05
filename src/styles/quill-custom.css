@@ -135,9 +135,3 @@
 .dark .ql-picker-item:hover {
   color: #60a5fa;
 }
-
-/* Admin page specific - toolbar below fixed navbar */
-.admin-page .ql-toolbar {
-  top: 64px;
-  z-index: 40;
-}
