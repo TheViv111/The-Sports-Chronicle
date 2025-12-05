@@ -332,7 +332,7 @@ const Admin = () => {
         schemaType="WebPage"
       />
       <Header />
-      <div className="min-h-screen pt-24 admin-page">
+      <div className="min-h-screen pt-16 admin-page">
         <div className="container mx-auto px-4 py-12">
           <div className="flex justify-between items-center mb-8">
             <div>

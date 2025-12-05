@@ -138,6 +138,6 @@
 
 /* Admin page specific - toolbar below fixed navbar */
 .admin-page .ql-toolbar {
-  top: 80px;
+  top: 64px;
   z-index: 40;
 }

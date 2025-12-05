@@ -14,7 +14,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import logo40 from "/logo-40.png";
 import logo80 from "/logo-80.png";
-import OptimizedImage from "@/components/common/OptimizedImage";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
@@ -83,8 +82,15 @@ const Header = () => {
     }
   };
 
+  // Check if we're on the admin page
+  const isAdminPage = location.pathname.startsWith('/admin');
+
   return (
-    <header className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-[90%] lg:w-[80%] rounded-2xl border border-white/20 dark:border-white/10 bg-background/50 backdrop-blur-xl shadow-lg supports-[backdrop-filter]:bg-background/40">
+    <header className={
+      isAdminPage
+        ? "fixed top-0 left-0 right-0 z-50 w-full border-b bg-background shadow-sm"
+        : "fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-[90%] lg:w-[80%] rounded-2xl border border-white/20 dark:border-white/10 bg-background/50 backdrop-blur-xl shadow-lg supports-[backdrop-filter]:bg-background/40"
+    }>
       <div className="max-w-7xl mx-auto flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4 lg:px-6">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-1.5 sm:space-x-2 lg:space-x-3">
