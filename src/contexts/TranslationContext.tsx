@@ -54,8 +54,8 @@ const DEFAULT_LANGUAGE = 'en';
 
 async function loadTranslations(lang: string) {
   try {
-    // Load per-language file
-    const langUrl = `translations/${lang}.json`;
+    // Load per-language file - use absolute path to avoid issues with nested routes
+    const langUrl = `/translations/${lang}.json`;
     const langResp = await fetch(langUrl);
     let langData: Record<string, string> = {};
 
@@ -71,8 +71,8 @@ async function loadTranslations(lang: string) {
       }
     }
 
-    // Load consolidated translations and overlay language section if available
-    const consolidatedUrl = `translations/consolidated.json`;
+    // Load consolidated translations and overlay language section if available - use absolute path
+    const consolidatedUrl = `/translations/consolidated.json`;
     let consolidatedData: Record<string, Record<string, string>> = {};
     try {
       const consResp = await fetch(consolidatedUrl);
@@ -165,6 +165,18 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
       // If error, we just stay on the current language
     }
   };
+
+  // Show loading screen during initial translation load to prevent translation keys from flashing
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <TranslationContext.Provider
