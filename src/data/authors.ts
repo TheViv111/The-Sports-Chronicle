@@ -14,6 +14,10 @@ export interface Author {
     title: string;
     bio: string;
     avatarUrl: string;
+    translationKey?: string;
+    nameKey?: string;
+    titleKey?: string;
+    bioKey?: string;
 }
 
 export const AUTHORS: Record<string, Author> = {
@@ -22,42 +26,52 @@ export const AUTHORS: Record<string, Author> = {
         name: 'The Sports Chronicle Team',
         title: 'Editorial Team',
         bio: 'We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.',
-        avatarUrl: '/logo-160.png' // Using the site logo for team
+        avatarUrl: '/logo-160.png', // Using the site logo for team
+        nameKey: 'about.team.general.name',
+        titleKey: 'about.team.general.title',
+        bioKey: 'about.missionText'
     },
     'sports-chronicle-team': {
         id: 'sports-chronicle-team',
         name: 'The Sports Chronicle Team',
         title: 'Editorial Team',
         bio: 'We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.',
-        avatarUrl: '/logo-160.png' // Using the site logo for team
+        avatarUrl: '/logo-160.png', // Using the site logo for team
+        nameKey: 'about.team.general.name',
+        titleKey: 'about.team.general.title',
+        bioKey: 'about.missionText'
     },
     'vivaan-handa': {
         id: 'vivaan-handa',
         name: 'Vivaan Handa',
         title: 'Research Head and Website Manager',
         bio: 'Leading our research initiatives and managing the digital platform with expertise in data analysis and web development.',
-        avatarUrl: vivaanHandaImg
+        avatarUrl: vivaanHandaImg,
+        translationKey: 'about.team.editor'
     },
     'ved-mehta': {
         id: 'ved-mehta',
         name: 'Ved Mehta',
         title: 'Blog Author and Skill Demonstrator',
         bio: 'Creating engaging content and showcasing sports techniques through detailed analysis and expert commentary.',
-        avatarUrl: vedMehtaImg
+        avatarUrl: vedMehtaImg,
+        translationKey: 'about.team.analyst'
     },
     'shourya-gupta': {
         id: 'shourya-gupta',
         name: 'Shourya Gupta',
         title: 'Social Media Administrator',
         bio: 'Managing our social media presence and community engagement across all digital platforms.',
-        avatarUrl: shouryaGuptaImg
+        avatarUrl: shouryaGuptaImg,
+        translationKey: 'about.team.reporter'
     },
     'shaurya-gupta': {
         id: 'shaurya-gupta',
         name: 'Shaurya Gupta',
         title: 'Feedback and Data Analytics',
         bio: 'Analyzing user feedback and performance metrics to continuously improve our platform and content quality.',
-        avatarUrl: shauryaGuptaImg
+        avatarUrl: shauryaGuptaImg,
+        translationKey: 'about.team.photographer'
     }
 };
 

@@ -206,5 +206,8 @@
   "contact.messageSentSuccess": "Melding sendt!",
   "contact.messageSentDescription": "Takk for meldingen din. Vi kommer tilbake til deg snart.",
   "contact.failedToSend": "Kunne ikke sende melding.",
-  "footer.description": "Din ultimate destinasjon for sportferdigheter, teknikker og taktisk analyse. Mestre spillet med ekspertinnsikt om fotball, basketball og mer."
-}
+  "footer.description": "Din ultimate destinasjon for sportferdigheter, teknikker og taktisk analyse. Mestre spillet med ekspertinnsikt om fotball, basketball og mer.",
+  "blog.aboutAuthor": "Om forfatteren",
+  "about.team.general.name": "The Sports Chronicle-teamet",
+  "about.team.general.title": "Redaksjonelt team"
+}\n

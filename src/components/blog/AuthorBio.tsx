@@ -33,13 +33,13 @@ export const AuthorBio = ({ author }: AuthorBioProps) => {
                             {t('blog.aboutAuthor') || 'About the Author'}
                         </h3>
                         <p className="text-lg font-medium text-primary mb-1">
-                            {author.name}
+                            {author.nameKey ? t(author.nameKey, author.name) : (author.translationKey ? t(`${author.translationKey}.name`, author.name) : author.name)}
                         </p>
                         <p className="text-sm text-muted-foreground mb-3 font-medium">
-                            {author.title}
+                            {author.titleKey ? t(author.titleKey, author.title) : (author.translationKey ? t(`${author.translationKey}.title`, author.title) : author.title)}
                         </p>
                         <p className="text-sm leading-relaxed text-foreground/90">
-                            {author.bio}
+                            {author.bioKey ? t(author.bioKey, author.bio) : (author.translationKey ? t(`${author.translationKey}.description`, author.bio) : author.bio)}
                         </p>
                     </div>
                 </div>

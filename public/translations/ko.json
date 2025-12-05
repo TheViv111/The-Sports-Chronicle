@@ -206,5 +206,8 @@
   "contact.messageSentSuccess": "메시지가 성공적으로 전송되었습니다!",
   "contact.messageSentDescription": "메시지 주셔서 감사합니다. 곧 연락드리겠습니다.",
   "contact.failedToSend": "메시지 전송 실패.",
-  "footer.description": "스포츠 기술, 기법 및 전술 분석을 위한 궁극적인 목적지입니다. 축구, 농구 등에 대한 전문가 통찰력으로 게임을 마스터하세요."
-}
+  "footer.description": "스포츠 기술, 기법 및 전술 분석을 위한 궁극적인 목적지입니다. 축구, 농구 등에 대한 전문가 통찰력으로 게임을 마스터하세요.",
+  "blog.aboutAuthor": "저자 소개",
+  "about.team.general.name": "더 스포츠 크로니클 팀",
+  "about.team.general.title": "편집팀"
+}\n
