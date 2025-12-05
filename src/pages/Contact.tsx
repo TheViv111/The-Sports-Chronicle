@@ -135,7 +135,7 @@ const Contact = () => {
           </div>
 
           {/* Content */}
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-2xl lg:max-w-4xl mx-auto">
             <div className="reveal-on-scroll fade-in-left relative">
               <h2 className="font-heading text-2xl font-semibold mb-6">
                 {t("contact.sendMessage")}
