@@ -2,7 +2,8 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import BlogCard from "@/components/blog/BlogCard";
+import RelatedPosts from "@/components/blog/RelatedPosts";
+import KeywordOptimizer from "@/components/blog/KeywordOptimizer";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { Tables } from "@/integrations/supabase/types";
@@ -13,19 +14,21 @@ import { SEO } from "@/components/common/SEO";
 import CommentsSection from "@/components/comments/CommentsSection";
 import { AuthorBio } from "@/components/blog/AuthorBio";
 import { getAuthorById } from "@/data/authors";
+import SocialShare from "@/components/blog/SocialShare";
+import { getTranslationWithEnglishFallback } from "@/utils/translations";
 
 type BlogPostType = Tables<'blog_posts'>;
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { t } = useTranslation();
+  const { t, currentLanguage } = useTranslation();
 
   if (!slug) {
     return <Navigate to="/blog" replace />;
   }
 
   const { data: post, isLoading, error } = useQuery<BlogPostType | null, Error>({
-    queryKey: ['blogPost', slug],
+    queryKey: ['blogPost', slug, currentLanguage],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('blog_posts')
@@ -38,23 +41,6 @@ const BlogPost = () => {
     enabled: !!slug,
   });
 
-  // Fetch related posts
-  const { data: relatedPosts } = useQuery({
-    queryKey: ['relatedPosts', post?.category, post?.id],
-    queryFn: async () => {
-      if (!post) return [];
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .eq('category', post.category)
-        .neq('id', post.id)
-        .limit(3);
-      if (error) throw error;
-      return data || [];
-    },
-    enabled: !!post,
-  });
-
   if (isLoading) {
     return <LoadingScreen message="Loading post..." />;
   }
@@ -62,6 +48,19 @@ const BlogPost = () => {
   if (error || !post) {
     return <Navigate to="/blog" replace />;
   }
+
+  // Debug logging for translations
+  console.log('Post translations:', JSON.stringify(post?.translations, null, 2));
+  console.log('Current language:', currentLanguage);
+
+  // Get translated content using the new utility function
+  const translatedPost = {
+    ...post,
+    title: getTranslationWithEnglishFallback(post?.translations, 'title', currentLanguage, post?.title || ''),
+    content: getTranslationWithEnglishFallback(post?.translations, 'content', currentLanguage, post?.content || ''),
+    excerpt: getTranslationWithEnglishFallback(post?.translations, 'excerpt', currentLanguage, post?.excerpt || ''),
+    category: getTranslationWithEnglishFallback(post?.translations, 'category', currentLanguage, post?.category || ''),
+  } as BlogPostType;
 
   // Simple date formatting
   const formatDate = (dateString: string) => {
@@ -78,13 +77,13 @@ const BlogPost = () => {
   return (
     <>
       <SEO
-        title={`${post.title || 'Blog Post'} - The Sports Chronicle`}
-        description={post.excerpt || `Read ${post.title || 'this article'} on The Sports Chronicle. Latest sports news and analysis.`}
+        title={`${translatedPost.title || 'Blog Post'} | The Sports Chronicle`}
+        description={translatedPost.excerpt || `Read ${translatedPost.title || 'this article'} on The Sports Chronicle. Latest sports news and expert analysis.`}
         canonicalUrl={`https://the-sports-chronicle.vercel.app/blog/${post.slug}`}
         schemaType="Article"
         imageUrl={post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"}
         articleData={{
-          headline: post.title || 'Blog Post',
+          headline: translatedPost.title || 'Blog Post',
           datePublished: post.created_at,
           dateModified: post.updated_at || post.created_at,
           author: {
@@ -92,11 +91,14 @@ const BlogPost = () => {
             name: post.author || "The Sports Chronicle"
           },
           image: post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg",
-          category: post.category,
-          keywords: `${post.category}, sports news, ${post.title}, the sports chronicle, sports analysis`,
-          articleSection: post.category
+          category: translatedPost.category || undefined,
+          keywords: `${translatedPost.category}, sports news, ${translatedPost.title}, the sports chronicle, sports analysis`,
+          articleSection: translatedPost.category || undefined
         }}
       />
+
+      {/* SEO Keyword Optimizer */}
+      <KeywordOptimizer post={translatedPost} />
 
       <div className="min-h-screen bg-background">
         {/* Back button */}
@@ -113,18 +115,18 @@ const BlogPost = () => {
         <article className="container mx-auto px-4 pb-12 max-w-4xl">
           {/* Title */}
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            {post.title || "Untitled Post"}
+            {translatedPost.title || "Untitled Post"}
           </h1>
 
           {/* Category badge */}
           <Badge variant="outline" className="mb-6 uppercase text-xs">
-            {post.category || "Uncategorized"}
+            {translatedPost.category || "Uncategorized"}
           </Badge>
 
           {/* Excerpt */}
-          {post.excerpt && (
+          {translatedPost.excerpt && (
             <p className="text-lg text-muted-foreground mb-6 italic border-l-4 border-primary pl-4">
-              {post.excerpt}
+              {translatedPost.excerpt}
             </p>
           )}
 
@@ -133,7 +135,7 @@ const BlogPost = () => {
             <div className="aspect-[21/9] mb-8 rounded-lg overflow-hidden">
               <img
                 src={post.cover_image}
-                alt={post.title || "Blog post cover"}
+                alt={`${translatedPost.title} - ${translatedPost.category} article cover image on The Sports Chronicle`}
                 className="w-full h-full object-cover"
                 loading="eager"
               />
@@ -158,11 +160,20 @@ const BlogPost = () => {
             )}
           </div>
 
+          {/* Social Share */}
+          <div className="mb-8">
+            <SocialShare
+              title={translatedPost.title || "Untitled Post"}
+              url={`https://the-sports-chronicle.vercel.app/blog/${post.slug}`}
+              description={translatedPost.excerpt || undefined}
+            />
+          </div>
+
           {/* Content */}
           <div
             className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-heading prose-a:text-primary hover:prose-a:text-primary/80"
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(post.content || "<p>No content available.</p>", {
+              __html: DOMPurify.sanitize(translatedPost.content || "<p>No content available.</p>", {
                 ADD_TAGS: ["iframe"],
                 ADD_ATTR: ["allow", "allowfullscreen", "frameborder", "scrolling"],
               })
@@ -170,6 +181,7 @@ const BlogPost = () => {
           />
         </article>
 
+        
         {/* Author Bio */}
         {author && (
           <div className="container mx-auto px-4 max-w-4xl mb-12">
@@ -183,21 +195,15 @@ const BlogPost = () => {
         </div>
 
         {/* Related Posts */}
-        {relatedPosts && relatedPosts.length > 0 && (
-          <section className="py-16 bg-secondary/20">
-            <div className="container mx-auto px-4">
-              <h2 className="text-2xl font-bold mb-8 text-center">
-                {t("blog.relatedArticles")}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {relatedPosts.map((relatedPost) => (
-                  <BlogCard key={relatedPost.id} post={relatedPost} />
-                ))}
+        <div className="container mx-auto px-4 max-w-4xl">
+          <RelatedPosts
+            currentPost={post}
+            category={post.category}
+            limit={3}
+          />
+        </div>
+
               </div>
-            </div>
-          </section>
-        )}
-      </div>
     </>
   );
 };

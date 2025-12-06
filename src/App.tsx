@@ -13,6 +13,7 @@ import React, { Suspense } from "react";
 import LoadingScreen from "@/components/common/LoadingScreen";
 import Layout from "./components/layout/Layout";
 import { CachePerformanceMonitor } from "@/components/common/CachePerformanceMonitor";
+import PerformanceOptimizer from "@/components/common/PerformanceOptimizer";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Blog = React.lazy(() => import("./pages/Blog"));
@@ -61,6 +62,7 @@ const App = () => {
               <BrowserRouter>
                 <SessionContextProvider>
                   <Suspense fallback={<LoadingScreen message="Preparing your experience..." />}>
+                    <PerformanceOptimizer />
                     <Routes>
                       <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />

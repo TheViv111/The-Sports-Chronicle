@@ -76,7 +76,7 @@ export default function BlogCard({ post, className, style }: BlogCardProps) {
             <Suspense fallback={<PlaceholderImage category={displayPost.category} className="w-full h-full" />}>
               <OptimizedImage
                 src={imageSrc}
-                alt={displayPost.title}
+                alt={`${displayPost.title} - ${displayPost.category} article on The Sports Chronicle`}
                 className={`w-full h-full object-contain transition-all duration-700 ${isHovered ? 'scale-110' : 'scale-100'}`}
                 onError={() => setImageError(true)}
                 width={800}

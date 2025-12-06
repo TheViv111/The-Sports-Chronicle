@@ -10,6 +10,7 @@ import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-uti
 import useScrollReveal from "@/hooks/useScrollReveal";
 import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
+import { getTranslationWithEnglishFallback } from "@/utils/translations";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");

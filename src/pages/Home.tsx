@@ -63,8 +63,8 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="The Sports Chronicle - Latest Sports News & Analysis"
-        description="The Sports Chronicle delivers comprehensive sports news, expert analysis, and real-time updates. Get the latest coverage of basketball, soccer, swimming, football, and all major sports worldwide."
+        title="The Sports Chronicle - Sports News, Analysis & Blog"
+        description="The Sports Chronicle: Your trusted source for sports news, expert analysis, and in-depth coverage. Get the latest updates on basketball, soccer, swimming, football and more."
         schemaType="WebSite"
         canonicalUrl="https://the-sports-chronicle.vercel.app/"
       />

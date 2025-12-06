@@ -53,50 +53,47 @@ const TranslationContext = createContext<TranslationContextType | undefined>(und
 const DEFAULT_LANGUAGE = 'en';
 
 async function loadTranslations(lang: string) {
+  let langData: Record<string, string> = {};
+
+  // 1. Load per-language file
   try {
-    // Load per-language file - use absolute path to avoid issues with nested routes
     const langUrl = `/translations/${lang}.json`;
     const langResp = await fetch(langUrl);
-    let langData: Record<string, string> = {};
 
-    if (!langResp.ok) {
-      console.warn(`Failed to load translations from: ${langUrl} (status ${langResp.status})`);
-    } else {
+    if (langResp.ok) {
       const ct = langResp.headers.get('content-type') || '';
-      if (!ct.includes('application/json')) {
-        const preview = await langResp.text();
-        console.warn(`Non-JSON response for translations '${lang}' at ${langUrl}. First chars: ${preview.slice(0, 60)}`);
-      } else {
+      if (ct.includes('application/json')) {
         langData = await langResp.json();
-      }
-    }
-
-    // Load consolidated translations and overlay language section if available - use absolute path
-    const consolidatedUrl = `/translations/consolidated.json`;
-    let consolidatedData: Record<string, Record<string, string>> = {};
-    try {
-      const consResp = await fetch(consolidatedUrl);
-      if (consResp.ok) {
-        const consCT = consResp.headers.get('content-type') || '';
-        if (consCT.includes('application/json')) {
-          consolidatedData = await consResp.json();
-        } else {
-          const preview = await consResp.text();
-          console.warn(`Non-JSON consolidated translations at ${consolidatedUrl}. First chars: ${preview.slice(0, 60)}`);
-        }
       } else {
-        console.warn(`Failed to load consolidated translations (status ${consResp.status})`);
+        console.warn(`Non-JSON response for translations '${lang}' at ${langUrl}`);
       }
-    } catch (e) {
-      console.warn('Error loading consolidated translations:', e);
+    } else {
+      console.warn(`Failed to load translations from: ${langUrl} (status ${langResp.status})`);
     }
+  } catch (e) {
+    console.warn(`Error loading language file for ${lang}:`, e);
+    // Continue with empty langData
+  }
 
+  // 2. Load consolidated translations
+  let consolidatedData: Record<string, Record<string, string>> = {};
+  try {
+    const consolidatedUrl = `/translations/consolidated.json`;
+    const consResp = await fetch(consolidatedUrl);
+    if (consResp.ok) {
+      consolidatedData = await consResp.json();
+    }
+  } catch (e) {
+    console.warn('Error loading consolidated translations:', e);
+  }
+
+  try {
     const overlay = consolidatedData[lang] || {};
     const merged = { ...overlay, ...langData };
     console.log(`Loaded ${Object.keys(merged).length} translations for ${lang} (merged with consolidated)`);
     return merged;
   } catch (error) {
-    console.error(`Error loading translations for ${lang}:`, error);
+    console.error(`Error merging translations for ${lang}:`, error);
     return {};
   }
 }
