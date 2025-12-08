@@ -168,10 +168,10 @@ const BlogPost = () => {
               <Clock className="mr-2 h-4 w-4" />
               {post.read_time || "5 min read"}
             </div>
-            {post.author && (
+            {author && (
               <div className="flex items-center">
                 <User className="mr-2 h-4 w-4" />
-                {post.author}
+                {author.name}
               </div>
             )}
           </div>

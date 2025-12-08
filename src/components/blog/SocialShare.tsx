@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Facebook, Twitter, Linkedin, Copy } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Copy, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 
 interface SocialShareProps {
@@ -29,6 +29,9 @@ const SocialShare = ({ title, url, description }: SocialShareProps) => {
                 break;
             case "linkedin":
                 shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}&summary=${encodeURIComponent(description || "")}`;
+                break;
+            case "whatsapp":
+                shareUrl = `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`;
                 break;
             default:
                 return;
@@ -69,6 +72,15 @@ const SocialShare = ({ title, url, description }: SocialShareProps) => {
                     aria-label="Share on LinkedIn"
                 >
                     <Linkedin className="h-4 w-4" />
+                </Button>
+                <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => handleShare("whatsapp")}
+                    className="rounded-full hover:bg-green-600 hover:text-white transition-colors"
+                    aria-label="Share on WhatsApp"
+                >
+                    <MessageCircle className="h-4 w-4" />
                 </Button>
                 <Button
                     variant="outline"
