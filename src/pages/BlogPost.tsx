@@ -8,14 +8,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { Tables } from "@/integrations/supabase/types";
 import LoadingScreen from "@/components/common/LoadingScreen";
-import DOMPurify from "dompurify";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { SEO } from "@/components/common/SEO";
-import CommentsSection from "@/components/comments/CommentsSection";
 import { AuthorBio } from "@/components/blog/AuthorBio";
 import { getAuthorById } from "@/data/authors";
 import SocialShare from "@/components/blog/SocialShare";
 import { getTranslationWithEnglishFallback } from "@/utils/translations";
+import CommentsSection from "@/components/comments/CommentsSection";
 
 type BlogPostType = Tables<'blog_posts'>;
 
@@ -186,15 +185,14 @@ const BlogPost = () => {
           </div>
 
           {/* Content */}
-          <div
-            className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-heading prose-a:text-primary hover:prose-a:text-primary/80"
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(translatedPost.content || "<p>No content available.</p>", {
-                ADD_TAGS: ["iframe"],
-                ADD_ATTR: ["allow", "allowfullscreen", "frameborder", "scrolling"],
-              })
-            }}
-          />
+          <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-heading prose-a:text-primary hover:prose-a:text-primary/80">
+            <div 
+              className="space-y-6"
+              dangerouslySetInnerHTML={{ 
+                __html: translatedPost.content || "No content available." 
+              }} 
+            />
+          </div>
         </article>
 
         
