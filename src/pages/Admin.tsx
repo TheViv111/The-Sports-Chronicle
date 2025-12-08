@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { supabase } from "../lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "../contexts/TranslationContext";
 import { BlogPost } from "../types/supabase";
 import { formatBlogPostDate } from "../lib/blog-utils";

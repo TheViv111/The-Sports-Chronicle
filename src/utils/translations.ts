@@ -3,15 +3,23 @@
  */
 
 export const getTranslation = (translations: any, field: string, lang: string, fallback: string | null) => {
-  if (!translations || typeof translations !== 'object') return fallback;
-  
-  // Handle different possible translation structures
-  if (translations[field]?.[lang]) {
-    return translations[field][lang];
+  if (!translations || typeof translations !== 'object') {
+    return fallback;
   }
-  
-  // Fallback to direct field access
-  return translations[field] || fallback;
+
+  // Try structure: translations[lang][field] (Supabase Edge Function format)
+  const langFirst = translations?.[lang]?.[field];
+  if (langFirst !== undefined && langFirst !== null) {
+    return langFirst;
+  }
+
+  // Fallback: try structure translations[field][lang] (alternative format)
+  const fieldFirst = translations?.[field]?.[lang];
+  if (fieldFirst !== undefined && fieldFirst !== null) {
+    return fieldFirst;
+  }
+
+  return fallback;
 };
 
 export const getTranslationWithEnglishFallback = (translations: any, field: string, lang: string, fallback: string | null) => {

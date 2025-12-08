@@ -36,6 +36,16 @@ const BlogPost = () => {
         .eq('slug', slug)
         .single();
       if (error) throw error;
+      
+      // Ensure translations are properly parsed if they come as string
+      if (data?.translations && typeof data.translations === 'string') {
+        try {
+          data.translations = JSON.parse(data.translations);
+        } catch (e) {
+          console.error('Error parsing translations:', e);
+        }
+      }
+      
       return data;
     },
     enabled: !!slug,
@@ -52,6 +62,9 @@ const BlogPost = () => {
   // Debug logging for translations
   console.log('Post translations:', JSON.stringify(post?.translations, null, 2));
   console.log('Current language:', currentLanguage);
+  console.log('Post object keys:', post ? Object.keys(post) : 'No post');
+  console.log('Translations type:', typeof post?.translations);
+  console.log('Translations is null:', post?.translations === null);
 
   // Get translated content using the new utility function
   const translatedPost = {
@@ -61,6 +74,9 @@ const BlogPost = () => {
     excerpt: getTranslationWithEnglishFallback(post?.translations, 'excerpt', currentLanguage, post?.excerpt || ''),
     category: getTranslationWithEnglishFallback(post?.translations, 'category', currentLanguage, post?.category || ''),
   } as BlogPostType;
+
+  console.log('Translated post title:', translatedPost.title);
+  console.log('Original post title:', post?.title);
 
   // Simple date formatting
   const formatDate = (dateString: string) => {
