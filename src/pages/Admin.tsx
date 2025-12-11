@@ -5,7 +5,7 @@ import { useTranslation } from "../contexts/TranslationContext";
 import { BlogPost } from "../types/supabase";
 import { formatBlogPostDate } from "../lib/blog-utils";
 import { toast } from "sonner";
-import { Trash2, Edit, Loader2, Home } from "lucide-react";
+import { Trash2, Edit, Loader2, Home, Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
@@ -25,6 +25,8 @@ type BlogPostFormValues = {
   category: string;
   cover_image?: string;
   author_id: string;
+  status: 'draft' | 'published' | 'scheduled';
+  scheduled_publish_at?: string | null;
 };
 
 // Admin component handles its own tab state
@@ -160,9 +162,9 @@ const Admin = () => {
         translations: post.translations || null,
         // Add compatibility fields for the UI
         author_id: post.author || null,
-        status: 'draft' as const, // Default status since field doesn't exist in DB
-        published_at: null,
-        scheduled_publish_at: null,
+        status: post.status || 'draft', // Use status from database or default to 'draft'
+        published_at: post.published_at || null,
+        scheduled_publish_at: post.scheduled_publish_at || null,
         word_count: undefined
       }));
       
@@ -195,6 +197,9 @@ const Admin = () => {
           read_time: readTime,
           author: values.author_id, // Map author_id to author field
           language: 'en', // Default language
+          status: values.status,
+          published_at: values.status === 'published' ? now : null,
+          scheduled_publish_at: values.scheduled_publish_at || null,
           created_at: now,
           updated_at: now
         });
@@ -238,6 +243,9 @@ const Admin = () => {
           read_time: readTime,
           author: values.author_id, // Map author_id to author field
           language: 'en', // Default language
+          status: values.status,
+          published_at: values.status === 'published' && editingPost.status !== 'published' ? now : editingPost.published_at,
+          scheduled_publish_at: values.scheduled_publish_at || null,
           updated_at: now
         })
         .eq('id', editingPost.id!)
@@ -261,7 +269,11 @@ const Admin = () => {
               language: data.language || post.language,
               created_at: data.created_at || post.created_at,
               updated_at: data.updated_at || post.updated_at,
-              translations: data.translations || post.translations
+              translations: data.translations || post.translations,
+              // Preserve existing status fields
+              status: post.status,
+              published_at: post.published_at,
+              scheduled_publish_at: post.scheduled_publish_at
             }
           : post
       ));
@@ -305,6 +317,65 @@ const Admin = () => {
       console.error('Error deleting post:', error);
       toast.error(t("admin.errorDeletingPost"), {
         description: t("admin.failedToDeletePost"),
+      });
+    }
+  };
+
+  const handlePublishPost = async (postId: string) => {
+    try {
+      const now = new Date().toISOString();
+      const { error } = await supabase
+        .from('blog_posts')
+        .update({
+          status: 'published',
+          published_at: now,
+          updated_at: now
+        })
+        .eq('id', postId);
+
+      if (error) throw error;
+
+      setPosts(posts.map(post => 
+        post.id === postId 
+          ? { ...post, status: 'published', published_at: now }
+          : post
+      ));
+      toast.success("Post published successfully", {
+        description: "The post is now live on the site.",
+      });
+    } catch (error) {
+      console.error('Error publishing post:', error);
+      toast.error("Error publishing post", {
+        description: "Failed to publish the post.",
+      });
+    }
+  };
+
+  const handleUnpublishPost = async (postId: string) => {
+    try {
+      const { error } = await supabase
+        .from('blog_posts')
+        .update({
+          status: 'draft',
+          published_at: null,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', postId);
+
+      if (error) throw error;
+
+      setPosts(posts.map(post => 
+        post.id === postId 
+          ? { ...post, status: 'draft', published_at: null }
+          : post
+      ));
+      toast.success("Post unpublished successfully", {
+        description: "The post is now a draft.",
+      });
+    } catch (error) {
+      console.error('Error unpublishing post:', error);
+      toast.error("Error unpublishing post", {
+        description: "Failed to unpublish the post.",
       });
     }
   };
@@ -489,6 +560,25 @@ const Admin = () => {
                                 </div>
                               </div>
                               <div className="flex gap-2 ml-4">
+                                {post.status === 'draft' ? (
+                                  <Button
+                                    size="sm"
+                                    variant="default"
+                                    onClick={() => post.id && handlePublishPost(post.id)}
+                                    title="Publish post"
+                                  >
+                                    <Eye className="h-4 w-4" />
+                                  </Button>
+                                ) : (
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => post.id && handleUnpublishPost(post.id)}
+                                    title="Unpublish post"
+                                  >
+                                    <EyeOff className="h-4 w-4" />
+                                  </Button>
+                                )}
                                 <Button
                                   size="sm"
                                   variant="outline"
