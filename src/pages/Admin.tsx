@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Badge } from "../components/ui/badge";
 import BlogPostForm from "../components/blog/BlogPostForm";
 import { SEO } from "../components/common/SEO";
-import { calculateReadTime, getWordCount } from "../lib/read-time";
+import { calculateReadTime } from "../lib/read-time";
 
 type AdminTab = 'posts' | 'create' | 'edit';
 
@@ -25,8 +25,6 @@ type BlogPostFormValues = {
   category: string;
   cover_image?: string;
   author_id: string;
-  status: 'draft' | 'published' | 'scheduled';
-  scheduled_publish_at?: string | null;
 };
 
 // Admin component handles its own tab state
@@ -156,15 +154,16 @@ const Admin = () => {
         slug: post.slug || '',
         read_time: post.read_time || '5 min read',
         author: post.author || '',
-        author_id: post.author_id || null,
-        word_count: post.word_count || null,
         language: post.language || 'en',
         created_at: post.created_at || null,
         updated_at: post.updated_at || null,
-        status: (post as any).status || 'draft', // Cast to access status field
-        published_at: (post as any).published_at || null,
-        scheduled_publish_at: (post as any).scheduled_publish_at || null,
-        translations: post.translations || null
+        translations: post.translations || null,
+        // Add compatibility fields for the UI
+        author_id: post.author || null,
+        status: 'draft' as const, // Default status since field doesn't exist in DB
+        published_at: null,
+        scheduled_publish_at: null,
+        word_count: undefined
       }));
       
       setPosts(processedData);
@@ -182,7 +181,6 @@ const Admin = () => {
     const slug = values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     const now = new Date().toISOString();
     const readTime = calculateReadTime(values.content);
-    const wordCount = getWordCount(values.content);
 
     try {
       const { error } = await supabase
@@ -195,14 +193,11 @@ const Admin = () => {
           cover_image: values.cover_image || null,
           slug,
           read_time: readTime,
-          word_count: wordCount,
-          author_id: values.author_id,
-          status: values.status,
-          published_at: values.status === 'published' ? now : null,
-          scheduled_publish_at: values.scheduled_publish_at || null,
+          author: values.author_id, // Map author_id to author field
+          language: 'en', // Default language
           created_at: now,
           updated_at: now
-        } as any);
+        });
 
       if (error) throw error;
 
@@ -226,9 +221,8 @@ const Admin = () => {
     const slug = values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     const now = new Date().toISOString();
 
-    // Calculate read time and word count
+    // Calculate read time
     const readTime = calculateReadTime(values.content);
-    const wordCount = getWordCount(values.content);
 
     try {
       // Update existing post
@@ -242,13 +236,10 @@ const Admin = () => {
           cover_image: values.cover_image || null,
           slug,
           read_time: readTime,
-          word_count: wordCount,
-          author_id: values.author_id,
-          status: values.status,
-          published_at: values.status === 'published' && editingPost.status !== 'published' ? now : editingPost.published_at,
-          scheduled_publish_at: values.scheduled_publish_at || null,
+          author: values.author_id, // Map author_id to author field
+          language: 'en', // Default language
           updated_at: now
-        } as any)
+        })
         .eq('id', editingPost.id!)
         .select()
         .single();
@@ -267,14 +258,9 @@ const Admin = () => {
               slug: data.slug || post.slug,
               read_time: data.read_time || post.read_time,
               author: data.author || post.author,
-              author_id: (data as any).author_id || post.author_id,
-              word_count: (data as any).word_count || post.word_count,
               language: data.language || post.language,
               created_at: data.created_at || post.created_at,
               updated_at: data.updated_at || post.updated_at,
-              status: (data as any).status || post.status,
-              published_at: (data as any).published_at || post.published_at,
-              scheduled_publish_at: (data as any).scheduled_publish_at || post.scheduled_publish_at,
               translations: data.translations || post.translations
             }
           : post

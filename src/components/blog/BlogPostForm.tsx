@@ -29,8 +29,6 @@ const blogPostSchema = z.object({
     .optional()
     .or(z.literal('')),
   author_id: z.string().min(1, { message: "Author is required." }),
-  status: z.enum(['draft', 'published', 'scheduled']),
-  scheduled_publish_at: z.string().optional().nullable(),
 });
 
 type BlogPostFormValues = z.infer<typeof blogPostSchema>;
@@ -79,9 +77,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
       excerpt: initialData?.excerpt || "",
       content: initialData?.content || "",
       cover_image: (initialData as any)?.cover_image || "",
-      author_id: (initialData as any)?.author_id || "",
-      status: (initialData as any)?.status || "draft",
-      scheduled_publish_at: (initialData as any)?.scheduled_publish_at || null,
+      author_id: (initialData as any)?.author || "",
     },
   });
 
@@ -93,9 +89,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
         excerpt: initialData.excerpt || "",
         content: initialData.content || "",
         cover_image: (initialData as any)?.cover_image || "",
-        author_id: (initialData as any)?.author_id || "",
-        status: (initialData as any)?.status || "draft",
-        scheduled_publish_at: (initialData as any)?.scheduled_publish_at || null,
+        author_id: (initialData as any)?.author || "",
       });
     } else {
       form.reset({
@@ -105,18 +99,11 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
         content: "",
         cover_image: "",
         author_id: "",
-        status: "draft",
-        scheduled_publish_at: null,
       });
     }
   }, [initialData]);
 
   const handleSubmit = async (values: BlogPostFormValues) => {
-    // If scheduled, ensure date is set
-    if (values.status === 'scheduled' && !values.scheduled_publish_at) {
-      form.setError('scheduled_publish_at', { message: 'Date is required for scheduled posts' });
-      return;
-    }
     await onSubmit(values);
   };
 
@@ -662,55 +649,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           )}
         />
 
-        <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between border-t pt-4 mt-6">
-          <div className="flex gap-2 items-center">
-            <FormField
-              control={form.control}
-              name="status"
-              render={({ field }) => (
-                <FormItem className="flex-1 min-w-[140px]">
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Status" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="draft">Draft</SelectItem>
-                      <SelectItem value="published">Published</SelectItem>
-                      <SelectItem value="scheduled">Scheduled</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {form.watch('status') === 'scheduled' && (
-              <FormField
-                control={form.control}
-                name="scheduled_publish_at"
-                render={({ field }) => (
-                  <FormItem className="flex-1">
-                    <FormControl>
-                      <Input
-                        type="datetime-local"
-                        {...field}
-                        value={field.value || ''}
-                        onChange={(e) => field.onChange(e.target.value)}
-                        className="w-full"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-          </div>
-
+        <div className="flex justify-end border-t pt-4 mt-6">
           <div className="flex gap-2">
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? (
