@@ -35,7 +35,8 @@ const Header = () => {
         const allowedEmails = [
           'vivaan.handa@pathwaysschool.in',
           'shouryag258@gmail.com',
-          'ved.mehta@pathwaysschool.in'
+          'ved.mehta@pathwaysschool.in',
+          'shaurya.gupta@pathwaysschool.in'
         ];
         setIsAdmin(userEmail ? allowedEmails.includes(userEmail) : false);
       } else {
