@@ -185,7 +185,7 @@ const BlogPost = () => {
           </div>
 
           {/* Content */}
-          <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-heading prose-a:text-primary hover:prose-a:text-primary/80">
+          <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-heading prose-a:text-primary hover:prose-a:text-primary/80 prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-blockquote:text-muted-foreground prose-blockquote:border-primary">
             <div 
               className="space-y-6"
               dangerouslySetInnerHTML={{ 

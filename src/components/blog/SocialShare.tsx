@@ -53,7 +53,7 @@ const SocialShare = ({ title, url, description }: SocialShareProps) => {
                     variant="outline"
                     size="icon"
                     onClick={() => handleShare("facebook")}
-                    className="rounded-full hover:bg-blue-600 hover:text-white transition-colors"
+                    className="rounded-full hover:bg-blue-500 hover:text-white transition-colors"
                     aria-label="Share on Facebook"
                 >
                     <Facebook className="h-4 w-4" />
@@ -62,7 +62,7 @@ const SocialShare = ({ title, url, description }: SocialShareProps) => {
                     variant="outline"
                     size="icon"
                     onClick={() => handleShare("twitter")}
-                    className="rounded-full hover:bg-sky-500 hover:text-white transition-colors"
+                    className="rounded-full hover:bg-sky-400 hover:text-white transition-colors"
                     aria-label="Share on Twitter"
                 >
                     <Twitter className="h-4 w-4" />
@@ -71,7 +71,7 @@ const SocialShare = ({ title, url, description }: SocialShareProps) => {
                     variant="outline"
                     size="icon"
                     onClick={() => handleShare("linkedin")}
-                    className="rounded-full hover:bg-blue-700 hover:text-white transition-colors"
+                    className="rounded-full hover:bg-blue-600 hover:text-white transition-colors"
                     aria-label="Share on LinkedIn"
                 >
                     <Linkedin className="h-4 w-4" />
@@ -80,7 +80,7 @@ const SocialShare = ({ title, url, description }: SocialShareProps) => {
                     variant="outline"
                     size="icon"
                     onClick={() => handleShare("whatsapp")}
-                    className="rounded-full hover:bg-green-600 hover:text-white transition-colors"
+                    className="rounded-full hover:bg-green-500 hover:text-white transition-colors"
                     aria-label="Share on WhatsApp"
                 >
                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -91,7 +91,7 @@ const SocialShare = ({ title, url, description }: SocialShareProps) => {
                     variant="outline"
                     size="icon"
                     onClick={() => handleShare("message")}
-                    className="rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+                    className="rounded-full hover:bg-blue-400 hover:text-white transition-colors"
                     aria-label="Share via Message"
                 >
                     <MessageCircle className="h-4 w-4" />
@@ -100,7 +100,7 @@ const SocialShare = ({ title, url, description }: SocialShareProps) => {
                     variant="outline"
                     size="icon"
                     onClick={handleCopyLink}
-                    className="rounded-full hover:bg-zinc-700 hover:text-white transition-colors"
+                    className="rounded-full hover:bg-zinc-600 hover:text-white transition-colors"
                     aria-label="Copy Link"
                 >
                     <Copy className="h-4 w-4" />

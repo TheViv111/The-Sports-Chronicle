@@ -527,23 +527,114 @@ dark .prose ol>li::marker {
   /* Custom styling for headings within markdown content */
   .prose h1 {
     @apply font-heading text-4xl md:text-5xl font-bold mb-6 mt-10;
+    color: hsl(var(--foreground));
   }
 
   .prose h2 {
     @apply font-heading text-3xl md:text-4xl font-bold mb-5 mt-9;
+    color: hsl(var(--foreground));
   }
 
   .prose h3 {
     @apply font-heading text-2xl md:text-3xl font-bold mb-4 mt-8;
+    color: hsl(var(--foreground));
   }
 
   .prose h4 {
     @apply font-heading text-xl md:text-2xl font-semibold mb-3 mt-7;
+    color: hsl(var(--foreground));
   }
 
   .prose h5,
   .prose h6 {
     @apply font-heading text-lg md:text-xl font-semibold mb-2 mt-6;
+    color: hsl(var(--foreground));
+  }
+
+  /* Enhanced prose theming for better dark/light mode support */
+  .prose {
+    color: hsl(var(--foreground));
+  }
+
+  .prose p {
+    color: hsl(var(--foreground));
+    margin-bottom: 1.25rem;
+  }
+
+  .prose strong {
+    color: hsl(var(--foreground));
+    font-weight: 600;
+  }
+
+  .prose em {
+    color: hsl(var(--foreground));
+  }
+
+  .prose a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose a:hover {
+    color: hsl(var(--primary) / 0.8);
+  }
+
+  .prose ul li, .prose ol li {
+    color: hsl(var(--foreground));
+  }
+
+  .prose blockquote {
+    color: hsl(var(--muted-foreground));
+    border-left-color: hsl(var(--primary));
+    background-color: hsl(var(--muted) / 0.3);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .prose code {
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--muted));
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .prose pre {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .prose table {
+    color: hsl(var(--foreground));
+  }
+
+  .prose th {
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--muted));
+  }
+
+  .prose td {
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--border));
+  }
+
+  .prose hr {
+    border-color: hsl(var(--border));
+  }
+
+  .prose img {
+    border-radius: 0.5rem;
   }
 
   /* Improved form field styling */
