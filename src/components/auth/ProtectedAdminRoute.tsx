@@ -8,7 +8,8 @@ import { useTranslation } from '@/contexts/TranslationContext';
 const ALLOWED_EMAILS = [
   'vivaan.handa@pathwaysschool.in',
   'shouryag258@gmail.com',
-  'ved.mehta@pathwaysschool.in'
+  'ved.mehta@pathwaysschool.in',
+  'shaurya.gupta@pathwaysschool.in'
 ];
 
 export const ProtectedAdminRoute = () => {

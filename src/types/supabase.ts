@@ -16,5 +16,6 @@ export type BlogPost = {
   status: 'draft' | 'published' | 'scheduled';
   published_at?: string | null;
   scheduled_publish_at?: string | null;
+  translations?: any; // Add translations field
   // Add any other fields that exist in your blog_posts table
 }

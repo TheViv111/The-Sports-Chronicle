@@ -144,7 +144,30 @@ const Admin = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setPosts(data || []);
+      
+      // Ensure all posts have required fields matching BlogPost interface
+      const processedData = (data || []).map((post: any) => ({
+        id: post.id,
+        title: post.title || '',
+        excerpt: post.excerpt || '',
+        content: post.content || '',
+        category: post.category || '',
+        cover_image: post.cover_image || null,
+        slug: post.slug || '',
+        read_time: post.read_time || '5 min read',
+        author: post.author || '',
+        author_id: post.author_id || null,
+        word_count: post.word_count || null,
+        language: post.language || 'en',
+        created_at: post.created_at || null,
+        updated_at: post.updated_at || null,
+        status: (post as any).status || 'draft', // Cast to access status field
+        published_at: (post as any).published_at || null,
+        scheduled_publish_at: (post as any).scheduled_publish_at || null,
+        translations: post.translations || null
+      }));
+      
+      setPosts(processedData);
     } catch (error) {
       console.error('Error loading posts:', error);
       toast.error(t("admin.errorLoadingPosts"), {
@@ -226,13 +249,36 @@ const Admin = () => {
           scheduled_publish_at: values.scheduled_publish_at || null,
           updated_at: now
         } as any)
-        .eq('id', editingPost.id)
+        .eq('id', editingPost.id!)
         .select()
         .single();
 
       if (error) throw error;
 
-      setPosts(posts.map(post => post.id === editingPost.id ? { ...post, ...data } : post));
+      setPosts(posts.map(post => 
+        post.id === editingPost.id 
+          ? {
+              ...post, // Keep existing post as base
+              title: data.title || post.title,
+              excerpt: data.excerpt || post.excerpt,
+              content: data.content || post.content,
+              category: data.category || post.category,
+              cover_image: data.cover_image || post.cover_image,
+              slug: data.slug || post.slug,
+              read_time: data.read_time || post.read_time,
+              author: data.author || post.author,
+              author_id: (data as any).author_id || post.author_id,
+              word_count: (data as any).word_count || post.word_count,
+              language: data.language || post.language,
+              created_at: data.created_at || post.created_at,
+              updated_at: data.updated_at || post.updated_at,
+              status: (data as any).status || post.status,
+              published_at: (data as any).published_at || post.published_at,
+              scheduled_publish_at: (data as any).scheduled_publish_at || post.scheduled_publish_at,
+              translations: data.translations || post.translations
+            }
+          : post
+      ));
       setEditingPost(null);
       toast.success(t("admin.postUpdated"), {
         description: t("admin.postUpdatedSuccess"),
@@ -265,7 +311,7 @@ const Admin = () => {
 
       if (error) throw error;
 
-      setPosts(posts.filter(post => post.id !== postId));
+      setPosts(posts.filter(post => post.id && post.id === postId));
       toast.success(t("admin.postDeleted"), {
         description: t("admin.postDeletedSuccess"),
       });
@@ -292,13 +338,13 @@ const Admin = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 text-center">
           <div>
-            <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+            <h2 className="mt-6 text-3xl font-extrabold text-foreground">
               {t("admin.accessDenied")}
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-muted-foreground">
               {t("admin.signInRequired")}
             </p>
           </div>
