@@ -1,6 +1,4 @@
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -13,7 +11,6 @@ import React, { Suspense } from "react";
 import LoadingScreen from "@/components/common/LoadingScreen";
 import Layout from "./components/layout/Layout";
 import { CachePerformanceMonitor } from "@/components/common/CachePerformanceMonitor";
-import PerformanceOptimizer from "@/components/common/PerformanceOptimizer";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Blog = React.lazy(() => import("./pages/Blog"));
@@ -39,14 +36,35 @@ const queryClient = new QueryClient({
   }
 });
 
+// Lazy load analytics components separately for better code splitting
+const AnalyticsLazy = React.lazy(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
+const SpeedInsightsLazy = React.lazy(() => import("@vercel/speed-insights/react").then(m => ({ default: m.SpeedInsights })));
+
 const App = () => {
   const [loadAnalytics, setLoadAnalytics] = React.useState(false);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoadAnalytics(true);
-    }, 3000);
-    return () => clearTimeout(timer);
+    // Wait for page to be interactive before loading analytics
+    if (document.readyState === 'complete') {
+      // Use requestIdleCallback for better performance
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => {
+          setTimeout(() => setLoadAnalytics(true), 2000);
+        }, { timeout: 5000 });
+      } else {
+        setTimeout(() => setLoadAnalytics(true), 4000);
+      }
+    } else {
+      window.addEventListener('load', () => {
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(() => {
+            setTimeout(() => setLoadAnalytics(true), 2000);
+          }, { timeout: 5000 });
+        } else {
+          setTimeout(() => setLoadAnalytics(true), 4000);
+        }
+      });
+    }
   }, []);
 
   return (
@@ -62,7 +80,6 @@ const App = () => {
               <BrowserRouter>
                 <SessionContextProvider>
                   <Suspense fallback={<LoadingScreen message="Preparing your experience..." />}>
-                    <PerformanceOptimizer />
                     <Routes>
                       <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
@@ -84,12 +101,13 @@ const App = () => {
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                     {loadAnalytics && (
-                      <>
-                        <Analytics />
-                        <SpeedInsights />
-                      </>
+                      <Suspense fallback={null}>
+                        <AnalyticsLazy />
+                        <SpeedInsightsLazy />
+                      </Suspense>
                     )}
-                    {(import.meta.env.DEV && import.meta.env.VITE_SHOW_CACHE_MONITOR === 'true') && (
+                    {/* Performance monitoring only in dev */}
+                    {import.meta.env.DEV && import.meta.env.VITE_SHOW_CACHE_MONITOR === 'true' && (
                       <CachePerformanceMonitor />
                     )}
                   </Suspense>

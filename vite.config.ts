@@ -254,36 +254,45 @@ export default defineConfig(({ mode }) => {
       outDir: 'dist',
       assetsDir: 'assets',
       sourcemap: mode !== 'production',
-      minify: mode === 'production' ? 'terser' : false,
-      terserOptions: mode === 'production' ? {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-          pure_funcs: ['console.log', 'console.info'],
-          passes: 2
-        },
-        format: {
-          comments: false
-        }
-      } : undefined,
+      // Use esbuild for faster, smaller builds
+      minify: mode === 'production' ? 'esbuild' : false,
       rollupOptions: {
         output: {
           manualChunks: (id) => {
             if (id.includes('node_modules')) {
+              // Core React - critical, load first
               if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
                 return 'react-vendor';
               }
+              // UI components - can be deferred
               if (id.includes('@radix-ui')) {
                 return 'ui-vendor';
               }
+              // Supabase - can be deferred
               if (id.includes('@supabase')) {
                 return 'supabase-vendor';
               }
+              // Icons - can be deferred
               if (id.includes('lucide-react')) {
                 return 'icons-vendor';
               }
-              if (id.includes('lodash') || id.includes('axios') || id.includes('clsx')) {
+              // Heavy libraries - lazy load
+              if (id.includes('@splinetool')) {
+                return 'spline-vendor';
+              }
+              if (id.includes('quill') || id.includes('react-quill')) {
+                return 'editor-vendor';
+              }
+              if (id.includes('embla-carousel')) {
+                return 'carousel-vendor';
+              }
+              // Utils - small, can bundle together
+              if (id.includes('lodash') || id.includes('axios') || id.includes('clsx') || id.includes('tailwind-merge')) {
                 return 'utils-vendor';
+              }
+              // Analytics - lazy load
+              if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
+                return 'analytics-vendor';
               }
               return 'vendor';
             }
@@ -295,8 +304,8 @@ export default defineConfig(({ mode }) => {
       },
       // Include all assets in the build
       assetsInclude: ['**/*.json'],
-      // Optimize chunk size for mobile
-      chunkSizeWarningLimit: 500,
+      // Optimize chunk size for mobile - stricter limits
+      chunkSizeWarningLimit: 300,
       reportCompressedSize: false,
       cssCodeSplit: true
     }

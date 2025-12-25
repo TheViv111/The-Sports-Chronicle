@@ -10,14 +10,15 @@
   <meta name="author" content="The Sports Chronicle" />
   <meta name="theme-color" content="#1e293b" />
 
-  <!-- Resource Hints -->
+  <!-- Resource Hints - Critical only -->
   <link rel="preconnect" href="https://whgjiirmcbsiqhjzgldy.supabase.co" crossorigin />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://whgjiirmcbsiqhjzgldy.supabase.co" />
+  
+  <!-- Defer non-critical third-party connections -->
   <link rel="dns-prefetch" href="https://vercel-insights.com" />
+  <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
 
-  <!-- Preload critical fonts -->
+  <!-- Preload critical fonts with font-display swap -->
   <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="preload" href="/fonts/playfair-display-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
@@ -131,7 +132,7 @@
   </style>
 
   <script>
-    // Theme initialization to prevent flash of unstyled content
+    // Theme initialization - inline for immediate execution
     (function() {
       try {
         var theme = localStorage.getItem('vite-ui-theme') || 'system';
@@ -139,6 +140,16 @@
         document.documentElement.classList.toggle('dark', dark);
       } catch (e) {}
     })();
+    
+    // Remove initial loader after app loads
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('initial-loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        setTimeout(() => loader.remove(), 500);
+      }
+    });
   </script>
 </head>
 
@@ -148,13 +159,14 @@
   <!-- Splash Screen for immediate FCP -->
   <div id="initial-loader">
     <div class="loader-content">
-      <img src="/logo-80.png" alt="The Sports Chronicle" class="loader-logo" width="64" height="64" />
+      <img src="/logo-80.png" alt="The Sports Chronicle" class="loader-logo" width="64" height="64" loading="eager" fetchpriority="high" style="aspect-ratio: 1/1;" />
       <span class="loader-text">The Sports Chronicle</span>
       <div class="loader-spinner"></div>
     </div>
   </div>
 
-  <script type="module" src="/src/main.tsx"></script>
+  <!-- Defer main script to improve FCP -->
+  <script type="module" src="/src/main.tsx" defer></script>
 </body>
 
 </html>

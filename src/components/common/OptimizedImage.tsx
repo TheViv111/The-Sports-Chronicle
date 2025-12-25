@@ -68,7 +68,10 @@ const OptimizedImage = ({
       width={width}
       height={height}
       fetchPriority={fetchPriority}
-      style={{ aspectRatio: width && height ? `${width}/${height}` : undefined }}
+        style={{ 
+        aspectRatio: width && height ? `${width}/${height}` : undefined,
+        contentVisibility: 'auto' // Improve rendering performance
+      }}
     />
   );
 };

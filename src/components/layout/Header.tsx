@@ -12,8 +12,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSession } from "@/components/auth/SessionContextProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import logo40 from "/logo-40.png";
-import logo80 from "/logo-80.png";
+// Use optimized logo paths - ensure these are WebP/AVIF in production
+const logo40 = "/logo-40.png";
+const logo80 = "/logo-80.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {
@@ -28,8 +29,15 @@ const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
+    // Defer admin check to not block initial render
+    if (!session?.user?.email) {
+      setIsAdmin(false);
+      return;
+    }
+
+    // Use requestIdleCallback to defer non-critical check
     const checkAdminStatus = async () => {
-      if (session?.user?.email) {
+      try {
         const { data: { user } } = await supabase.auth.getUser();
         const userEmail = user?.email?.toLowerCase();
         const allowedEmails = [
@@ -39,12 +47,16 @@ const Header = () => {
           'shaurya.gupta@pathwaysschool.in'
         ];
         setIsAdmin(userEmail ? allowedEmails.includes(userEmail) : false);
-      } else {
+      } catch (error) {
         setIsAdmin(false);
       }
     };
 
-    checkAdminStatus();
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(checkAdminStatus, { timeout: 2000 });
+    } else {
+      setTimeout(checkAdminStatus, 500);
+    }
   }, [session]);
 
   const navItems = [
@@ -109,6 +121,7 @@ const Header = () => {
             fetchPriority="high"
             width={40}
             height={40}
+            style={{ aspectRatio: '1/1' }}
           />
           <span className="font-heading text-xs sm:text-sm lg:text-xl font-semibold hidden xs:block sm:block">
             The Sports Chronicle
@@ -246,6 +259,7 @@ const Header = () => {
                     loading="eager"
                     decoding="async"
                     fetchPriority="high"
+                    style={{ aspectRatio: '1/1' }}
                   />
                   <SheetTitle className="font-heading text-base sm:text-lg font-semibold">
                     The Sports Chronicle

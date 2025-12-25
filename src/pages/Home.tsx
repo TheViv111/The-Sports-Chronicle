@@ -118,23 +118,62 @@ const Home = () => {
     };
 
     // Use requestIdleCallback for data loading to not block main thread
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(loadDataDeferred, { timeout: 1000 });
-    } else {
-      setTimeout(loadDataDeferred, 100);
-    }
-
-    // Defer heavy 3D/particle effects significantly
-    const deferredEffectsTimer = setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(() => {
-          setShowParticles(true);
-          // Spline is even more deferred
-          setTimeout(() => setShowSpline(true), 3000);
-        }, { timeout: 5000 });
+    // Wait for page to be interactive
+    const loadWhenReady = () => {
+      if (document.readyState === 'complete') {
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(loadDataDeferred, { timeout: 1000 });
+        } else {
+          setTimeout(loadDataDeferred, 100);
+        }
       } else {
-        setShowParticles(true);
-        setTimeout(() => setShowSpline(true), 5000);
+        window.addEventListener('load', () => {
+          if ('requestIdleCallback' in window) {
+            (window as any).requestIdleCallback(loadDataDeferred, { timeout: 1000 });
+          } else {
+            setTimeout(loadDataDeferred, 100);
+          }
+        }, { once: true });
+      }
+    };
+
+    loadWhenReady();
+
+    // Defer heavy 3D/particle effects significantly - only after page is fully loaded
+    const deferredEffectsTimer = setTimeout(() => {
+      if (document.readyState === 'complete') {
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(() => {
+            setShowParticles(true);
+            // Spline is even more deferred - only load on desktop and after significant delay
+            if (window.innerWidth >= 768) {
+              setTimeout(() => setShowSpline(true), 5000);
+            }
+          }, { timeout: 5000 });
+        } else {
+          setShowParticles(true);
+          if (window.innerWidth >= 768) {
+            setTimeout(() => setShowSpline(true), 5000);
+          }
+        }
+      } else {
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            if ('requestIdleCallback' in window) {
+              (window as any).requestIdleCallback(() => {
+                setShowParticles(true);
+                if (window.innerWidth >= 768) {
+                  setTimeout(() => setShowSpline(true), 5000);
+                }
+              }, { timeout: 5000 });
+            } else {
+              setShowParticles(true);
+              if (window.innerWidth >= 768) {
+                setTimeout(() => setShowSpline(true), 5000);
+              }
+            }
+          }, 2000);
+        }, { once: true });
       }
     }, 2000);
 
