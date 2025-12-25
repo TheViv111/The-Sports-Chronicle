@@ -2,29 +2,10 @@ import { useEffect } from 'react';
 
 const PerformanceOptimizer = () => {
   useEffect(() => {
-    // Preload critical resources
-    const preloadCriticalResources = () => {
-      // Preload font files
-      const fontPreload = document.createElement('link');
-      fontPreload.rel = 'preload';
-      fontPreload.href = '/fonts/inter-var.woff2';
-      fontPreload.as = 'font';
-      fontPreload.type = 'font/woff2';
-      fontPreload.crossOrigin = 'anonymous';
-      document.head.appendChild(fontPreload);
-
-      // Preload critical CSS
-      const cssPreload = document.createElement('link');
-      cssPreload.rel = 'preload';
-      cssPreload.href = '/css/critical.css';
-      cssPreload.as = 'style';
-      document.head.appendChild(cssPreload);
-
-      // DNS prefetch for external domains
+    // DNS prefetch for external domains - move to non-blocking
+    const addResourceHints = () => {
       const domains = [
         'https://images.pexels.com',
-        'https://fonts.googleapis.com',
-        'https://fonts.gstatic.com',
         'https://www.google-analytics.com'
       ];
 
@@ -38,42 +19,48 @@ const PerformanceOptimizer = () => {
 
     // Add performance monitoring
     const addPerformanceMonitoring = () => {
-      // Monitor Core Web Vitals
       if ('PerformanceObserver' in window) {
-        // Largest Contentful Paint (LCP)
-        const lcpObserver = new PerformanceObserver((list) => {
-          const entries = list.getEntries();
-          const lastEntry = entries[entries.length - 1];
-          console.log('LCP:', lastEntry.startTime);
-        });
-        lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+        // Use requestIdleCallback for monitoring to not block main thread
+        const monitor = () => {
+          // LCP
+          new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            if (import.meta.env.DEV) console.log('LCP:', lastEntry.startTime);
+          }).observe({ entryTypes: ['largest-contentful-paint'] });
 
-        // First Input Delay (FID)
-        const fidObserver = new PerformanceObserver((list) => {
-          const entries = list.getEntries();
-          entries.forEach(entry => {
-            console.log('FID:', entry.processingStart - entry.startTime);
-          });
-        });
-        fidObserver.observe({ entryTypes: ['first-input'] });
+          // FID
+          new PerformanceObserver((list) => {
+            list.getEntries().forEach(entry => {
+              if (import.meta.env.DEV) console.log('FID:', (entry as any).processingStart - entry.startTime);
+            });
+          }).observe({ entryTypes: ['first-input'] });
 
-        // Cumulative Layout Shift (CLS)
-        let clsValue = 0;
-        const clsObserver = new PerformanceObserver((list) => {
-          for (const entry of list.getEntries()) {
-            if (!(entry as any).hadRecentInput) {
-              clsValue += (entry as any).value;
+          // CLS
+          let clsValue = 0;
+          new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+              if (!(entry as any).hadRecentInput) {
+                clsValue += (entry as any).value;
+              }
             }
-          }
-          console.log('CLS:', clsValue);
-        });
-        clsObserver.observe({ entryTypes: ['layout-shift'] });
+            if (import.meta.env.DEV) console.log('CLS:', clsValue);
+          }).observe({ entryTypes: ['layout-shift'] });
+        };
+
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(monitor);
+        } else {
+          setTimeout(monitor, 3000);
+        }
       }
     };
 
-    // Optimize images loading
+    // Optimize images loading for legacy data-src images
     const optimizeImageLoading = () => {
       const images = document.querySelectorAll('img[data-src]');
+      if (images.length === 0) return;
+
       const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -88,49 +75,24 @@ const PerformanceOptimizer = () => {
       images.forEach(img => imageObserver.observe(img));
     };
 
-    // Add structured data for performance
-    const addPerformanceStructuredData = () => {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        name: 'The Sports Chronicle',
-        url: 'https://the-sports-chronicle.vercel.app',
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: 'https://the-sports-chronicle.vercel.app/blog?q={search_term_string}',
-          'query-input': 'required name=search_term_string'
-        },
-        performanceMetrics: {
-          loadTime: 'fast',
-          mobileFriendly: true,
-          sslEnabled: true
-        }
+    // Initialize optimizations
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => {
+        addResourceHints();
+        addPerformanceMonitoring();
+        optimizeImageLoading();
       });
-      document.head.appendChild(script);
-    };
-
-    // Initialize all optimizations
-    preloadCriticalResources();
-    addPerformanceMonitoring();
-    optimizeImageLoading();
-    addPerformanceStructuredData();
-
-    // Add service worker for caching (if available)
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {
-        // Service worker registration failed, but that's okay
-      });
+    } else {
+      setTimeout(() => {
+        addResourceHints();
+        addPerformanceMonitoring();
+        optimizeImageLoading();
+      }, 2000);
     }
 
-    // Cleanup
-    return () => {
-      // Remove any dynamically added elements if needed
-    };
   }, []);
 
-  return null; // This component doesn't render anything
+  return null;
 };
 
 export default PerformanceOptimizer;
