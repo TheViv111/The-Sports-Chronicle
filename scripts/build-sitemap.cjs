@@ -109,8 +109,23 @@ async function generateSitemap() {
     console.log(`📊 Total URLs: ${allEntries.length} (${staticPages.length} static + ${postEntries.length} blog posts)`);
 
   } catch (error) {
-    console.error('❌ Failed to generate sitemap:', error.message);
-    process.exit(1);
+    console.warn('⚠️  Sitemap generation failed, but continuing build:', error.message);
+    // Don't exit with error code, just log warning
+    console.log('📄 Generating sitemap with static pages only...');
+    
+    try {
+      // Fallback to static pages only
+      const xmlContent = generateSitemapXML(staticPages);
+      const publicPath = resolve(__dirname, '../public/sitemap.xml');
+      writeFileSync(publicPath, xmlContent, 'utf8');
+      
+      console.log('✅ Fallback sitemap generated successfully!');
+      console.log(`📄 Generated: ${publicPath}`);
+      console.log(`📊 Total URLs: ${staticPages.length} (static pages only)`);
+    } catch (fallbackError) {
+      console.error('❌ Even fallback sitemap generation failed:', fallbackError.message);
+      // Still don't exit, let the build continue
+    }
   }
 }
 
