@@ -4,7 +4,8 @@
   "buildCommand": "pnpm run build",
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": "dist",
-  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -141,6 +142,10 @@
     {
       "source": "/favicon.ico",
       "destination": "/favicon.ico"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "https://whgjiirmcbsiqhjzgldy.supabase.co/rest/v1/$1"
     },
     {
       "source": "/(.*)",

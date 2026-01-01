@@ -5,13 +5,28 @@ import type { Database } from './types';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Import the supabase client like this:
-// import { supabase } from "@/integrations/supabase/client";
+// Safety check for environment variables
+if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+  console.error("Missing Supabase environment variables. Please check your .env file or Vercel settings.");
+}
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-  auth: {
-    storage: localStorage,
-    persistSession: true,
-    autoRefreshToken: true,
+// Safety check for localStorage (some browsers/privacy modes block it)
+let storage;
+try {
+  storage = window.localStorage;
+} catch (e) {
+  console.warn("localStorage is not available. Falling back to memory storage.", e);
+  storage = undefined;
+}
+
+export const supabase = createClient<Database>(
+  SUPABASE_URL || "", 
+  SUPABASE_PUBLISHABLE_KEY || "", 
+  {
+    auth: {
+      storage: storage,
+      persistSession: !!storage,
+      autoRefreshToken: true,
+    }
   }
-});
+);
