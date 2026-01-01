@@ -1,4 +1,4 @@
-import aboutHeroImage from "@/assets/about-page-hero-image.png";
+import aboutHeroImage from "@/assets/basketball-1.jpg";
 import shauryaGuptaNew from "@/assets/shaurya-gupta-new.jpg";
 import vivaanHandaNew from "@/assets/vivaan-handa-new.jpg";
 import shouryaGuptaNew from "@/assets/shourya-gupta-new.jpg";
