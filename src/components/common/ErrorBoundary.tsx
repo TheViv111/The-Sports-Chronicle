@@ -1,6 +1,4 @@
 import { Component, ErrorInfo, ReactNode } from "react";
-import { AlertCircle, RefreshCcw, Home } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface Props {
     children?: ReactNode;
@@ -58,8 +56,8 @@ class ErrorBoundary extends Component<Props, State> {
                         borderRadius: '12px',
                         boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
                     }}>
-                        <h1 style={{fontSize: '24px', fontWeight: 'bold', marginBottom: '10px'}}>Something went wrong</h1>
-                        <p style={{color: '#666', marginBottom: '20px'}}>
+                        <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '10px' }}>Something went wrong</h1>
+                        <p style={{ color: '#666', marginBottom: '20px' }}>
                             An unexpected error occurred during rendering.
                         </p>
 
@@ -73,14 +71,14 @@ class ErrorBoundary extends Component<Props, State> {
                                 maxHeight: '200px',
                                 marginBottom: '20px'
                             }}>
-                                <p style={{fontSize: '12px', fontFamily: 'monospace', color: '#e11', wordBreak: 'break-all', margin: 0}}>
+                                <p style={{ fontSize: '12px', fontFamily: 'monospace', color: '#e11', wordBreak: 'break-all', margin: 0 }}>
                                     {this.state.error.name}: {this.state.error.message}
                                 </p>
                             </div>
                         )}
 
-                        <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
-                            <button 
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                            <button
                                 onClick={this.handleReset}
                                 style={{
                                     padding: '12px',
@@ -94,7 +92,7 @@ class ErrorBoundary extends Component<Props, State> {
                             >
                                 Reload Page
                             </button>
-                            <button 
+                            <button
                                 onClick={this.handleGoHome}
                                 style={{
                                     padding: '12px',
