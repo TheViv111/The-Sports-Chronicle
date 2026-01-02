@@ -11,6 +11,7 @@ import React, { Suspense } from "react";
 import LoadingScreen from "@/components/common/LoadingScreen";
 import Layout from "./components/layout/Layout";
 import { CachePerformanceMonitor } from "@/components/common/CachePerformanceMonitor";
+import EnvVarCheck from "@/components/common/EnvVarCheck";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Blog = React.lazy(() => import("./pages/Blog"));
@@ -69,54 +70,56 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <ThemeProvider
-          defaultTheme="system"
-          storageKey="vite-ui-theme"
-        >
-          <TooltipProvider>
-            <Sonner />
-            <TranslationProvider>
-              <BrowserRouter>
-                <SessionContextProvider>
-                  <Suspense fallback={<LoadingScreen message="Preparing your experience..." />}>
-                    <Routes>
-                      <Route path="/" element={<Layout />}>
-                        <Route index element={<Home />} />
-                        <Route path="blog" element={<Blog />} />
-                        <Route path="blog/:slug" element={<BlogPost />} />
-                        <Route path="users/:id" element={<UserProfile />} />
-                        <Route path="about" element={<About />} />
-                        <Route path="contact" element={<Contact />} />
-                        <Route path="admin" element={<ProtectedAdminRoute />}>
-                          <Route index element={<Navigate to="posts" replace />} />
-                          <Route path=":tab" element={<Admin />} />
-                          <Route path="edit/:id" element={<Admin />} />
+      <EnvVarCheck>
+        <HelmetProvider>
+          <ThemeProvider
+            defaultTheme="system"
+            storageKey="vite-ui-theme"
+          >
+            <TooltipProvider>
+              <Sonner />
+              <TranslationProvider>
+                <BrowserRouter>
+                  <SessionContextProvider>
+                    <Suspense fallback={<LoadingScreen message="Preparing your experience..." />}>
+                      <Routes>
+                        <Route path="/" element={<Layout />}>
+                          <Route index element={<Home />} />
+                          <Route path="blog" element={<Blog />} />
+                          <Route path="blog/:slug" element={<BlogPost />} />
+                          <Route path="users/:id" element={<UserProfile />} />
+                          <Route path="about" element={<About />} />
+                          <Route path="contact" element={<Contact />} />
+                          <Route path="admin" element={<ProtectedAdminRoute />}>
+                            <Route index element={<Navigate to="posts" replace />} />
+                            <Route path=":tab" element={<Admin />} />
+                            <Route path="edit/:id" element={<Admin />} />
+                          </Route>
+                          <Route path="signin" element={<SignIn />} />
+                          <Route path="signup" element={<SignUp />} />
+                          <Route path="profile" element={<Profile />} />
+                          <Route path="sitemap.xml" element={<Sitemap />} />
                         </Route>
-                        <Route path="signin" element={<SignIn />} />
-                        <Route path="signup" element={<SignUp />} />
-                        <Route path="profile" element={<Profile />} />
-                        <Route path="sitemap.xml" element={<Sitemap />} />
-                      </Route>
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                    {loadAnalytics && (
-                      <Suspense fallback={null}>
-                        <AnalyticsLazy />
-                        <SpeedInsightsLazy />
-                      </Suspense>
-                    )}
-                    {/* Performance monitoring only in dev */}
-                    {import.meta.env.DEV && import.meta.env.VITE_SHOW_CACHE_MONITOR === 'true' && (
-                      <CachePerformanceMonitor />
-                    )}
-                  </Suspense>
-                </SessionContextProvider>
-              </BrowserRouter>
-            </TranslationProvider>
-          </TooltipProvider>
-        </ThemeProvider>
-      </HelmetProvider>
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                      {loadAnalytics && (
+                        <Suspense fallback={null}>
+                          <AnalyticsLazy />
+                          <SpeedInsightsLazy />
+                        </Suspense>
+                      )}
+                      {/* Performance monitoring only in dev */}
+                      {import.meta.env.DEV && import.meta.env.VITE_SHOW_CACHE_MONITOR === 'true' && (
+                        <CachePerformanceMonitor />
+                      )}
+                    </Suspense>
+                  </SessionContextProvider>
+                </BrowserRouter>
+              </TranslationProvider>
+            </TooltipProvider>
+          </ThemeProvider>
+        </HelmetProvider>
+      </EnvVarCheck>
     </QueryClientProvider>
   );
 };
