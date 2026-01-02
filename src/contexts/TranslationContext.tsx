@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import LoadingScreen from '@/components/common/LoadingScreen';
 
 export const supportedLanguages = {
   // European Languages
@@ -165,14 +166,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
 
   // Show loading screen during initial translation load to prevent translation keys from flashing
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    );
+    return <LoadingScreen message="Initializing translations..." />;
   }
 
   return (

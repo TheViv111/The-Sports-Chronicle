@@ -1,4 +1,5 @@
 import React from "react";
+import LogoLoader from "@/components/common/LogoLoader";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useTranslation } from "@/contexts/TranslationContext";
@@ -6,7 +7,6 @@ import { useSession } from "@/components/auth/SessionContextProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Tables } from "@/integrations/supabase/types";
 
 interface CommentFormProps {
   postId: string;
@@ -20,9 +20,9 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
 
   // Fetch current user's profile for display_name
   const userId = session?.user?.id || null;
-  const { data: profile } = useQuery<Tables<'profiles'> | null>({
+  const { data: profile } = useQuery<any | null>({
     queryKey: ["profile", userId],
-    queryFn: async (): Promise<Tables<'profiles'> | null> => {
+    queryFn: async (): Promise<any | null> => {
       if (!userId) return null;
       const { data, error } = await supabase
         .from("profiles")
@@ -41,12 +41,12 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
       if (!session?.user) {
         throw new Error("Not authenticated");
       }
-      
-      const authorName = profile?.display_name || 
-                       session.user.email?.split("@")[0] || 
-                       t("comments.anonymousUser") || 
-                       "Anonymous";
-      
+
+      const authorName = profile?.display_name ||
+        session.user.email?.split("@")[0] ||
+        t("comments.anonymousUser") ||
+        "Anonymous";
+
       const { data, error } = await supabase
         .from("comments")
         .insert({
@@ -59,7 +59,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
         } as any)
         .select()
         .single();
-        
+
       if (error) throw error;
       return data;
     },
@@ -76,7 +76,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
     onError: (err: Error, _: void, context) => {
       console.error("Failed to post comment", err);
       toast.error(t("comments.postError") || "Failed to post comment. Please try again.");
-      
+
       // Rollback to previous comments on error
       if (context?.previousComments) {
         queryClient.setQueryData(['comments', postId], context.previousComments);
@@ -129,19 +129,16 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
             </p>
           )}
         </div>
-        <Button 
-          type="submit" 
-          disabled={insertMutation.isPending || !content.trim()} 
+        <Button
+          type="submit"
+          disabled={insertMutation.isPending || !content.trim()}
           className="btn-hover-lift min-w-[120px]"
         >
           {insertMutation.isPending ? (
-            <>
-              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              {t("common.posting") || "Posting..."}
-            </>
+            <div className="flex items-center gap-2">
+              <LogoLoader size="xs" />
+              <span>{t("common.posting") || "Posting..."}</span>
+            </div>
           ) : (
             t("comments.postComment") || "Post Comment"
           )}

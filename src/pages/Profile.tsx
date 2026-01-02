@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Loader2, User as UserIcon, Mail, Edit, Save, LogOut, Plus } from "lucide-react";
+import { User as UserIcon, Mail, Edit, Save, LogOut, Plus } from "lucide-react";
+import LogoLoader from "@/components/common/LogoLoader";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -165,7 +165,7 @@ const Profile = () => {
 
   const handleAvatarChange = async (newUrl: string) => {
     if (!userId) return;
-    
+
     // Update public.profiles table
     await updateProfileMutation.mutateAsync({ avatar_url: newUrl });
 
@@ -194,7 +194,7 @@ const Profile = () => {
   if (isSessionLoading || isProfileLoading) {
     return (
       <>
-        <SEO 
+        <SEO
           title="Your Profile - The Sports Chronicle"
           description="Manage your profile and account preferences on The Sports Chronicle."
           canonicalUrl="https://thesportschronicle.com/profile"
@@ -208,7 +208,7 @@ const Profile = () => {
   if (profileError) {
     return (
       <>
-        <SEO 
+        <SEO
           title="Error - The Sports Chronicle"
           description="An error occurred while loading your profile."
           canonicalUrl="https://thesportschronicle.com/profile"
@@ -224,7 +224,7 @@ const Profile = () => {
   if (!profile && !isProfileLoading && session) {
     return (
       <>
-        <SEO 
+        <SEO
           title="Create Profile - The Sports Chronicle"
           description="Set up your profile on The Sports Chronicle."
           canonicalUrl="https://thesportschronicle.com/profile"
@@ -271,7 +271,7 @@ const Profile = () => {
                   />
                   <Button type="submit" className="w-full btn-hover-lift" disabled={createProfileMutation.isPending}>
                     {createProfileMutation.isPending ? (
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      <LogoLoader size="xs" className="mr-2" />
                     ) : (
                       <Plus className="mr-2 h-4 w-4" />
                     )}
@@ -294,7 +294,7 @@ const Profile = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title={`${profile?.display_name || 'User'} Profile - The Sports Chronicle`}
         description="View and manage your profile on The Sports Chronicle."
         canonicalUrl="https://thesportschronicle.com/profile"
@@ -304,118 +304,118 @@ const Profile = () => {
         <div className="container mx-auto px-4 max-w-3xl">
           <Card className="reveal-on-scroll">
             <CardHeader className="text-center">
-            <Button
-              variant="ghost"
-              className="relative h-24 w-24 mx-auto mb-4 rounded-full p-0 group btn-hover-lift"
-              onClick={() => setIsAvatarActionsOpen(true)}
-            >
-              <Avatar className="h-24 w-24">
-                <AvatarImage src={profile.avatar_url || undefined} alt={profile.display_name || "User Avatar"} />
-                <AvatarFallback>
-                  {profile.display_name ? profile.display_name.charAt(0).toUpperCase() : <UserIcon className="h-12 w-12 text-muted-foreground" />}
-                </AvatarFallback>
-              </Avatar>
-              <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
-                <Edit className="h-8 w-8 text-white" />
-              </div>
-            </Button>
-            <CardTitle className="font-heading text-3xl font-bold">
-              {profile.display_name || userEmail}
-            </CardTitle>
-            <CardDescription className="flex items-center justify-center gap-2 text-muted-foreground">
-              <Mail className="h-4 w-4" /> {userEmail}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="display_name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("profile.displayName")}</FormLabel>
-                      <FormControl>
-                        <Input placeholder={t("profile.yourDisplayName")} {...field} disabled={!isEditing} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="bio"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("profile.bio")}</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder={t("profile.yourBio")} {...field} disabled={!isEditing} className="min-h-[100px]" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="flex justify-end gap-2">
-                  {isEditing ? (
-                    <>
-                      <Button type="button" variant="outline" onClick={() => { setIsEditing(false); form.reset(profile); }} className="btn-hover-lift">
-                        {t("common.cancel")}
-                      </Button>
-                      <Button type="submit" disabled={updateProfileMutation.isPending || !form.formState.isDirty} className="btn-hover-lift">
-                        {updateProfileMutation.isPending ? (
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                          <Save className="mr-2 h-4 w-4" />
-                        )}
-                        {t("common.save")}
-                      </Button>
-                    </>
-                  ) : (
-                    <Button type="button" onClick={() => setIsEditing(true)} className="btn-hover-lift">
-                      <Edit className="mr-2 h-4 w-4" />
-                      {t("common.edit")}
-                    </Button>
-                  )}
+              <Button
+                variant="ghost"
+                className="relative h-24 w-24 mx-auto mb-4 rounded-full p-0 group btn-hover-lift"
+                onClick={() => setIsAvatarActionsOpen(true)}
+              >
+                <Avatar className="h-24 w-24">
+                  <AvatarImage src={profile?.avatar_url || undefined} alt={profile?.display_name || "User Avatar"} />
+                  <AvatarFallback>
+                    {profile?.display_name ? profile.display_name.charAt(0).toUpperCase() : <UserIcon className="h-12 w-12 text-muted-foreground" />}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
+                  <Edit className="h-8 w-8 text-white" />
                 </div>
-              </form>
-            </Form>
-            <div className="mt-8 pt-6 border-t flex justify-end">
-              <Button variant="destructive" onClick={handleSignOut} className="btn-hover-lift">
-                <LogOut className="mr-2 h-4 w-4" />
-                {t("nav.signOut")}
               </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+              <CardTitle className="font-heading text-3xl font-bold">
+                {profile?.display_name || userEmail}
+              </CardTitle>
+              <CardDescription className="flex items-center justify-center gap-2 text-muted-foreground">
+                <Mail className="h-4 w-4" /> {userEmail}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="display_name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t("profile.displayName")}</FormLabel>
+                        <FormControl>
+                          <Input placeholder={t("profile.yourDisplayName")} {...field} disabled={!isEditing} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="bio"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t("profile.bio")}</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder={t("profile.yourBio")} {...field} disabled={!isEditing} className="min-h-[100px]" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-      {/* Avatar Action Dialog */}
-      <AvatarActionsDialog
-        isOpen={isAvatarActionsOpen}
-        onClose={() => setIsAvatarActionsOpen(false)}
-        onView={() => setIsViewAvatarOpen(true)}
-        onChange={() => setIsChangeAvatarOpen(true)}
-      />
+                  <div className="flex justify-end gap-2">
+                    {isEditing ? (
+                      <>
+                        <Button type="button" variant="outline" onClick={() => { setIsEditing(false); form.reset(profile || undefined); }} className="btn-hover-lift">
+                          {t("common.cancel")}
+                        </Button>
+                        <Button type="submit" disabled={updateProfileMutation.isPending || !form.formState.isDirty} className="btn-hover-lift">
+                          {updateProfileMutation.isPending ? (
+                            <LogoLoader size="xs" className="mr-2" />
+                          ) : (
+                            <Save className="mr-2 h-4 w-4" />
+                          )}
+                          {t("common.save")}
+                        </Button>
+                      </>
+                    ) : (
+                      <Button type="button" onClick={() => setIsEditing(true)} className="btn-hover-lift">
+                        <Edit className="mr-2 h-4 w-4" />
+                        {t("common.edit")}
+                      </Button>
+                    )}
+                  </div>
+                </form>
+              </Form>
+              <div className="mt-8 pt-6 border-t flex justify-end">
+                <Button variant="destructive" onClick={handleSignOut} className="btn-hover-lift">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  {t("nav.signOut")}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
-      {/* Change Avatar Dialog */}
-      {userId && (
-        <ChangeAvatarDialog
-          isOpen={isChangeAvatarOpen}
-          onClose={() => setIsChangeAvatarOpen(false)}
-          userId={userId}
-          currentAvatarUrl={profile?.avatar_url || null}
-          onAvatarChange={handleAvatarChange}
+        {/* Avatar Action Dialog */}
+        <AvatarActionsDialog
+          isOpen={isAvatarActionsOpen}
+          onClose={() => setIsAvatarActionsOpen(false)}
+          onView={() => setIsViewAvatarOpen(true)}
+          onChange={() => setIsChangeAvatarOpen(true)}
         />
-      )}
 
-      {/* View Avatar Dialog */}
-      <ViewAvatarDialog
-        isOpen={isViewAvatarOpen}
-        onClose={() => setIsViewAvatarOpen(false)}
-        avatarUrl={profile?.avatar_url || ''}
-      />
-    </div>
+        {/* Change Avatar Dialog */}
+        {userId && (
+          <ChangeAvatarDialog
+            isOpen={isChangeAvatarOpen}
+            onClose={() => setIsChangeAvatarOpen(false)}
+            userId={userId}
+            currentAvatarUrl={profile?.avatar_url || null}
+            onAvatarChange={handleAvatarChange}
+          />
+        )}
+
+        {/* View Avatar Dialog */}
+        <ViewAvatarDialog
+          isOpen={isViewAvatarOpen}
+          onClose={() => setIsViewAvatarOpen(false)}
+          avatarUrl={profile?.avatar_url || ''}
+        />
+      </div>
     </>
   );
 };

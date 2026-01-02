@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useDropzone } from 'react-dropzone';
-import { Loader2, UploadCloud, Link as LinkIcon, Save } from 'lucide-react';
+import { UploadCloud, Link as LinkIcon, Save } from 'lucide-react';
+import LogoLoader from '@/components/common/LogoLoader';
 import imageCompression from 'browser-image-compression'; // Import the image compression library
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
@@ -33,7 +34,6 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
   currentAvatarUrl,
   onAvatarChange,
 }) => {
-  const { t } = useTranslation();
   const [uploading, setUploading] = useState(false);
   const [uploadMethod, setUploadMethod] = useState<'file' | 'url' | null>(null); // 'file' or 'url'
 
@@ -136,7 +136,7 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
+    <Dialog open={isOpen} onOpenChange={handleClose} >
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Change Avatar</DialogTitle>
@@ -158,15 +158,14 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
           <div className="grid gap-4 py-4">
             <div
               {...getRootProps()}
-              className={`flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
-                isDragActive ? 'border-primary bg-primary/10' : 'border-muted-foreground/20 hover:border-primary/50'
-              } ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${isDragActive ? 'border-primary bg-primary/10' : 'border-muted-foreground/20 hover:border-primary/50'
+                } ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <input {...getInputProps()} />
               <UploadCloud className="h-12 w-12 text-muted-foreground mb-3" />
               {uploading ? (
                 <div className="flex items-center text-primary">
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Uploading...
+                  <LogoLoader size="xs" className="mr-2" /> Uploading...
                 </div>
               ) : isDragActive ? (
                 <p>Drop the files here ...</p>
@@ -200,7 +199,7 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
                 </Button>
                 <Button type="submit" disabled={uploading}>
                   {uploading ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <LogoLoader size="xs" className="mr-2" />
                   ) : (
                     <Save className="mr-2 h-4 w-4" />
                   )}
@@ -210,7 +209,7 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
             </form>
           </Form>
         )}
-        
+
         {uploadMethod && uploadMethod === 'file' && (
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => setUploadMethod(null)} disabled={uploading}>
@@ -219,7 +218,7 @@ const ChangeAvatarDialog: React.FC<ChangeAvatarDialogProps> = ({
           </DialogFooter>
         )}
       </DialogContent>
-    </Dialog>
+    </Dialog >
   );
 };
 

@@ -4,7 +4,8 @@ import { toast } from "sonner";
 import { useTranslation } from "@/contexts/TranslationContext";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/common/SEO";
-import { Loader2, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import LogoLoader from "@/components/common/LogoLoader";
 import { useSession } from "@/components/auth/SessionContextProvider";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -249,7 +250,7 @@ const Contact = () => {
                 >
                   {isSubmitting ? (
                     <span className="inline-flex items-center gap-2">
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <LogoLoader size="xs" />
                       {t("contact.sending")}
                     </span>
                   ) : (

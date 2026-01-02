@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, Plus, Save, Clock } from 'lucide-react';
+import { Plus, Save, Clock } from 'lucide-react';
+import LogoLoader from '@/components/common/LogoLoader';
 import CustomQuillEditor from './CustomQuillEditor';
 
 
@@ -347,7 +348,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           <div className="flex gap-2">
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <LogoLoader size="xs" className="mr-2" />
               ) : initialData ? (
                 <Save className="mr-2 h-4 w-4" />
               ) : (

@@ -46,35 +46,24 @@
       --background: 0 0% 100%;
       --foreground: 0 0% 9%;
       --primary: 0 0% 9%;
-      --border: 0 0% 90%;
-      --radius: 0.5rem;
+      --muted: 0 0% 96.1%;
     }
 
     .dark {
       --background: 0 0% 9%;
       --foreground: 0 0% 98%;
       --primary: 0 0% 98%;
-      --border: 0 0% 15%;
-    }
-
-    @font-face {
-      font-family: Inter;
-      font-style: normal;
-      font-weight: 300 700;
-      font-display: swap;
-      src: url(/fonts/inter-var.woff2) format('woff2')
+      --muted: 0 0% 14.9%;
     }
 
     body {
       margin: 0;
-      font-family: Inter, -apple-system, system-ui, sans-serif;
+      font-family: Inter, system-ui, sans-serif;
       background-color: hsl(var(--background));
       color: hsl(var(--foreground));
-      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    /* Splash Screen Styles */
     #initial-loader {
       position: fixed;
       inset: 0;
@@ -91,37 +80,81 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.5rem;
     }
 
-    .loader-logo {
-      width: 64px;
-      height: 64px;
+    .logo-container {
+      position: relative;
+      margin-bottom: 2rem;
+      animation: pulse-slow 3s ease-in-out infinite;
+    }
+
+    .logo-glow {
+      position: absolute;
+      inset: 0;
+      background: hsl(var(--primary) / 0.1);
       border-radius: 50%;
-      border: 2px solid hsl(var(--primary) / 0.1);
-      padding: 4px;
+      filter: blur(24px);
+      transform: scale(1.5);
       animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
 
-    .loader-text {
-      font-weight: 600;
-      font-size: 1.25rem;
-      letter-spacing: -0.025em;
-      opacity: 0.8;
-    }
-
-    .loader-spinner {
-      width: 24px;
-      height: 24px;
-      border: 2px solid hsl(var(--primary) / 0.1);
-      border-top-color: hsl(var(--primary));
+    .loader-logo {
+      position: relative;
+      width: 128px;
+      height: 128px;
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      background-color: hsl(var(--background));
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      object-fit: contain;
     }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
+    @media (min-width: 768px) {
+      .loader-logo {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    .progress-track {
+      width: 192px;
+      height: 4px;
+      background-color: hsl(var(--muted));
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 100%;
+      background-color: hsl(var(--primary));
+      border-radius: 9999px;
+      transform-origin: left;
+      animation: progress-indeterminate 1.5s infinite linear;
+    }
+
+    @keyframes progress-indeterminate {
+      0% {
+        transform: translateX(-100%) scaleX(0.2);
+      }
+
+      50% {
+        transform: translateX(0) scaleX(0.5);
+      }
+
+      100% {
+        transform: translateX(100%) scaleX(0.2);
+      }
+    }
+
+    @keyframes pulse-slow {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.8;
       }
     }
 
@@ -130,12 +163,12 @@
       0%,
       100% {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1.5);
       }
 
       50% {
-        opacity: 0.7;
-        transform: scale(0.95);
+        opacity: 0.5;
+        transform: scale(1.8);
       }
     }
 
@@ -235,10 +268,13 @@
   <!-- Splash Screen for immediate FCP -->
   <div id="initial-loader">
     <div class="loader-content">
-      <img src="/logo-80.png" alt="The Sports Chronicle" class="loader-logo" width="64" height="64" loading="eager"
-        fetchpriority="high" style="aspect-ratio: 1/1;" />
-      <span class="loader-text">The Sports Chronicle</span>
-      <div class="loader-spinner"></div>
+      <div class="logo-container">
+        <div class="logo-glow"></div>
+        <img src="/logo-160.png" alt="The Sports Chronicle" class="loader-logo" loading="eager" fetchpriority="high" />
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar"></div>
+      </div>
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation, Outlet } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
-import { Loader2 } from 'lucide-react';
+import LoadingScreen from '@/components/common/LoadingScreen';
 import { toast } from 'sonner';
 import { useTranslation } from '@/contexts/TranslationContext';
 
@@ -22,7 +22,7 @@ export const ProtectedAdminRoute = () => {
     const checkAuth = async () => {
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
-        
+
         if (error || !session) {
           setIsAuthorized(false);
           setIsLoading(false);
@@ -50,11 +50,7 @@ export const ProtectedAdminRoute = () => {
   }, [t]);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="w-8 h-8 animate-spin" />
-      </div>
-    );
+    return <LoadingScreen message="Verifying access..." />;
   }
 
   if (!isAuthorized) {

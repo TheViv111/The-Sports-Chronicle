@@ -5,7 +5,7 @@ import { useTranslation } from "../contexts/TranslationContext";
 import { BlogPost } from "../types/supabase";
 import { formatBlogPostDate } from "../lib/blog-utils";
 import { toast } from "sonner";
-import { Trash2, Edit, Loader2, Home, Eye, EyeOff } from "lucide-react";
+import { Trash2, Edit, Home, Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
@@ -14,6 +14,7 @@ import { Badge } from "../components/ui/badge";
 import BlogPostForm from "../components/blog/BlogPostForm";
 import { SEO } from "../components/common/SEO";
 import { calculateReadTime } from "../lib/read-time";
+import LoadingScreen from "../components/common/LoadingScreen";
 
 type AdminTab = 'posts' | 'create' | 'edit';
 
@@ -144,7 +145,7 @@ const Admin = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      
+
       // Ensure all posts have required fields matching BlogPost interface
       const processedData = (data || []).map((post: any) => ({
         id: post.id,
@@ -167,7 +168,7 @@ const Admin = () => {
         scheduled_publish_at: post.scheduled_publish_at || null,
         word_count: undefined
       }));
-      
+
       setPosts(processedData);
     } catch (error) {
       console.error('Error loading posts:', error);
@@ -254,27 +255,27 @@ const Admin = () => {
 
       if (error) throw error;
 
-      setPosts(posts.map(post => 
-        post.id === editingPost.id 
+      setPosts(posts.map(post =>
+        post.id === editingPost.id
           ? {
-              ...post, // Keep existing post as base
-              title: data.title || post.title,
-              excerpt: data.excerpt || post.excerpt,
-              content: data.content || post.content,
-              category: data.category || post.category,
-              cover_image: data.cover_image || post.cover_image,
-              slug: data.slug || post.slug,
-              read_time: data.read_time || post.read_time,
-              author: data.author || post.author,
-              language: data.language || post.language,
-              created_at: data.created_at || post.created_at,
-              updated_at: data.updated_at || post.updated_at,
-              translations: data.translations || post.translations,
-              // Preserve existing status fields
-              status: post.status,
-              published_at: post.published_at,
-              scheduled_publish_at: post.scheduled_publish_at
-            }
+            ...post, // Keep existing post as base
+            title: data.title || post.title,
+            excerpt: data.excerpt || post.excerpt,
+            content: data.content || post.content,
+            category: data.category || post.category,
+            cover_image: data.cover_image || post.cover_image,
+            slug: data.slug || post.slug,
+            read_time: data.read_time || post.read_time,
+            author: data.author || post.author,
+            language: data.language || post.language,
+            created_at: data.created_at || post.created_at,
+            updated_at: data.updated_at || post.updated_at,
+            translations: data.translations || post.translations,
+            // Preserve existing status fields
+            status: post.status,
+            published_at: post.published_at,
+            scheduled_publish_at: post.scheduled_publish_at
+          }
           : post
       ));
       setEditingPost(null);
@@ -335,8 +336,8 @@ const Admin = () => {
 
       if (error) throw error;
 
-      setPosts(posts.map(post => 
-        post.id === postId 
+      setPosts(posts.map(post =>
+        post.id === postId
           ? { ...post, status: 'published', published_at: now }
           : post
       ));
@@ -364,8 +365,8 @@ const Admin = () => {
 
       if (error) throw error;
 
-      setPosts(posts.map(post => 
-        post.id === postId 
+      setPosts(posts.map(post =>
+        post.id === postId
           ? { ...post, status: 'draft', published_at: null }
           : post
       ));
@@ -386,11 +387,7 @@ const Admin = () => {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin" />
-      </div>
-    );
+    return <LoadingScreen message="Authenticating..." />;
   }
 
   if (!user) {
@@ -528,10 +525,12 @@ const Admin = () => {
                 </CardHeader>
                 <CardContent>
                   {loadingPosts ? (
-                    <div className="flex items-center justify-center p-8">
-                      <Loader2 className="h-8 w-8 animate-spin" />
-                      <span className="ml-2">{t("admin.loadingPosts")}</span>
-                    </div>
+                    <LoadingScreen
+                      fullScreen={false}
+                      size="sm"
+                      message={t("admin.loadingPosts")}
+                      className="py-12"
+                    />
                   ) : (
                     <div className="space-y-4">
                       {posts

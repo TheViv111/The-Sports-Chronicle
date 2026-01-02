@@ -3,10 +3,11 @@ import { useFormContext } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loader2, Upload } from 'lucide-react';
+import { Upload } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import LogoLoader from '@/components/common/LogoLoader';
 
 interface ImageUploaderProps {
   name: string;
@@ -44,7 +45,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
 
       try {
         setIsUploading(true);
-        
+
         // Generate a unique filename
         const fileExt = file.name.split('.').pop();
         const fileName = `${uuidv4()}.${fileExt}`;
@@ -70,7 +71,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
         // Update the form field
         setValue(name, publicUrl, { shouldValidate: true });
         onImageUploaded?.(publicUrl);
-        
+
         toast.success('Image uploaded successfully');
       } catch (error) {
         console.error('Error uploading image:', error);
@@ -111,7 +112,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
           >
             {isUploading ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <LogoLoader size="xs" className="mr-2" />
                 Uploading...
               </>
             ) : (
