@@ -11,7 +11,6 @@ import React, { Suspense } from "react";
 import LoadingScreen from "@/components/common/LoadingScreen";
 import Layout from "./components/layout/Layout";
 import { CachePerformanceMonitor } from "@/components/common/CachePerformanceMonitor";
-import EnvVarCheck from "@/components/common/EnvVarCheck";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Blog = React.lazy(() => import("./pages/Blog"));
@@ -70,7 +69,6 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <EnvVarCheck>
         <HelmetProvider>
           <ThemeProvider
             defaultTheme="system"
@@ -119,7 +117,6 @@ const App = () => {
             </TooltipProvider>
           </ThemeProvider>
         </HelmetProvider>
-      </EnvVarCheck>
     </QueryClientProvider>
   );
 };
