@@ -808,3 +808,105 @@ ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TAB
 
 
 
+CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+
+
+  create policy "Allow authenticated deletes to own avatars"
+  on "storage"."objects"
+  as permissive
+  for delete
+  to authenticated
+using (((bucket_id = 'avatars'::text) AND (auth.uid() = owner)));
+
+
+
+  create policy "Allow authenticated read access to avatars"
+  on "storage"."objects"
+  as permissive
+  for select
+  to authenticated
+using ((bucket_id = 'avatars'::text));
+
+
+
+  create policy "Allow authenticated read access to own avatars"
+  on "storage"."objects"
+  as permissive
+  for select
+  to authenticated
+using (((bucket_id = 'avatars'::text) AND (auth.uid() = owner)));
+
+
+
+  create policy "Allow authenticated updates to own avatars"
+  on "storage"."objects"
+  as permissive
+  for update
+  to authenticated
+using (((bucket_id = 'avatars'::text) AND (auth.uid() = owner)));
+
+
+
+  create policy "Allow authenticated uploads"
+  on "storage"."objects"
+  as permissive
+  for insert
+  to authenticated
+with check (((bucket_id = 'avatars'::text) AND (auth.uid() = owner)));
+
+
+
+  create policy "Allow authenticated users to delete their own avatars"
+  on "storage"."objects"
+  as permissive
+  for delete
+  to authenticated
+using (((bucket_id = 'avatars'::text) AND (auth.uid() = owner)));
+
+
+
+  create policy "Allow authenticated users to update their own avatars"
+  on "storage"."objects"
+  as permissive
+  for update
+  to authenticated
+using (((bucket_id = 'avatars'::text) AND (auth.uid() = owner)));
+
+
+
+  create policy "Allow authenticated users to upload their own avatars"
+  on "storage"."objects"
+  as permissive
+  for insert
+  to authenticated
+with check (((bucket_id = 'avatars'::text) AND (auth.uid() = owner)));
+
+
+
+  create policy "Allow public read access to avatars"
+  on "storage"."objects"
+  as permissive
+  for select
+  to public
+using ((bucket_id = 'avatars'::text));
+
+
+
+  create policy "Anyone can upload to blog-covers"
+  on "storage"."objects"
+  as permissive
+  for insert
+  to public
+with check ((bucket_id = 'blog-covers'::text));
+
+
+
+  create policy "Public read for blog-covers"
+  on "storage"."objects"
+  as permissive
+  for select
+  to public
+using ((bucket_id = 'blog-covers'::text));
+
+
+

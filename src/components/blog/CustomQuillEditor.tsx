@@ -3,6 +3,8 @@ import ReactQuill from 'react-quill-new';
 import 'quill/dist/quill.snow.css';
 import { modules as defaultModules } from './quill-config';
 import './CustomQuillEditor.css';
+import { setupQuill } from '@/lib/quill-setup';
+import { useEffect } from 'react';
 
 interface CustomQuillEditorProps {
   value: string;
@@ -14,15 +16,16 @@ interface CustomQuillEditorProps {
   modules?: any;
 }
 
-const CustomQuillEditor = forwardRef<ReactQuill, CustomQuillEditorProps>(({
-  value,
-  onChange,
-  placeholder = 'Write something...',
-  className = '',
-  readOnly = false,
-  theme = 'snow',
-  modules
-}, ref) => {
+  const CustomQuillEditor = forwardRef<ReactQuill, CustomQuillEditorProps>(({
+    className = '',
+    value,
+    onChange,
+    readOnly = false,
+    placeholder = ''
+  }, ref) => {
+    useEffect(() => {
+      setupQuill(); // Setup Quill on component mount
+    }, []);
   return (
     <div className={`quill-editor-container ${className}`}>
       <ReactQuill
