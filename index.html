@@ -147,7 +147,19 @@
   </style>
 
   <script>
-    // Diagnostic Bridge - Catch errors before React even boots
+    // 1. ZOMBIE SERVICE WORKER KILL SWITCH
+    // Force unregister all service workers to clear stale caching states.
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (var registration of registrations) {
+          registration.unregister().then(function (boolean) {
+            if (boolean) console.log("CLEANUP: Stale Service Worker Unregistered");
+          });
+        }
+      });
+    }
+
+    // 2. ENHANCED DIAGNOSTIC BRIDGE
     (function () {
       var logs = [];
       var originalLog = console.log;
@@ -161,32 +173,40 @@
         originalError.apply(console, arguments);
       };
 
+      // Handle uncaught errors (even in modules)
       window.addEventListener('error', function (e) {
+        window.lastError = e; // Store for remote console inspection
         var overlay = document.getElementById('fatal-error-overlay');
         if (overlay) return;
 
         var d = document.createElement('div');
         d.id = "fatal-error-overlay";
-        d.style = "position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;color:#000;z-index:999999;padding:20px;font-family:sans-serif;overflow:auto;display:flex;flex-direction:column;";
-        d.innerHTML = "<h1 style='color:#e11;margin-top:0;'>⚠️ Application Boot Error</h1>" +
-          "<p>The application failed to start during initialization.</p>" +
-          "<div style='background:#f5f5f5;padding:15px;margin:10px 0;border-left:4px solid #e11;white-space:pre-wrap;font-family:monospace;'>" +
-          "<b>Error:</b> " + e.message + "\n" +
-          "<b>At:</b> " + (e.filename || 'unknown script') + ":" + e.lineno + ":" + e.colno +
+        d.style = "position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;color:#000;z-index:9999999;padding:20px;font-family:system-ui,-apple-system,sans-serif;overflow:auto;display:flex;flex-direction:column;";
+
+        var errTitle = e.error && e.error.name ? e.error.name : "Application Error";
+        var errMsg = e.message || (e.error ? e.error.message : "Undefined Reference or Syntax Error");
+        var errLoc = (e.filename || 'bundle') + ":" + e.lineno + ":" + e.colno;
+
+        d.innerHTML = "<h1 style='color:#e11;margin:0;font-size:24px;'>⚠️ Application Load Failed</h1>" +
+          "<p style='color:#666;margin:10px 0;'>A critical error occurred during reload. This is often caused by cached assets being out of sync.</p>" +
+          "<div style='background:#fee;padding:15px;margin:10px 0;border:1px solid #ecc;border-radius:4px;white-space:pre-wrap;font-family:monospace;font-size:13px;'>" +
+          "<b style='color:#900;'>" + errTitle + ":</b> " + errMsg + "\n" +
+          "<b style='color:#900;'>Source:</b> " + errLoc +
           "</div>" +
-          "<h3>Application Logs:</h3>" +
-          "<pre style='background:#f5f5f5;padding:15px;flex:1;overflow:auto;font-size:12px;font-family:monospace;'>" + logs.join('\n') + "</pre>" +
-          "<div style='display:flex;gap:10px;margin-top:10px;'>" +
-          "<button onclick='location.reload(true)' style='padding:12px 24px;background:#000;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:bold;'>Hard Reload</button>" +
-          "<button onclick='localStorage.clear();location.reload(true)' style='padding:12px 24px;background:#666;color:white;border:none;border-radius:6px;cursor:pointer;'>Clear Cache & Reload</button>" +
-          "</div>";
+          "<h3>Diagnostic Logs:</h3>" +
+          "<pre style='background:#f5f5f5;padding:10px;flex:1;overflow:auto;font-size:11px;font-family:monospace;border-radius:4px;'>" + logs.join('\n') + "</pre>" +
+          "<div style='display:flex;gap:10px;margin-top:15px;'>" +
+          "<button onclick='location.reload(true)' style='padding:12px 20px;background:#000;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:bold;'>Hard Reload</button>" +
+          "<button onclick='localStorage.clear();sessionStorage.clear();location.reload(true)' style='padding:12px 20px;background:#666;color:white;border:none;border-radius:6px;cursor:pointer;'>Clear Data & Reload</button>" +
+          "</div>" +
+          "<p style='margin-top:15px;font-size:12px;color:#999;'>Current Page: " + location.pathname + "</p>";
         document.body.appendChild(d);
       });
 
-      console.log("Diagnostic Bridge Active");
+      console.log("Diagnostic Bridge v2.0 Active | Path: " + location.pathname);
     })();
 
-    // Theme initialization - inline for immediate execution
+    // 3. THEME INITIALIZATION
     (function () {
       try {
         var theme = localStorage.getItem('vite-ui-theme') || 'system';
@@ -195,14 +215,16 @@
       } catch (e) { }
     })();
 
-    // Remove initial loader after app loads
+    // 4. LOADER REMOVAL
     window.addEventListener('load', function () {
-      const loader = document.getElementById('initial-loader');
-      if (loader) {
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-        setTimeout(() => loader.remove(), 500);
-      }
+      setTimeout(function () {
+        var loader = document.getElementById('initial-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          loader.style.visibility = 'hidden';
+          setTimeout(function () { loader.remove(); }, 500);
+        }
+      }, 300);
     });
   </script>
 </head>
