@@ -39,41 +39,75 @@ class ErrorBoundary extends Component<Props, State> {
     public render() {
         if (this.state.hasError) {
             return (
-                <div className="min-h-screen flex items-center justify-center bg-background p-4">
-                    <div className="max-w-md w-full bg-card border rounded-xl p-8 shadow-lg text-center">
-                        <div className="flex justify-center mb-6">
-                            <div className="p-3 bg-destructive/10 rounded-full">
-                                <AlertCircle className="w-12 h-12 text-destructive" />
-                            </div>
-                        </div>
-
-                        <h1 className="text-2xl font-bold font-heading mb-2">Something went wrong</h1>
-                        <p className="text-muted-foreground mb-6">
-                            An unexpected error occurred. This might be due to a connection issue or an environment misconfiguration.
+                <div style={{
+                    minHeight: '100vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#fff',
+                    color: '#000',
+                    padding: '20px',
+                    fontFamily: 'system-ui, sans-serif'
+                }}>
+                    <div style={{
+                        maxWidth: '400px',
+                        width: '100%',
+                        textAlign: 'center',
+                        padding: '40px',
+                        border: '1px solid #eaeaea',
+                        borderRadius: '12px',
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
+                    }}>
+                        <h1 style={{fontSize: '24px', fontWeight: 'bold', marginBottom: '10px'}}>Something went wrong</h1>
+                        <p style={{color: '#666', marginBottom: '20px'}}>
+                            An unexpected error occurred during rendering.
                         </p>
 
                         {this.state.error && (
-                            <div className="bg-muted p-4 rounded-md mb-8 text-left overflow-auto max-h-40">
-                                <p className="text-xs font-mono text-destructive break-all">
+                            <div style={{
+                                backgroundColor: '#f5f5f5',
+                                padding: '15px',
+                                borderRadius: '8px',
+                                textAlign: 'left',
+                                overflow: 'auto',
+                                maxHeight: '200px',
+                                marginBottom: '20px'
+                            }}>
+                                <p style={{fontSize: '12px', fontFamily: 'monospace', color: '#e11', wordBreak: 'break-all', margin: 0}}>
                                     {this.state.error.name}: {this.state.error.message}
                                 </p>
                             </div>
                         )}
 
-                        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                            <Button onClick={this.handleReset} className="flex items-center gap-2">
-                                <RefreshCcw className="w-4 h-4" />
+                        <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                            <button 
+                                onClick={this.handleReset}
+                                style={{
+                                    padding: '12px',
+                                    backgroundColor: '#000',
+                                    color: '#fff',
+                                    border: 'none',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer',
+                                    fontWeight: 'bold'
+                                }}
+                            >
                                 Reload Page
-                            </Button>
-                            <Button onClick={this.handleGoHome} variant="outline" className="flex items-center gap-2">
-                                <Home className="w-4 h-4" />
+                            </button>
+                            <button 
+                                onClick={this.handleGoHome}
+                                style={{
+                                    padding: '12px',
+                                    backgroundColor: 'transparent',
+                                    color: '#000',
+                                    border: '1px solid #000',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer'
+                                }}
+                            >
                                 Go to Home
-                            </Button>
+                            </button>
                         </div>
-
-                        <p className="mt-8 text-xs text-muted-foreground">
-                            If this problem persists, please check the browser console or contact support.
-                        </p>
                     </div>
                 </div>
             );
