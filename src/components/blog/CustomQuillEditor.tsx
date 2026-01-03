@@ -16,16 +16,19 @@ interface CustomQuillEditorProps {
   modules?: any;
 }
 
-  const CustomQuillEditor = forwardRef<ReactQuill, CustomQuillEditorProps>(({
-    className = '',
-    value,
-    onChange,
-    readOnly = false,
-    placeholder = ''
-  }, ref) => {
-    useEffect(() => {
-      setupQuill(); // Setup Quill on component mount
-    }, []);
+const CustomQuillEditor = forwardRef<ReactQuill, CustomQuillEditorProps>(({
+  className = '',
+  value,
+  onChange,
+  readOnly = false,
+  placeholder = '',
+  theme = 'snow',
+  modules
+}, ref) => {
+  useEffect(() => {
+    setupQuill(); // Setup Quill on component mount
+  }, []);
+
   return (
     <div className={`quill-editor-container ${className}`}>
       <ReactQuill
