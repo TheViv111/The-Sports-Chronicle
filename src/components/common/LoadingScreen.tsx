@@ -49,7 +49,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
           <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl transform scale-150 animate-pulse"></div>
           <div className="relative w-full h-full rounded-full overflow-hidden bg-background drop-shadow-lg flex items-center justify-center border border-border/50">
             <img
-              src="/logo-160.png"
+              src="/favicon.png"
               alt="The Sports Chronicle"
               className={cn("object-contain", currentSize.logo)}
             />

@@ -13,8 +13,8 @@ import { useSession } from "@/components/auth/SessionContextProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 // Use optimized logo paths - ensure these are WebP/AVIF in production
-const logo40 = "/logo-40.png";
-const logo80 = "/logo-80.png";
+const logo40 = "/favicon.png";
+const logo80 = "/favicon.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Header = () => {

@@ -35,7 +35,7 @@ const LogoLoader: React.FC<LogoLoaderProps> = ({
                 sizeClasses[size],
             )}>
                 <img
-                    src="/logo-160.png"
+                    src="/favicon.png"
                     alt=""
                     className={cn("object-contain", logoSizeClasses[size], logoClassName)}
                 />
