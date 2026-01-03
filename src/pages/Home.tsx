@@ -146,13 +146,13 @@ const Home = () => {
           (window as any).requestIdleCallback(() => {
             setShowParticles(true);
             // Spline is even more deferred - only load on desktop and after significant delay
-            if (window.innerWidth >= 768) {
+            if (typeof window !== 'undefined' && window.innerWidth >= 768) {
               setTimeout(() => setShowSpline(true), 5000);
             }
           }, { timeout: 5000 });
         } else {
           setShowParticles(true);
-          if (window.innerWidth >= 768) {
+          if (typeof window !== 'undefined' && window.innerWidth >= 768) {
             setTimeout(() => setShowSpline(true), 5000);
           }
         }
@@ -162,13 +162,13 @@ const Home = () => {
             if ('requestIdleCallback' in window) {
               (window as any).requestIdleCallback(() => {
                 setShowParticles(true);
-                if (window.innerWidth >= 768) {
+                if (typeof window !== 'undefined' && window.innerWidth >= 768) {
                   setTimeout(() => setShowSpline(true), 5000);
                 }
               }, { timeout: 5000 });
             } else {
               setShowParticles(true);
-              if (window.innerWidth >= 768) {
+              if (typeof window !== 'undefined' && window.innerWidth >= 768) {
                 setTimeout(() => setShowSpline(true), 5000);
               }
             }
@@ -205,7 +205,7 @@ const Home = () => {
     <>
       <SEO
         title="The Sports Chronicle - Sports News, Analysis & Blog"
-        description="The Sports Chronicle: Your trusted source for sports news, expert analysis, and in-depth coverage. Get the latest updates on basketball, soccer, swimming, football and more."
+        description="The Sports Chronicle: Your trusted source for sports news, expert analysis, and in-depth coverage. Get the latest updates on basketball and football."
         schemaType="WebSite"
         canonicalUrl="https://the-sports-chronicle.vercel.app/"
       />

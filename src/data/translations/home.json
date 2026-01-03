@@ -1,46 +1,46 @@
 {
   "en": {
     "hero.welcome": "Welcome to our Blog",
-    "hero.title": "Exploring Skills, Techniques & Tactics in Various Sports",
-    "hero.subtitle": "We write about various sports and the tactics, techniques, and skills that can be implemented in these sports.",
+    "hero.title": "Exploring Skills, Techniques & Tactics in Basketball & Football",
+    "hero.subtitle": "We provide expertise on skills, tactics, and techniques in basketball and football.",
     "hero.readLatest": "Read Latest Posts",
     "latestPosts.title": "Latest Posts",
     "latestPosts.subtitle": "Explore our latest thoughts and insights on sports, techniques, and tactics.",
     "latestPosts.viewAll": "View All Posts",
-    "latestPosts.loading": "Loading posts...",
+    "latestPosts.loading": "Loading posts..",
     "latestPosts.noPosts": "No posts available"
   },
   "es": {
     "hero.welcome": "Bienvenido a nuestro Blog",
-    "hero.title": "Explorando Habilidades, Técnicas y Tácticas en Varios Deportes",
-    "hero.subtitle": "Escribimos sobre varios deportes y las tácticas, técnicas y habilidades que se pueden implementar en estos deportes.",
+    "hero.title": "Explorando Habilidades, Técnicas y Tácticas en Baloncesto y Fútbol",
+    "hero.subtitle": "Escribimos sobre baloncesto y fútbol y las tácticas, técnicas y habilidades que se pueden implementar en estos deportes.",
     "hero.readLatest": "Leer Últimas Publicaciones",
     "latestPosts.title": "Últimas Publicaciones",
     "latestPosts.subtitle": "Explora nuestros últimos pensamientos e ideas sobre deportes, técnicas y tácticas.",
     "latestPosts.viewAll": "Ver Todas las Publicaciones",
-    "latestPosts.loading": "Cargando publicaciones...",
+    "latestPosts.loading": "Cargando publicaciones..",
     "latestPosts.noPosts": "No hay publicaciones disponibles"
   },
   "fr": {
     "hero.welcome": "Bienvenue sur notre Blog",
-    "hero.title": "Explorer les Compétences, Techniques et Tactiques dans Divers Sports",
-    "hero.subtitle": "Nous écrivons sur divers sports et les tactiques, techniques et compétences qui peuvent être mises en œuvre dans ces sports.",
+    "hero.title": "Explorer les Compétences, Techniques et Tactiques dans Basketball et Football",
+    "hero.subtitle": "Nous écrivons sur basketball et football et les tactiques, techniques et compétences qui peuvent être mises en œuvre dans ces sports.",
     "hero.readLatest": "Lire les Derniers Articles",
     "latestPosts.title": "Derniers Articles",
     "latestPosts.subtitle": "Explorez nos dernières réflexions et perspectives sur le sport, les techniques et les tactiques.",
     "latestPosts.viewAll": "Voir Tous les Articles",
-    "latestPosts.loading": "Chargement des articles...",
+    "latestPosts.loading": "Chargement des articles..",
     "latestPosts.noPosts": "Aucun article disponible"
   },
   "de": {
     "hero.welcome": "Willkommen in unserem Blog",
     "hero.title": "Erkundung von Fähigkeiten, Techniken und Taktiken in verschiedenen Sportarten",
-    "hero.subtitle": "Wir schreiben über verschiedene Sportarten und die Taktiken, Techniken und Fähigkeiten, die in diesen Sportarten angewendet werden können.",
+    "hero.subtitle": "Wir schreiben über Basketball und Fußball und die Taktiken, Techniken und Fähigkeiten, die in diesen Sportarten angewendet werden können.",
     "hero.readLatest": "Neueste Beiträge Lesen",
     "latestPosts.title": "Neueste Beiträge",
     "latestPosts.subtitle": "Entdecken Sie unsere neuesten Gedanken und Einsichten zu Sport, Techniken und Taktiken.",
     "latestPosts.viewAll": "Alle Beiträge Anzeigen",
-    "latestPosts.loading": "Beiträge werden geladen...",
+    "latestPosts.loading": "Beiträge werden geladen..",
     "latestPosts.noPosts": "Keine Beiträge verfügbar"
   },
   "it": {
@@ -51,7 +51,7 @@
     "latestPosts.title": "Ultimi Articoli",
     "latestPosts.subtitle": "Esplora i nostri ultimi pensieri e intuizioni su sport, tecniche e tattiche.",
     "latestPosts.viewAll": "Visualizza Tutti gli Articoli",
-    "latestPosts.loading": "Caricamento articoli...",
+    "latestPosts.loading": "Caricamento articoli..",
     "latestPosts.noPosts": "Nessun articolo disponibile"
   },
   "pt": {
@@ -62,7 +62,7 @@
     "latestPosts.title": "Últimos Posts",
     "latestPosts.subtitle": "Explore nossos últimos pensamentos e insights sobre esportes, técnicas e táticas.",
     "latestPosts.viewAll": "Ver Todos os Posts",
-    "latestPosts.loading": "Carregando posts...",
+    "latestPosts.loading": "Carregando posts..",
     "latestPosts.noPosts": "Nenhum post disponível"
   },
   "ru": {
@@ -73,7 +73,7 @@
     "latestPosts.title": "Последние Записи",
     "latestPosts.subtitle": "Исследуйте наши последние мысли и взгляды на спорт, техники и тактики.",
     "latestPosts.viewAll": "Посмотреть Все Записи",
-    "latestPosts.loading": "Загрузка записей...",
+    "latestPosts.loading": "Загрузка записей..",
     "latestPosts.noPosts": "Записи недоступны"
   },
   "pl": {
@@ -84,7 +84,7 @@
     "latestPosts.title": "Najnowsze Wpisy",
     "latestPosts.subtitle": "Poznaj nasze najnowsze myśli i spostrzeżenia na temat sportu, technik i taktyk.",
     "latestPosts.viewAll": "Zobacz Wszystkie Wpisy",
-    "latestPosts.loading": "Ładowanie wpisów...",
+    "latestPosts.loading": "Ładowanie wpisów..",
     "latestPosts.noPosts": "Brak dostępnych wpisów"
   },
   "nl": {
@@ -95,7 +95,7 @@
     "latestPosts.title": "Nieuwste Berichten",
     "latestPosts.subtitle": "Ontdek onze nieuwste gedachten en inzichten over sport, technieken en tactieken.",
     "latestPosts.viewAll": "Bekijk Alle Berichten",
-    "latestPosts.loading": "Berichten laden...",
+    "latestPosts.loading": "Berichten laden..",
     "latestPosts.noPosts": "Geen berichten beschikbaar"
   },
   "sv": {
@@ -106,7 +106,7 @@
     "latestPosts.title": "Senaste Inlägg",
     "latestPosts.subtitle": "Utforska våra senaste tankar och insikter om sport, tekniker och taktik.",
     "latestPosts.viewAll": "Visa Alla Inlägg",
-    "latestPosts.loading": "Laddar inlägg...",
+    "latestPosts.loading": "Laddar inlägg..",
     "latestPosts.noPosts": "Inga inlägg tillgängliga"
   },
   "no": {
@@ -117,7 +117,7 @@
     "latestPosts.title": "Siste Innlegg",
     "latestPosts.subtitle": "Utforsk våre siste tanker og innsikter om sport, teknikker og taktikk.",
     "latestPosts.viewAll": "Se Alle Innlegg",
-    "latestPosts.loading": "Laster innlegg...",
+    "latestPosts.loading": "Laster innlegg..",
     "latestPosts.noPosts": "Ingen innlegg tilgjengelige"
   },
   "da": {
@@ -128,7 +128,7 @@
     "latestPosts.title": "Seneste Indlæg",
     "latestPosts.subtitle": "Udforsk vores seneste tanker og indsigter om sport, teknikker og taktik.",
     "latestPosts.viewAll": "Se Alle Indlæg",
-    "latestPosts.loading": "Indlæser indlæg...",
+    "latestPosts.loading": "Indlæser indlæg..",
     "latestPosts.noPosts": "Ingen indlæg tilgængelige"
   },
   "fi": {
@@ -139,7 +139,7 @@
     "latestPosts.title": "Viimeisimmät Kirjoitukset",
     "latestPosts.subtitle": "Tutustu viimeisimpiin ajatuksiimme ja oivalluksiimme urheilusta, tekniikoista ja taktiikasta.",
     "latestPosts.viewAll": "Näytä Kaikki Kirjoitukset",
-    "latestPosts.loading": "Ladataan kirjoituksia...",
+    "latestPosts.loading": "Ladataan kirjoituksia..",
     "latestPosts.noPosts": "Ei kirjoituksia saatavilla"
   },
   "zh": {
@@ -150,7 +150,7 @@
     "latestPosts.title": "最新文章",
     "latestPosts.subtitle": "探索我们关于运动、技术和战术的最新想法和见解。",
     "latestPosts.viewAll": "查看所有文章",
-    "latestPosts.loading": "加载文章中...",
+    "latestPosts.loading": "加载文章中..",
     "latestPosts.noPosts": "暂无文章"
   },
   "ja": {
@@ -161,7 +161,7 @@
     "latestPosts.title": "最新の投稿",
     "latestPosts.subtitle": "スポーツ、テクニック、戦術に関する私たちの最新の考えと洞察をご覧ください。",
     "latestPosts.viewAll": "すべての投稿を表示",
-    "latestPosts.loading": "投稿を読み込み中...",
+    "latestPosts.loading": "投稿を読み込み中..",
     "latestPosts.noPosts": "投稿がありません"
   },
   "ko": {
@@ -172,7 +172,7 @@
     "latestPosts.title": "최신 게시물",
     "latestPosts.subtitle": "스포츠, 기술, 전술에 대한 우리의 최신 생각과 통찰을 탐험해보세요.",
     "latestPosts.viewAll": "모든 게시물 보기",
-    "latestPosts.loading": "게시물 로딩 중...",
+    "latestPosts.loading": "게시물 로딩 중..",
     "latestPosts.noPosts": "게시물이 없습니다"
   },
   "hi": {
@@ -183,7 +183,7 @@
     "latestPosts.title": "नवीनतम पोस्ट्स",
     "latestPosts.subtitle": "खेल, तकनीकों और रणनीतियों पर हमारे नवीनतम विचारों और अंतर्दृष्टि का अन्वेषण करें।",
     "latestPosts.viewAll": "सभी पोस्ट्स देखें",
-    "latestPosts.loading": "पोस्ट्स लोड हो रही हैं...",
+    "latestPosts.loading": "पोस्ट्स लोड हो रही हैं..",
     "latestPosts.noPosts": "कोई पोस्ट उपलब्ध नहीं"
   },
   "bn": {
@@ -194,7 +194,7 @@
     "latestPosts.title": "সর্বশেষ পোস্ট",
     "latestPosts.subtitle": "খেলাধুলা, কৌশল এবং কৌশল সম্পর্কে আমাদের সর্বশেষ চিন্তাভাবনা এবং অন্তর্দৃষ্টি অন্বেষণ করুন।",
     "latestPosts.viewAll": "সব পোস্ট দেখুন",
-    "latestPosts.loading": "পোস্ট লোড হচ্ছে...",
+    "latestPosts.loading": "পোস্ট লোড হচ্ছে..",
     "latestPosts.noPosts": "কোনো পোস্ট উপলব্ধ নেই"
   },
   "ta": {
@@ -205,7 +205,7 @@
     "latestPosts.title": "சமீபத்திய இடுகைகள்",
     "latestPosts.subtitle": "விளையாட்டு, நுட்பங்கள் மற்றும் தந்திரங்கள் குறித்த எங்கள் சமீபத்திய எண்ணங்கள் மற்றும் நுண்ணறிவுகளை ஆராயுங்கள்।",
     "latestPosts.viewAll": "அனைத்து இடுகைகளையும் பார்க்கவும்",
-    "latestPosts.loading": "இடுகைகள் ஏற்றப்படுகின்றன...",
+    "latestPosts.loading": "இடுகைகள் ஏற்றப்படுகின்றன..",
     "latestPosts.noPosts": "இடுகைகள் எதுவும் கிடைக்கவில்லை"
   },
   "te": {
@@ -216,7 +216,7 @@
     "latestPosts.title": "తాజా పోస్ట్‌లు",
     "latestPosts.subtitle": "క్రీడలు, టెక్నిక్‌లు మరియు వ్యూహాలపై మా తాజా ఆలోచనలు మరియు అంతర్దృష్టులను అన్వేషించండి.",
     "latestPosts.viewAll": "అన్ని పోస్ట్‌లను చూడండి",
-    "latestPosts.loading": "పోస్ట్‌లు లోడ్ అవుతున్నాయి...",
+    "latestPosts.loading": "పోస్ట్‌లు లోడ్ అవుతున్నాయి..",
     "latestPosts.noPosts": "పోస్ట్‌లు ఏవీ అందుబాటులో లేవు"
   },
   "mr": {
@@ -227,7 +227,7 @@
     "latestPosts.title": "नवीनतम पोस्ट्स",
     "latestPosts.subtitle": "खेळ, तंत्रे आणि रणनीतींवर आमचे नवीनतम विचार आणि अंतर्दृष्टी एक्सप्लोर करा.",
     "latestPosts.viewAll": "सर्व पोस्ट्स पहा",
-    "latestPosts.loading": "पोस्ट्स लोड होत आहेत...",
+    "latestPosts.loading": "पोस्ट्स लोड होत आहेत..",
     "latestPosts.noPosts": "कोणत्याही पोस्ट्स उपलब्ध नाहीत"
   },
   "gu": {
@@ -238,7 +238,7 @@
     "latestPosts.title": "નવીનતમ પોસ્ટ્સ",
     "latestPosts.subtitle": "રમતગમત, તકનીકો અને વ્યૂહરચનાઓ પર અમારા નવીનતમ વિચારો અને આંતરદૃષ્ટિનું અન્વેષણ કરો.",
     "latestPosts.viewAll": "બધી પોસ્ટ્સ જુઓ",
-    "latestPosts.loading": "પોસ્ટ્સ લોડ થઈ રહી છે...",
+    "latestPosts.loading": "પોસ્ટ્સ લોડ થઈ રહી છે..",
     "latestPosts.noPosts": "કોઈ પોસ્ટ્સ ઉપલબ્ધ નથી"
   },
   "ar": {
@@ -249,7 +249,7 @@
     "latestPosts.title": "أحدث المنشورات",
     "latestPosts.subtitle": "استكشف أحدث أفكارنا ورؤانا حول الرياضة والتقنيات والتكتيكات.",
     "latestPosts.viewAll": "عرض جميع المنشورات",
-    "latestPosts.loading": "تحميل المنشورات...",
+    "latestPosts.loading": "تحميل المنشورات..",
     "latestPosts.noPosts": "لا توجد منشورات متاحة"
   },
   "he": {
@@ -260,7 +260,7 @@
     "latestPosts.title": "פוסטים אחרונים",
     "latestPosts.subtitle": "חקור את המחשבות והתובנות האחרונות שלנו על ספורט, טכניקות וטקטיקות.",
     "latestPosts.viewAll": "צפה בכל הפוסטים",
-    "latestPosts.loading": "טוען פוסטים...",
+    "latestPosts.loading": "טוען פוסטים..",
     "latestPosts.noPosts": "אין פוסטים זמינים"
   },
   "fa": {
@@ -271,7 +271,7 @@
     "latestPosts.title": "آخرین پست‌ها",
     "latestPosts.subtitle": "آخرین افکار و بینش‌های ما درباره ورزش، تکنیک‌ها و تاکتیک‌ها را کشف کنید.",
     "latestPosts.viewAll": "مشاهده همه پست‌ها",
-    "latestPosts.loading": "در حال بارگذاری پست‌ها...",
+    "latestPosts.loading": "در حال بارگذاری پست‌ها..",
     "latestPosts.noPosts": "هیچ پستی در دسترس نیست"
   },
   "tr": {
@@ -282,7 +282,7 @@
     "latestPosts.title": "Son Yazılar",
     "latestPosts.subtitle": "Spor, teknikler ve taktikler hakkındaki en son düşüncelerimizi ve anlayışlarımızı keşfedin.",
     "latestPosts.viewAll": "Tüm Yazıları Görüntüle",
-    "latestPosts.loading": "Yazılar yükleniyor...",
+    "latestPosts.loading": "Yazılar yükleniyor..",
     "latestPosts.noPosts": "Mevcut yazı yok"
   },
   "th": {
@@ -293,7 +293,7 @@
     "latestPosts.title": "โพสต์ล่าสุด",
     "latestPosts.subtitle": "สำรวจความคิดและข้อมูลเชิงลึกล่าสุดของเราเกี่ยวกับกีฬา เทคนิค และกลยุทธ์",
     "latestPosts.viewAll": "ดูโพสต์ทั้งหมด",
-    "latestPosts.loading": "กำลังโหลดโพสต์...",
+    "latestPosts.loading": "กำลังโหลดโพสต์..",
     "latestPosts.noPosts": "ไม่มีโพสต์ที่มี"
   },
   "blog.aboutAuthor": "About the Author",
@@ -310,21 +310,21 @@
   "footer.contact": "Contact",
   "footer.rightsReserved": "All rights reserved.",
   "hero.welcome": "Welcome to our Blog",
-  "hero.title": "Exploring Skills, Techniques & Tactics in Various Sports",
-  "hero.subtitle": "We write about various sports and the tactics, techniques, and skills that can be implemented in these sports.",
+  "hero.title": "Exploring Skills, Techniques & Tactics in basketball and football",
+  "hero.subtitle": "We write about basketball and football and the tactics, techniques, and skills that can be implemented in these sports.",
   "hero.readLatest": "Read Latest Posts",
   "category.all": "All",
   "category.football": "Football",
   "category.basketball": "Basketball",
-  "category.soccer": "Soccer",
-  "category.tennis": "Tennis",
-  "category.baseball": "Baseball",
-  "category.athletics": "Athletics",
-  "category.swimming": "Swimming",
+  "category.football": "Football",
+  "category.tennis": "Football",
+  "category.baseball": "Football",
+  "category.athletics": "Football",
+  "category.swimming": "Football",
   "profile.displayName": "Display Name",
   "profile.yourDisplayName": "Your display name",
   "profile.bio": "Bio",
-  "profile.yourBio": "Tell us about yourself...",
+  "profile.yourBio": "Tell us about yourself..",
   "profile.avatarUrl": "Avatar URL",
   "profile.yourAvatarUrl": "URL to your avatar image",
   "profile.noProfileTitle": "No Profile Found",
@@ -363,7 +363,7 @@
   "latestPosts.title": "Latest Posts",
   "latestPosts.subtitle": "Explore our latest thoughts and insights on sports, techniques, and tactics.",
   "latestPosts.viewAll": "View All Posts",
-  "latestPosts.loading": "Loading posts...",
+  "latestPosts.loading": "Loading posts..",
   "latestPosts.noPosts": "No posts available",
   "nav.home": "Home",
   "nav.blog": "Blog",
@@ -376,7 +376,7 @@
   "nav.admin": "Admin",
   "blog.title": "Blog Posts",
   "blog.subtitle": "Thoughts, insights, and stories about design, development, and productivity.",
-  "blog.searchPlaceholder": "Search articles...",
+  "blog.searchPlaceholder": "Search articles..",
   "blog.articlesFound": "articles found",
   "blog.articleFound": "article found",
   "blog.clearFilters": "Clear filters",
@@ -386,11 +386,11 @@
   "blog.backToBlog": "Back to Blog",
   "blog.readArticle": "Read article",
   "blog.relatedArticles": "Related Articles",
-  "blog.loadingRelatedPosts": "Loading related posts...",
+  "blog.loadingRelatedPosts": "Loading related posts..",
   "about.missionTitle": "Our Mission",
   "about.missionText": "We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.",
   "about.coverageTitle": "What We Cover",
-  "about.footballCoverage": "Football (Soccer) - Leagues, tournaments, and international competitions",
+  "about.footballCoverage": "Football - Leagues, tournaments, and international competitions",
   "about.basketballCoverage": "Basketball - NBA, college basketball, and international leagues",
   "about.valuesTitle": "Our Values",
   "about.valuesText": "Integrity, accuracy, and passion drive everything we do. We believe in celebrating athletic achievements while maintaining the highest standards of sports journalism.",
@@ -413,7 +413,7 @@
   "admin.username": "Username",
   "admin.password": "Password",
   "admin.loginButton": "Login",
-  "admin.loggingIn": "Logging in...",
+  "admin.loggingIn": "Logging in..",
   "admin.loginFailed": "Login failed",
   "admin.invalidCredentials": "Invalid username or password.",
   "admin.loginSuccess": "Login successful!",
@@ -428,7 +428,7 @@
   "admin.editPost": "Edit Post",
   "admin.blogPosts": "Blog Posts",
   "admin.manageExistingPosts": "Manage your existing blog posts",
-  "admin.loadingPosts": "Loading posts...",
+  "admin.loadingPosts": "Loading posts..",
   "admin.errorLoadingPosts": "Error loading posts",
   "admin.failedToLoadPosts": "Failed to load blog posts from database.",
   "admin.postTitle": "Title",
@@ -436,9 +436,9 @@
   "admin.postExcerpt": "Excerpt",
   "admin.postContent": "Content",
   "admin.enterPostTitle": "Enter post title",
-  "admin.enterCategory": "e.g. Basketball, Soccer, Swimming",
+  "admin.enterCategory": "e.g. Basketball, Football, Football",
   "admin.briefDescription": "Brief description of the post",
-  "admin.writeContent": "Write your blog post content here...",
+  "admin.writeContent": "Write your blog post content here..",
   "admin.updatePost": "Update Post",
   "admin.postCreated": "Post created!",
   "admin.postCreatedSuccess": "Your blog post has been created successfully.",
@@ -462,13 +462,13 @@
   "admin.fieldExcerpt": "Excerpt",
   "admin.fieldContent": "Content",
   "admin.fieldCategory": "Category",
-  "admin.saving": "Saving...",
+  "admin.saving": "Saving..",
   "admin.saveTranslation": "Save Translation",
   "admin.translationSaved": "Translation saved",
   "admin.translationSavedSuccess": "Your translation was saved successfully.",
   "admin.errorSavingTranslation": "Error saving translation",
   "admin.failedToSaveTranslation": "Please try again.",
-  "languages.searchPlaceholder": "Search languages...",
+  "languages.searchPlaceholder": "Search languages..",
   "languages.current": "Current",
   "languages.group.default": "Default",
   "languages.group.indian": "Indian Languages",
@@ -476,8 +476,8 @@
   "languages.group.eastAsian": "East Asian Languages",
   "languages.group.middleEastern": "Middle Eastern Languages",
   "languages.group.other": "Other Languages",
-  "common.search": "Search...",
-  "common.loading": "Loading...",
+  "common.search": "Search..",
+  "common.loading": "Loading..",
   "common.error": "Something went wrong. Please try again.",
   "common.noResults": "No results found",
   "common.viewAll": "View All",
@@ -493,14 +493,14 @@
   "common.confirm": "Confirm",
   "common.yes": "Yes",
   "common.no": "No",
-  "common.uploading": "Uploading...",
+  "common.uploading": "Uploading..",
   "common.uploadSuccess": "Upload successful!",
   "common.uploadError": "Upload failed.",
   "common.noFileSelected": "No file selected.",
   "common.authenticationRequired": "Authentication required.",
   "common.tryAgain": "Please try again.",
   "common.backToSite": "Back to Site",
-  "common.loadingMessage": "Loading...",
+  "common.loadingMessage": "Loading..",
   "notFound.pageTitle": "Oops! Page not found",
   "notFound.returnHome": "Return to Home",
   "contact.pageTitle": "Get in Touch",
@@ -514,13 +514,13 @@
   "contact.subject": "Subject",
   "contact.whatAbout": "What's this about?",
   "contact.message": "Message",
-  "contact.tellUsMore": "Tell us more about your inquiry...",
+  "contact.tellUsMore": "Tell us more about your inquiry..",
   "contact.sendMessageBtn": "Send Message",
-  "contact.sending": "Sending...",
+  "contact.sending": "Sending..",
   "contact.messageSentSuccess": "Message sent successfully!",
   "contact.messageSentDescription": "Thank you for your message. We'll get back to you soon.",
   "contact.failedToSend": "Failed to send message.",
-  "footer.description": "Your ultimate destination for sports skills, techniques, and tactical analysis. Master the game with expert insights on football, basketball, and more.",
+  "footer.description": "Your ultimate destination for sports skills, techniques, and tactical analysis. Master the game with expert insights on football, basketball,.",
   "comments.anonymousUser": "Anonymous User",
   "comments.postError": "Post Error",
   "comments.postSuccess": "Post Success",

@@ -1,6 +1,6 @@
 {
   "en": {
-    "languages.searchPlaceholder": "Search languages...",
+    "languages.searchPlaceholder": "Search languages..",
     "languages.current": "Current",
     "languages.group.default": "Default",
     "languages.group.indian": "Indian Languages",
@@ -10,7 +10,7 @@
     "languages.group.other": "Other Languages"
   },
   "es": {
-    "languages.searchPlaceholder": "Buscar idiomas...",
+    "languages.searchPlaceholder": "Buscar idiomas..",
     "languages.current": "Actual",
     "languages.group.default": "Predeterminado",
     "languages.group.indian": "Idiomas Indios",
@@ -20,7 +20,7 @@
     "languages.group.other": "Otros Idiomas"
   },
   "fr": {
-    "languages.searchPlaceholder": "Rechercher des langues...",
+    "languages.searchPlaceholder": "Rechercher des langues..",
     "languages.current": "Actuel",
     "languages.group.default": "Par défaut",
     "languages.group.indian": "Langues Indiennes",
@@ -30,7 +30,7 @@
     "languages.group.other": "Autres Langues"
   },
   "de": {
-    "languages.searchPlaceholder": "Sprachen suchen...",
+    "languages.searchPlaceholder": "Sprachen suchen..",
     "languages.current": "Aktuell",
     "languages.group.default": "Standard",
     "languages.group.indian": "Indische Sprachen",
@@ -40,7 +40,7 @@
     "languages.group.other": "Andere Sprachen"
   },
   "it": {
-    "languages.searchPlaceholder": "Cerca lingue...",
+    "languages.searchPlaceholder": "Cerca lingue..",
     "languages.current": "Attuale",
     "languages.group.default": "Predefinito",
     "languages.group.indian": "Lingue Indiane",
@@ -50,7 +50,7 @@
     "languages.group.other": "Altre Lingue"
   },
   "pt": {
-    "languages.searchPlaceholder": "Pesquisar idiomas...",
+    "languages.searchPlaceholder": "Pesquisar idiomas..",
     "languages.current": "Atual",
     "languages.group.default": "Padrão",
     "languages.group.indian": "Idiomas Indianos",
@@ -60,7 +60,7 @@
     "languages.group.other": "Outros Idiomas"
   },
   "ru": {
-    "languages.searchPlaceholder": "Поиск языков...",
+    "languages.searchPlaceholder": "Поиск языков..",
     "languages.current": "Текущий",
     "languages.group.default": "По умолчанию",
     "languages.group.indian": "Индийские языки",
@@ -70,7 +70,7 @@
     "languages.group.other": "Другие языки"
   },
   "pl": {
-    "languages.searchPlaceholder": "Szukaj języków...",
+    "languages.searchPlaceholder": "Szukaj języków..",
     "languages.current": "Aktualny",
     "languages.group.default": "Domyślny",
     "languages.group.indian": "Języki Indyjskie",
@@ -80,7 +80,7 @@
     "languages.group.other": "Inne Języki"
   },
   "nl": {
-    "languages.searchPlaceholder": "Zoek talen...",
+    "languages.searchPlaceholder": "Zoek talen..",
     "languages.current": "Huidig",
     "languages.group.default": "Standaard",
     "languages.group.indian": "Indiase Talen",
@@ -90,7 +90,7 @@
     "languages.group.other": "Andere Talen"
   },
   "sv": {
-    "languages.searchPlaceholder": "Sök språk...",
+    "languages.searchPlaceholder": "Sök språk..",
     "languages.current": "Aktuell",
     "languages.group.default": "Standard",
     "languages.group.indian": "Indiska Språk",
@@ -100,7 +100,7 @@
     "languages.group.other": "Andra Språk"
   },
   "no": {
-    "languages.searchPlaceholder": "Søk språk...",
+    "languages.searchPlaceholder": "Søk språk..",
     "languages.current": "Nåværende",
     "languages.group.default": "Standard",
     "languages.group.indian": "Indiske Språk",
@@ -110,7 +110,7 @@
     "languages.group.other": "Andre Språk"
   },
   "da": {
-    "languages.searchPlaceholder": "Søg sprog...",
+    "languages.searchPlaceholder": "Søg sprog..",
     "languages.current": "Nuværende",
     "languages.group.default": "Standard",
     "languages.group.indian": "Indiske Sprog",
@@ -120,7 +120,7 @@
     "languages.group.other": "Andre Sprog"
   },
   "fi": {
-    "languages.searchPlaceholder": "Hae kieliä...",
+    "languages.searchPlaceholder": "Hae kieliä..",
     "languages.current": "Nykyinen",
     "languages.group.default": "Oletus",
     "languages.group.indian": "Intialaiset kielet",
@@ -130,7 +130,7 @@
     "languages.group.other": "Muut kielet"
   },
   "zh": {
-    "languages.searchPlaceholder": "搜索语言...",
+    "languages.searchPlaceholder": "搜索语言..",
     "languages.current": "当前",
     "languages.group.default": "默认",
     "languages.group.indian": "印度语言",
@@ -140,7 +140,7 @@
     "languages.group.other": "其他语言"
   },
   "ja": {
-    "languages.searchPlaceholder": "言語を検索...",
+    "languages.searchPlaceholder": "言語を検索..",
     "languages.current": "現在",
     "languages.group.default": "デフォルト",
     "languages.group.indian": "インドの言語",
@@ -150,7 +150,7 @@
     "languages.group.other": "その他の言語"
   },
   "ko": {
-    "languages.searchPlaceholder": "언어 검색...",
+    "languages.searchPlaceholder": "언어 검색..",
     "languages.current": "현재",
     "languages.group.default": "기본",
     "languages.group.indian": "인도 언어",
@@ -160,7 +160,7 @@
     "languages.group.other": "기타 언어"
   },
   "hi": {
-    "languages.searchPlaceholder": "भाषाएं खोजें...",
+    "languages.searchPlaceholder": "भाषाएं खोजें..",
     "languages.current": "वर्तमान",
     "languages.group.default": "डिफ़ॉल्ट",
     "languages.group.indian": "भारतीय भाषाएँ",
@@ -170,7 +170,7 @@
     "languages.group.other": "अन्य भाषाएँ"
   },
   "bn": {
-    "languages.searchPlaceholder": "ভাষা খুঁজুন...",
+    "languages.searchPlaceholder": "ভাষা খুঁজুন..",
     "languages.current": "বর্তমান",
     "languages.group.default": "ডিফল্ট",
     "languages.group.indian": "ভারতীয় ভাষা",
@@ -180,7 +180,7 @@
     "languages.group.other": "অন্যান্য ভাষা"
   },
   "ta": {
-    "languages.searchPlaceholder": "மொழிகளைத் தேடவும்...",
+    "languages.searchPlaceholder": "மொழிகளைத் தேடவும்..",
     "languages.current": "தற்போதைய",
     "languages.group.default": "இயல்புநிலை",
     "languages.group.indian": "இந்திய மொழிகள்",
@@ -190,7 +190,7 @@
     "languages.group.other": "பிற மொழிகள்"
   },
   "te": {
-    "languages.searchPlaceholder": "భాషలను వెతకండి...",
+    "languages.searchPlaceholder": "భాషలను వెతకండి..",
     "languages.current": "ప్రస్తుత",
     "languages.group.default": "డిఫాల్ట్",
     "languages.group.indian": "భారతీయ భాషలు",
@@ -200,7 +200,7 @@
     "languages.group.other": "ఇతర భాషలు"
   },
   "mr": {
-    "languages.searchPlaceholder": "भाषा शोधा...",
+    "languages.searchPlaceholder": "भाषा शोधा..",
     "languages.current": "वर्तमान",
     "languages.group.default": "डीफॉल्ट",
     "languages.group.indian": "भारतीय भाषा",
@@ -210,7 +210,7 @@
     "languages.group.other": "इतर भाषा"
   },
   "gu": {
-    "languages.searchPlaceholder": "ભાષાઓ શોધો...",
+    "languages.searchPlaceholder": "ભાષાઓ શોધો..",
     "languages.current": "વર્તમાન",
     "languages.group.default": "ડિફૉલ્ટ",
     "languages.group.indian": "ભારતીય ભાષાઓ",
@@ -220,7 +220,7 @@
     "languages.group.other": "અન્ય ભાષાઓ"
   },
   "ar": {
-    "languages.searchPlaceholder": "البحث عن اللغات...",
+    "languages.searchPlaceholder": "البحث عن اللغات..",
     "languages.current": "الحالية",
     "languages.group.default": "افتراضي",
     "languages.group.indian": "اللغات الهندية",
@@ -230,7 +230,7 @@
     "languages.group.other": "لغات أخرى"
   },
   "he": {
-    "languages.searchPlaceholder": "חפש שפות...",
+    "languages.searchPlaceholder": "חפש שפות..",
     "languages.current": "נוכחי",
     "languages.group.default": "ברירת מחדל",
     "languages.group.indian": "שפות הודיות",
@@ -240,7 +240,7 @@
     "languages.group.other": "שפות אחרות"
   },
   "fa": {
-    "languages.searchPlaceholder": "جستجوی زبان‌ها...",
+    "languages.searchPlaceholder": "جستجوی زبان‌ها..",
     "languages.current": "فعلی",
     "languages.group.default": "پیش‌فرض",
     "languages.group.indian": "زبان‌های هندی",
@@ -250,7 +250,7 @@
     "languages.group.other": "سایر زبان‌ها"
   },
   "tr": {
-    "languages.searchPlaceholder": "Dilleri ara...",
+    "languages.searchPlaceholder": "Dilleri ara..",
     "languages.current": "Mevcut",
     "languages.group.default": "Varsayılan",
     "languages.group.indian": "Hint Dilleri",
@@ -260,7 +260,7 @@
     "languages.group.other": "Diğer Diller"
   },
   "th": {
-    "languages.searchPlaceholder": "ค้นหาภาษา...",
+    "languages.searchPlaceholder": "ค้นหาภาษา..",
     "languages.current": "ปัจจุบัน",
     "languages.group.default": "ค่าเริ่มต้น",
     "languages.group.indian": "ภาษาอินเดีย",
@@ -283,21 +283,21 @@
   "footer.contact": "Contact",
   "footer.rightsReserved": "All rights reserved.",
   "hero.welcome": "Welcome to our Blog",
-  "hero.title": "Exploring Skills, Techniques & Tactics in Various Sports",
-  "hero.subtitle": "We write about various sports and the tactics, techniques, and skills that can be implemented in these sports.",
+  "hero.title": "Exploring Skills, Techniques & Tactics in basketball and football",
+  "hero.subtitle": "We write about basketball and football and the tactics, techniques, and skills that can be implemented in these sports.",
   "hero.readLatest": "Read Latest Posts",
   "category.all": "All",
   "category.football": "Football",
   "category.basketball": "Basketball",
-  "category.soccer": "Soccer",
-  "category.tennis": "Tennis",
-  "category.baseball": "Baseball",
-  "category.athletics": "Athletics",
-  "category.swimming": "Swimming",
+  "category.football": "Football",
+  "category.tennis": "Football",
+  "category.baseball": "Football",
+  "category.athletics": "Football",
+  "category.swimming": "Football",
   "profile.displayName": "Display Name",
   "profile.yourDisplayName": "Your display name",
   "profile.bio": "Bio",
-  "profile.yourBio": "Tell us about yourself...",
+  "profile.yourBio": "Tell us about yourself..",
   "profile.avatarUrl": "Avatar URL",
   "profile.yourAvatarUrl": "URL to your avatar image",
   "profile.noProfileTitle": "No Profile Found",
@@ -336,7 +336,7 @@
   "latestPosts.title": "Latest Posts",
   "latestPosts.subtitle": "Explore our latest thoughts and insights on sports, techniques, and tactics.",
   "latestPosts.viewAll": "View All Posts",
-  "latestPosts.loading": "Loading posts...",
+  "latestPosts.loading": "Loading posts..",
   "latestPosts.noPosts": "No posts available",
   "nav.home": "Home",
   "nav.blog": "Blog",
@@ -349,7 +349,7 @@
   "nav.admin": "Admin",
   "blog.title": "Blog Posts",
   "blog.subtitle": "Thoughts, insights, and stories about design, development, and productivity.",
-  "blog.searchPlaceholder": "Search articles...",
+  "blog.searchPlaceholder": "Search articles..",
   "blog.articlesFound": "articles found",
   "blog.articleFound": "article found",
   "blog.clearFilters": "Clear filters",
@@ -359,11 +359,11 @@
   "blog.backToBlog": "Back to Blog",
   "blog.readArticle": "Read article",
   "blog.relatedArticles": "Related Articles",
-  "blog.loadingRelatedPosts": "Loading related posts...",
+  "blog.loadingRelatedPosts": "Loading related posts..",
   "about.missionTitle": "Our Mission",
   "about.missionText": "We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.",
   "about.coverageTitle": "What We Cover",
-  "about.footballCoverage": "Football (Soccer) - Leagues, tournaments, and international competitions",
+  "about.footballCoverage": "Football - Leagues, tournaments, and international competitions",
   "about.basketballCoverage": "Basketball - NBA, college basketball, and international leagues",
   "about.valuesTitle": "Our Values",
   "about.valuesText": "Integrity, accuracy, and passion drive everything we do. We believe in celebrating athletic achievements while maintaining the highest standards of sports journalism.",
@@ -386,7 +386,7 @@
   "admin.username": "Username",
   "admin.password": "Password",
   "admin.loginButton": "Login",
-  "admin.loggingIn": "Logging in...",
+  "admin.loggingIn": "Logging in..",
   "admin.loginFailed": "Login failed",
   "admin.invalidCredentials": "Invalid username or password.",
   "admin.loginSuccess": "Login successful!",
@@ -401,7 +401,7 @@
   "admin.editPost": "Edit Post",
   "admin.blogPosts": "Blog Posts",
   "admin.manageExistingPosts": "Manage your existing blog posts",
-  "admin.loadingPosts": "Loading posts...",
+  "admin.loadingPosts": "Loading posts..",
   "admin.errorLoadingPosts": "Error loading posts",
   "admin.failedToLoadPosts": "Failed to load blog posts from database.",
   "admin.postTitle": "Title",
@@ -409,9 +409,9 @@
   "admin.postExcerpt": "Excerpt",
   "admin.postContent": "Content",
   "admin.enterPostTitle": "Enter post title",
-  "admin.enterCategory": "e.g. Basketball, Soccer, Swimming",
+  "admin.enterCategory": "e.g. Basketball, Football, Football",
   "admin.briefDescription": "Brief description of the post",
-  "admin.writeContent": "Write your blog post content here...",
+  "admin.writeContent": "Write your blog post content here..",
   "admin.updatePost": "Update Post",
   "admin.postCreated": "Post created!",
   "admin.postCreatedSuccess": "Your blog post has been created successfully.",
@@ -435,13 +435,13 @@
   "admin.fieldExcerpt": "Excerpt",
   "admin.fieldContent": "Content",
   "admin.fieldCategory": "Category",
-  "admin.saving": "Saving...",
+  "admin.saving": "Saving..",
   "admin.saveTranslation": "Save Translation",
   "admin.translationSaved": "Translation saved",
   "admin.translationSavedSuccess": "Your translation was saved successfully.",
   "admin.errorSavingTranslation": "Error saving translation",
   "admin.failedToSaveTranslation": "Please try again.",
-  "languages.searchPlaceholder": "Search languages...",
+  "languages.searchPlaceholder": "Search languages..",
   "languages.current": "Current",
   "languages.group.default": "Default",
   "languages.group.indian": "Indian Languages",
@@ -449,8 +449,8 @@
   "languages.group.eastAsian": "East Asian Languages",
   "languages.group.middleEastern": "Middle Eastern Languages",
   "languages.group.other": "Other Languages",
-  "common.search": "Search...",
-  "common.loading": "Loading...",
+  "common.search": "Search..",
+  "common.loading": "Loading..",
   "common.error": "Something went wrong. Please try again.",
   "common.noResults": "No results found",
   "common.viewAll": "View All",
@@ -466,14 +466,14 @@
   "common.confirm": "Confirm",
   "common.yes": "Yes",
   "common.no": "No",
-  "common.uploading": "Uploading...",
+  "common.uploading": "Uploading..",
   "common.uploadSuccess": "Upload successful!",
   "common.uploadError": "Upload failed.",
   "common.noFileSelected": "No file selected.",
   "common.authenticationRequired": "Authentication required.",
   "common.tryAgain": "Please try again.",
   "common.backToSite": "Back to Site",
-  "common.loadingMessage": "Loading...",
+  "common.loadingMessage": "Loading..",
   "notFound.pageTitle": "Oops! Page not found",
   "notFound.returnHome": "Return to Home",
   "contact.pageTitle": "Get in Touch",
@@ -487,13 +487,13 @@
   "contact.subject": "Subject",
   "contact.whatAbout": "What's this about?",
   "contact.message": "Message",
-  "contact.tellUsMore": "Tell us more about your inquiry...",
+  "contact.tellUsMore": "Tell us more about your inquiry..",
   "contact.sendMessageBtn": "Send Message",
-  "contact.sending": "Sending...",
+  "contact.sending": "Sending..",
   "contact.messageSentSuccess": "Message sent successfully!",
   "contact.messageSentDescription": "Thank you for your message. We'll get back to you soon.",
   "contact.failedToSend": "Failed to send message.",
-  "footer.description": "Your ultimate destination for sports skills, techniques, and tactical analysis. Master the game with expert insights on football, basketball, and more.",
+  "footer.description": "Your ultimate destination for sports skills, techniques, and tactical analysis. Master the game with expert insights on football, basketball,.",
   "comments.anonymousUser": "Anonymous User",
   "comments.postError": "Post Error",
   "comments.postSuccess": "Post Success",

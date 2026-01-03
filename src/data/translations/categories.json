@@ -1,273 +1,138 @@
 {
   "en": {
     "category.all": "All",
-    "category.football": "Football",
     "category.basketball": "Basketball",
-    "category.soccer": "Soccer",
-    "category.tennis": "Tennis",
-    "category.baseball": "Baseball",
-    "category.athletics": "Athletics",
-    "category.swimming": "Swimming"
+    "category.football": "Football"
   },
   "es": {
     "category.all": "Todos",
-    "category.football": "Fútbol Americano",
     "category.basketball": "Baloncesto",
-    "category.soccer": "Fútbol",
-    "category.tennis": "Tenis",
-    "category.baseball": "Béisbol",
-    "category.athletics": "Atletismo",
-    "category.swimming": "Natación"
+    "category.football": "Fútbol"
   },
   "fr": {
     "category.all": "Tous",
-    "category.football": "Football Américain",
     "category.basketball": "Basketball",
-    "category.soccer": "Football",
-    "category.tennis": "Tennis",
-    "category.baseball": "Baseball",
-    "category.athletics": "Athlétisme",
-    "category.swimming": "Natation"
+    "category.football": "Football"
   },
   "de": {
     "category.all": "Alle",
-    "category.football": "American Football",
     "category.basketball": "Basketball",
-    "category.soccer": "Fußball",
-    "category.tennis": "Tennis",
-    "category.baseball": "Baseball",
-    "category.athletics": "Leichtathletik",
-    "category.swimming": "Schwimmen"
+    "category.football": "Fußball"
   },
   "it": {
     "category.all": "Tutti",
-    "category.football": "Football Americano",
     "category.basketball": "Pallacanestro",
-    "category.soccer": "Calcio",
-    "category.tennis": "Tenis",
-    "category.baseball": "Baseball",
-    "category.athletics": "Atletica",
-    "category.swimming": "Nuoto"
+    "category.football": "Calcio"
   },
   "pt": {
     "category.all": "Todos",
-    "category.football": "Futebol Americano",
     "category.basketball": "Basquete",
-    "category.soccer": "Futebol",
-    "category.tennis": "Tênis",
-    "category.baseball": "Beisebol",
-    "category.athletics": "Atletismo",
-    "category.swimming": "Natação"
+    "category.football": "Futebol"
   },
   "ru": {
     "category.all": "Все",
-    "category.football": "Американский футбол",
     "category.basketball": "Баскетбол",
-    "category.soccer": "Футбол",
-    "category.tennis": "Теннис",
-    "category.baseball": "Бейсбол",
-    "category.athletics": "Легкая атлетика",
-    "category.swimming": "Плавание"
+    "category.football": "Футбол"
   },
   "pl": {
     "category.all": "Wszystkie",
-    "category.football": "Futbol Amerykański",
     "category.basketball": "Koszykówka",
-    "category.soccer": "Piłka Nożna",
-    "category.tennis": "Tenis",
-    "category.baseball": "Baseball",
-    "category.athletics": "Lekkoatletyka",
-    "category.swimming": "Pływanie"
+    "category.football": "Piłka Nożna"
   },
   "nl": {
     "category.all": "Alle",
-    "category.football": "American Football",
     "category.basketball": "Basketbal",
-    "category.soccer": "Voetbal",
-    "category.tennis": "Tennis",
-    "category.baseball": "Honkbal",
-    "category.athletics": "Atletiek",
-    "category.swimming": "Zwemmen"
+    "category.football": "Voetbal"
   },
   "sv": {
     "category.all": "Alla",
-    "category.football": "Amerikansk Fotboll",
     "category.basketball": "Basket",
-    "category.soccer": "Fotboll",
-    "category.tennis": "Tennis",
-    "category.baseball": "Baseball",
-    "category.athletics": "Friidrott",
-    "category.swimming": "Simning"
+    "category.football": "Fotboll"
   },
   "no": {
     "category.all": "Alle",
-    "category.football": "Amerikansk Fotball",
     "category.basketball": "Basketball",
-    "category.soccer": "Fotball",
-    "category.tennis": "Tennis",
-    "category.baseball": "Baseball",
-    "category.athletics": "Friidrett",
-    "category.swimming": "Svømming"
+    "category.football": "Fotball"
   },
   "da": {
     "category.all": "Alle",
-    "category.football": "Amerikansk Fodbold",
     "category.basketball": "Basketball",
-    "category.soccer": "Fodbold",
-    "category.tennis": "Tennis",
-    "category.baseball": "Baseball",
-    "category.athletics": "Atletik",
-    "category.swimming": "Svømning"
+    "category.football": "Fodbold"
   },
   "fi": {
     "category.all": "Kaikki",
-    "category.football": "Amerikkalainen Jalkapallo",
     "category.basketball": "Koripallo",
-    "category.soccer": "Jalkapallo",
-    "category.tennis": "Tennis",
-    "category.baseball": "Pesäpallo",
-    "category.athletics": "Yleisurheilu",
-    "category.swimming": "Uinti"
+    "category.football": "Jalkapallo"
   },
   "zh": {
     "category.all": "全部",
-    "category.football": "美式足球",
     "category.basketball": "篮球",
-    "category.soccer": "足球",
-    "category.tennis": "网球",
-    "category.baseball": "棒球",
-    "category.athletics": "田径",
-    "category.swimming": "游泳"
+    "category.football": "足球"
   },
   "ja": {
     "category.all": "すべて",
-    "category.football": "アメリカンフットボール",
     "category.basketball": "バスケットボール",
-    "category.soccer": "サッカー",
-    "category.tennis": "テニス",
-    "category.baseball": "野球",
-    "category.athletics": "陸上競技",
-    "category.swimming": "水泳"
+    "category.football": "サッカー"
   },
   "ko": {
     "category.all": "모두",
-    "category.football": "미식축구",
     "category.basketball": "농구",
-    "category.soccer": "축구",
-    "category.tennis": "테니스",
-    "category.baseball": "야구",
-    "category.athletics": "육상",
-    "category.swimming": "수영"
+    "category.football": "축구"
   },
   "hi": {
     "category.all": "सभी",
-    "category.football": "अमेरिकी फुटबॉल",
     "category.basketball": "बास्केटबॉल",
-    "category.soccer": "फुटबॉल",
-    "category.tennis": "टेनिस",
-    "category.baseball": "बेसबॉल",
-    "category.athletics": "एथलेटिक्स",
-    "category.swimming": "तैराकी"
+    "category.football": "फुटबॉल"
   },
   "bn": {
     "category.all": "সব",
-    "category.football": "আমেরিকান ফুটবল",
     "category.basketball": "বাস্কেটবল",
-    "category.soccer": "ফুটবল",
-    "category.tennis": "টেনিস",
-    "category.baseball": "বেসবল",
-    "category.athletics": "অ্যাথলেটিক্স",
-    "category.swimming": "সাঁতার"
+    "category.football": "ফুটবল"
   },
   "ta": {
     "category.all": "அனைத்தும்",
-    "category.football": "அமெரிக்க கால்பந்து",
     "category.basketball": "கூடைப்பந்து",
-    "category.soccer": "கால்பந்து",
-    "category.tennis": "டென்னிஸ்",
-    "category.baseball": "பேஸ்பால்",
-    "category.athletics": "தடகளம்",
-    "category.swimming": "நீச்சல்"
+    "category.football": "கால்பந்து"
   },
   "te": {
     "category.all": "అన్ని",
-    "category.football": "అమెరికన్ ఫుట్‌బాల్",
     "category.basketball": "బాస్కెట్‌బాల్",
-    "category.soccer": "ఫుట్‌బాల్",
-    "category.tennis": "టెన్నిస్",
-    "category.baseball": "బేస్‌బాల్",
-    "category.athletics": "అథ్లెటిక్స్",
-    "category.swimming": "ఈత"
+    "category.football": "ఫుట్‌బాల్"
   },
   "mr": {
     "category.all": "सर्व",
-    "category.football": "अमेरिकन फुटबॉल",
     "category.basketball": "बास्केटबॉल",
-    "category.soccer": "फुटबॉल",
-    "category.tennis": "टेनिस",
-    "category.baseball": "बेसबॉल",
-    "category.athletics": "अॅथलेटिक्स",
-    "category.swimming": "जलतरण"
+    "category.football": "फुटबॉल"
   },
   "gu": {
     "category.all": "બધા",
-    "category.football": "અમેરિકન ફૂટબોલ",
     "category.basketball": "બાસ્કેટબોલ",
-    "category.soccer": "ફૂટબોલ",
-    "category.tennis": "ટેનિસ",
-    "category.baseball": "બેઝબોલ",
-    "category.athletics": "એથ્લેટિક્સ",
-    "category.swimming": "સ્વિમિંગ"
+    "category.football": "ફૂટબોલ"
   },
   "ar": {
     "category.all": "الكل",
-    "category.football": "كرة القدم الأمريكية",
     "category.basketball": "كرة السلة",
-    "category.soccer": "كرة القدم",
-    "category.tennis": "التنس",
-    "category.baseball": "البيسبول",
-    "category.athletics": "ألعاب القوى",
-    "category.swimming": "السباحة"
+    "category.football": "كرة القدم"
   },
   "he": {
     "category.all": "הכל",
-    "category.football": "פוטבול אמריקאי",
     "category.basketball": "כדורסל",
-    "category.soccer": "כדורגל",
-    "category.tennis": "טניס",
-    "category.baseball": "בייסבול",
-    "category.athletics": "אתלטיקה",
-    "category.swimming": "שחייה"
+    "category.football": "כדורגל"
   },
   "fa": {
     "category.all": "همه",
-    "category.football": "فوتبال آمریکایی",
     "category.basketball": "بسکتبال",
-    "category.soccer": "فوتبال",
-    "category.tennis": "تنیس",
-    "category.baseball": "بیسبال",
-    "category.athletics": "دو و میدانی",
-    "category.swimming": "شنا"
+    "category.football": "فوتبال"
   },
   "tr": {
     "category.all": "Tümü",
-    "category.football": "Amerikan Futbolu",
     "category.basketball": "Basketbol",
-    "category.soccer": "Futbol",
-    "category.tennis": "Tenis",
-    "category.baseball": "Beyzbol",
-    "category.athletics": "Atletizm",
-    "category.swimming": "Yüzme"
+    "category.football": "Futbol"
   },
   "th": {
     "category.all": "ทั้งหมด",
-    "category.football": "อเมริกันฟุตบอล",
     "category.basketball": "บาสเกตบอล",
-    "category.soccer": "ฟุตบอล",
-    "category.tennis": "เทนนิส",
-    "category.baseball": "เบสบอล",
-    "category.athletics": "กรีฑา",
-    "category.swimming": "ว่ายน้ำ"
+    "category.football": "ฟุตบอล"
   },
   "blog.aboutAuthor": "About the Author",
   "blog.writtenBy": "Written by",
@@ -283,21 +148,16 @@
   "footer.contact": "Contact",
   "footer.rightsReserved": "All rights reserved.",
   "hero.welcome": "Welcome to our Blog",
-  "hero.title": "Exploring Skills, Techniques & Tactics in Various Sports",
-  "hero.subtitle": "We write about various sports and the tactics, techniques, and skills that can be implemented in these sports.",
+  "hero.title": "Exploring Skills, Techniques & Tactics in basketball and football",
+  "hero.subtitle": "We write about basketball and football and the tactics, techniques, and skills that can be implemented in these sports.",
   "hero.readLatest": "Read Latest Posts",
   "category.all": "All",
   "category.football": "Football",
   "category.basketball": "Basketball",
-  "category.soccer": "Soccer",
-  "category.tennis": "Tennis",
-  "category.baseball": "Baseball",
-  "category.athletics": "Athletics",
-  "category.swimming": "Swimming",
   "profile.displayName": "Display Name",
   "profile.yourDisplayName": "Your display name",
   "profile.bio": "Bio",
-  "profile.yourBio": "Tell us about yourself...",
+  "profile.yourBio": "Tell us about yourself..",
   "profile.avatarUrl": "Avatar URL",
   "profile.yourAvatarUrl": "URL to your avatar image",
   "profile.noProfileTitle": "No Profile Found",
@@ -336,7 +196,7 @@
   "latestPosts.title": "Latest Posts",
   "latestPosts.subtitle": "Explore our latest thoughts and insights on sports, techniques, and tactics.",
   "latestPosts.viewAll": "View All Posts",
-  "latestPosts.loading": "Loading posts...",
+  "latestPosts.loading": "Loading posts..",
   "latestPosts.noPosts": "No posts available",
   "nav.home": "Home",
   "nav.blog": "Blog",
@@ -349,7 +209,7 @@
   "nav.admin": "Admin",
   "blog.title": "Blog Posts",
   "blog.subtitle": "Thoughts, insights, and stories about design, development, and productivity.",
-  "blog.searchPlaceholder": "Search articles...",
+  "blog.searchPlaceholder": "Search articles..",
   "blog.articlesFound": "articles found",
   "blog.articleFound": "article found",
   "blog.clearFilters": "Clear filters",
@@ -359,11 +219,11 @@
   "blog.backToBlog": "Back to Blog",
   "blog.readArticle": "Read article",
   "blog.relatedArticles": "Related Articles",
-  "blog.loadingRelatedPosts": "Loading related posts...",
+  "blog.loadingRelatedPosts": "Loading related posts..",
   "about.missionTitle": "Our Mission",
   "about.missionText": "We strive to be the most trusted source for sports news and analysis. Our commitment to journalistic integrity means we deliver factual, unbiased coverage you can rely on.",
   "about.coverageTitle": "What We Cover",
-  "about.footballCoverage": "Football (Soccer) - Leagues, tournaments, and international competitions",
+  "about.footballCoverage": "Football - Leagues, tournaments, and international competitions",
   "about.basketballCoverage": "Basketball - NBA, college basketball, and international leagues",
   "about.valuesTitle": "Our Values",
   "about.valuesText": "Integrity, accuracy, and passion drive everything we do. We believe in celebrating athletic achievements while maintaining the highest standards of sports journalism.",
@@ -386,7 +246,7 @@
   "admin.username": "Username",
   "admin.password": "Password",
   "admin.loginButton": "Login",
-  "admin.loggingIn": "Logging in...",
+  "admin.loggingIn": "Logging in..",
   "admin.loginFailed": "Login failed",
   "admin.invalidCredentials": "Invalid username or password.",
   "admin.loginSuccess": "Login successful!",
@@ -401,7 +261,7 @@
   "admin.editPost": "Edit Post",
   "admin.blogPosts": "Blog Posts",
   "admin.manageExistingPosts": "Manage your existing blog posts",
-  "admin.loadingPosts": "Loading posts...",
+  "admin.loadingPosts": "Loading posts..",
   "admin.errorLoadingPosts": "Error loading posts",
   "admin.failedToLoadPosts": "Failed to load blog posts from database.",
   "admin.postTitle": "Title",
@@ -409,9 +269,9 @@
   "admin.postExcerpt": "Excerpt",
   "admin.postContent": "Content",
   "admin.enterPostTitle": "Enter post title",
-  "admin.enterCategory": "e.g. Basketball, Soccer, Swimming",
+  "admin.enterCategory": "e.g. Basketball, Football",
   "admin.briefDescription": "Brief description of the post",
-  "admin.writeContent": "Write your blog post content here...",
+  "admin.writeContent": "Write your blog post content here..",
   "admin.updatePost": "Update Post",
   "admin.postCreated": "Post created!",
   "admin.postCreatedSuccess": "Your blog post has been created successfully.",
@@ -435,13 +295,13 @@
   "admin.fieldExcerpt": "Excerpt",
   "admin.fieldContent": "Content",
   "admin.fieldCategory": "Category",
-  "admin.saving": "Saving...",
+  "admin.saving": "Saving..",
   "admin.saveTranslation": "Save Translation",
   "admin.translationSaved": "Translation saved",
   "admin.translationSavedSuccess": "Your translation was saved successfully.",
   "admin.errorSavingTranslation": "Error saving translation",
   "admin.failedToSaveTranslation": "Please try again.",
-  "languages.searchPlaceholder": "Search languages...",
+  "languages.searchPlaceholder": "Search languages..",
   "languages.current": "Current",
   "languages.group.default": "Default",
   "languages.group.indian": "Indian Languages",
@@ -449,8 +309,8 @@
   "languages.group.eastAsian": "East Asian Languages",
   "languages.group.middleEastern": "Middle Eastern Languages",
   "languages.group.other": "Other Languages",
-  "common.search": "Search...",
-  "common.loading": "Loading...",
+  "common.search": "Search..",
+  "common.loading": "Loading..",
   "common.error": "Something went wrong. Please try again.",
   "common.noResults": "No results found",
   "common.viewAll": "View All",
@@ -466,14 +326,14 @@
   "common.confirm": "Confirm",
   "common.yes": "Yes",
   "common.no": "No",
-  "common.uploading": "Uploading...",
+  "common.uploading": "Uploading..",
   "common.uploadSuccess": "Upload successful!",
   "common.uploadError": "Upload failed.",
   "common.noFileSelected": "No file selected.",
   "common.authenticationRequired": "Authentication required.",
   "common.tryAgain": "Please try again.",
   "common.backToSite": "Back to Site",
-  "common.loadingMessage": "Loading...",
+  "common.loadingMessage": "Loading..",
   "notFound.pageTitle": "Oops! Page not found",
   "notFound.returnHome": "Return to Home",
   "contact.pageTitle": "Get in Touch",
@@ -487,13 +347,13 @@
   "contact.subject": "Subject",
   "contact.whatAbout": "What's this about?",
   "contact.message": "Message",
-  "contact.tellUsMore": "Tell us more about your inquiry...",
+  "contact.tellUsMore": "Tell us more about your inquiry..",
   "contact.sendMessageBtn": "Send Message",
-  "contact.sending": "Sending...",
+  "contact.sending": "Sending..",
   "contact.messageSentSuccess": "Message sent successfully!",
   "contact.messageSentDescription": "Thank you for your message. We'll get back to you soon.",
   "contact.failedToSend": "Failed to send message.",
-  "footer.description": "Your ultimate destination for sports skills, techniques, and tactical analysis. Master the game with expert insights on football, basketball, and more.",
+  "footer.description": "Your ultimate destination for sports skills, techniques, and tactical analysis. Master the game with expert insights on football, basketball,.",
   "comments.anonymousUser": "Anonymous User",
   "comments.postError": "Post Error",
   "comments.postSuccess": "Post Success",

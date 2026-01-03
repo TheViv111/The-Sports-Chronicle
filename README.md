@@ -10,10 +10,8 @@ At The Sports Chronicle, our mission is to provide high-quality, insightful, and
 
 We provide extensive coverage across multiple sporting disciplines, including:
 
+- **Football**: Stay updated with the latest from the Premier League, La Liga, and major international tournaments.
 - **Basketball**: From the NBA to international leagues, we provide deep-dive analysis on players, teams, and game strategies.
-- **Soccer (Football)**: Stay updated with the latest from the Premier League, La Liga, and major international tournaments.
-- **Swimming**: Coverage of major aquatic events, athlete profiles, and performance analysis.
-- **Football**: Comprehensive updates and analysis of the gridiron action.
 
 ## Key Features
 
