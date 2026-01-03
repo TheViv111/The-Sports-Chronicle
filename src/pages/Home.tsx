@@ -152,7 +152,7 @@ const Home = () => {
           }, { timeout: 5000 });
         } else {
           setShowParticles(true);
-          if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+          if (typeof window !== 'undefined' && (window as any).innerWidth >= 768) {
             setTimeout(() => setShowSpline(true), 5000);
           }
         }
@@ -168,7 +168,7 @@ const Home = () => {
               }, { timeout: 5000 });
             } else {
               setShowParticles(true);
-              if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+              if (typeof window !== 'undefined' && (window as any).innerWidth >= 768) {
                 setTimeout(() => setShowSpline(true), 5000);
               }
             }
@@ -205,7 +205,7 @@ const Home = () => {
     <>
       <SEO
         title="The Sports Chronicle - Sports News, Analysis & Blog"
-        description="The Sports Chronicle: Your trusted source for sports news, expert analysis, and in-depth coverage. Get the latest updates on basketball and football."
+        description="The Sports Chronicle: Your trusted source for expert sports analysis, tactical insights, and in-depth coverage of basketball and football."
         schemaType="WebSite"
         canonicalUrl="https://the-sports-chronicle.vercel.app/"
       />
