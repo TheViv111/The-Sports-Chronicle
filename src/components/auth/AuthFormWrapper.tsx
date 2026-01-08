@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { Mail, Lock, ArrowLeft } from "lucide-react";
 import LogoLoader from "@/components/common/LogoLoader";
-const logoSrc = "/android-chrome-192x192.png";
+const logoSrc = "/favicon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
