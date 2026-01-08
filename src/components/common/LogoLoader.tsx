@@ -19,9 +19,9 @@ const LogoLoader: React.FC<LogoLoaderProps> = ({
     };
 
     const logoSizeClasses = {
-        xs: "w-3 h-3",
-        sm: "w-5 h-5",
-        md: "w-8 h-8",
+        xs: "w-full h-full",
+        sm: "w-full h-full",
+        md: "w-full h-full",
     };
 
     return (
@@ -37,7 +37,7 @@ const LogoLoader: React.FC<LogoLoaderProps> = ({
                 <img
                     src="/favicon.png"
                     alt=""
-                    className={cn("object-contain", logoSizeClasses[size], logoClassName)}
+                    className={cn("object-cover", logoSizeClasses[size], logoClassName)}
                 />
             </div>
         </div>

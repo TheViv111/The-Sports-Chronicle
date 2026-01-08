@@ -103,7 +103,7 @@ const BlogPost = () => {
           dateModified: post.updated_at || post.created_at,
           author: {
             "@type": "Person",
-            name: post.author || "The Sports Chronicle"
+            name: author?.name || post.author || "The Sports Chronicle"
           },
           image: post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg",
           category: translatedPost.category || undefined,

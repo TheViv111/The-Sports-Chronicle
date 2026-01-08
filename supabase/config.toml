@@ -2,3 +2,15 @@ project_id = "whgjiirmcbsiqhjzgldy"
 
 [functions.send-contact-email]
 verify_jwt = false
+
+[functions.create-translation-jobs]
+verify_jwt = true
+
+[functions.translate-chunk]
+verify_jwt = true
+
+[functions.reassemble-translations]
+verify_jwt = true
+
+[functions.retry-failed-translations]
+verify_jwt = true

@@ -17,19 +17,19 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
   const sizeClasses = {
     sm: {
       container: "w-16 h-16",
-      logo: "w-10 h-10",
+      logo: "w-full h-full",
       progress: "w-24",
       text: "text-[10px]"
     },
     md: {
       container: "w-32 h-32 md:w-40 md:h-40",
-      logo: "w-20 h-20 md:w-28 md:h-28",
+      logo: "w-full h-full",
       progress: "w-48",
       text: "text-sm"
     },
     lg: {
       container: "w-48 h-48 md:w-56 md:h-56",
-      logo: "w-32 h-32 md:w-40 md:h-40",
+      logo: "w-full h-full",
       progress: "w-64",
       text: "text-base"
     }
@@ -51,7 +51,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
             <img
               src="/favicon.png"
               alt="The Sports Chronicle"
-              className={cn("object-contain", currentSize.logo)}
+              className={cn("object-cover", currentSize.logo)}
             />
           </div>
         </div>
