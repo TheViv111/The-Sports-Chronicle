@@ -118,7 +118,16 @@ const AuthFormWrapper: React.FC<AuthFormWrapperProps> = ({
                     onClick={async () => {
                       try {
                         setLoading(true);
-                        await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
+                        const { error } = await supabase.auth.signInWithOAuth({
+                          provider: 'google',
+                          options: {
+                            redirectTo: window.location.origin
+                          }
+                        });
+                        if (error) throw error;
+                      } catch (err) {
+                        const message = err instanceof Error ? err.message : String(err);
+                        toast.error(message || t('auth.errorSignInWithGoogle'));
                       } finally {
                         setLoading(false);
                       }
@@ -188,7 +197,16 @@ const AuthFormWrapper: React.FC<AuthFormWrapperProps> = ({
                     onClick={async () => {
                       try {
                         setLoading(true);
-                        await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
+                        const { error } = await supabase.auth.signInWithOAuth({
+                          provider: 'google',
+                          options: {
+                            redirectTo: window.location.origin
+                          }
+                        });
+                        if (error) throw error;
+                      } catch (err) {
+                        const message = err instanceof Error ? err.message : String(err);
+                        toast.error(message || t('auth.errorSignInWithGoogle'));
                       } finally {
                         setLoading(false);
                       }
