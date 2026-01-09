@@ -1,4 +1,4 @@
-import aboutHeroImage from "@/assets/basketball-1.jpg";
+
 import shauryaGuptaNew from "@/assets/shaurya-gupta-new.jpg";
 import vivaanHandaNew from "@/assets/vivaan-handa-new.jpg";
 import shouryaGuptaNew from "@/assets/shourya-gupta-new.jpg";
@@ -17,7 +17,7 @@ const About = () => {
     <>
       <SEO
         title="About The Sports Chronicle - Our Team & Mission"
-        description="Meet The Sports Chronicle team dedicated to delivering expert sports analysis and tactical breakdowns. Learn our mission to provide comprehensive coverage of basketball and football techniques worldwide."
+        description="Meet The Sports Chronicle team dedicated to delivering expert tactical analysis and technical breakdowns. Learn our mission to provide in-depth understanding of basketball and football strategies."
         canonicalUrl="https://the-sports-chronicle.vercel.app/about"
         schemaType="Organization"
       />
@@ -33,21 +33,7 @@ const About = () => {
             </p>
           </div>
 
-          {/* Hero Image */}
-          <div className="mb-12 reveal-on-scroll scale-in">
-            <div className="w-full max-w-4xl mx-auto bg-gray-100 rounded-lg overflow-hidden">
-              <img
-                src={aboutHeroImage}
-                alt="Sports analysis and strategy visualization"
-                className="w-full h-auto max-h-[70vh] object-contain mx-auto"
-                width={1260}
-                height={540}
-                loading="eager"
-                decoding="async"
-                fetchPriority="high"
-              />
-            </div>
-          </div>
+
 
           {/* Content */}
           <div className="max-w-4xl mx-auto prose prose-lg">

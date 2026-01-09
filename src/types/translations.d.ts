@@ -4,11 +4,7 @@ declare module '*.json' {
   export default value;
 }
 
-// Type for our translation structure
-declare module '@/data/translations/*.json' {
-  const value: Record<string, any>;
-  export default value;
-}
+
 
 // Type for the translations object
 type TranslationObject = {

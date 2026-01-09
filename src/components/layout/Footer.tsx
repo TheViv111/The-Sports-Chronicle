@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Twitter, Youtube, Instagram } from "lucide-react";
+import { Youtube, Instagram, Mail } from "lucide-react";
 import { useTranslation } from "@/contexts/TranslationContext";
 
 const Footer = () => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
-  
+
   const sportsCategories = [
     { name: t("category.football"), path: "/blog?category=football" },
     { name: t("category.basketball"), path: "/blog?category=basketball" }
@@ -24,18 +24,20 @@ const Footer = () => {
               {t("footer.description")}
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
               <a href="https://www.youtube.com/@SportsChronicleBlog" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer"><Youtube className="h-5 w-5" /></a>
               <a
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:thesportschronicle@outlook.com"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -62,12 +64,12 @@ const Footer = () => {
               >
                 {t("footer.aboutUs")}
               </Link>
-               <Link
-                 to="/contact"
-                 className="text-muted-foreground hover:text-primary transition-colors text-sm"
-               >
-                 {t("footer.contact")}
-               </Link>
+              <Link
+                to="/contact"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm"
+              >
+                {t("footer.contact")}
+              </Link>
             </div>
           </div>
 
