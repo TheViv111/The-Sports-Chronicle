@@ -132,7 +132,7 @@ export default function RelatedPosts({ currentPost, category, limit = 3 }: Relat
           to the latest sports news and analysis. Stay updated with expert insights and comprehensive coverage.
         </p>
         <div className="flex flex-wrap gap-2 mt-3">
-          {['Basketball', 'Soccer', 'Swimming', 'Football', 'Tennis', 'Baseball'].map((sport) => (
+          {['Basketball', 'Football'].map((sport) => (
             <Link
               key={sport}
               to={`/blog/category/${sport.toLowerCase()}`}

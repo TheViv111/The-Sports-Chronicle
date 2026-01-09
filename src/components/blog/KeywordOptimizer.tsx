@@ -7,11 +7,7 @@ interface KeywordOptimizerProps {
 
 const sportsKeywords = {
   basketball: ['NBA', 'basketball', 'hoops', 'court', 'dribble', 'slam dunk', 'three-pointer', 'free throw', 'layup', 'rebound', 'assists', 'points', 'playoffs', 'championship', 'MVP', 'all-star', 'coach', 'team', 'defense', 'offense'],
-  soccer: ['soccer', 'football', 'goal', 'penalty', 'free kick', 'corner kick', 'offside', 'dribbling', 'passing', 'shooting', 'goalkeeper', 'defender', 'midfielder', 'forward', 'referee', 'yellow card', 'red card', 'extra time', 'World Cup', 'Premier League', 'Champions League'],
-  swimming: ['swimming', 'pool', 'lap', 'stroke', 'freestyle', 'backstroke', 'breaststroke', 'butterfly', 'medley', 'Olympics', 'championship', 'swimmer', 'coach', 'training', 'competition', 'record', 'gold medal', 'silver medal', 'bronze medal'],
-  football: ['football', 'NFL', 'touchdown', 'field goal', 'quarterback', 'running back', 'wide receiver', 'defense', 'offense', 'Super Bowl', 'playoffs', 'coach', 'team', 'helmet', 'pads', 'tackle', 'interception', 'fumble', 'kickoff', 'punt'],
-  tennis: ['tennis', 'serve', 'forehand', 'backhand', 'volley', 'smash', 'ace', 'break point', 'set', 'match', 'Wimbledon', 'US Open', 'French Open', 'Australian Open', 'Grand Slam', 'racket', 'net', 'court', 'umpire', 'line judge'],
-  baseball: ['baseball', 'MLB', 'pitch', 'hit', 'home run', 'strikeout', 'base', 'inning', 'diamond', 'field', 'bat', 'glove', 'catcher', 'pitcher', 'batter', 'runner', 'World Series', 'All-Star Game', 'coach', 'team']
+  football: ['soccer', 'football', 'goal', 'penalty', 'free kick', 'corner kick', 'offside', 'dribbling', 'passing', 'shooting', 'goalkeeper', 'defender', 'midfielder', 'forward', 'referee', 'yellow card', 'red card', 'extra time', 'World Cup', 'Premier League', 'Champions League']
 };
 
 const generateKeywords = (post: Tables<'blog_posts'>): string[] => {

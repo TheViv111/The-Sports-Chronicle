@@ -119,7 +119,7 @@ const Contact = () => {
     <>
       <SEO
         title="Contact The Sports Chronicle - Get in Touch"
-        description="Contact The Sports Chronicle team with questions, feedback, or story ideas. We welcome your input on sports news coverage and analysis across basketball, soccer, swimming, and football."
+        description="Contact The Sports Chronicle team with questions, feedback, or story ideas. We welcome your input on sports news coverage and analysis across basketball and football."
         canonicalUrl="https://the-sports-chronicle.vercel.app/contact"
         schemaType="ContactPage"
       />

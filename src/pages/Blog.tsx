@@ -68,7 +68,7 @@ const Blog = () => {
     <>
       <SEO
         title="Sports Chronicle Blog - Latest Sports News & Analysis"
-        description="The Sports Chronicle Blog: Expert sports analysis, training guides, and latest news covering basketball, soccer, swimming, football and more sports worldwide."
+        description="The Sports Chronicle Blog: Expert sports analysis, training guides, and latest news covering basketball and football worldwide."
         canonicalUrl="https://the-sports-chronicle.vercel.app/blog"
         schemaType="WebPage"
       />
