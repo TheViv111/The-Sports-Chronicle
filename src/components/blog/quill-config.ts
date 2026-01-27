@@ -44,10 +44,14 @@ export const modules = {
           quill.formatLine(range.index - patternLength, 1, 'list', 'ordered');
 
           // Apply custom start number using counter-set style
-          // list-0 is the counter name for level 0 ordered lists in Quill
+          // list-0 is the counter name for level 0, list-1 for level 1, etc.
           setTimeout(() => {
+            const [line] = quill.getLine(range.index - patternLength);
+            const indent = line.formats().indent || 0;
+            const counterName = `list-${indent}`;
+
             // We set the counter to value - 1 because increment happens before display
-            quill.formatLine(range.index - patternLength, 1, 'list-start', `list-0 ${value - 1}`);
+            quill.formatLine(range.index - patternLength, 1, 'list-start', `${counterName} ${value - 1}`);
           }, 0);
 
           return false; // Prevent default space

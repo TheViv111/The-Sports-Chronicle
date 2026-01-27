@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import 'quill/dist/quill.snow.css';
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import KeywordOptimizer from "@/components/blog/KeywordOptimizer";
 import { supabase } from "@/integrations/supabase/client";
@@ -35,7 +36,7 @@ const BlogPost = () => {
         .eq('slug', slug)
         .single();
       if (error) throw error;
-      
+
       // Ensure translations are properly parsed if they come as string
       if (data?.translations && typeof data.translations === 'string') {
         try {
@@ -44,7 +45,7 @@ const BlogPost = () => {
           console.error('Error parsing translations:', e);
         }
       }
-      
+
       return data;
     },
     enabled: !!slug,
@@ -186,16 +187,18 @@ const BlogPost = () => {
 
           {/* Content */}
           <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-heading prose-a:text-primary hover:prose-a:text-primary/80 prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-blockquote:text-muted-foreground prose-blockquote:border-primary">
-            <div 
-              className="space-y-6"
-              dangerouslySetInnerHTML={{ 
-                __html: translatedPost.content || "No content available." 
-              }} 
-            />
+            <div className="ql-snow">
+              <div
+                className="ql-editor space-y-6 !p-0 !min-h-0"
+                dangerouslySetInnerHTML={{
+                  __html: translatedPost.content || "No content available."
+                }}
+              />
+            </div>
           </div>
         </article>
 
-        
+
         {/* Author Bio */}
         {author && (
           <div className="container mx-auto px-4 max-w-4xl mb-12">
@@ -217,7 +220,7 @@ const BlogPost = () => {
           />
         </div>
 
-              </div>
+      </div>
     </>
   );
 };

@@ -1,35 +1,47 @@
-/* Editor Container */
-.quill-editor-container .ql-container {
-  min-height: 300px;
+/* Base styles for both Editor and Reader View */
+.ql-container {
+  font-family: inherit;
   font-size: 16px;
   line-height: 1.6;
+  background-color: transparent;
+  color: hsl(var(--foreground));
+}
+
+.ql-editor {
+  font-family: inherit;
+  color: hsl(var(--foreground)) !important;
+  padding: 0;
+}
+
+/* Admin Editor Specific Styles */
+.quill-editor-container .ql-container {
+  min-height: 300px;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  font-family: inherit;
   background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
 }
 
 .quill-editor-container .ql-editor {
   min-height: 300px;
-  font-family: inherit;
   padding: 12px 15px;
-  color: hsl(var(--foreground)) !important;
 }
 
-/* Make inserted media responsive */
-.quill-editor-container .ql-editor img,
-.quill-editor-container .ql-editor .ql-video {
+/* Make inserted media responsive and centered */
+.ql-editor img,
+.ql-editor .ql-video {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 1rem 0;
+  margin: 2rem auto;
+  /* Centered with vertical spacing */
+  border-radius: 0.5rem;
 }
 
-.quill-editor-container .ql-editor .ql-video {
+.ql-editor .ql-video {
   aspect-ratio: 16 / 9;
   width: 100%;
-  max-height: 450px;
+  max-height: 500px;
 }
 
 /* Toolbar Styles */
@@ -157,20 +169,44 @@
 }
 
 /* List styles - restored to Quill's internal marker system for better sub-bullet support */
+.quill-editor-container .ql-editor ul,
+.quill-editor-container .ql-editor ol,
 .ql-editor ul,
 .ql-editor ol {
   list-style-type: none !important;
-  /* Hide native markers to prevent doubling */
   padding-left: 0 !important;
 }
 
+/* Force hide markers on lists and list items to prevent doubling from external themes like Tailwind Prose */
+.quill-editor-container .ql-editor li,
+.ql-editor li {
+  list-style-type: none !important;
+}
+
+/* Support Quill's indentation classes in the editor */
+/* These rules ensure indentation is visible while leaving marker drawing to Quill */
+.ql-editor li.ql-indent-1 {
+  padding-left: 2em !important;
+}
+
+.ql-editor li.ql-indent-2 {
+  padding-left: 4em !important;
+}
+
+.ql-editor li.ql-indent-3 {
+  padding-left: 6em !important;
+}
+
+.ql-editor li.ql-indent-4 {
+  padding-left: 8em !important;
+}
+
 /* Ensure the custom markers are visible and styled consistently with the text */
+/* We only want to ensure no double-bullets, we let Quill handle the marker content */
 .ql-editor li::before {
   color: inherit;
   font-family: inherit;
-  display: inline-block;
-  white-space: nowrap;
-  text-align: right;
+  /* Don't set width/margin here, let Quill's snow.css defaults handle it */
 }
 
 /* Paragraph and heading spacing */
