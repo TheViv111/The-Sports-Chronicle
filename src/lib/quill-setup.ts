@@ -26,15 +26,18 @@ export function setupQuill() {
   Quill.register(Underline, true);
   Quill.register(Video, true);
 
-  // Add support for the 'value' attribute on list items to allow custom numbering
+  // Add support for custom list start numbers via counter-set
   try {
     const Parchment = Quill.import('parchment') as any;
-    const Attribute = Parchment.Attribute || (Quill.import('attributors/attribute/value') as any);
-    const ListItemValue = new Attribute('value', 'value', {
+
+    // Use the dynamic constructor for style attributors
+    const Style = Parchment.StyleAttributor || (Quill.import('attributors/style/size') as any).constructor;
+
+    const ListStart = new Style('list-start', 'counter-set', {
       scope: Parchment.Scope.BLOCK
     });
-    Quill.register(ListItemValue, true);
+    Quill.register(ListStart, true);
   } catch (e) {
-    console.error('Failed to register Quill list value attribute:', e);
+    console.error('Failed to register Quill list-start style:', e);
   }
 }

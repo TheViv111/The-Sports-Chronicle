@@ -43,11 +43,11 @@ export const modules = {
           // Apply bullet/list format
           quill.formatLine(range.index - patternLength, 1, 'list', 'ordered');
 
-          // Apply the start value
-          // Note: In Quill 2.0, 'list' format handles indent and type. 
-          // We need to set the value attribute on the resulting LI.
+          // Apply custom start number using counter-set style
+          // list-0 is the counter name for level 0 ordered lists in Quill
           setTimeout(() => {
-            quill.formatLine(range.index - patternLength, 1, 'value', value);
+            // We set the counter to value - 1 because increment happens before display
+            quill.formatLine(range.index - patternLength, 1, 'list-start', `list-0 ${value - 1}`);
           }, 0);
 
           return false; // Prevent default space

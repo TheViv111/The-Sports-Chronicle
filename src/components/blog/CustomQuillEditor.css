@@ -156,68 +156,21 @@
   font-family: monospace !important;
 }
 
-/* List styles - updated to support custom numbering, sub-bullets, and prevent double bullets */
+/* List styles - restored to Quill's internal marker system for better sub-bullet support */
 .ql-editor ul,
 .ql-editor ol {
-  padding-left: 1.5em;
-  /* Space for native markers */
+  list-style-type: none !important;
+  /* Hide native markers to prevent doubling */
+  padding-left: 0 !important;
 }
 
-.ql-editor ul>li,
-.ql-editor ol>li {
-  list-style-position: outside;
-  margin-left: 0;
-}
-
-.ql-editor ul>li {
-  list-style-type: disc;
-}
-
-.ql-editor ol>li {
-  list-style-type: decimal;
-}
-
-/* Support Quill's indentation classes for nested lists */
-.ql-editor li.ql-indent-1 {
-  padding-left: 2em;
-}
-
-.ql-editor li.ql-indent-2 {
-  padding-left: 4em;
-}
-
-.ql-editor li.ql-indent-3 {
-  padding-left: 6em;
-}
-
-.ql-editor li.ql-indent-4 {
-  padding-left: 8em;
-}
-
-.ql-editor li.ql-indent-5 {
-  padding-left: 10em;
-}
-
-.ql-editor li.ql-indent-6 {
-  padding-left: 12em;
-}
-
-.ql-editor li.ql-indent-7 {
-  padding-left: 14em;
-}
-
-.ql-editor li.ql-indent-8 {
-  padding-left: 16em;
-}
-
-/* Hide Quill's custom markers because they don't support the 'value' attribute for custom start numbers */
-.ql-editor ol>li::before,
-.ql-editor ul>li::before,
+/* Ensure the custom markers are visible and styled consistently with the text */
 .ql-editor li::before {
-  content: none !important;
-  display: none !important;
-  width: 0 !important;
-  margin-left: 0 !important;
+  color: inherit;
+  font-family: inherit;
+  display: inline-block;
+  white-space: nowrap;
+  text-align: right;
 }
 
 /* Paragraph and heading spacing */
