@@ -148,15 +148,34 @@
   font-family: monospace !important;
 }
 
-/* List styles */
+/* List styles - updated to support custom numbering and prevent double bullets */
+.ql-editor ul,
+.ql-editor ol {
+  padding-left: 0;
+}
+
+.ql-editor ul>li,
+.ql-editor ol>li {
+  list-style-position: outside;
+  margin-left: 2em;
+}
+
 .ql-editor ul>li {
-  list-style-type: none;
-  margin-left: 1.5em;
+  list-style-type: disc;
 }
 
 .ql-editor ol>li {
-  list-style-type: none;
-  margin-left: 1.5em;
+  list-style-type: decimal;
+}
+
+/* Hide Quill's custom markers because they don't support the 'value' attribute for custom start numbers */
+.ql-editor ol>li::before,
+.ql-editor ul>li::before,
+.ql-editor li::before {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  margin-left: 0 !important;
 }
 
 /* Paragraph and heading spacing */

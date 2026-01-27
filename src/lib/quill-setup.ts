@@ -1,28 +1,38 @@
 import { Quill } from 'react-quill-new';
 
 export function setupQuill() {
-  const Font = Quill.import('formats/font');
+  const Font = Quill.import('formats/font') as any;
   Font.whitelist = [
     'inter', 'playfair-display', 'arial', 'sans-serif', 'serif', 'monospace'
   ]; // Add desired fonts
   Quill.register(Font, true);
 
-  const Size = Quill.import('attributors/style/size');
+  const Size = Quill.import('attributors/style/size') as any;
   Size.whitelist = [
     '8px', '9px', '10px', '11px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '48px', '64px', '72px'
   ]; // Add desired sizes
   Quill.register(Size, true);
 
-  const FontAttributor = Quill.import('attributors/class/font');
+  const FontAttributor = Quill.import('attributors/class/font') as any;
   Quill.register(FontAttributor, true);
 
-  const Bold = Quill.import('formats/bold');
-  const Italic = Quill.import('formats/italic');
-  const Underline = Quill.import('formats/underline');
+  const Bold = Quill.import('formats/bold') as any;
+  const Italic = Quill.import('formats/italic') as any;
+  const Underline = Quill.import('formats/underline') as any;
 
   Quill.register(Bold, true);
   Quill.register(Italic, true);
   Quill.register(Underline, true);
 
-  // Add more custom registrations here if needed
+  // Add support for the 'value' attribute on list items to allow custom numbering
+  try {
+    const Parchment = Quill.import('parchment') as any;
+    const Attribute = Parchment.Attribute || (Quill.import('attributors/attribute/value') as any);
+    const ListItemValue = new Attribute('value', 'value', {
+      scope: Parchment.Scope.BLOCK
+    });
+    Quill.register(ListItemValue, true);
+  } catch (e) {
+    console.error('Failed to register Quill list value attribute:', e);
+  }
 }
