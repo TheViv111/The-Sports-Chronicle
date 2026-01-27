@@ -97,13 +97,13 @@ const Admin = () => {
       },
       {
         id: 'shourya-gupta',
-        full_name: 'Shourya Gupta',
+        full_name: 'Shourya Gupta (Reporter)',
         username: 'shourya',
         email: 'shourya'
       },
       {
         id: 'shaurya-gupta',
-        full_name: 'Shaurya Gupta',
+        full_name: 'Shaurya Gupta (Photographer)',
         username: 'shaurya2',
         email: 'shaurya2'
       }
@@ -271,10 +271,10 @@ const Admin = () => {
             created_at: data.created_at || post.created_at,
             updated_at: data.updated_at || post.updated_at,
             translations: data.translations || post.translations,
-            // Preserve existing status fields
-            status: post.status,
-            published_at: post.published_at,
-            scheduled_publish_at: post.scheduled_publish_at
+            // Use updated values from the database response
+            status: data.status,
+            published_at: data.published_at,
+            scheduled_publish_at: data.scheduled_publish_at
           }
           : post
       ));
@@ -310,7 +310,7 @@ const Admin = () => {
 
       if (error) throw error;
 
-      setPosts(posts.filter(post => post.id && post.id === postId));
+      setPosts(posts.filter(post => post.id && post.id !== postId));
       toast.success(t("admin.postDeleted"), {
         description: t("admin.postDeletedSuccess"),
       });

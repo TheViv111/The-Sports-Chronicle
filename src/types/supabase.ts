@@ -29,6 +29,9 @@ export type Database = {
           title: string;
           updated_at: string;
           translations: Json | null;
+          status: string;
+          published_at: string | null;
+          scheduled_publish_at: string | null;
         };
         Insert: {
           id?: string;
@@ -44,6 +47,9 @@ export type Database = {
           title: string;
           updated_at?: string;
           translations?: Json | null;
+          status?: string;
+          published_at?: string | null;
+          scheduled_publish_at?: string | null;
         };
         Update: {
           id?: string;
@@ -59,6 +65,9 @@ export type Database = {
           title?: string;
           updated_at?: string;
           translations?: Json | null;
+          status?: string;
+          published_at?: string | null;
+          scheduled_publish_at?: string | null;
         };
         Relationships: [];
       };
