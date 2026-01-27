@@ -150,12 +150,12 @@
 
 /* List styles */
 .ql-editor ul>li {
-  list-style-type: disc;
+  list-style-type: none;
   margin-left: 1.5em;
 }
 
 .ql-editor ol>li {
-  list-style-type: decimal;
+  list-style-type: none;
   margin-left: 1.5em;
 }
 
