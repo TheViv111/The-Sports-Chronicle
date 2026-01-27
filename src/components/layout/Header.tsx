@@ -40,13 +40,19 @@ const Header = () => {
       try {
         const { data: { user } } = await supabase.auth.getUser();
         const userEmail = user?.email?.toLowerCase();
-        const allowedEmails = [
-          'vivaan.handa@pathwaysschool.in',
-          'shouryag258@gmail.com',
-          'ved.mehta@pathwaysschool.in',
-          'shaurya.gupta@pathwaysschool.in'
-        ];
-        setIsAdmin(userEmail ? allowedEmails.includes(userEmail) : false);
+
+        if (!userEmail) {
+          setIsAdmin(false);
+          return;
+        }
+
+        const { data: roleData } = await supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_email', userEmail)
+          .maybeSingle();
+
+        setIsAdmin(roleData?.role === 'admin');
       } catch (error) {
         setIsAdmin(false);
       }

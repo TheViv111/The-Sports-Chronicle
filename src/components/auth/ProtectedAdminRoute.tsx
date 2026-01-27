@@ -5,13 +5,6 @@ import LoadingScreen from '@/components/common/LoadingScreen';
 import { toast } from 'sonner';
 import { useTranslation } from '@/contexts/TranslationContext';
 
-const ALLOWED_EMAILS = [
-  'vivaan.handa@pathwaysschool.in',
-  'shouryag258@gmail.com',
-  'ved.mehta@pathwaysschool.in',
-  'shaurya.gupta@pathwaysschool.in'
-];
-
 export const ProtectedAdminRoute = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -21,16 +14,30 @@ export const ProtectedAdminRoute = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const { data: { session }, error } = await supabase.auth.getSession();
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
 
-        if (error || !session) {
+        if (sessionError || !session) {
           setIsAuthorized(false);
           setIsLoading(false);
           return;
         }
 
         const userEmail = session.user?.email?.toLowerCase();
-        if (!userEmail || !ALLOWED_EMAILS.includes(userEmail)) {
+        if (!userEmail) {
+          setIsAuthorized(false);
+          setIsLoading(false);
+          return;
+        }
+
+        // Check if user has admin role in the database
+        const { data: roleData, error: roleError } = await supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_email', userEmail)
+          .maybeSingle();
+
+        if (roleError || !roleData || roleData.role !== 'admin') {
+          console.warn('Unauthorized access attempt:', userEmail);
           toast.error(t('admin.unauthorized'));
           setIsAuthorized(false);
           setIsLoading(false);
