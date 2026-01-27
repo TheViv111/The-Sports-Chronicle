@@ -17,11 +17,19 @@
   color: hsl(var(--foreground)) !important;
 }
 
-/* Make inserted images responsive */
-.quill-editor-container .ql-editor img {
+/* Make inserted media responsive */
+.quill-editor-container .ql-editor img,
+.quill-editor-container .ql-editor .ql-video {
   max-width: 100%;
   height: auto;
-  display: inline-block;
+  display: block;
+  margin: 1rem 0;
+}
+
+.quill-editor-container .ql-editor .ql-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-height: 450px;
 }
 
 /* Toolbar Styles */
@@ -148,16 +156,17 @@
   font-family: monospace !important;
 }
 
-/* List styles - updated to support custom numbering and prevent double bullets */
+/* List styles - updated to support custom numbering, sub-bullets, and prevent double bullets */
 .ql-editor ul,
 .ql-editor ol {
-  padding-left: 0;
+  padding-left: 1.5em;
+  /* Space for native markers */
 }
 
 .ql-editor ul>li,
 .ql-editor ol>li {
   list-style-position: outside;
-  margin-left: 2em;
+  margin-left: 0;
 }
 
 .ql-editor ul>li {
@@ -166,6 +175,39 @@
 
 .ql-editor ol>li {
   list-style-type: decimal;
+}
+
+/* Support Quill's indentation classes for nested lists */
+.ql-editor li.ql-indent-1 {
+  padding-left: 2em;
+}
+
+.ql-editor li.ql-indent-2 {
+  padding-left: 4em;
+}
+
+.ql-editor li.ql-indent-3 {
+  padding-left: 6em;
+}
+
+.ql-editor li.ql-indent-4 {
+  padding-left: 8em;
+}
+
+.ql-editor li.ql-indent-5 {
+  padding-left: 10em;
+}
+
+.ql-editor li.ql-indent-6 {
+  padding-left: 12em;
+}
+
+.ql-editor li.ql-indent-7 {
+  padding-left: 14em;
+}
+
+.ql-editor li.ql-indent-8 {
+  padding-left: 16em;
 }
 
 /* Hide Quill's custom markers because they don't support the 'value' attribute for custom start numbers */

@@ -19,10 +19,12 @@ export function setupQuill() {
   const Bold = Quill.import('formats/bold') as any;
   const Italic = Quill.import('formats/italic') as any;
   const Underline = Quill.import('formats/underline') as any;
+  const Video = Quill.import('formats/video') as any;
 
   Quill.register(Bold, true);
   Quill.register(Italic, true);
   Quill.register(Underline, true);
+  Quill.register(Video, true);
 
   // Add support for the 'value' attribute on list items to allow custom numbering
   try {
