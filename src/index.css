@@ -642,6 +642,26 @@ dark .prose ol>li::marker {
     @apply block text-lg font-semibold mt-6 mb-2;
     /* Make it block, larger, and add vertical spacing */
   }
+
+  /* Theme-safe color overrides for pasted/hardcoded styles */
+  .prose [style*="color: rgb(255, 255, 255)"],
+  .prose [style*="color: white"],
+  .prose [style*="color:#fff"],
+  .prose [style*="color: #ffffff"],
+  .prose [style*="color: rgb(0, 0, 0)"],
+  .prose [style*="color: black"],
+  .prose [style*="color:#000"],
+  .prose [style*="color: #000000"],
+  .ql-editor [style*="color: rgb(255, 255, 255)"],
+  .ql-editor [style*="color: white"],
+  .ql-editor [style*="color:#fff"],
+  .ql-editor [style*="color: #ffffff"],
+  .ql-editor [style*="color: rgb(0, 0, 0)"],
+  .ql-editor [style*="color: black"],
+  .ql-editor [style*="color:#000"],
+  .ql-editor [style*="color: #000000"] {
+    color: inherit !important;
+  }
 }
 
 /* Prevent horizontal scrollbar caused by carousel transitions */
