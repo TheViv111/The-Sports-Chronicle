@@ -69,8 +69,6 @@ const BlogCard = memo(function BlogCard({ post, className, style }: BlogCardProp
             {displayPost.title}
           </CardTitle>
           <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
-            <span>{displayPost.date}</span>
-            <span>•</span>
             <span>{displayPost.readTime}</span>
           </div>
         </CardHeader>

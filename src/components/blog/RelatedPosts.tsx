@@ -81,7 +81,7 @@ export default function RelatedPosts({ currentPost, category, limit = 3 }: Relat
         <TrendingUp className="h-5 w-5 text-primary" />
         <h2 className="text-2xl font-bold">Related Articles</h2>
       </div>
-      
+
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {relatedPosts.map((post) => (
           <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
@@ -90,12 +90,9 @@ export default function RelatedPosts({ currentPost, category, limit = 3 }: Relat
                 <Badge variant={post.category?.toLowerCase() as any} className="text-xs">
                   {post.category}
                 </Badge>
-                <span className="text-xs text-muted-foreground">
-                  {new Date(post.created_at).toLocaleDateString()}
-                </span>
               </div>
               <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
-                <Link 
+                <Link
                   to={`/blog/${post.slug}`}
                   className="line-clamp-2"
                   title={post.title}
@@ -104,13 +101,13 @@ export default function RelatedPosts({ currentPost, category, limit = 3 }: Relat
                 </Link>
               </CardTitle>
             </CardHeader>
-            
+
             <CardContent className="pt-0">
               <p className="text-sm text-muted-foreground line-clamp-3 mb-3">
                 {post.excerpt}
               </p>
-              
-              <Link 
+
+              <Link
                 to={`/blog/${post.slug}`}
                 className="inline-flex items-center gap-1 text-sm text-primary hover:underline group-hover:gap-2 transition-all"
               >
@@ -121,11 +118,11 @@ export default function RelatedPosts({ currentPost, category, limit = 3 }: Relat
           </Card>
         ))}
       </div>
-      
+
       {/* SEO: Internal linking section */}
       <div className="mt-8 p-4 bg-muted/30 rounded-lg">
         <p className="text-sm text-muted-foreground mb-2">
-          <strong>Explore more sports content:</strong> Our sports blog covers everything from 
+          <strong>Explore more sports content:</strong> Our sports blog covers everything from
           <Link to={`/blog/category/${currentPost.category?.toLowerCase()}`} className="text-primary hover:underline mx-1">
             {currentPost.category}
           </Link>

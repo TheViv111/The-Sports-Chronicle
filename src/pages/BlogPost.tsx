@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
+import { ArrowLeft, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import 'quill/dist/quill.snow.css';
@@ -78,14 +78,7 @@ const BlogPost = () => {
   console.log('Translated post title:', translatedPost.title);
   console.log('Original post title:', post?.title);
 
-  // Simple date formatting
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    });
-  };
+
 
   // Get author bio if available
   const author = (post as any).author_id ? getAuthorById((post as any).author_id) : null;
@@ -161,10 +154,6 @@ const BlogPost = () => {
           {/* Meta info */}
           <div className="flex flex-wrap gap-4 mb-8 text-sm text-muted-foreground">
             <div className="flex items-center">
-              <Calendar className="mr-2 h-4 w-4" />
-              {formatDate(post.created_at)}
-            </div>
-            <div className="flex items-center">
               <Clock className="mr-2 h-4 w-4" />
               {post.read_time || "5 min read"}
             </div>
@@ -196,15 +185,17 @@ const BlogPost = () => {
               />
             </div>
           </div>
-        </article>
+        </article >
 
 
         {/* Author Bio */}
-        {author && (
-          <div className="container mx-auto px-4 max-w-4xl mb-12">
-            <AuthorBio author={author} />
-          </div>
-        )}
+        {
+          author && (
+            <div className="container mx-auto px-4 max-w-4xl mb-12">
+              <AuthorBio author={author} />
+            </div>
+          )
+        }
 
         {/* Comments Section */}
         <div className="container mx-auto px-4 max-w-4xl mb-12">
@@ -220,7 +211,7 @@ const BlogPost = () => {
           />
         </div>
 
-      </div>
+      </div >
     </>
   );
 };
