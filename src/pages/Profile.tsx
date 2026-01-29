@@ -231,7 +231,7 @@ const Profile = () => {
           schemaType="ProfilePage"
         />
         <div className="min-h-screen flex items-center justify-center py-12 px-4">
-          <Card className="w-full max-w-md reveal-on-scroll">
+          <Card className="w-full max-w-md">
             <CardHeader className="text-center">
               <CardTitle className="font-heading text-2xl font-bold">
                 {t("profile.noProfileTitle")}
@@ -302,7 +302,7 @@ const Profile = () => {
       />
       <div className="min-h-screen py-12">
         <div className="container mx-auto px-4 max-w-3xl">
-          <Card className="reveal-on-scroll">
+          <Card>
             <CardHeader className="text-center">
               <Button
                 variant="ghost"
@@ -359,7 +359,7 @@ const Profile = () => {
                   <div className="flex justify-end gap-2">
                     {isEditing ? (
                       <>
-                        <Button type="button" variant="outline" onClick={() => { setIsEditing(false); form.reset(profile || undefined); }} className="btn-hover-lift">
+                        <Button type="button" variant="outline" onClick={() => { setIsEditing(false); form.reset({ display_name: profile?.display_name || "", bio: profile?.bio || "" }); }} className="btn-hover-lift">
                           {t("common.cancel")}
                         </Button>
                         <Button type="submit" disabled={updateProfileMutation.isPending || !form.formState.isDirty} className="btn-hover-lift">
