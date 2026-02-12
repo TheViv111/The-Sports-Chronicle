@@ -10,22 +10,12 @@ import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
 import { useTheme } from "@/components/common/ThemeProvider";
 
-// Lazy load heavy components - defer Spline significantly
-const Spline = lazy(() => import("@splinetool/react-spline"));
+// Lazy load heavy components
 const ParticleBackground = lazy(() => import("@/components/common/ParticleBackground"));
 
 // Static hero section - no floating animations to prevent CLS
-const HeroSection = memo(({ t, isDarkMode, showSpline }: { t: (key: string) => string; isDarkMode: boolean; showSpline: boolean }) => (
+const HeroSection = memo(({ t }: { t: (key: string) => string }) => (
   <section className="relative py-12 sm:py-16 md:py-20 text-center px-4 min-h-[500px] overflow-hidden">
-    {/* Spline 3D Background - Only visible in dark mode, heavily deferred */}
-    {isDarkMode && showSpline && (
-      <div className="absolute inset-0 -z-10 opacity-60">
-        <Suspense fallback={null}>
-          <Spline scene="https://prod.spline.design/6d4ygri42yVcAJ02/scene.splinecode" />
-        </Suspense>
-      </div>
-    )}
-
     <div className="relative z-10 max-w-7xl mx-auto">
       {/* Static content - no animations that cause layout shifts */}
       <p className="text-muted-foreground uppercase text-xs sm:text-sm tracking-wide mb-3 sm:mb-4">
@@ -104,8 +94,7 @@ const Home = () => {
   // Determine if dark mode is active
   const isDarkMode = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-  // Defer Spline loading significantly - 5 seconds after page load
-  const [showSpline, setShowSpline] = useState(false);
+  // Defer heavy particle effects significantly - only after page is fully loaded
   const [showParticles, setShowParticles] = useState(false);
 
   // Load blog posts after first contentful paint - use startTransition for non-urgent updates
@@ -139,22 +128,15 @@ const Home = () => {
 
     loadWhenReady();
 
-    // Defer heavy 3D/particle effects significantly - only after page is fully loaded
+    // Defer heavy particle effects significantly - only after page is fully loaded
     const deferredEffectsTimer = setTimeout(() => {
       if (document.readyState === 'complete') {
         if ('requestIdleCallback' in window) {
           (window as any).requestIdleCallback(() => {
             setShowParticles(true);
-            // Spline is even more deferred - only load on desktop and after significant delay
-            if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-              setTimeout(() => setShowSpline(true), 5000);
-            }
           }, { timeout: 5000 });
         } else {
           setShowParticles(true);
-          if (typeof window !== 'undefined' && (window as any).innerWidth >= 768) {
-            setTimeout(() => setShowSpline(true), 5000);
-          }
         }
       } else {
         window.addEventListener('load', () => {
@@ -162,15 +144,9 @@ const Home = () => {
             if ('requestIdleCallback' in window) {
               (window as any).requestIdleCallback(() => {
                 setShowParticles(true);
-                if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-                  setTimeout(() => setShowSpline(true), 5000);
-                }
               }, { timeout: 5000 });
             } else {
               setShowParticles(true);
-              if (typeof window !== 'undefined' && (window as any).innerWidth >= 768) {
-                setTimeout(() => setShowSpline(true), 5000);
-              }
             }
           }, 2000);
         }, { once: true });
@@ -222,7 +198,7 @@ const Home = () => {
           </Suspense>
         )}
 
-        <HeroSection t={t} isDarkMode={isDarkMode} showSpline={showSpline} />
+        <HeroSection t={t} />
         <BlogSection t={t} latestPosts={latestPosts} loadingLatestPosts={loadingLatestPosts} />
       </div>
     </>
