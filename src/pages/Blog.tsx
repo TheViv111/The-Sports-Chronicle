@@ -10,7 +10,6 @@ import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-uti
 import useScrollReveal from "@/hooks/useScrollReveal";
 import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
-import { getTranslationWithEnglishFallback } from "@/utils/translations";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -107,11 +106,6 @@ const Blog = () => {
             </div>
           </div>
 
-          <div className="mb-8 reveal-on-scroll">
-            <p className="text-muted-foreground">
-              {filteredPosts.length} {filteredPosts.length === 1 ? t("blog.articleFound") : t("blog.articlesFound")}
-            </p>
-          </div>
 
           {/* Blog Grid */}
           {loading ? (
