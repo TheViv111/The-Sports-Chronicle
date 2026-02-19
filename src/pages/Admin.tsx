@@ -231,8 +231,8 @@ const Admin = () => {
     const readTime = calculateReadTime(values.content);
 
     try {
-      // Update existing post
-      const { data, error } = await supabase
+      // Update existing post (no .select().single() — avoids RLS SELECT policy issues)
+      const { error } = await supabase
         .from('blog_posts')
         .update({
           title: values.title,
@@ -249,32 +249,32 @@ const Admin = () => {
           scheduled_publish_at: values.scheduled_publish_at || null,
           updated_at: now
         })
-        .eq('id', editingPost.id!)
-        .select()
-        .single();
+        .eq('id', editingPost.id!);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase update error details:', JSON.stringify(error));
+        throw error;
+      }
 
+      // Update local state with the values we just submitted
+      const updatedPublishedAt = values.status === 'published' && editingPost.status !== 'published' ? now : editingPost.published_at;
       setPosts(posts.map(post =>
         post.id === editingPost.id
           ? {
-            ...post, // Keep existing post as base
-            title: data.title || post.title,
-            excerpt: data.excerpt || post.excerpt,
-            content: data.content || post.content,
-            category: data.category || post.category,
-            cover_image: data.cover_image || post.cover_image,
-            slug: data.slug || post.slug,
-            read_time: data.read_time || post.read_time,
-            author: data.author || post.author,
-            language: data.language || post.language,
-            created_at: data.created_at || post.created_at,
-            updated_at: data.updated_at || post.updated_at,
-            translations: data.translations || post.translations,
-            // Use updated values from the database response
-            status: data.status,
-            published_at: data.published_at,
-            scheduled_publish_at: data.scheduled_publish_at
+            ...post,
+            title: values.title,
+            excerpt: values.excerpt,
+            content: values.content,
+            category: values.category,
+            cover_image: values.cover_image || null,
+            slug,
+            read_time: readTime,
+            author: values.author_id,
+            language: 'en',
+            updated_at: now,
+            status: values.status,
+            published_at: updatedPublishedAt,
+            scheduled_publish_at: values.scheduled_publish_at || null
           }
           : post
       ));
@@ -283,10 +283,11 @@ const Admin = () => {
         description: t("admin.postUpdatedSuccess"),
       });
       setActiveTab("posts");
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating post:', error);
+      const detail = error?.message || error?.details || 'Unknown error';
       toast.error(t("admin.errorUpdatingPost"), {
-        description: t("admin.failedToUpdatePost"),
+        description: `${t("admin.failedToUpdatePost")} (${detail})`,
       });
     }
   };
