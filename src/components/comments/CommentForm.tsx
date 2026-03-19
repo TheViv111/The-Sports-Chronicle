@@ -38,12 +38,8 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
 
   const insertMutation = useMutation({
     mutationFn: async () => {
-      if (!session?.user) {
-        throw new Error("Not authenticated");
-      }
-
       const authorName = profile?.display_name ||
-        session.user.email?.split("@")[0] ||
+        session?.user?.email?.split("@")[0] ||
         t("comments.anonymousUser") ||
         "Anonymous";
 
@@ -53,7 +49,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
           post_id: postId,
           content: content.trim(),
           author_name: authorName,
-          user_id: session.user.id,
+          user_id: session?.user?.id || null,
           created_at: new Date().toISOString(),
           is_edited: false
         } as any)
@@ -91,17 +87,6 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
       toast.success(t("comments.postSuccess") || "Comment posted successfully!");
     },
   });
-
-  if (!session?.user) {
-    return (
-      <div className="rounded-lg border p-4">
-        <p className="text-muted-foreground mb-3">{t("comments.signInRequired")}</p>
-        <Button onClick={() => (window.location.href = "/signin")}>
-          {t("auth.signIn") || "Sign In"}
-        </Button>
-      </div>
-    );
-  }
 
   return (
     <form

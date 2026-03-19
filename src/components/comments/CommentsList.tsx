@@ -147,11 +147,6 @@ const CommentsList: React.FC<CommentsListProps> = ({ postId }) => {
         const displayName = comment.profiles?.display_name || comment.author_name || t("comments.anonymousUser") || "Anonymous";
         const avatarUrl = comment.profiles?.avatar_url || undefined;
         const profileLink = comment.user_id ? `/users/${comment.user_id}` : undefined;
-        const isEdited = comment.is_edited || 
-                        (comment.updated_at && 
-                         comment.updated_at !== comment.created_at);
-        const formattedDate = new Date(comment.created_at).toLocaleString();
-
         return (
           <div key={comment.id} className="group relative">
             <div className="flex gap-3">
@@ -183,14 +178,6 @@ const CommentsList: React.FC<CommentsListProps> = ({ postId }) => {
                   ) : (
                     <span className="font-medium">{displayName}</span>
                   )}
-                  <span className="text-xs text-muted-foreground">
-                    {formattedDate}
-                    {isEdited && (
-                      <span className="ml-1 text-xs text-muted-foreground italic">
-                        (edited)
-                      </span>
-                    )}
-                  </span>
                 </div>
                 <p className="mt-1 text-sm leading-relaxed">{comment.content}</p>
               </div>
