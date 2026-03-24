@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "../contexts/TranslationContext";
@@ -33,9 +34,8 @@ type BlogPostFormValues = {
 // Admin component handles its own tab state
 
 const Admin = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const queryClient = useQueryClient();
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
-  const [loadingPosts, setLoadingPosts] = useState(false);
   const navigate = useNavigate();
   const { tab: tabParam = 'posts' } = useParams<{ tab?: AdminTab }>();
   const location = useLocation();
@@ -51,65 +51,32 @@ const Admin = () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
       setLoading(false);
-
-      if (session?.user) {
-        loadPosts();
-      }
     };
 
     checkUser();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
-      if (session?.user) {
-        loadPosts();
-      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  useEffect(() => {
-    loadPosts();
-    fetchAuthors();
-  }, []);
-
   const fetchAuthors = async () => {
     // Hardcoded team members from About page
     const teamMembers = [
-      {
-        id: 'team',
-        full_name: 'The Sports Chronicle Team',
-        username: 'team',
-        email: 'team'
-      },
-      {
-        id: 'vivaan-handa',
-        full_name: 'Vivaan Handa',
-        username: 'vivaan',
-        email: 'vivaan'
-      },
-      {
-        id: 'ved-mehta',
-        full_name: 'Ved Mehta',
-        username: 'ved',
-        email: 'ved'
-      },
-      {
-        id: 'shourya-gupta',
-        full_name: 'Shourya Gupta (Reporter)',
-        username: 'shourya',
-        email: 'shourya'
-      },
-      {
-        id: 'shaurya-gupta',
-        full_name: 'Shaurya Gupta (Photographer)',
-        username: 'shaurya2',
-        email: 'shaurya2'
-      }
+      { id: 'team', full_name: 'The Sports Chronicle Team', username: 'team', email: 'team' },
+      { id: 'vivaan-handa', full_name: 'Vivaan Handa', username: 'vivaan', email: 'vivaan' },
+      { id: 'ved-mehta', full_name: 'Ved Mehta', username: 'ved', email: 'ved' },
+      { id: 'shourya-gupta', full_name: 'Shourya Gupta (Reporter)', username: 'shourya', email: 'shourya' },
+      { id: 'shaurya-gupta', full_name: 'Shaurya Gupta (Photographer)', username: 'shaurya2', email: 'shaurya2' }
     ];
     setAuthors(teamMembers);
   };
+
+  useEffect(() => {
+    fetchAuthors();
+  }, []);
 
   useEffect(() => {
     if (location.pathname.includes('edit/')) {
@@ -136,9 +103,9 @@ const Admin = () => {
     };
   }, [activeTab]);
 
-  const loadPosts = async () => {
-    setLoadingPosts(true);
-    try {
+  const { data: posts = [], isLoading: loadingPosts } = useQuery({
+    queryKey: ['adminPosts'],
+    queryFn: async () => {
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
@@ -146,8 +113,7 @@ const Admin = () => {
 
       if (error) throw error;
 
-      // Ensure all posts have required fields matching BlogPost interface
-      const processedData = (data || []).map((post: any) => ({
+      return (data || []).map((post: any) => ({
         id: post.id,
         title: post.title || '',
         excerpt: post.excerpt || '',
@@ -161,24 +127,15 @@ const Admin = () => {
         created_at: post.created_at || null,
         updated_at: post.updated_at || null,
         translations: post.translations || null,
-        // Add compatibility fields for the UI
         author_id: post.author || null,
-        status: post.status || 'published', // Use status from database or default to 'published'
+        status: post.status || 'published',
         published_at: post.published_at || null,
         scheduled_publish_at: post.scheduled_publish_at || null,
         word_count: undefined
       }));
-
-      setPosts(processedData);
-    } catch (error) {
-      console.error('Error loading posts:', error);
-      toast.error(t("admin.errorLoadingPosts"), {
-        description: t("admin.failedToLoadPosts"),
-      });
-    } finally {
-      setLoadingPosts(false);
-    }
-  };
+    },
+    enabled: !!user
+  });
 
   const handleCreatePost = async (values: BlogPostFormValues) => {
     const slug = values.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -210,7 +167,7 @@ const Admin = () => {
       toast.success(t("admin.postCreated"), {
         description: t("admin.postCreatedSuccess"),
       });
-      loadPosts();
+      queryClient.invalidateQueries({ queryKey: ['adminPosts'] });
       setActiveTab('posts');
       navigate('/admin/posts');
     } catch (error) {
@@ -256,28 +213,7 @@ const Admin = () => {
         throw error;
       }
 
-      // Update local state with the values we just submitted
-      const updatedPublishedAt = values.status === 'published' && editingPost.status !== 'published' ? now : editingPost.published_at;
-      setPosts(posts.map(post =>
-        post.id === editingPost.id
-          ? {
-            ...post,
-            title: values.title,
-            excerpt: values.excerpt,
-            content: values.content,
-            category: values.category,
-            cover_image: values.cover_image || null,
-            slug,
-            read_time: readTime,
-            author: values.author_id,
-            language: 'en',
-            updated_at: now,
-            status: values.status,
-            published_at: updatedPublishedAt,
-            scheduled_publish_at: values.scheduled_publish_at || null
-          }
-          : post
-      ));
+      queryClient.invalidateQueries({ queryKey: ['adminPosts'] });
       setEditingPost(null);
       toast.success(t("admin.postUpdated"), {
         description: t("admin.postUpdatedSuccess"),
@@ -311,7 +247,7 @@ const Admin = () => {
 
       if (error) throw error;
 
-      setPosts(posts.filter(post => post.id && post.id !== postId));
+      queryClient.invalidateQueries({ queryKey: ['adminPosts'] });
       toast.success(t("admin.postDeleted"), {
         description: t("admin.postDeletedSuccess"),
       });

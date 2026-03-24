@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect, Suspense, lazy, memo, startTransition } from "react";
+import { useState, useEffect, Suspense, lazy, memo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -86,8 +87,6 @@ const BlogSection = memo(({ t, latestPosts, loadingLatestPosts }: {
 BlogSection.displayName = 'BlogSection';
 
 const Home = () => {
-  const [latestPosts, setLatestPosts] = useState<BlogPostWithDisplay[]>([]);
-  const [loadingLatestPosts, setLoadingLatestPosts] = useState(true);
   const { t, currentLanguage } = useTranslation();
   const { theme } = useTheme();
 
@@ -97,37 +96,7 @@ const Home = () => {
   // Defer heavy particle effects significantly - only after page is fully loaded
   const [showParticles, setShowParticles] = useState(false);
 
-  // Load blog posts after first contentful paint - use startTransition for non-urgent updates
   useEffect(() => {
-    // Immediate FCP - just render the static content first
-    const loadDataDeferred = () => {
-      startTransition(() => {
-        loadLatestPosts();
-      });
-    };
-
-    // Use requestIdleCallback for data loading to not block main thread
-    // Wait for page to be interactive
-    const loadWhenReady = () => {
-      if (document.readyState === 'complete') {
-        if ('requestIdleCallback' in window) {
-          (window as any).requestIdleCallback(loadDataDeferred, { timeout: 1000 });
-        } else {
-          setTimeout(loadDataDeferred, 100);
-        }
-      } else {
-        window.addEventListener('load', () => {
-          if ('requestIdleCallback' in window) {
-            (window as any).requestIdleCallback(loadDataDeferred, { timeout: 1000 });
-          } else {
-            setTimeout(loadDataDeferred, 100);
-          }
-        }, { once: true });
-      }
-    };
-
-    loadWhenReady();
-
     // Defer heavy particle effects significantly - only after page is fully loaded
     const deferredEffectsTimer = setTimeout(() => {
       if (document.readyState === 'complete') {
@@ -154,11 +123,11 @@ const Home = () => {
     }, 2000);
 
     return () => clearTimeout(deferredEffectsTimer);
-  }, [currentLanguage]);
+  }, []);
 
-  const loadLatestPosts = useCallback(async () => {
-    try {
-      // Only select required fields to reduce payload
+  const { data: latestPosts = [], isLoading: loadingLatestPosts } = useQuery({
+    queryKey: ['latestPosts', currentLanguage],
+    queryFn: async () => {
       const now = new Date().toISOString();
       const { data, error } = await supabase
         .from('blog_posts')
@@ -168,16 +137,9 @@ const Home = () => {
         .limit(6);
 
       if (error) throw error;
-
-      startTransition(() => {
-        setLatestPosts(data ? data.map((p) => transformBlogPostForDisplay(p as any, currentLanguage)) : []);
-        setLoadingLatestPosts(false);
-      });
-    } catch (error) {
-      console.error('Error loading latest posts:', error);
-      setLoadingLatestPosts(false);
+      return data ? data.map((p) => transformBlogPostForDisplay(p as any, currentLanguage)) : [];
     }
-  }, [currentLanguage]);
+  });
 
   return (
     <>
