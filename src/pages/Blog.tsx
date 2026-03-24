@@ -29,9 +29,11 @@ const Blog = () => {
   const loadPosts = async () => {
     try {
       setLoading(true);
+      const now = new Date().toISOString();
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
+        .or(`status.eq.published,and(status.eq.scheduled,scheduled_publish_at.lte.${now})`)
         .order('created_at', { ascending: false });
 
       if (error) throw error;

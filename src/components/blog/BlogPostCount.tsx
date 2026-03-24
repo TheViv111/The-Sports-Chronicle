@@ -9,9 +9,11 @@ export function BlogPostCount() {
   useEffect(() => {
     const fetchPostCount = async () => {
       try {
+        const now = new Date().toISOString();
         const { count, error } = await supabase
           .from('blog_posts')
-          .select('*', { count: 'exact', head: true });
+          .select('*', { count: 'exact', head: true })
+          .or(`status.eq.published,and(status.eq.scheduled,scheduled_publish_at.lte.${now})`);
 
         if (error) throw error;
         

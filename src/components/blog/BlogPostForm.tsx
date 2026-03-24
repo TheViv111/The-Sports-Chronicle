@@ -80,7 +80,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
       content: initialData?.content || "",
       cover_image: (initialData as any)?.cover_image || "",
       author_id: (initialData as any)?.author || "",
-      status: (initialData as any)?.status || "draft",
+      status: (initialData as any)?.status || "published",
       scheduled_publish_at: (initialData as any)?.scheduled_publish_at || null,
     },
   });
@@ -105,7 +105,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
         content: "",
         cover_image: "",
         author_id: "",
-        status: "draft",
+        status: "published",
         scheduled_publish_at: null,
       });
     }
@@ -313,7 +313,6 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="draft">Draft</SelectItem>
                       <SelectItem value="published">Published</SelectItem>
                       <SelectItem value="scheduled">Scheduled</SelectItem>
                     </SelectContent>

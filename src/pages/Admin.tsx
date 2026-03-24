@@ -5,7 +5,7 @@ import { useTranslation } from "../contexts/TranslationContext";
 import { BlogPost } from "../types/supabase";
 import { formatBlogPostDate } from "../lib/blog-utils";
 import { toast } from "sonner";
-import { Trash2, Edit, Home, Eye, EyeOff } from "lucide-react";
+import { Trash2, Edit, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
@@ -163,7 +163,7 @@ const Admin = () => {
         translations: post.translations || null,
         // Add compatibility fields for the UI
         author_id: post.author || null,
-        status: post.status || 'draft', // Use status from database or default to 'draft'
+        status: post.status || 'published', // Use status from database or default to 'published'
         published_at: post.published_at || null,
         scheduled_publish_at: post.scheduled_publish_at || null,
         word_count: undefined
@@ -323,64 +323,6 @@ const Admin = () => {
     }
   };
 
-  const handlePublishPost = async (postId: string) => {
-    try {
-      const now = new Date().toISOString();
-      const { error } = await supabase
-        .from('blog_posts')
-        .update({
-          status: 'published',
-          published_at: now,
-          updated_at: now
-        })
-        .eq('id', postId);
-
-      if (error) throw error;
-
-      setPosts(posts.map(post =>
-        post.id === postId
-          ? { ...post, status: 'published', published_at: now }
-          : post
-      ));
-      toast.success("Post published successfully", {
-        description: "The post is now live on the site.",
-      });
-    } catch (error) {
-      console.error('Error publishing post:', error);
-      toast.error("Error publishing post", {
-        description: "Failed to publish the post.",
-      });
-    }
-  };
-
-  const handleUnpublishPost = async (postId: string) => {
-    try {
-      const { error } = await supabase
-        .from('blog_posts')
-        .update({
-          status: 'draft',
-          published_at: null,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', postId);
-
-      if (error) throw error;
-
-      setPosts(posts.map(post =>
-        post.id === postId
-          ? { ...post, status: 'draft', published_at: null }
-          : post
-      ));
-      toast.success("Post unpublished successfully", {
-        description: "The post is now a draft.",
-      });
-    } catch (error) {
-      console.error('Error unpublishing post:', error);
-      toast.error("Error unpublishing post", {
-        description: "Failed to unpublish the post.",
-      });
-    }
-  };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -508,13 +450,6 @@ const Admin = () => {
                         Published
                       </Button>
                       <Button
-                        variant={filterStatus === 'draft' ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => setFilterStatus('draft')}
-                      >
-                        Drafts
-                      </Button>
-                      <Button
                         variant={filterStatus === 'scheduled' ? 'default' : 'outline'}
                         size="sm"
                         onClick={() => setFilterStatus('scheduled')}
@@ -560,25 +495,6 @@ const Admin = () => {
                                 </div>
                               </div>
                               <div className="flex gap-2 ml-4">
-                                {post.status === 'draft' ? (
-                                  <Button
-                                    size="sm"
-                                    variant="default"
-                                    onClick={() => post.id && handlePublishPost(post.id)}
-                                    title="Publish post"
-                                  >
-                                    <Eye className="h-4 w-4" />
-                                  </Button>
-                                ) : (
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    onClick={() => post.id && handleUnpublishPost(post.id)}
-                                    title="Unpublish post"
-                                  >
-                                    <EyeOff className="h-4 w-4" />
-                                  </Button>
-                                )}
                                 <Button
                                   size="sm"
                                   variant="outline"

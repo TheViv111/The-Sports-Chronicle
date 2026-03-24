@@ -159,9 +159,11 @@ const Home = () => {
   const loadLatestPosts = useCallback(async () => {
     try {
       // Only select required fields to reduce payload
+      const now = new Date().toISOString();
       const { data, error } = await supabase
         .from('blog_posts')
         .select('id, title, slug, excerpt, cover_image, category, created_at, translations')
+        .or(`status.eq.published,and(status.eq.scheduled,scheduled_publish_at.lte.${now})`)
         .order('created_at', { ascending: false })
         .limit(6);
 

@@ -21,6 +21,7 @@ VALUES
   ('vivaan.handa@pathwaysschool.in', 'admin'),
   ('shouryag258@gmail.com', 'admin'),
   ('ved.mehta@pathwaysschool.in', 'admin'),
+  ('vedmehta1304@gmail.com', 'admin'),
   ('shaurya.gupta@pathwaysschool.in', 'admin')
 ON CONFLICT (user_email) DO NOTHING;
 

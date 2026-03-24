@@ -19,11 +19,12 @@ const Sitemap = () => {
         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
         const oneWeekAgoStr = oneWeekAgo.toISOString().split('T')[0];
 
+        const now = new Date().toISOString();
         // Fetch blog posts from Supabase
         const { data: posts, error } = await supabase
           .from('blog_posts')
           .select('slug, updated_at, cover_image, title, excerpt')
-          .eq('published', true)
+          .or(`status.eq.published,and(status.eq.scheduled,scheduled_publish_at.lte.${now})`)
           .order('created_at', { ascending: false });
 
         if (error) throw error;

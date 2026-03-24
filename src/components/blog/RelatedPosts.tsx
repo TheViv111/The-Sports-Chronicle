@@ -19,11 +19,12 @@ export default function RelatedPosts({ currentPost, category, limit = 3 }: Relat
   useEffect(() => {
     const fetchRelatedPosts = async () => {
       try {
+        const now = new Date().toISOString();
         // Fetch posts from the same category, excluding current post
         const { data, error } = await supabase
           .from('blog_posts')
           .select('*')
-          .eq('published', true)
+          .or(`status.eq.published,and(status.eq.scheduled,scheduled_publish_at.lte.${now})`)
           .eq('category', category || currentPost.category)
           .neq('id', currentPost.id)
           .order('created_at', { ascending: false })
@@ -36,7 +37,7 @@ export default function RelatedPosts({ currentPost, category, limit = 3 }: Relat
           const { data: additionalPosts, error: additionalError } = await supabase
             .from('blog_posts')
             .select('*')
-            .eq('published', true)
+            .or(`status.eq.published,and(status.eq.scheduled,scheduled_publish_at.lte.${now})`)
             .neq('id', currentPost.id)
             .neq('category', category || currentPost.category)
             .order('created_at', { ascending: false })
