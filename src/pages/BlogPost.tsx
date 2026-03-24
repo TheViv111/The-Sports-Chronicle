@@ -90,7 +90,7 @@ const BlogPost = () => {
         description={translatedPost.excerpt || `Read ${translatedPost.title || 'this article'} on The Sports Chronicle. Latest sports news and expert analysis.`}
         canonicalUrl={`https://the-sports-chronicle.vercel.app/blog/${post.slug}`}
         schemaType="Article"
-        imageUrl={post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"}
+        imageUrl={post.cover_image || ""}
         articleData={{
           headline: translatedPost.title || 'Blog Post',
           datePublished: post.created_at,
@@ -99,7 +99,7 @@ const BlogPost = () => {
             "@type": "Person",
             name: author?.name || post.author || "The Sports Chronicle"
           },
-          image: post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg",
+          image: post.cover_image || "",
           category: translatedPost.category || undefined,
           keywords: `${translatedPost.category}, sports news, ${translatedPost.title}, the sports chronicle, sports analysis`,
           articleSection: translatedPost.category || undefined

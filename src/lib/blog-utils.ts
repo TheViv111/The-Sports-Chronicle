@@ -50,6 +50,6 @@ export const transformBlogPostForDisplay = (
     displayCategory: translatedCategory,
     date: formatBlogPostDate(post.created_at),
     readTime: post.read_time || "5 min read",
-    image: post.cover_image || "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg"
+    image: post.cover_image || ""
   };
 };
