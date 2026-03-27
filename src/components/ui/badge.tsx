@@ -15,14 +15,14 @@ const badgeVariants = cva(
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
         ghost: "border-transparent bg-transparent text-muted-foreground hover:bg-accent", // Added ghost variant
-        // Custom category variants
-        basketball: "border-transparent bg-orange-500 text-white",
-    soccer: "border-transparent bg-green-600 text-white",
-    swimming: "border-transparent bg-blue-500 text-white",
-    tennis: "border-transparent bg-yellow-500 text-white",
-    baseball: "border-transparent bg-red-500 text-white",
-    athletics: "border-transparent bg-purple-500 text-white",
-    football: "border-transparent bg-blue-700 text-white",
+        // Custom category variants — all unified to brand orange
+        basketball: "border-transparent bg-brand text-white hover:bg-brand/90",
+        soccer:     "border-transparent bg-brand text-white hover:bg-brand/90",
+        swimming:   "border-transparent bg-brand text-white hover:bg-brand/90",
+        tennis:     "border-transparent bg-brand text-white hover:bg-brand/90",
+        baseball:   "border-transparent bg-brand text-white hover:bg-brand/90",
+        athletics:  "border-transparent bg-brand text-white hover:bg-brand/90",
+        football:   "border-transparent bg-brand text-white hover:bg-brand/90",
       },
     },
     defaultVariants: {

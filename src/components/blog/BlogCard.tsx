@@ -26,7 +26,7 @@ const BlogCard = memo(function BlogCard({ post, className, style }: BlogCardProp
   return (
     <Link to={`/blog/${displayPost.slug}`} className="block group">
       <Card
-        className={`overflow-hidden h-full flex flex-col transition-shadow duration-300 hover:shadow-xl ${className || ''}`}
+        className={`overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:[box-shadow:0_8px_30px_-4px_hsl(var(--brand)/0.25)] ${className || ''}`}
         style={{
           ...style,
           contain: 'layout style',
@@ -86,7 +86,7 @@ const BlogCard = memo(function BlogCard({ post, className, style }: BlogCardProp
           >
             {badgeLabel}
           </Badge>
-          <span className="text-xs text-muted-foreground transition-transform duration-200 group-hover:translate-x-1">
+          <span className="text-xs text-muted-foreground group-hover:text-brand transition-all duration-200 group-hover:translate-x-1">
             →
           </span>
         </CardFooter>

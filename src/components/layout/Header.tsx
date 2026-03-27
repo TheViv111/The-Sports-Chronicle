@@ -27,6 +27,13 @@ const Header = () => {
   const isMobile = useIsMobile(); // Use the hook to determine if it's a mobile device
 
   const [isAdmin, setIsAdmin] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setHasScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     // Defer admin check to not block initial render
@@ -108,12 +115,16 @@ const Header = () => {
     <header className={
       isAdminPage
         ? "fixed top-0 left-0 right-0 z-50 w-full border-b bg-background shadow-sm"
-        : "fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-[90%] lg:w-[80%] rounded-2xl border border-white/20 dark:border-white/10 bg-background/50 backdrop-blur-xl shadow-lg supports-[backdrop-filter]:bg-background/40"
+        : `fixed top-3 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[95%] sm:w-[90%] lg:w-[80%] rounded-2xl border border-white/20 dark:border-white/10 shadow-lg ${
+            hasScrolled
+              ? "bg-background/80 backdrop-blur-2xl shadow-xl"
+              : "bg-background/50 backdrop-blur-xl supports-[backdrop-filter]:bg-background/40"
+          }`
     }>
       <div className={
         isAdminPage
           ? "w-full flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6 lg:px-8"
-          : "max-w-7xl mx-auto flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4 lg:px-6"
+          : `max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-4 lg:px-6 transition-all duration-300 ${hasScrolled ? "h-12" : "h-14 sm:h-16"}`
       }>
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-1.5 sm:space-x-2 lg:space-x-3">
@@ -140,12 +151,18 @@ const Header = () => {
             <Link
               key={item.name}
               to={item.path}
-              className={`text-sm font-medium transition-colors hover:text-primary ${isActivePage(item.path)
-                ? "text-primary"
-                : "text-muted-foreground"
-                }`}
+              className={`text-sm font-medium transition-colors relative group/navlink ${
+                isActivePage(item.path)
+                  ? "text-brand"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
             >
               {item.name}
+              <span
+                className={`absolute -bottom-0.5 left-0 h-[2px] bg-brand transition-[width] duration-300 ease-out ${
+                  isActivePage(item.path) ? "w-full" : "w-0 group-hover/navlink:w-full"
+                }`}
+              />
             </Link>
           ))}
         </nav>
@@ -278,7 +295,7 @@ const Header = () => {
                     <Link
                       key={item.name}
                       to={item.path}
-                      className={`text-base sm:text-lg font-medium transition-colors hover:text-primary py-1 ${isActivePage(item.path) ? "text-primary" : "text-foreground"}`}
+                      className={`text-base sm:text-lg font-medium transition-colors hover:text-brand py-1 ${isActivePage(item.path) ? "text-brand" : "text-foreground"}`}
                       onClick={() => { }}
                     >
                       {item.name}

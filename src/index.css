@@ -55,6 +55,9 @@
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
     --shadow-hover: 0 20px 40px -15px hsl(var(--primary) / 0.4);
 
+    /* Brand accent — orange #F97316 */
+    --brand: 24 95% 53%;
+
     /* Performance optimizations */
     --transition-fast: 150ms ease-out;
     --transition-medium: 300ms ease-out;
@@ -86,6 +89,9 @@
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 0 0% 98%;
+
+    /* Brand accent — slightly brighter in dark mode */
+    --brand: 24 95% 60%;
   }
 }
 
@@ -905,5 +911,33 @@ main {
   .animated-bg {
     will-change: background-position;
     contain: layout style paint;
+  }
+
+  /* ── Floodlight ambient pulse (mobile fallback) ─────────────────────────── */
+  @keyframes ambientPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.05); }
+  }
+
+  /* ── Carousel scroll reveal ─────────────────────────────────────────────── */
+  .carousel-item-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation-fill-mode: forwards;
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-delay: var(--stagger-delay, 0ms);
+  }
+
+  .carousel-item-reveal.fade-in-up.visible {
+    animation-name: fadeInUp;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-item-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
   }
 }

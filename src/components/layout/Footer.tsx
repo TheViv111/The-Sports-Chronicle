@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { Youtube, Instagram, Mail } from "lucide-react";
 import { useTranslation } from "@/contexts/TranslationContext";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const Footer = () => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
+
+  useScrollReveal('.footer-reveal', { threshold: 0.15, animationType: 'fadeInUp', staggerDelay: 80 });
 
   const sportsCategories = [
     { name: t("category.football"), path: "/blog?category=football" },
@@ -24,17 +27,17 @@ const Footer = () => {
               {t("footer.description")}
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.youtube.com/@SportsChronicleBlog" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer"><Youtube className="h-5 w-5" /></a>
+              <a href="https://www.youtube.com/@SportsChronicleBlog" className="text-muted-foreground hover:text-brand hover:scale-[1.15] transition-all duration-200 inline-flex" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube className="h-5 w-5" /></a>
               <a
                 href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-brand hover:scale-[1.15] transition-all duration-200 inline-flex"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
                 href="mailto:thesportschronicle@outlook.com"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-brand hover:scale-[1.15] transition-all duration-200 inline-flex"
                 aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
@@ -43,30 +46,30 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
+          <div className="space-y-4 footer-reveal reveal-on-scroll">
             <h3 className="font-heading text-lg font-semibold">{t("footer.quickLinks")}</h3>
             <div className="flex flex-col space-y-2">
               <Link
                 to="/"
-                className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                className="text-muted-foreground hover:text-brand transition-colors text-sm"
               >
                 {t("nav.home")}
               </Link>
               <Link
                 to="/blog"
-                className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                className="text-muted-foreground hover:text-brand transition-colors text-sm"
               >
                 {t("footer.allPosts")}
               </Link>
               <Link
                 to="/about"
-                className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                className="text-muted-foreground hover:text-brand transition-colors text-sm"
               >
                 {t("footer.aboutUs")}
               </Link>
               <Link
                 to="/contact"
-                className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                className="text-muted-foreground hover:text-brand transition-colors text-sm"
               >
                 {t("footer.contact")}
               </Link>
@@ -74,14 +77,14 @@ const Footer = () => {
           </div>
 
           {/* Categories */}
-          <div className="space-y-4">
+          <div className="space-y-4 footer-reveal reveal-on-scroll">
             <h3 className="font-heading text-lg font-semibold">{t("footer.categories")}</h3>
             <div className="flex flex-col space-y-2">
               {sportsCategories.map((category, index) => (
                 <Link
                   key={index}
                   to={category.path}
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                  className="text-muted-foreground hover:text-brand transition-colors text-sm"
                 >
                   {category.name}
                 </Link>

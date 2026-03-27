@@ -12,11 +12,17 @@ import { SEO } from "@/components/common/SEO";
 import { useTheme } from "@/components/common/ThemeProvider";
 
 // Lazy load heavy components
-const ParticleBackground = lazy(() => import("@/components/common/ParticleBackground"));
+const FloodlightBackground = lazy(() => import("@/components/common/FloodlightBackground"));
 
-// Static hero section - no floating animations to prevent CLS
-const HeroSection = memo(({ t }: { t: (key: string) => string }) => (
+const HeroSection = memo(({ t, showParticles, isDarkMode }: { t: (key: string) => string, showParticles: boolean, isDarkMode: boolean }) => (
   <section className="relative py-12 sm:py-16 md:py-20 text-center px-4 min-h-[500px] overflow-hidden">
+    {/* Floodlight Background - confined exactly to the hero bounds */}
+    {showParticles && isDarkMode && (
+      <Suspense fallback={null}>
+        <FloodlightBackground imagePath="/images/green-turf.png" />
+      </Suspense>
+    )}
+    
     <div className="relative z-10 max-w-7xl mx-auto">
       {/* Static content - no animations that cause layout shifts */}
       <p className="text-muted-foreground uppercase text-xs sm:text-sm tracking-wide mb-3 sm:mb-4">
@@ -32,12 +38,17 @@ const HeroSection = memo(({ t }: { t: (key: string) => string }) => (
       </p>
 
       <Link to="/blog">
-        <Button size="lg" className="group">
+        <Button size="lg" variant="brand" className="group">
           {t("hero.readLatest")}
           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Button>
       </Link>
     </div>
+    {/* Gradient fade — bridges hero dark background to carousel section */}
+    <div
+      className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+      style={{ background: "linear-gradient(to bottom, transparent 0%, hsl(var(--secondary) / 0.2) 100%)" }}
+    />
   </section>
 ));
 
@@ -74,7 +85,7 @@ const BlogSection = memo(({ t, latestPosts, loadingLatestPosts }: {
     {!loadingLatestPosts && latestPosts.length > 0 && (
       <div className="text-center mt-12">
         <Link to="/blog">
-          <Button variant="outline" size="lg" className="group">
+          <Button variant="outline" size="lg" className="group hover:border-brand hover:text-brand">
             {t("latestPosts.viewAll")}
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
@@ -85,6 +96,34 @@ const BlogSection = memo(({ t, latestPosts, loadingLatestPosts }: {
 ));
 
 BlogSection.displayName = 'BlogSection';
+
+const PhilosophySection = memo(({ showParticles, isDarkMode }: { showParticles: boolean, isDarkMode: boolean }) => (
+  <section className="relative py-24 sm:py-32 px-4 border-t border-border/10 overflow-hidden min-h-[600px]">
+    {/* Floodlight Background - confined exactly to the philosophy section bounds with a distinct image */}
+    {showParticles && isDarkMode && (
+      <Suspense fallback={null}>
+        <FloodlightBackground imagePath="/images/tactics-board.png" />
+      </Suspense>
+    )}
+
+    <div className="relative z-10 max-w-4xl mx-auto text-center">
+      <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-8 drop-shadow-lg">
+        We don't just report the scores.<br className="hidden sm:block" />
+        <span className="text-brand">We dissect the game.</span>
+      </h2>
+      
+      <div className="prose prose-lg dark:prose-invert mx-auto text-muted-foreground leading-relaxed drop-shadow-md">
+        <p>
+          At <strong>The Sports Chronicle</strong>, we believe that true athletic excellence is found in the details—the intricate coordination of a 4-3-3 setup, the geometry of the half-space, and the biomechanics of a perfect breakaway. 
+        </p>
+        <p className="mt-6">
+          Founded by <strong>Vivaan Handa</strong>—an IB student, Box-to-Box Midfielder, and hybrid athlete—this platform was built to bridge the gap between raw athleticism and high-level tactical analysis. From the chemistry of athletic recovery to predicting expected goals (xG), we bring you the science, the tactics, and the relentless passion behind the sports we love.
+        </p>
+      </div>
+    </div>
+  </section>
+));
+PhilosophySection.displayName = 'PhilosophySection';
 
 const Home = () => {
   const { t, currentLanguage } = useTranslation();
@@ -149,20 +188,9 @@ const Home = () => {
         schemaType="WebSite"
         canonicalUrl="https://the-sports-chronicle.vercel.app/"
       />
-      <div className="min-h-screen relative">
-        {/* Particle Background - heavily deferred */}
-        {showParticles && !isDarkMode && (
-          <Suspense fallback={null}>
-            <ParticleBackground
-              enabled={true}
-              particleCount={20}
-              speed={0.2}
-              colors={['rgba(59, 130, 246, 0.08)', 'rgba(147, 51, 234, 0.08)', 'rgba(236, 72, 153, 0.08)']}
-            />
-          </Suspense>
-        )}
-
-        <HeroSection t={t} />
+      <div className="min-h-screen relative overflow-hidden">
+        <HeroSection t={t} showParticles={showParticles} isDarkMode={isDarkMode} />
+        <PhilosophySection showParticles={showParticles} isDarkMode={isDarkMode} />
         <BlogSection t={t} latestPosts={latestPosts} loadingLatestPosts={loadingLatestPosts} />
       </div>
     </>

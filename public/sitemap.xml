@@ -3,55 +3,175 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://the-sports-chronicle.vercel.app/</loc>
-    <lastmod>2026-01-08</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://the-sports-chronicle.vercel.app/blog</loc>
-    <lastmod>2026-01-08</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://the-sports-chronicle.vercel.app/about</loc>
-    <lastmod>2026-01-08</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://the-sports-chronicle.vercel.app/contact</loc>
-    <lastmod>2026-01-08</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://the-sports-chronicle.vercel.app/blog/art-of-penalty-kick-psychology-technique</loc>
-    <lastmod>2026-01-07</lastmod>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-point-guard-the-coach-on-the-floor</loc>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://the-sports-chronicle.vercel.app/blog/how-to-improve-your-basketball-skills-a-comprehensive-guide</loc>
-    <lastmod>2026-01-02</lastmod>
+    <loc>https://the-sports-chronicle.vercel.app/blog/zone-defence-in-basketball-why-it-still-confuses-everyone</loc>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://the-sports-chronicle.vercel.app/blog/basketball-positions-and-their-roles-a-complete-guide</loc>
-    <lastmod>2026-01-02</lastmod>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-pick-and-roll-basketball-s-most-unstoppable-play</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/pressing-traps-how-modern-teams-hunt-in-packs</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/high-press-vs-low-block-football-s-greatest-tactical-debate</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-sweeper-keeper-the-goalkeeper-who-plays-outfield</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/gegenpressing-win-the-ball-back-before-you-even-lose-it</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-false-9-football-s-greatest-illusion</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/beyond-the-numbers-a-deep-dive-into-basketball-positions</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/balance-and-gravity-mastering-the-4-out-1-in-motion</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/total-spacing-the-power-of-the-5-out-offense</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/tactical-geometry-the-rise-of-the-inverted-fullback</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/physics-on-the-pitch-the-science-behind-the-perfect-free-kick</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/data-over-drills-how-ai-is-revolutionizing-football-scouting</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-engine-room-mastering-the-box-to-box-role-in-modern-football</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/how-to-use-headers-in-football-a-guide</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-art-of-shielding-owning-space</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-art-of-passing-the-thread-that-binds-the-game</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-4-2-3-1-the-modern-masterpiece-of-control</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/exploring-the-3-5-2-the-perfect-balance</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/mastering-the-4-3-3-the-blueprint-of-modern-football</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-art-of-the-first-touch-why-it-s-the-most-critical-skill-in-modern-football</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://the-sports-chronicle.vercel.app/blog/the-art-of-el-stico</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://the-sports-chronicle.vercel.app/blog/how-to-improve-dribbling-in-football-a-complete-guide</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://the-sports-chronicle.vercel.app/blog/the-cruyff-turn-simple-but-effective</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

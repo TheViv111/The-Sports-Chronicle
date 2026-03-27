@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -83,8 +84,35 @@ const BlogPost = () => {
   // Get author bio if available
   const author = (post as any).author_id ? getAuthorById((post as any).author_id) : null;
 
+  // ── Reading progress bar ───────────────────────────────────────────────────
+  const [readProgress, setReadProgress] = useState(0);
+  const articleRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const article = articleRef.current;
+      if (!article) return;
+      const { top, height } = article.getBoundingClientRect();
+      const total = height - window.innerHeight;
+      setReadProgress(total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
+      {/* Reading progress bar — sits above the navbar */}
+      <div
+        className="fixed top-0 left-0 right-0 z-[60] h-[3px] bg-brand/20"
+        aria-hidden="true"
+      >
+        <div
+          className="h-full bg-brand transition-[width] duration-75 ease-out"
+          style={{ width: `${readProgress * 100}%` }}
+        />
+      </div>
+
       <SEO
         title={`${translatedPost.title || 'Blog Post'} | The Sports Chronicle`}
         description={translatedPost.excerpt || `Read ${translatedPost.title || 'this article'} on The Sports Chronicle. Latest sports news and expert analysis.`}
@@ -121,7 +149,7 @@ const BlogPost = () => {
         </div>
 
         {/* Article content */}
-        <article className="container mx-auto px-4 pb-12 max-w-4xl">
+        <article ref={articleRef} className="container mx-auto px-4 pb-12 max-w-4xl">
           {/* Title */}
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             {translatedPost.title || "Untitled Post"}

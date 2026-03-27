@@ -20,9 +20,9 @@ interface ParticleBackgroundProps {
 }
 
 const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
-  particleCount = 50,
-  speed = 0.5,
-  colors = ['rgba(59, 130, 246, 0.1)', 'rgba(147, 51, 234, 0.1)', 'rgba(236, 72, 153, 0.1)'],
+  particleCount = 90,
+  speed = 0.3,
+  colors = ['rgba(255, 255, 255, 0.6)'],
   className = '',
   enabled = true
 }) => {
@@ -91,10 +91,10 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       const dy = mouseRef.current.y - particle.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       
-      if (distance < 100) {
-        const force = (100 - distance) / 100;
-        particle.vx -= (dx / distance) * force * 0.02;
-        particle.vy -= (dy / distance) * force * 0.02;
+      if (distance < 120 && distance > 0) {
+        const force = (120 - distance) / 120;
+        particle.vx -= (dx / distance) * force * 0.04;
+        particle.vy -= (dy / distance) * force * 0.04;
       }
 
       // Damping
@@ -115,11 +115,11 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
             Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
           );
 
-          if (distance < 150) {
+          if (distance < 120) {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - distance / 150)})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

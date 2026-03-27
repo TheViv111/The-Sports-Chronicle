@@ -61,6 +61,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Brand accent colour — orange #F97316
+        brand: {
+          DEFAULT: "hsl(var(--brand))",
+          muted: "hsl(var(--brand) / 0.15)",
+        },
         // Category-specific colors
         basketball: "hsl(var(--basketball))",
         soccer: "hsl(var(--soccer))",

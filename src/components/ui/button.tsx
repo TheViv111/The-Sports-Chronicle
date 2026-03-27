@@ -73,6 +73,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-secondary-foreground/10 before:to-transparent before:-translate-x-full before:transition-transform before:duration-700 hover:before:translate-x-full",
         ghost: "hover:bg-accent hover:text-accent-foreground hover:shadow-md hover:-translate-y-0.5 active:scale-95 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-accent/20 before:to-transparent before:-translate-x-full before:transition-transform before:duration-700 hover:before:translate-x-full",
         link: "text-primary underline-offset-4 hover:underline hover:text-primary/80 active:scale-95 transition-all duration-200",
+        brand: "bg-brand text-white shadow-md hover:bg-brand/90 hover:shadow-xl hover:shadow-brand/30 hover:-translate-y-0.5 active:scale-95 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full before:transition-transform before:duration-700 hover:before:translate-x-full",
       },
       size: {
         default: "h-10 px-4 py-2",
