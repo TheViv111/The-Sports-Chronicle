@@ -5,6 +5,7 @@ import shouryaGuptaNew from "@/assets/shourya-gupta-new.jpg";
 import vedMehtaNew from "@/assets/ved-mehta-new.png";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { Card, CardContent } from "@/components/ui/card";
+import { TiltCard } from "@/components/common/TiltCard";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/common/SEO";
 
@@ -65,101 +66,109 @@ const About = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 staggered-grid">
-                  <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '0ms' } as React.CSSProperties}>
-                    <CardContent className="p-6 text-center">
-                      <img
-                        src={vivaanHandaNew}
-                        alt={t("about.team.editor.name")}
-                        className="w-24 h-24 mx-auto mb-4 rounded-full object-cover ring-2 ring-primary/20 transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:ring-primary group-hover:ring-4 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
-                        loading="lazy"
-                        decoding="async"
-                        width={96}
-                        height={96}
-                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/images/team/vivaan.svg"; }}
-                      />
-                      <h3 className="font-heading text-lg font-semibold mb-2">
-                        {t("about.team.editor.name")}
-                      </h3>
-                      <p className="text-primary text-sm font-medium mb-3">
-                        {t("about.team.editor.title")}
-                      </p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {t("about.team.editor.description")}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <TiltCard>
+                    <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 h-full reveal-on-scroll" style={{ '--stagger-delay': '0ms' } as React.CSSProperties}>
+                      <CardContent className="p-6 text-center">
+                        <img
+                          src={vivaanHandaNew}
+                          alt={t("about.team.editor.name")}
+                          className="w-24 h-24 mx-auto mb-4 rounded-full object-cover ring-2 ring-primary/20 transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:ring-primary group-hover:ring-4 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
+                          loading="lazy"
+                          decoding="async"
+                          width={96}
+                          height={96}
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/images/team/vivaan.svg"; }}
+                        />
+                        <h3 className="font-heading text-lg font-semibold mb-2">
+                          {t("about.team.editor.name")}
+                        </h3>
+                        <p className="text-primary text-sm font-medium mb-3">
+                          {t("about.team.editor.title")}
+                        </p>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {t("about.team.editor.description")}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </TiltCard>
 
-                  <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '100ms' } as React.CSSProperties}>
-                    <CardContent className="p-6 text-center">
-                      <img
-                        src={vedMehtaNew}
-                        alt={t("about.team.analyst.name")}
-                        className="w-24 h-24 mx-auto mb-4 rounded-full object-cover ring-2 ring-primary/20 transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:ring-primary group-hover:ring-4 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
-                        loading="lazy"
-                        decoding="async"
-                        width={96}
-                        height={96}
-                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/images/team/vivaan.svg"; }}
-                      />
-                      <h3 className="font-heading text-lg font-semibold mb-2">
-                        {t("about.team.analyst.name")}
-                      </h3>
-                      <p className="text-primary text-sm font-medium mb-3">
-                        {t("about.team.analyst.title")}
-                      </p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {t("about.team.analyst.description")}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <TiltCard>
+                    <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 h-full reveal-on-scroll" style={{ '--stagger-delay': '100ms' } as React.CSSProperties}>
+                      <CardContent className="p-6 text-center">
+                        <img
+                          src={vedMehtaNew}
+                          alt={t("about.team.analyst.name")}
+                          className="w-24 h-24 mx-auto mb-4 rounded-full object-cover ring-2 ring-primary/20 transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:ring-primary group-hover:ring-4 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
+                          loading="lazy"
+                          decoding="async"
+                          width={96}
+                          height={96}
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/images/team/vivaan.svg"; }}
+                        />
+                        <h3 className="font-heading text-lg font-semibold mb-2">
+                          {t("about.team.analyst.name")}
+                        </h3>
+                        <p className="text-primary text-sm font-medium mb-3">
+                          {t("about.team.analyst.title")}
+                        </p>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {t("about.team.analyst.description")}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </TiltCard>
 
-                  <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '200ms' } as React.CSSProperties}>
-                    <CardContent className="p-6 text-center">
-                      <img
-                        src={shouryaGuptaNew}
-                        alt={t("about.team.reporter.name")}
-                        className="w-24 h-24 mx-auto mb-4 rounded-full object-cover ring-2 ring-primary/20 transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:ring-primary group-hover:ring-4 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
-                        loading="lazy"
-                        decoding="async"
-                        width={96}
-                        height={96}
-                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/images/team/shaurya.svg"; }}
-                      />
-                      <h3 className="font-heading text-lg font-semibold mb-2">
-                        {t("about.team.reporter.name")}
-                      </h3>
-                      <p className="text-primary text-sm font-medium mb-3">
-                        {t("about.team.reporter.title")}
-                      </p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {t("about.team.reporter.description")}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <TiltCard>
+                    <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 h-full reveal-on-scroll" style={{ '--stagger-delay': '200ms' } as React.CSSProperties}>
+                      <CardContent className="p-6 text-center">
+                        <img
+                          src={shouryaGuptaNew}
+                          alt={t("about.team.reporter.name")}
+                          className="w-24 h-24 mx-auto mb-4 rounded-full object-cover ring-2 ring-primary/20 transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:ring-primary group-hover:ring-4 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
+                          loading="lazy"
+                          decoding="async"
+                          width={96}
+                          height={96}
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/images/team/shaurya.svg"; }}
+                        />
+                        <h3 className="font-heading text-lg font-semibold mb-2">
+                          {t("about.team.reporter.name")}
+                        </h3>
+                        <p className="text-primary text-sm font-medium mb-3">
+                          {t("about.team.reporter.title")}
+                        </p>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {t("about.team.reporter.description")}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </TiltCard>
 
-                  <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '300ms' } as React.CSSProperties}>
-                    <CardContent className="p-6 text-center">
-                      <img
-                        src={shauryaGuptaNew}
-                        alt={t("about.team.photographer.name")}
-                        className="w-24 h-24 mx-auto mb-4 rounded-full object-cover ring-2 ring-primary/20 transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:ring-primary group-hover:ring-4 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
-                        loading="lazy"
-                        decoding="async"
-                        width={96}
-                        height={96}
-                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/images/team/shaurya.svg"; }}
-                      />
-                      <h3 className="font-heading text-lg font-semibold mb-2">
-                        {t("about.team.photographer.name")}
-                      </h3>
-                      <p className="text-primary text-sm font-medium mb-3">
-                        {t("about.team.photographer.title")}
-                      </p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {t("about.team.photographer.description")}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <TiltCard>
+                    <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 h-full reveal-on-scroll" style={{ '--stagger-delay': '300ms' } as React.CSSProperties}>
+                      <CardContent className="p-6 text-center">
+                        <img
+                          src={shauryaGuptaNew}
+                          alt={t("about.team.photographer.name")}
+                          className="w-24 h-24 mx-auto mb-4 rounded-full object-cover ring-2 ring-primary/20 transition-all duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:ring-primary group-hover:ring-4 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
+                          loading="lazy"
+                          decoding="async"
+                          width={96}
+                          height={96}
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/images/team/shaurya.svg"; }}
+                        />
+                        <h3 className="font-heading text-lg font-semibold mb-2">
+                          {t("about.team.photographer.name")}
+                        </h3>
+                        <p className="text-primary text-sm font-medium mb-3">
+                          {t("about.team.photographer.title")}
+                        </p>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {t("about.team.photographer.description")}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </TiltCard>
                 </div>
 
               </div>
