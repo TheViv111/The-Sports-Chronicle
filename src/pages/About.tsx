@@ -65,7 +65,7 @@ const About = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 staggered-grid">
-                  <Card className="group hover:shadow-lg transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '0ms' } as React.CSSProperties}>
+                  <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '0ms' } as React.CSSProperties}>
                     <CardContent className="p-6 text-center">
                       <img
                         src={vivaanHandaNew}
@@ -89,7 +89,7 @@ const About = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="group hover:shadow-lg transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '100ms' } as React.CSSProperties}>
+                  <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '100ms' } as React.CSSProperties}>
                     <CardContent className="p-6 text-center">
                       <img
                         src={vedMehtaNew}
@@ -113,7 +113,7 @@ const About = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="group hover:shadow-lg transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '200ms' } as React.CSSProperties}>
+                  <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '200ms' } as React.CSSProperties}>
                     <CardContent className="p-6 text-center">
                       <img
                         src={shouryaGuptaNew}
@@ -137,7 +137,7 @@ const About = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="group hover:shadow-lg transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '300ms' } as React.CSSProperties}>
+                  <Card className="group hover:[box-shadow:0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1),0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] transition-all duration-300 reveal-on-scroll" style={{ '--stagger-delay': '300ms' } as React.CSSProperties}>
                     <CardContent className="p-6 text-center">
                       <img
                         src={shauryaGuptaNew}

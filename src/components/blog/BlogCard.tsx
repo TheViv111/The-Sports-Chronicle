@@ -28,7 +28,7 @@ const BlogCard = memo(function BlogCard({ post, className, style }: BlogCardProp
     <Link to={`/blog/${displayPost.slug}`} className="block group h-full">
       <TiltCard className="h-full">
         <Card
-          className={`overflow-hidden h-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:[box-shadow:0_8px_30px_-4px_hsl(var(--brand)/0.25)] ${className || ''}`}
+          className={`overflow-hidden h-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:[box-shadow:0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)] ${className || ''}`}
           style={{
             ...style,
             contain: 'layout style',
