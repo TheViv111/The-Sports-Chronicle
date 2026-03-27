@@ -132,7 +132,7 @@ const PhilosophySection = memo(({ showParticles, isDarkMode }: { showParticles: 
           At <strong>The Sports Chronicle</strong>, we believe that true athletic excellence is found in the details—the intricate coordination of a 4-3-3 setup, the geometry of the half-space, and the biomechanics of a perfect breakaway. 
         </p>
         <p className="mt-6">
-          Founded by <strong>Vivaan Handa</strong>, alongside <strong>Ved Mehta</strong>, <strong>Shourya Gupta</strong>, and <strong>Shaurya Gupta</strong>, this platform was built to bridge the gap between raw athleticism and high-level tactical analysis. From the chemistry of athletic recovery to predicting expected goals (xG), our team brings you the science, the tactics, and the relentless passion behind the sports we love.
+          Founded by <strong>Vivaan Handa</strong>, <strong>Ved Mehta</strong>, <strong>Shourya Gupta</strong>, and <strong>Shaurya Gupta</strong>, this platform was built to bridge the gap between raw athleticism and high-level tactical analysis. From the chemistry of athletic recovery to predicting expected goals (xG), our team brings you the science, the tactics, and the relentless passion behind the sports we love.
         </p>
       </div>
     </div>

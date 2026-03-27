@@ -24,6 +24,22 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const { t, currentLanguage } = useTranslation();
 
+  // ── Reading progress bar ───────────────────────────────────────────────────
+  const [readProgress, setReadProgress] = useState(0);
+  const articleRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const article = articleRef.current;
+      if (!article) return;
+      const { top, height } = article.getBoundingClientRect();
+      const total = height - window.innerHeight;
+      setReadProgress(total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   if (!slug) {
     return <Navigate to="/blog" replace />;
   }
@@ -114,22 +130,6 @@ const BlogPost = () => {
 
   // Get author bio if available
   const author = (post as any).author_id ? getAuthorById((post as any).author_id) : null;
-
-  // ── Reading progress bar ───────────────────────────────────────────────────
-  const [readProgress, setReadProgress] = useState(0);
-  const articleRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const article = articleRef.current;
-      if (!article) return;
-      const { top, height } = article.getBoundingClientRect();
-      const total = height - window.innerHeight;
-      setReadProgress(total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <>
