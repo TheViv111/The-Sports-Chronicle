@@ -85,7 +85,7 @@ export default function RelatedPosts({ currentPost, category, limit = 3 }: Relat
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {relatedPosts.map((post) => (
-          <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <Card key={post.id} className="group transition-all duration-300 hover:-translate-y-1 hover:[box-shadow:0_0_0_2px_hsl(var(--brand)/0.7),0_0_24px_6px_hsl(var(--brand)/0.25)]">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-2 mb-2">
                 <Badge variant={post.category?.toLowerCase() as any} className="text-xs">

@@ -9,7 +9,7 @@ import KeywordOptimizer from "@/components/blog/KeywordOptimizer";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { Tables } from "@/integrations/supabase/types";
-import LoadingScreen from "@/components/common/LoadingScreen";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { SEO } from "@/components/common/SEO";
 import { AuthorBio } from "@/components/blog/AuthorBio";
@@ -53,7 +53,38 @@ const BlogPost = () => {
   });
 
   if (isLoading) {
-    return <LoadingScreen message="Loading post..." />;
+    return (
+      <div className="min-h-screen py-8">
+        <div className="container mx-auto px-4 max-w-4xl">
+          {/* Cover image */}
+          <Skeleton className="w-full aspect-video rounded-xl mb-8" />
+          {/* Category + title */}
+          <Skeleton className="h-4 w-24 mb-4" />
+          <Skeleton className="h-10 w-3/4 mb-3" />
+          <Skeleton className="h-10 w-1/2 mb-6" />
+          {/* Meta row */}
+          <div className="flex gap-4 mb-8">
+            <Skeleton className="h-4 w-32" />
+            <Skeleton className="h-4 w-24" />
+          </div>
+          {/* Body paragraphs */}
+          <div className="space-y-3 mb-4">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-5/6" />
+          </div>
+          <div className="space-y-3 mb-4">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-4/5" />
+          </div>
+          <div className="space-y-3">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-3/4" />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (error || !post) {

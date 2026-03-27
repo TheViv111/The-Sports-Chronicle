@@ -269,6 +269,14 @@
     }
   }
 
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-6px); }
+    40%       { transform: translateX(6px); }
+    60%       { transform: translateX(-4px); }
+    80%       { transform: translateX(4px); }
+  }
+
   @keyframes shimmer {
     0% {
       background-position: -200% 0;
@@ -516,6 +524,13 @@
         hsl(var(--muted)) 100%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
+  }
+
+  /* Shake on invalid form fields (only after user has interacted) */
+  input:invalid:not(:placeholder-shown),
+  textarea:invalid:not(:placeholder-shown) {
+    animation: shake 0.4s ease-in-out;
+    border-color: hsl(var(--destructive));
   }
 
   /* Floating animation */

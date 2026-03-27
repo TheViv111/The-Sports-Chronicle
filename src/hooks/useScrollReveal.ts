@@ -7,6 +7,21 @@ interface ScrollRevealOptions extends IntersectionObserverInit {
   once?: boolean;
 }
 
+const getAnimationClass = (animationType: string): string => {
+  const map: Record<string, string> = {
+    fadeInUp: 'fade-in-up',
+    fadeInLeft: 'fade-in-left',
+    fadeInRight: 'fade-in-right',
+    fadeInDown: 'fade-in-down',
+    scaleIn: 'scale-in',
+    slideInUp: 'slide-in-up',
+    slideInDown: 'slide-in-down',
+    rotateIn: 'rotate-in',
+    bounceIn: 'bounce-in',
+  };
+  return map[animationType] ?? 'fade-in-up';
+};
+
 const useScrollReveal = (
   selector: string,
   options: ScrollRevealOptions = {
@@ -33,16 +48,7 @@ const useScrollReveal = (
           element.style.setProperty('--stagger-delay', `${delay}ms`);
           
           // Add animation type class
-          const animationClass = options.animationType || 'fadeInUp';
-          element.classList.add(animationClass === 'fadeInUp' ? 'fade-in-up' : 
-                              animationClass === 'fadeInLeft' ? 'fade-in-left' :
-                              animationClass === 'fadeInRight' ? 'fade-in-right' :
-                              animationClass === 'fadeInDown' ? 'fade-in-down' :
-                              animationClass === 'scaleIn' ? 'scale-in' :
-                              animationClass === 'slideInUp' ? 'slide-in-up' :
-                              animationClass === 'slideInDown' ? 'slide-in-down' :
-                              animationClass === 'rotateIn' ? 'rotate-in' :
-                              animationClass === 'bounceIn' ? 'bounce-in' : 'fade-in-up');
+          element.classList.add(getAnimationClass(options.animationType || 'fadeInUp'));
           
           element.classList.add('visible');
           revealedElements.current.add(element);
@@ -86,16 +92,7 @@ const useScrollReveal = (
         const delay = options.staggerDelay ? index * options.staggerDelay : 0;
         element.style.setProperty('--stagger-delay', `${delay}ms`);
         
-        const animationClass = options.animationType || 'fadeInUp';
-        element.classList.add(animationClass === 'fadeInUp' ? 'fade-in-up' : 
-                            animationClass === 'fadeInLeft' ? 'fade-in-left' :
-                            animationClass === 'fadeInRight' ? 'fade-in-right' :
-                            animationClass === 'fadeInDown' ? 'fade-in-down' :
-                            animationClass === 'scaleIn' ? 'scale-in' :
-                            animationClass === 'slideInUp' ? 'slide-in-up' :
-                            animationClass === 'slideInDown' ? 'slide-in-down' :
-                            animationClass === 'rotateIn' ? 'rotate-in' :
-                            animationClass === 'bounceIn' ? 'bounce-in' : 'fade-in-up');
+        element.classList.add(getAnimationClass(options.animationType || 'fadeInUp'));
         
         element.classList.add('visible');
         

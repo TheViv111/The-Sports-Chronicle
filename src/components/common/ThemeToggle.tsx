@@ -53,23 +53,23 @@ export function ThemeToggle() {
       aria-label={`Toggle theme (current: ${theme}${theme === 'system' ? `, system is ${systemTheme}` : ''})`}
     >
       <div className="relative w-full h-full flex items-center justify-center">
-        <Sun className="h-[1.2rem] w-[1.2rem] absolute transition-all" 
+        <Sun className="h-[1.2rem] w-[1.2rem] absolute transition-all duration-300"
           style={{
             opacity: theme === 'light' ? 1 : 0,
             transform: `rotate(${theme === 'light' ? '0deg' : '-90deg'})`,
-          }} 
+          }}
         />
-        <Moon className="h-[1.2rem] w-[1.2rem] absolute transition-all" 
+        <Moon className="h-[1.2rem] w-[1.2rem] absolute transition-all duration-300"
           style={{
             opacity: theme === 'dark' ? 1 : 0,
             transform: `rotate(${theme === 'dark' ? '0deg' : '90deg'})`,
-          }} 
+          }}
         />
-        <Monitor className="h-[1.2rem] w-[1.2rem] absolute transition-all" 
+        <Monitor className="h-[1.2rem] w-[1.2rem] absolute transition-all duration-300"
           style={{
             opacity: theme === 'system' ? 1 : 0,
             transform: `scale(${theme === 'system' ? 1 : 0.5})`,
-          }} 
+          }}
         />
       </div>
       <span className="sr-only">Toggle theme (current: {theme}{theme === 'system' ? `, system is ${systemTheme}` : ''})</span>

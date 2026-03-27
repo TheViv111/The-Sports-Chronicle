@@ -19,8 +19,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const { t, currentLanguage } = useTranslation();
 
-  useScrollReveal('.reveal-on-scroll');
-  useScrollReveal('.staggered-grid > .reveal-on-scroll', { threshold: 0.1 });
+  useScrollReveal('.reveal-on-scroll', { threshold: 0.1 });
 
   useEffect(() => {
     loadPosts();
