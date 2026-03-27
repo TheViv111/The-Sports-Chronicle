@@ -77,10 +77,14 @@ const FloodlightBackground = ({ imagePath = "/images/green-turf.png" }: Floodlig
     let cx: number;
     let cy: number;
 
-    if (isMobile && gyroEnabled) {
-      const maxShift = 60;
-      cx = w / 2 + tiltRef.current.x * maxShift;
-      cy = h / 2 + tiltRef.current.y * maxShift;
+    // Auto-pan on mobile if no gyro
+    if (isMobile && !gyroEnabled) {
+      const time = performance.now() / 2000;
+      cx = w / 2 + Math.sin(time) * (w / 3);
+      cy = h / 2 + Math.cos(time * 0.8) * (h / 4);
+    } else if (isMobile && gyroEnabled) {
+      cx = w / 2 + tiltRef.current.x * 20;
+      cy = h / 2 + tiltRef.current.y * 20;
     } else if (!isMobile) {
       cx = mouseRef.current.x;
       cy = mouseRef.current.y;
@@ -107,7 +111,27 @@ const FloodlightBackground = ({ imagePath = "/images/green-turf.png" }: Floodlig
     // 3. Draw texture AT THE BACK (revealed by the hole)
     ctx.globalCompositeOperation = "destination-over";
     if (textureRef.current) {
-      ctx.drawImage(textureRef.current, 0, 0, w, h);
+      const img = textureRef.current;
+      const imgRatio = img.width / img.height;
+      const canvasRatio = w / h;
+      
+      let drawWidth = w;
+      let drawHeight = h;
+      let offsetX = 0;
+      let offsetY = 0;
+      
+      // object-fit: contain scaling
+      if (imgRatio > canvasRatio) {
+        drawWidth = w;
+        drawHeight = w / imgRatio;
+        offsetY = (h - drawHeight) / 2;
+      } else {
+        drawHeight = h;
+        drawWidth = h * imgRatio;
+        offsetX = (w - drawWidth) / 2;
+      }
+      
+      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
     } else {
       ctx.fillStyle = "rgb(23, 23, 23)";
       ctx.fillRect(0, 0, w, h);

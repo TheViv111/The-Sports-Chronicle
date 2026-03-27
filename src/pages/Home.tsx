@@ -10,6 +10,7 @@ import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-uti
 import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
 import { useTheme } from "@/components/common/ThemeProvider";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 // Lazy load heavy components
 const FloodlightBackground = lazy(() => import("@/components/common/FloodlightBackground"));
@@ -106,7 +107,7 @@ const PhilosophySection = memo(({ showParticles, isDarkMode }: { showParticles: 
       </Suspense>
     )}
 
-    <div className="relative z-10 max-w-4xl mx-auto text-center">
+    <div className="relative z-10 max-w-4xl mx-auto text-center reveal-infinite bounce-in">
       <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-8 drop-shadow-lg">
         We don't just report the scores.<br className="hidden sm:block" />
         <span className="text-brand">We dissect the game.</span>
@@ -117,7 +118,7 @@ const PhilosophySection = memo(({ showParticles, isDarkMode }: { showParticles: 
           At <strong>The Sports Chronicle</strong>, we believe that true athletic excellence is found in the details—the intricate coordination of a 4-3-3 setup, the geometry of the half-space, and the biomechanics of a perfect breakaway. 
         </p>
         <p className="mt-6">
-          Founded by <strong>Vivaan Handa</strong>—an IB student, Box-to-Box Midfielder, and hybrid athlete—this platform was built to bridge the gap between raw athleticism and high-level tactical analysis. From the chemistry of athletic recovery to predicting expected goals (xG), we bring you the science, the tactics, and the relentless passion behind the sports we love.
+          Founded by <strong>Vivaan Handa</strong>, alongside <strong>Ved Mehta</strong>, <strong>Shourya Gupta</strong>, and <strong>Shaurya Gupta</strong>, this platform was built to bridge the gap between raw athleticism and high-level tactical analysis. From the chemistry of athletic recovery to predicting expected goals (xG), our team brings you the science, the tactics, and the relentless passion behind the sports we love.
         </p>
       </div>
     </div>
@@ -128,6 +129,8 @@ PhilosophySection.displayName = 'PhilosophySection';
 const Home = () => {
   const { t, currentLanguage } = useTranslation();
   const { theme } = useTheme();
+  useScrollReveal('.reveal-on-scroll');
+  useScrollReveal('.reveal-infinite', { once: false, resetOnExit: true });
 
   // Determine if dark mode is active
   const isDarkMode = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
