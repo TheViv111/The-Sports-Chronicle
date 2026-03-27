@@ -6,6 +6,7 @@ import { transformBlogPostForDisplay, BlogPostWithDisplay } from "@/lib/blog-uti
 import { useTranslation } from "@/contexts/TranslationContext";
 import { useState, memo } from "react";
 import { PlaceholderImage } from "@/components/common/PlaceholderImage";
+import { TiltCard } from "@/components/common/TiltCard";
 
 interface BlogCardProps {
   post: Tables<'blog_posts'> | BlogPostWithDisplay;
@@ -24,14 +25,15 @@ const BlogCard = memo(function BlogCard({ post, className, style }: BlogCardProp
   const [imageError, setImageError] = useState(!imageSrc);
 
   return (
-    <Link to={`/blog/${displayPost.slug}`} className="block group">
-      <Card
-        className={`overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:[box-shadow:0_8px_30px_-4px_hsl(var(--brand)/0.25)] ${className || ''}`}
-        style={{
-          ...style,
-          contain: 'layout style',
-        }}
-      >
+    <Link to={`/blog/${displayPost.slug}`} className="block group h-full">
+      <TiltCard className="h-full">
+        <Card
+          className={`overflow-hidden h-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:[box-shadow:0_8px_30px_-4px_hsl(var(--brand)/0.25)] ${className || ''}`}
+          style={{
+            ...style,
+            contain: 'layout style',
+          }}
+        >
         {/* Fixed aspect ratio container to prevent CLS */}
         <div
           className="relative overflow-hidden bg-muted"
@@ -91,6 +93,7 @@ const BlogCard = memo(function BlogCard({ post, className, style }: BlogCardProp
           </span>
         </CardFooter>
       </Card>
+      </TiltCard>
     </Link>
   );
 });

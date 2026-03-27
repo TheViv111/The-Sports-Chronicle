@@ -8,13 +8,13 @@ interface ScrollRevealOptions extends IntersectionObserverInit {
 }
 
 const useScrollReveal = (
-  selector: string, 
-  options: ScrollRevealOptions = { 
+  selector: string,
+  options: ScrollRevealOptions = {
     threshold: 0.1,
     staggerDelay: 100,
     animationType: 'fadeInUp',
-    resetOnExit: false,
-    once: true
+    resetOnExit: true,
+    once: false
   }
 ) => {
   const elementsRef = useRef<NodeListOf<HTMLElement> | null>(null);

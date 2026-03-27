@@ -11,6 +11,7 @@ import BlogCardSkeleton from "@/components/blog/BlogCardSkeleton";
 import { SEO } from "@/components/common/SEO";
 import { useTheme } from "@/components/common/ThemeProvider";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { Magnetic } from "@/components/common/Magnetic";
 
 // Lazy load heavy components
 const FloodlightBackground = lazy(() => import("@/components/common/FloodlightBackground"));
@@ -24,26 +25,36 @@ const HeroSection = memo(({ t, showParticles, isDarkMode }: { t: (key: string) =
       </Suspense>
     )}
     
-    <div className="relative z-10 max-w-7xl mx-auto">
+    <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
       {/* Static content - no animations that cause layout shifts */}
-      <p className="text-muted-foreground uppercase text-xs sm:text-sm tracking-wide mb-3 sm:mb-4">
+      <p className="text-muted-foreground uppercase text-xs sm:text-sm tracking-wide mb-3 sm:mb-4 reveal-on-scroll">
         {t("hero.welcome")}
       </p>
 
-      <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 max-w-4xl mx-auto leading-tight">
+      <h1 
+        className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 max-w-4xl mx-auto leading-tight reveal-on-scroll"
+        style={{ '--stagger-delay': '100ms' } as React.CSSProperties}
+      >
         {t("hero.title")}
       </h1>
 
-      <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
+      <p 
+        className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto reveal-on-scroll"
+        style={{ '--stagger-delay': '200ms' } as React.CSSProperties}
+      >
         {t("hero.subtitle")}
       </p>
 
-      <Link to="/blog">
-        <Button size="lg" variant="brand" className="group">
-          {t("hero.readLatest")}
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </Button>
-      </Link>
+      <div className="reveal-on-scroll" style={{ '--stagger-delay': '300ms' } as React.CSSProperties}>
+        <Link to="/blog">
+          <Magnetic strength={0.25}>
+            <Button size="lg" variant="brand" className="group">
+              {t("hero.readLatest")}
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Magnetic>
+        </Link>
+      </div>
     </div>
     {/* Gradient fade — bridges hero dark background to carousel section */}
     <div
@@ -62,16 +73,19 @@ const BlogSection = memo(({ t, latestPosts, loadingLatestPosts }: {
   loadingLatestPosts: boolean
 }) => (
   <section className="py-12 sm:py-16 bg-secondary/20 relative">
-    <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">
+    <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center reveal-on-scroll">
       {t("latestPosts.title")}
     </h2>
 
-    <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-12 text-center">
+    <p 
+      className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-12 text-center reveal-on-scroll"
+      style={{ '--stagger-delay': '100ms' } as React.CSSProperties}
+    >
       {t("latestPosts.subtitle")}
     </p>
 
     {/* Fixed height container to prevent CLS during loading */}
-    <div className="min-h-[400px]">
+    <div className="min-h-[400px] reveal-on-scroll" style={{ '--stagger-delay': '200ms' } as React.CSSProperties}>
       {loadingLatestPosts ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4">
           {[...Array(3)].map((_, index) => (
@@ -107,13 +121,13 @@ const PhilosophySection = memo(({ showParticles, isDarkMode }: { showParticles: 
       </Suspense>
     )}
 
-    <div className="relative z-10 max-w-4xl mx-auto text-center reveal-infinite bounce-in">
+    <div className="relative z-10 max-w-4xl mx-auto text-center reveal-on-scroll">
       <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-8 drop-shadow-lg">
         We don't just report the scores.<br className="hidden sm:block" />
-        <span className="text-brand">We dissect the game.</span>
+        <span className="text-gradient-reveal pb-1 inline-block">We dissect the game.</span>
       </h2>
       
-      <div className="prose prose-lg dark:prose-invert mx-auto text-muted-foreground leading-relaxed drop-shadow-md">
+      <div className="prose prose-lg dark:prose-invert mx-auto text-muted-foreground leading-relaxed drop-shadow-md text-pulse-glow">
         <p>
           At <strong>The Sports Chronicle</strong>, we believe that true athletic excellence is found in the details—the intricate coordination of a 4-3-3 setup, the geometry of the half-space, and the biomechanics of a perfect breakaway. 
         </p>
@@ -130,7 +144,6 @@ const Home = () => {
   const { t, currentLanguage } = useTranslation();
   const { theme } = useTheme();
   useScrollReveal('.reveal-on-scroll');
-  useScrollReveal('.reveal-infinite', { once: false, resetOnExit: true });
 
   // Determine if dark mode is active
   const isDarkMode = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);

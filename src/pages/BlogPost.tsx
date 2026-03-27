@@ -104,11 +104,11 @@ const BlogPost = () => {
     <>
       {/* Reading progress bar — sits above the navbar */}
       <div
-        className="fixed top-0 left-0 right-0 z-[60] h-[3px] bg-brand/20"
+        className="fixed top-0 left-0 right-0 z-[60] h-[4px] bg-brand/10 pointer-events-none"
         aria-hidden="true"
       >
         <div
-          className="h-full bg-brand transition-[width] duration-75 ease-out"
+          className="h-full bg-gradient-to-r from-brand/50 via-brand to-primary transition-[width] duration-75 ease-out shadow-[0_0_12px_hsl(var(--brand)_/_0.6)]"
           style={{ width: `${readProgress * 100}%` }}
         />
       </div>
